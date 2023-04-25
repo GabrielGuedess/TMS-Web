@@ -1,3 +1,5 @@
+'use client';
+
 import styled, { keyframes, css } from 'styled-components';
 
 import { type LogoProps } from './types';

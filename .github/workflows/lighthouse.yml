@@ -1,7 +1,7 @@
 name: Lighthouse
 
 env:
-  URLS: 'https://nextjs-boilerplate-gabrielguedess.vercel.app'
+  URLS: 'https://tms-wolves.vercel.app'
   TOKEN_NAME: 'LIGHTHOUSE_BADGER_TOKEN'
   REPO_BRANCH: '${{ github.repository }} main'
   BADGES_ARGS: '-b pagespeed -o .github/ -r'
@@ -23,7 +23,7 @@ env:
 
 on:
   schedule:
-    - cron: '55 23 * * 0'
+    - cron: '55 23 * * 2'
 
   workflow_dispatch:
     inputs:

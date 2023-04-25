@@ -106,7 +106,15 @@
       }
     },
     {
-      "files": "**/**.mdx",
+      "files": "**/**.md",
+      "parserOptions": {},
+      "rules": {
+        "@typescript-eslint/naming-convention": "off",
+        "unicorn/filename-case": "off"
+      }
+    },
+    {
+      "files": ["**/**.mdx", "**/**.md"],
       "parser": "eslint-mdx",
       "parserOptions": {},
       "extends": "plugin:mdx/recommended",
