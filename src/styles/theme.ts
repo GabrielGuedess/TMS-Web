@@ -1,13 +1,35 @@
-import { Poppins } from 'next/font/google';
+import localFont from 'next/font/local';
 
-const poppins = Poppins({
-  weight: ['400', '500', '700'],
-  display: 'swap',
-  subsets: ['latin'],
+const satoshi = localFont({
+  src: [
+    {
+      path: '../app/fonts/Satoshi-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../app/fonts/Satoshi-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../app/fonts/Satoshi-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
 });
 
 export const theme = {
   colors: {
+    primary: '#3C50E0',
+
+    green: '#10B981',
+    red: '#DC3545',
+    border: '#292929',
+    gray: '#898989',
+
+    background: '#1C1C1C',
     white: '#FFFFFF',
     black: '#000000',
 
@@ -41,7 +63,7 @@ export const theme = {
     bold: '700',
   },
   fonts: {
-    default: `${poppins.style.fontFamily}, sans-serif`,
+    default: `${satoshi.style.fontFamily}, sans-serif`,
     code: 'monospace',
   },
   lineHeights: {

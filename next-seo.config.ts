@@ -4,9 +4,9 @@ const config: DefaultSeoProps = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: 'https://github.com/GabrielGuedess/nextjs-boilerplate',
-    site_name: 'Boilerplate NextJs',
-    title: 'Boilerplate para projetos NextJs ⭐🚀',
+    url: 'https://github.com/GabrielGuedess/TMS-Web',
+    site_name: 'TMS',
+    title: 'TMS',
   },
   twitter: {
     handle: '@GabrielRGuedess',

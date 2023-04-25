@@ -2,11 +2,12 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/GabrielGuedess/NextJs-Boilerplate"><img src="./public/img/icon-512.png" width="200"></a>
+  <a href="https://github.com/GabrielGuedess/TMS-Web"><img src="./public/img/icon-512.png" width="200"></a>
   <br>
- 
-  NextJs Boilerplate
-  <br>
+
+TMS Web
+<br>
+
 </h1>
 
 <h4 align="center">A Better template with <a href="https://nextjs.org" target="_blank"><em>NextJs</em></a> with technologies to improve development.</h4>
