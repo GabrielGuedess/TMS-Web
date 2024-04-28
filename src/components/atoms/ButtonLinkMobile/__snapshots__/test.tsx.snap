@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ButtonLinkMobile /> should render the heading 1`] = `
+<a
+  class="w-full p-4 text-center text-xl transition-all dark:hover:bg-shark-950 hover:bg-primary-400 text-comet-500 dark:text-dark-300 hover:text-white-lilac-50"
+  href="/"
+>
+  gg
+</a>
+`;

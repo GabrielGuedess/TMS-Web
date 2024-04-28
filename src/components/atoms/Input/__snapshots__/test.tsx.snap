@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> should render the input correctly 1`] = `
+<div
+  class="relative flex h-min flex-col"
+>
+  <div
+    class="relative"
+  >
+    <input
+      autocomplete="on"
+      class="peer w-full rounded-lg border-2 bg-transparent font-normal text-comet-500 outline-none transition-all placeholder:opacity-0 dark:border-shark-950 dark:text-white-lilac-50 p-3 focus:border-primary-300 dark:focus:border-primary-400 focus:placeholder:opacity-100"
+      id=":r0:"
+    />
+  </div>
+</div>
+`;

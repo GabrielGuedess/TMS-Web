@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SelectItem /> should render the select item correctly 1`] = `
+<div
+  style="display: flex; flex-direction: column; position: fixed;"
+>
+  <div
+    data-state="open"
+    dir="ltr"
+    id="radix-:r0:"
+    role="listbox"
+    style="box-sizing: border-box; max-height: 100%; display: flex; flex-direction: column; outline: none; pointer-events: auto;"
+    tabindex="-1"
+  >
+    <div
+      aria-labelledby="radix-:r1:"
+      aria-selected="false"
+      class="flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm text-comet-500 outline-none hover:bg-primary-400/[.08] hover:text-primary-400 focus:bg-primary-400/[.08] focus:text-primary-400 dark:text-dark-300"
+      data-radix-collection-item=""
+      data-state="unchecked"
+      role="option"
+      tabindex="-1"
+    >
+      <span
+        id="radix-:r1:"
+      >
+        value
+      </span>
+    </div>
+  </div>
+</div>
+`;

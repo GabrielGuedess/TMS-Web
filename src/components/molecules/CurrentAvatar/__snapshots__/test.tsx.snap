@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CurrentAvatar /> should render the current avatar correctly 1`] = `
+<div
+  class="flex"
+  title="avatar"
+>
+  <div
+    class="relative w-10 h-10 select-none overflow-hidden rounded-full bg-porcelain-50 dark:bg-smoke-950 transition-all"
+  >
+    <img
+      alt="Current Avatar"
+      class="select-none object-cover"
+      data-nimg="fill"
+      decoding="async"
+      fetchpriority="high"
+      sizes="(max-width: 768px) 100vw, 33vw"
+      src="/_next/image?url=http%3A%2F%2Fphoto.jpg&w=3840&q=75"
+      srcset="/_next/image?url=http%3A%2F%2Fphoto.jpg&w=256&q=75 256w, /_next/image?url=http%3A%2F%2Fphoto.jpg&w=384&q=75 384w, /_next/image?url=http%3A%2F%2Fphoto.jpg&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fphoto.jpg&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fphoto.jpg&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fphoto.jpg&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fphoto.jpg&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fphoto.jpg&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fphoto.jpg&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fphoto.jpg&w=3840&q=75 3840w"
+      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+    />
+  </div>
+</div>
+`;

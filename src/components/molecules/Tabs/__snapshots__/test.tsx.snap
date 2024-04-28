@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tabs /> should render the tabs correctly 1`] = `
+<div
+  class="flex"
+>
+  <div
+    class="no-scrollbar flex overflow-x-auto"
+  >
+    <a
+      class="flex items-center justify-center gap-2 text-nowrap p-5 outline-none transition-all hover:text-primary-400 focus:text-primary-400"
+      href="general"
+    >
+      Geral
+    </a>
+    <a
+      class="flex items-center justify-center gap-2 text-nowrap p-5 outline-none transition-all hover:text-primary-400 focus:text-primary-400"
+      href="personal"
+    >
+      Dados Pessoais
+    </a>
+    <a
+      class="flex items-center justify-center gap-2 text-nowrap p-5 outline-none transition-all hover:text-primary-400 focus:text-primary-400"
+      href="permissions"
+    >
+      Permissões
+    </a>
+    <a
+      class="flex items-center justify-center gap-2 text-nowrap p-5 outline-none transition-all text-primary-400"
+      href="groups"
+    >
+      Grupos
+    </a>
+  </div>
+</div>
+`;

@@ -1,0 +1,10 @@
+!.storybook
+!.jest
+**.mdx
+**.md
+public/**.js
+storybook-static
+coverage
+cypress.config.ts
+plopfile.mjs
+next-sitemap.config.js

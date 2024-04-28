@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DatePicker /> should render the date picker correctly 1`] = `
+<button
+  aria-controls="radix-:r0:"
+  aria-expanded="false"
+  aria-haspopup="dialog"
+  class="group text-left text-gray-800 outline-none"
+  data-state="closed"
+  type="button"
+>
+  <div
+    class="relative flex h-min flex-col"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        autocomplete="on"
+        class="peer w-full rounded-lg border-2 bg-transparent font-normal text-comet-500 outline-none transition-all placeholder:opacity-0 dark:border-shark-950 dark:text-white-lilac-50 py-3 pb-3 pl-3 pr-8 focus:border-primary-300 dark:focus:border-primary-400 focus:placeholder:opacity-100 cursor-pointer group-focus:border-primary-300 group-data-[state='open']:border-primary-300"
+        id=":r1:"
+        readonly=""
+        value="29/02/2024"
+      />
+      <label
+        class="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 px-[3px] text-sm text-comet-500 transition-all before:absolute before:inset-0 before:-z-10 before:block before:w-full before:bg-white-lilac-50 before:transition-all peer-valid:top-[-35%] peer-valid:translate-y-1/2 peer-read-only:top-[-35%] peer-read-only:translate-y-1/2 peer-focus:top-[-35%] peer-focus:translate-y-1/2 dark:text-dark-300 before:dark:bg-smoke-950 peer-focus:text-primary-400"
+        for=":r1:"
+      >
+        Date
+      </label>
+      <div
+        class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-comet-500 transition-all dark:text-dark-300"
+      >
+        <svg
+          fill="none"
+          height="18"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8 2V5"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            stroke-width="1.5"
+          />
+          <path
+            d="M16 2V5"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            stroke-width="1.5"
+          />
+          <path
+            d="M3.5 9.09H20.5"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            stroke-width="1.5"
+          />
+          <path
+            d="M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            stroke-width="1.5"
+          />
+          <path
+            d="M11.9955 13.7H12.0045"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+          <path
+            d="M8.29431 13.7H8.30329"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+          <path
+            d="M8.29431 16.7H8.30329"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</button>
+`;

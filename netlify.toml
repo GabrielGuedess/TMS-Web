@@ -1,0 +1,9 @@
+[build]
+  publish = "storybook-static"
+  command = "pnpm build-storybook"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+[[plugins]]
+  package = "@netlify/plugin-a11y"

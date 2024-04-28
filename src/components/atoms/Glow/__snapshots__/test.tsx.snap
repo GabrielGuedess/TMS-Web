@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Glow /> should render the glow correctly 1`] = `
+<div
+  class="glow"
+  style="display: grid; --glow-top: 0px; --glow-left: 0px;"
+>
+  <div
+    class=""
+    style="grid-area: 1/1/1/1;"
+  >
+    Test
+  </div>
+  <div
+    class="glow-mask "
+    glow="true"
+    style="--glow-color: #f50057; grid-area: 1/1/1/1; pointer-events: none; mask: radial-gradient(var(--glow-size) var(--glow-size) at calc(var(--glow-x, -99999px) - var(--glow-left, 0px))
+calc(var(--glow-y, -99999px) - var(--glow-top, 0px)), #000000 1%, transparent 50%);"
+  >
+    Test
+  </div>
+</div>
+`;

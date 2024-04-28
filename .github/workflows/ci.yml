@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3.5.3
+
+      - uses: pnpm/action-setup@v2.2.4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8.6.0
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          cache: 'pnpm'
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: pnpm i --no-frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Find unused exports
+        run: pnpm find-deadcode
+
+      - name: Linting
+        run: pnpm lint
+
+      - name: Storybook
+        run: pnpm build-storybook
+

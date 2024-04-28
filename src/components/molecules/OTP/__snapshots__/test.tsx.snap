@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OTP /> should render the OTP correctly 1`] = `
+<div
+  class="relative"
+>
+  <div
+    style="display: flex; align-items: center; gap: 12px;"
+  >
+    <div
+      class="relative flex h-min flex-col"
+    >
+      <div
+        class="relative"
+      >
+        <input
+          aria-label="Please enter OTP character 1"
+          autocomplete="off"
+          class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+          id=":r0:"
+          maxlength="1"
+          placeholder="-"
+          style="width: 100%; text-align: center;"
+          type="number"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="relative flex h-min flex-col"
+    >
+      <div
+        class="relative"
+      >
+        <input
+          aria-label="Please enter OTP character 2"
+          autocomplete="off"
+          class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+          id=":r1:"
+          maxlength="1"
+          placeholder="-"
+          style="width: 100%; text-align: center;"
+          type="number"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="relative flex h-min flex-col"
+    >
+      <div
+        class="relative"
+      >
+        <input
+          aria-label="Please enter OTP character 3"
+          autocomplete="off"
+          class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+          id=":r2:"
+          maxlength="1"
+          placeholder="-"
+          style="width: 100%; text-align: center;"
+          type="number"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="relative flex h-min flex-col"
+    >
+      <div
+        class="relative"
+      >
+        <input
+          aria-label="Please enter OTP character 4"
+          autocomplete="off"
+          class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+          id=":r3:"
+          maxlength="1"
+          placeholder="-"
+          style="width: 100%; text-align: center;"
+          type="number"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

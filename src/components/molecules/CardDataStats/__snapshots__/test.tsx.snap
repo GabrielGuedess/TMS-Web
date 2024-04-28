@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardDataStats /> should render the card data stats correctly 1`] = `
+<div
+  class="glow"
+  style="display: grid; --glow-top: 0px; --glow-left: 0px;"
+>
+  <div
+    class="rounded"
+    style="grid-area: 1/1/1/1;"
+  >
+    <div
+      class="rounded border border-zumthor-100 bg-white-lilac-50 px-[1.875rem] py-6 shadow-default transition-all glow:border-glow glow:bg-glow/[.15] glow:ring-1 glow:ring-glow dark:border-shark-950 dark:bg-smoke-950"
+    >
+      <div
+        class="flex size-[2.875rem] items-center justify-center rounded-full bg-porcelain-50 transition-all dark:bg-shark-950"
+      >
+        <svg
+          class="transition-all glow:text-glow"
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M22 8.52V3.98C22 2.57 21.36 2 19.77 2H15.73C14.14 2 13.5 2.57 13.5 3.98V8.51C13.5 9.93 14.14 10.49 15.73 10.49H19.77C21.36 10.5 22 9.93 22 8.52Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+          <path
+            d="M22 19.77V15.73C22 14.14 21.36 13.5 19.77 13.5H15.73C14.14 13.5 13.5 14.14 13.5 15.73V19.77C13.5 21.36 14.14 22 15.73 22H19.77C21.36 22 22 21.36 22 19.77Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+          <path
+            d="M10.5 8.52V3.98C10.5 2.57 9.86 2 8.27 2H4.23C2.64 2 2 2.57 2 3.98V8.51C2 9.93 2.64 10.49 4.23 10.49H8.27C9.86 10.5 10.5 9.93 10.5 8.52Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+          <path
+            d="M10.5 19.77V15.73C10.5 14.14 9.86 13.5 8.27 13.5H4.23C2.64 13.5 2 14.14 2 15.73V19.77C2 21.36 2.64 22 4.23 22H8.27C9.86 22 10.5 21.36 10.5 19.77Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+        </svg>
+      </div>
+      <div
+        class="mt-4 flex items-end justify-between"
+      >
+        <div>
+          <h4
+            class="text-[1.5rem] font-bold text-shark-900 transition-all dark:text-white"
+          >
+            123
+          </h4>
+          <span
+            class="text-sm font-medium text-comet-500 transition-all dark:text-dark-300"
+          >
+            Test
+          </span>
+        </div>
+        <span
+          class="flex items-center gap-1 text-sm font-medium text-success-500"
+        >
+          12
+          <svg
+            class="text-success-500"
+            fill="none"
+            height="10"
+            viewBox="0 0 10 10"
+            width="10"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="glow-mask rounded"
+    glow="true"
+    style="--glow-color: green; grid-area: 1/1/1/1; pointer-events: none; mask: radial-gradient(var(--glow-size) var(--glow-size) at calc(var(--glow-x, -99999px) - var(--glow-left, 0px))
+calc(var(--glow-y, -99999px) - var(--glow-top, 0px)), #000000 1%, transparent 50%);"
+  >
+    <div
+      class="rounded border border-zumthor-100 bg-white-lilac-50 px-[1.875rem] py-6 shadow-default transition-all glow:border-glow glow:bg-glow/[.15] glow:ring-1 glow:ring-glow dark:border-shark-950 dark:bg-smoke-950"
+    >
+      <div
+        class="flex size-[2.875rem] items-center justify-center rounded-full bg-porcelain-50 transition-all dark:bg-shark-950"
+      >
+        <svg
+          class="transition-all glow:text-glow"
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M22 8.52V3.98C22 2.57 21.36 2 19.77 2H15.73C14.14 2 13.5 2.57 13.5 3.98V8.51C13.5 9.93 14.14 10.49 15.73 10.49H19.77C21.36 10.5 22 9.93 22 8.52Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+          <path
+            d="M22 19.77V15.73C22 14.14 21.36 13.5 19.77 13.5H15.73C14.14 13.5 13.5 14.14 13.5 15.73V19.77C13.5 21.36 14.14 22 15.73 22H19.77C21.36 22 22 21.36 22 19.77Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+          <path
+            d="M10.5 8.52V3.98C10.5 2.57 9.86 2 8.27 2H4.23C2.64 2 2 2.57 2 3.98V8.51C2 9.93 2.64 10.49 4.23 10.49H8.27C9.86 10.5 10.5 9.93 10.5 8.52Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+          <path
+            d="M10.5 19.77V15.73C10.5 14.14 9.86 13.5 8.27 13.5H4.23C2.64 13.5 2 14.14 2 15.73V19.77C2 21.36 2.64 22 4.23 22H8.27C9.86 22 10.5 21.36 10.5 19.77Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+        </svg>
+      </div>
+      <div
+        class="mt-4 flex items-end justify-between"
+      >
+        <div>
+          <h4
+            class="text-[1.5rem] font-bold text-shark-900 transition-all dark:text-white"
+          >
+            123
+          </h4>
+          <span
+            class="text-sm font-medium text-comet-500 transition-all dark:text-dark-300"
+          >
+            Test
+          </span>
+        </div>
+        <span
+          class="flex items-center gap-1 text-sm font-medium text-success-500"
+        >
+          12
+          <svg
+            class="text-success-500"
+            fill="none"
+            height="10"
+            viewBox="0 0 10 10"
+            width="10"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

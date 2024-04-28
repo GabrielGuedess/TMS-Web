@@ -1,0 +1,365 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ResetPasswordForm /> should render the reset password form correctly 1`] = `
+<form>
+  <div
+    class="flex flex-col gap-8"
+  >
+    <div
+      class="relative flex h-min flex-col"
+    >
+      <div
+        class="relative"
+      >
+        <input
+          autocomplete="on"
+          class="peer w-full rounded-lg border-2 bg-transparent font-normal text-comet-500 outline-none transition-all placeholder:opacity-0 dark:border-shark-950 dark:text-white-lilac-50 p-3 focus:border-primary-300 dark:focus:border-primary-400 focus:placeholder:opacity-100"
+          id=":r0:"
+          name="email"
+          required=""
+          type="email"
+        />
+        <label
+          class="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 px-[3px] text-sm text-comet-500 transition-all before:absolute before:inset-0 before:-z-10 before:block before:w-full before:bg-white-lilac-50 before:transition-all peer-valid:top-[-35%] peer-valid:translate-y-1/2 peer-read-only:top-[-35%] peer-read-only:translate-y-1/2 peer-focus:top-[-35%] peer-focus:translate-y-1/2 dark:text-dark-300 before:dark:bg-smoke-950 peer-focus:text-primary-400"
+          for=":r0:"
+        >
+          E-mail
+        </label>
+      </div>
+    </div>
+    <div
+      class="relative"
+    >
+      <div
+        style="display: flex; align-items: center; gap: 12px;"
+      >
+        <div
+          class="relative flex h-min flex-col"
+        >
+          <div
+            class="relative"
+          >
+            <input
+              aria-label="Please enter OTP character 1"
+              autocomplete="off"
+              class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+              id=":r1:"
+              maxlength="1"
+              placeholder="-"
+              style="width: 100%; text-align: center;"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="relative flex h-min flex-col"
+        >
+          <div
+            class="relative"
+          >
+            <input
+              aria-label="Please enter OTP character 2"
+              autocomplete="off"
+              class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+              id=":r2:"
+              maxlength="1"
+              placeholder="-"
+              style="width: 100%; text-align: center;"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="relative flex h-min flex-col"
+        >
+          <div
+            class="relative"
+          >
+            <input
+              aria-label="Please enter OTP character 3"
+              autocomplete="off"
+              class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+              id=":r3:"
+              maxlength="1"
+              placeholder="-"
+              style="width: 100%; text-align: center;"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="relative flex h-min flex-col"
+        >
+          <div
+            class="relative"
+          >
+            <input
+              aria-label="Please enter OTP character 4"
+              autocomplete="off"
+              class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+              id=":r4:"
+              maxlength="1"
+              placeholder="-"
+              style="width: 100%; text-align: center;"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="relative flex h-min flex-col"
+        >
+          <div
+            class="relative"
+          >
+            <input
+              aria-label="Please enter OTP character 5"
+              autocomplete="off"
+              class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+              id=":r5:"
+              maxlength="1"
+              placeholder="-"
+              style="width: 100%; text-align: center;"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="relative flex h-min flex-col"
+        >
+          <div
+            class="relative"
+          >
+            <input
+              aria-label="Please enter OTP character 6"
+              autocomplete="off"
+              class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+              id=":r6:"
+              maxlength="1"
+              placeholder="-"
+              style="width: 100%; text-align: center;"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="relative flex h-min flex-col"
+    >
+      <div
+        class="relative"
+      >
+        <input
+          autocomplete="on"
+          class="peer w-full rounded-lg border-2 bg-transparent font-normal text-comet-500 outline-none transition-all placeholder:opacity-0 dark:border-shark-950 dark:text-white-lilac-50 py-3 pb-3 pl-3 pr-8 focus:border-primary-300 dark:focus:border-primary-400 focus:placeholder:opacity-100"
+          id=":r7:"
+          name="password"
+          required=""
+          type="password"
+        />
+        <label
+          class="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 px-[3px] text-sm text-comet-500 transition-all before:absolute before:inset-0 before:-z-10 before:block before:w-full before:bg-white-lilac-50 before:transition-all peer-valid:top-[-35%] peer-valid:translate-y-1/2 peer-read-only:top-[-35%] peer-read-only:translate-y-1/2 peer-focus:top-[-35%] peer-focus:translate-y-1/2 dark:text-dark-300 before:dark:bg-smoke-950 peer-focus:text-primary-400"
+          for=":r7:"
+        >
+          Nova Senha
+        </label>
+        <button
+          aria-label="Visible Password"
+          class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 focus:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400 focus:dark:text-primary-400"
+          type="button"
+        >
+          <svg
+            fill="none"
+            height="18"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.53 9.46998L9.47004 14.53C8.82004 13.88 8.42004 12.99 8.42004 12C8.42004 10.02 10.02 8.41998 12 8.41998C12.99 8.41998 13.88 8.81998 14.53 9.46998Z"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+            <path
+              d="M17.82 5.76998C16.07 4.44998 14.07 3.72998 12 3.72998C8.46997 3.72998 5.17997 5.80998 2.88997 9.40998C1.98997 10.82 1.98997 13.19 2.88997 14.6C3.67997 15.84 4.59997 16.91 5.59997 17.77"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+            <path
+              d="M8.42004 19.53C9.56004 20.01 10.77 20.27 12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39999C20.78 8.87999 20.42 8.38999 20.05 7.92999"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+            <path
+              d="M15.5099 12.7C15.2499 14.11 14.0999 15.26 12.6899 15.52"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+            <path
+              d="M9.47 14.53L2 22"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+            <path
+              d="M22 2L14.53 9.47"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      class="relative flex h-min flex-col"
+    >
+      <div
+        class="relative"
+      >
+        <input
+          autocomplete="on"
+          class="peer w-full rounded-lg border-2 bg-transparent font-normal text-comet-500 outline-none transition-all placeholder:opacity-0 dark:border-shark-950 dark:text-white-lilac-50 py-3 pb-3 pl-3 pr-8 focus:border-primary-300 dark:focus:border-primary-400 focus:placeholder:opacity-100"
+          id=":r8:"
+          name="confirm_password"
+          required=""
+          type="password"
+        />
+        <label
+          class="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 px-[3px] text-sm text-comet-500 transition-all before:absolute before:inset-0 before:-z-10 before:block before:w-full before:bg-white-lilac-50 before:transition-all peer-valid:top-[-35%] peer-valid:translate-y-1/2 peer-read-only:top-[-35%] peer-read-only:translate-y-1/2 peer-focus:top-[-35%] peer-focus:translate-y-1/2 dark:text-dark-300 before:dark:bg-smoke-950 peer-focus:text-primary-400"
+          for=":r8:"
+        >
+          Confirme a Senha
+        </label>
+        <button
+          aria-label="Visible Password"
+          class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 focus:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400 focus:dark:text-primary-400"
+          type="button"
+        >
+          <svg
+            fill="none"
+            height="18"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.53 9.46998L9.47004 14.53C8.82004 13.88 8.42004 12.99 8.42004 12C8.42004 10.02 10.02 8.41998 12 8.41998C12.99 8.41998 13.88 8.81998 14.53 9.46998Z"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+            <path
+              d="M17.82 5.76998C16.07 4.44998 14.07 3.72998 12 3.72998C8.46997 3.72998 5.17997 5.80998 2.88997 9.40998C1.98997 10.82 1.98997 13.19 2.88997 14.6C3.67997 15.84 4.59997 16.91 5.59997 17.77"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+            <path
+              d="M8.42004 19.53C9.56004 20.01 10.77 20.27 12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39999C20.78 8.87999 20.42 8.38999 20.05 7.92999"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+            <path
+              d="M15.5099 12.7C15.2499 14.11 14.0999 15.26 12.6899 15.52"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+            <path
+              d="M9.47 14.53L2 22"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+            <path
+              d="M22 2L14.53 9.47"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      class="flex flex-col gap-6"
+    >
+      <button
+        class="relative transition-transform duration-200 ease-in-out w-full hover:scale-105 focus:scale-105 active:scale-90 h-12"
+        type="submit"
+      >
+        <div
+          aria-label="Button Background"
+          class="absolute size-full rounded-md opacity-[16%] bg-primary-400"
+        />
+        <div
+          class="flex h-full items-center justify-center gap-2 px-5 py-[0.625rem] flex-row text-primary-400"
+        >
+          <span
+            class="z-10 font-medium leading-[1.125rem] tracking-[0.027rem] text-[0.9375rem]"
+          >
+            Atualizar Senha
+          </span>
+        </div>
+      </button>
+      <div
+        class="flex flex-col gap-3"
+      >
+        <span
+          class="text-center text-sm text-shark-950 transition-all dark:text-white-lilac-50"
+        >
+          Não tem um código?
+           
+          <button
+            class="font-semibold text-primary-400 hover:underline focus:underline"
+            type="button"
+          >
+            Reenviar código
+          </button>
+        </span>
+        <a
+          class="flex h-12 w-full items-center justify-center text-sm font-semibold text-shark-950 outline-primary-400 transition-all hover:text-primary-400 focus:text-primary-400 dark:text-white-lilac-50 dark:hover:text-primary-400 dark:focus:text-primary-400"
+          href="/"
+        >
+          <svg
+            height="16"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64"
+              fill="currentColor"
+            />
+          </svg>
+          Voltar para login
+        </a>
+      </div>
+    </div>
+  </div>
+</form>
+`;

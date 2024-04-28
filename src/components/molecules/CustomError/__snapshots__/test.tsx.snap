@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CustomError /> should render the custom error 1`] = `
+<div
+  class="flex h-[38.563rem] w-full flex-col items-center justify-center md:h-[35.5rem]"
+>
+  <div
+    data-testid="Mock Lottie"
+  />
+  <span
+    class="text-base text-comet-500 transition-all dark:text-dark-300"
+  >
+    Error
+  </span>
+</div>
+`;

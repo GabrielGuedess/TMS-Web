@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputOTP /> should render the input OTP correctly 1`] = `
+<div
+  class="relative flex h-min flex-col"
+>
+  <div
+    class="relative"
+  >
+    <input
+      autocomplete="on"
+      class="peer w-full rounded-lg border-2 bg-transparent p-3 text-center font-normal text-comet-500 outline-none transition-all dark:border-shark-950 dark:text-white-lilac-50 focus:border-primary-300 dark:focus:border-primary-400"
+      id=":r0:"
+      placeholder="-"
+      type="number"
+    />
+  </div>
+</div>
+`;

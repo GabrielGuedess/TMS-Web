@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> should render the button correctly 1`] = `
+<button
+  class="relative transition-transform duration-200 ease-in-out hover:scale-105 focus:scale-105 active:scale-90"
+  type="button"
+>
+  <div
+    aria-label="Button Background"
+    class="absolute size-full rounded-md bg-primary-400"
+  />
+  <div
+    class="flex h-full items-center justify-center gap-2 px-5 py-[0.625rem] flex-row text-white"
+  />
+</button>
+`;

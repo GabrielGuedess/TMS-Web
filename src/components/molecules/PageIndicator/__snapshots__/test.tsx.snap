@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PageIndicator /> should render the page indicator correctly 1`] = `
+<div
+  class="flex gap-2"
+>
+  <button
+    class="flex h-9 items-center justify-center rounded-md bg-dark-500/[.08] px-[0.745rem] text-[0.938rem] leading-none text-gray-900 outline-primary-400 transition-all dark:bg-shark-950 dark:text-dark-300 opacity-50 cursor-not-allowed"
+    disabled=""
+    type="button"
+  >
+    Previous
+  </button>
+  <button
+    aria-label="Button 1"
+    class="flex size-9 items-center justify-center rounded-md text-[0.938rem] leading-none outline-primary-400 transition-all bg-primary-400 text-white"
+    type="button"
+  >
+    <span
+      aria-label="Current Page Active"
+      class="absolute"
+    >
+      1
+    </span>
+  </button>
+  <button
+    aria-label="Button 2"
+    class="flex size-9 items-center justify-center rounded-md text-[0.938rem] leading-none outline-primary-400 transition-all text-shark-950 dark:text-dark-300"
+    type="button"
+  >
+    <span
+      aria-label="Current Page"
+      class="absolute"
+    >
+      2
+    </span>
+  </button>
+  <button
+    aria-label="Button 3"
+    class="flex size-9 items-center justify-center rounded-md text-[0.938rem] leading-none outline-primary-400 transition-all text-shark-950 dark:text-dark-300"
+    type="button"
+  >
+    <span
+      aria-label="Current Page"
+      class="absolute"
+    >
+      3
+    </span>
+  </button>
+  <div
+    class="hidden md:flex"
+  >
+    <span
+      class="flex items-end text-gray-900 transition-all dark:text-dark-300"
+    >
+      ...
+    </span>
+    <button
+      aria-label="Last Page"
+      class="flex h-9 items-center justify-center rounded-md px-[1.1rem] text-[0.938rem] leading-none outline-primary-400 transition-all text-gray-900 dark:text-dark-300"
+      type="button"
+    >
+      5
+    </button>
+  </div>
+  <button
+    class="flex h-9 items-center justify-center rounded-md bg-dark-500/[.08] px-[0.745rem] text-[0.938rem] leading-none text-gray-900 outline-primary-400 transition-all dark:bg-shark-950 dark:text-dark-300 cursor-pointer hover:bg-darkGray/[0.16]"
+    type="button"
+  >
+    Next
+  </button>
+</div>
+`;

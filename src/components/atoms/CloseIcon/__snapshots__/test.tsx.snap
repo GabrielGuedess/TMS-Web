@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CloseIcon /> should render the close icon correctly 1`] = `
+<svg
+  fill="none"
+  height="24"
+  viewBox="0 0 16 16"
+  width="24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M1 1L15.2418 15.0418"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="1.2"
+  />
+  <path
+    d="M15.2417 1L0.999904 15.0418"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="1.2"
+  />
+</svg>
+`;

@@ -1,0 +1,1053 @@
+{
+  "env": {
+    "node": true,
+    "jest": true,
+    "es2021": true,
+    "browser": true,
+    "jest/globals": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "jest": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {},
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 14,
+    "sourceType": "module",
+    "project": [
+      "./tsconfig.json"
+    ]
+  },
+  "globals": {
+    "JSX": "readonly",
+    "React": "readonly"
+  },
+  "extends": [
+    "next",
+    "airbnb",
+    "prettier",
+    "plugin:jest/style",
+    "plugin:etc/recommended",
+    "plugin:jest/recommended",
+    "plugin:react/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:storybook/recommended",
+    "plugin:tailwindcss/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:perfectionist/recommended-line-length",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "plugins": [
+    "zod",
+    "jest",
+    "react",
+    "import",
+    "prettier",
+    "no-secrets",
+    "react-hooks",
+    "perfectionist",
+    "jest-formatting",
+    "@typescript-eslint"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "src/app/**/*.tsx",
+        "src/pages/*",
+        "src/pages/api/*",
+        "next.config.mjs",
+        "codegen.ts",
+        "jest.config.ts",
+        "plopfile.mjs",
+        "tailwind.config.ts",
+        "commitlint.config.ts",
+        "cypress.config.ts",
+        "**/stories.tsx"
+      ],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    },
+    {
+      "files": [
+        "postcss.config.js"
+      ],
+      "rules": {
+        "unicorn/no-empty-file": "off"
+      }
+    },
+    {
+      "files": [
+        "tailwind.config.ts"
+      ],
+      "rules": {
+        "global-require": "off",
+        "unicorn/prefer-module": "off"
+      }
+    },
+    {
+      "files": [
+        "tailwind.config.ts"
+      ],
+      "rules": {
+        "quote-props": "off"
+      }
+    },
+    {
+      "files": [
+        "**/utils/tests/**",
+        "next.config.mjs",
+        "jest.config.ts"
+      ],
+      "rules": {
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "variable",
+            "format": [
+              "camelCase",
+              "PascalCase",
+              "UPPER_CASE"
+            ]
+          },
+          {
+            "selector": "variable",
+            "types": [
+              "function"
+            ],
+            "format": [
+              "PascalCase",
+              "camelCase"
+            ]
+          },
+          {
+            "selector": "typeAlias",
+            "format": [
+              "PascalCase"
+            ],
+            "custom": {
+              "regex": "[A-Z]*Props$",
+              "match": true
+            }
+          },
+          {
+            "selector": "interface",
+            "format": [
+              "PascalCase"
+            ],
+            "custom": {
+              "regex": "^I[A-Z]",
+              "match": true
+            }
+          },
+          {
+            "selector": "variable",
+            "types": [
+              "boolean"
+            ],
+            "format": [
+              "PascalCase"
+            ],
+            "prefix": [
+              "is",
+              "should",
+              "has",
+              "can",
+              "did",
+              "will"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "**/graphql/queries/**",
+        "**/graphql/mutations/**"
+      ],
+      "rules": {
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "variable",
+            "format": [
+              "UPPER_CASE",
+              "snake_case"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "src/lib/registry.tsx"
+      ],
+      "rules": {
+        "react/jsx-no-useless-fragment": "off"
+      }
+    },
+    {
+      "files": [
+        "src/components/atoms/Analytics/*"
+      ],
+      "rules": {
+        "react/no-danger": "off"
+      }
+    },
+    {
+      "files": [
+        "src/lib/auth.ts"
+      ],
+      "rules": {
+        "quote-props": "off",
+        "no-param-reassign": "off",
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    },
+    {
+      "files": [
+        "src/components/molecules/Map/index.tsx"
+      ],
+      "rules": {
+        "quote-props": "off"
+      }
+    },
+    {
+      "files": [
+        "src/app/not-found.tsx",
+        "src/app/global-error.tsx"
+      ],
+      "rules": {
+        "unicorn/filename-case": "off"
+      }
+    },
+    {
+      "files": [
+        "**.js"
+      ],
+      "rules": {
+        "no-undef": "off",
+        "unicorn/prefer-module": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": [
+        ".storybook/**"
+      ],
+      "rules": {
+        "no-param-reassign": "off",
+        "import/no-default-export": "off",
+        "node/no-extraneous-import": "off",
+        "import/no-extraneous-dependencies": "off",
+        "@typescript-eslint/no-non-null-assertion": "off"
+      }
+    },
+    {
+      "files": [
+        "spec.ts",
+        "spec.tsx",
+        "test.ts",
+        "test.tsx"
+      ],
+      "rules": {
+        "unicorn/prefer-module": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": "**/**.mdx",
+      "parser": "eslint-mdx",
+      "parserOptions": {},
+      "extends": "plugin:mdx/recommended",
+      "settings": {
+        "mdx/code-blocks": true
+      },
+      "rules": {
+        "react/self-closing-comp": "off",
+        "react/jsx-no-target-blank": "off",
+        "jsx-a11y/heading-has-content": "off",
+        "@typescript-eslint/naming-convention": "off"
+      }
+    },
+    {
+      "files": "**/generated/**",
+      "rules": {
+        "no-shadow": "off",
+        "no-use-before-define": "off",
+        "no-secrets/no-secrets": "off",
+        "unicorn/prevent-abbreviations": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-redundant-type-constituents": "off"
+      }
+    },
+    {
+      "files": [
+        "**/middleware.ts"
+      ],
+      "rules": {
+        "no-restricted-exports": "off",
+        "import/no-default-export": "off"
+      }
+    },
+    {
+      "files": [
+        "**.d.ts"
+      ],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/consistent-type-definitions": "off",
+        "unicorn/filename-case": [
+          "error",
+          {
+            "case": "kebabCase"
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "src/dtos/*"
+      ],
+      "rules": {
+        "unicorn/filename-case": "off",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "interface",
+            "format": [
+              "PascalCase"
+            ],
+            "custom": {
+              "regex": "[A-Z]*DTO$",
+              "match": true
+            }
+          },
+          {
+            "selector": "typeAlias",
+            "format": [
+              "PascalCase"
+            ],
+            "custom": {
+              "regex": "[A-Z]*DTO$",
+              "match": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "rules": {
+    "no-console": "error",
+    "no-else-return": "error",
+    "no-inline-comments": "error",
+    "zod/prefer-enum": "error",
+    "zod/require-strict": "error",
+    "etc/no-deprecated": "error",
+    "prettier/prettier": "error",
+    "jest/valid-expect": "error",
+    "no-warning-comments": "error",
+    "jest/no-focused-tests": "error",
+    "eslint-comments/no-use": "error",
+    "jest/no-identical-title": "error",
+    "import/no-default-export": "error",
+    "etc/no-commented-out-code": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "eslint-comments/no-unused-disable": "error",
+    "jest-formatting/padding-around-test-blocks": "error",
+    "jest-formatting/padding-around-describe-blocks": "error",
+    "@typescript-eslint/consistent-indexed-object-style": "error",
+    "jest/no-disabled-tests": "warn",
+    "jest/prefer-to-have-length": "warn",
+    "sort-imports": "off",
+    "unicorn/no-null": "off",
+    "react/jsx-no-undef": "off",
+    "operator-linebreak": "off",
+    "n/no-missing-import": "off",
+    "object-curly-newline": "off",
+    "node/no-missing-import": "off",
+    "react/jsx-curly-newline": "off",
+    "react/no-array-index-key": "off",
+    "implicit-arrow-linebreak": "off",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/no-nested-ternary": "off",
+    "node/no-unpublished-import": "off",
+    "react/require-default-props": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "unicorn/no-static-only-class": "off",
+    "unicorn/prefer-node-protocol": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": [
+          "positions",
+          "rotation"
+        ]
+      }
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "arrow-body-style": [
+      "error",
+      "as-needed"
+    ],
+    "quote-props": [
+      "error",
+      "consistent-as-needed"
+    ],
+    "import/no-duplicates": [
+      "error",
+      {
+        "prefer-inline": true
+      }
+    ],
+    "@typescript-eslint/consistent-type-definitions": [
+      "error",
+      "type"
+    ],
+    "import/consistent-type-specifier-style": [
+      "error",
+      "prefer-inline"
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "no-secrets/no-secrets": [
+      "error",
+      {
+        "ignoreContent": [
+          "CreateWorkSchedule",
+          "PhysicalCustomerInput",
+          "updatePhysicalCustomerId",
+          "PhysicalCustomerModel",
+          "PhysicalCustomerUpdateManyInput",
+          "WorkScheduleOverview",
+          "DataTableWorkSchedule",
+          "OrderByWithRelationInput",
+          "DataTablePhysicalCustomers"
+        ]
+      }
+    ],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports"
+      }
+    ],
+    "lines-between-class-members": [
+      "error",
+      {
+        "enforce": [
+          {
+            "blankLine": "always",
+            "prev": "method",
+            "next": "method"
+          }
+        ]
+      }
+    ],
+    "perfectionist/sort-jsx-props": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc",
+        "groups": [
+          "multiline",
+          "unknown",
+          "shorthand"
+        ]
+      }
+    ],
+    "perfectionist/sort-named-imports": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-array-includes": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc",
+        "spread-last": true
+      }
+    ],
+    "perfectionist/sort-classes": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc",
+        "groups": [
+          "index-signature",
+          "static-property",
+          "private-property",
+          "property",
+          "constructor",
+          "static-method",
+          "private-method",
+          [
+            "get-method",
+            "set-method"
+          ],
+          "method",
+          "unknown"
+        ]
+      }
+    ],
+    "perfectionist/sort-interfaces": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc",
+        "groups": [
+          "id",
+          "unknown",
+          "active",
+          "updated_at",
+          "created_at",
+          "deleted_at"
+        ],
+        "custom-groups": {
+          "id": "id",
+          "active": "active",
+          "updated_at": "updated_at",
+          "created_at": "created_at",
+          "deleted_at": "deleted_at"
+        }
+      }
+    ],
+    "perfectionist/sort-objects": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc",
+        "groups": [
+          "id",
+          "unknown",
+          "active",
+          "updated_at",
+          "created_at",
+          "deleted_at"
+        ],
+        "custom-groups": {
+          "id": "id",
+          "active": "active",
+          "updated_at": "updated_at",
+          "created_at": "created_at",
+          "deleted_at": "deleted_at"
+        }
+      }
+    ],
+    "perfectionist/sort-object-types": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc",
+        "groups": [
+          "id",
+          "unknown",
+          "active",
+          "updated_at",
+          "created_at",
+          "deleted_at"
+        ],
+        "custom-groups": {
+          "id": "id",
+          "active": "active",
+          "updated_at": "updated_at",
+          "created_at": "created_at",
+          "deleted_at": "deleted_at"
+        }
+      }
+    ],
+    "perfectionist/sort-enums": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-exports": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-named-exports": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-union-types": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-imports": [
+      "error",
+      {
+        "type": "line-length",
+        "order": "asc",
+        "groups": [
+          "side-effect",
+          "type",
+          "next",
+          "react",
+          "apollo",
+          "graphql",
+          "testing-library",
+          "storybook",
+          [
+            "builtin",
+            "external"
+          ],
+          "app",
+          "pages",
+          "hooks",
+          "contexts",
+          "components",
+          "services",
+          "lib",
+          "functions",
+          "dtos",
+          "helpers",
+          "utils",
+          "assets",
+          "constants",
+          "storage",
+          "styles",
+          "stories",
+          "internal",
+          "internal-type",
+          [
+            "parent-type",
+            "sibling-type",
+            "index-type"
+          ],
+          "style",
+          [
+            "parent",
+            "sibling",
+            "index"
+          ],
+          [
+            "internal-styles",
+            "internal-schema",
+            "internal-types"
+          ],
+          "env",
+          "object",
+          "unknown"
+        ],
+        "custom-groups": {
+          "value": {
+            "next": [
+              "next",
+              "next-*",
+              "next/**",
+              "@next-*"
+            ],
+            "react": [
+              "react",
+              "react-*",
+              "react/**",
+              "@react-*"
+            ],
+            "apollo": [
+              "apollo",
+              "apollo-*",
+              "apollo/**",
+              "@apollo-*"
+            ],
+            "graphql": [
+              "graphql",
+              "graphql-*",
+              "graphql/**",
+              "@graphql-*"
+            ],
+            "testing-library": [
+              "testing-library",
+              "testing-library-*",
+              "@testing-library-*"
+            ],
+            "storybook": [
+              "storybook",
+              "storybook-*",
+              "storybook/**",
+              "@storybook-*"
+            ],
+            "app": [
+              "app/**"
+            ],
+            "pages": [
+              "pages/**"
+            ],
+            "hooks": [
+              "hooks/**"
+            ],
+            "contexts": [
+              "contexts/**"
+            ],
+            "components": [
+              "components/**"
+            ],
+            "services": [
+              "services/**"
+            ],
+            "lib": [
+              "lib/**"
+            ],
+            "functions": [
+              "functions/**"
+            ],
+            "dtos": [
+              "dtos/**"
+            ],
+            "helpers": [
+              "helpers/**"
+            ],
+            "utils": [
+              "utils/**"
+            ],
+            "assets": [
+              "assets/**"
+            ],
+            "constants": [
+              "constants/**"
+            ],
+            "storage": [
+              "storage/**"
+            ],
+            "styles": [
+              "styles/**"
+            ],
+            "stories": [
+              "stories/**"
+            ],
+            "env": [
+              "env/**"
+            ],
+            "internal-styles": [
+              "./styles**"
+            ],
+            "internal-schema": [
+              "./schema**"
+            ],
+            "internal-types": [
+              "./types**"
+            ]
+          },
+          "type": {
+            "next": [
+              "next",
+              "next-*",
+              "next/*",
+              "@next-*"
+            ],
+            "react": [
+              "react",
+              "react-*",
+              "react/**",
+              "@react-*"
+            ],
+            "apollo": [
+              "apollo",
+              "apollo-*",
+              "apollo/**",
+              "@apollo-*"
+            ],
+            "graphql": [
+              "graphql",
+              "graphql-*",
+              "graphql/**",
+              "@graphql-*"
+            ],
+            "testing-library": [
+              "testing-library",
+              "testing-library-*",
+              "@testing-library-*"
+            ],
+            "storybook": [
+              "storybook",
+              "storybook-*",
+              "@storybook-*"
+            ],
+            "app": [
+              "app/**"
+            ],
+            "pages": [
+              "pages/**"
+            ],
+            "hooks": [
+              "hooks/**"
+            ],
+            "contexts": [
+              "contexts/**"
+            ],
+            "components": [
+              "components/**"
+            ],
+            "services": [
+              "services/**"
+            ],
+            "lib": [
+              "lib/**"
+            ],
+            "functions": [
+              "functions/**"
+            ],
+            "dtos": [
+              "dtos/**"
+            ],
+            "helpers": [
+              "helpers/**"
+            ],
+            "utils": [
+              "utils/**"
+            ],
+            "assets": [
+              "assets/**"
+            ],
+            "constants": [
+              "constants/**"
+            ],
+            "storage": [
+              "storage/**"
+            ],
+            "styles": [
+              "styles/**"
+            ],
+            "stories": [
+              "stories/**"
+            ],
+            "env": [
+              "env/**"
+            ],
+            "internal-styles": [
+              "./styles**"
+            ],
+            "internal-schema": [
+              "./schema**"
+            ],
+            "internal-types": [
+              "./types**"
+            ]
+          }
+        },
+        "newlines-between": "always",
+        "internal-pattern": [
+          "./schema/**",
+          "./types/**",
+          "./styles/**"
+        ]
+      }
+    ],
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "replacements": {
+          "props": {
+            "properties": false
+          },
+          "env": {
+            "environment": false
+          },
+          "ref": {
+            "reference": false
+          },
+          "args": {
+            "arguments": false
+          }
+        }
+      }
+    ],
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        }
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "try"
+      },
+      {
+        "blankLine": "always",
+        "prev": "try",
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "var",
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "throw"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "export"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "block-like"
+      },
+      {
+        "blankLine": "always",
+        "prev": "block-like",
+        "next": "*"
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variable",
+        "format": [
+          "camelCase",
+          "PascalCase",
+          "UPPER_CASE"
+        ]
+      },
+      {
+        "selector": "variable",
+        "types": [
+          "function"
+        ],
+        "format": [
+          "PascalCase",
+          "camelCase"
+        ]
+      },
+      {
+        "selector": "typeAlias",
+        "format": [
+          "PascalCase"
+        ],
+        "custom": {
+          "regex": "[A-Z]*Props$",
+          "match": true
+        }
+      },
+      {
+        "selector": "interface",
+        "format": [
+          "PascalCase"
+        ],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      },
+      {
+        "selector": "variable",
+        "types": [
+          "boolean"
+        ],
+        "format": [
+          "PascalCase"
+        ],
+        "prefix": [
+          "is",
+          "should",
+          "has",
+          "can",
+          "did",
+          "will"
+        ]
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "controlComponents": [
+          "Switch"
+        ]
+      }
+    ],
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [
+          ".js",
+          ".ts",
+          ".jsx",
+          ".tsx",
+          ".mdx"
+        ]
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "never",
+        "jsx": "never",
+        "tsx": "never"
+      }
+    ]
+  }
+}

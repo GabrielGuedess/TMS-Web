@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Breadcrumb /> should render the breadcrumb correctly 1`] = `
+<div
+  class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+>
+  <h2
+    class="text-xl font-semibold text-shark-950 transition-all dark:text-white-lilac-50 md:text-2xl"
+  >
+    Test
+  </h2>
+  <nav>
+    <ol
+      class="flex items-center gap-2"
+    >
+      <li
+        class="text-shark-950 transition-all dark:text-white-lilac-50"
+      >
+        <a
+          class="font-medium text-shark-950 transition-all dark:text-white-lilac-50"
+          href="/dashboard"
+        >
+          Dashboard
+        </a>
+      </li>
+      /
+      <li
+        class="font-medium text-primary-400"
+      >
+        Test
+      </li>
+    </ol>
+  </nav>
+</div>
+`;

@@ -1,0 +1,23 @@
+{
+  "name": "TMS-Wolves",
+  "short_name": "TMS-Wolves",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "background_color": "#F3F4F8",
+  "description": "TMS (Transportation Management System) no estilo de uma Dashboard. Desenvolvido com Next.js, TypeScript, GraphQL, etc.",
+  "display": "fullscreen",
+  "start_url": "/",
+  "theme_color": "#F3F4F8"
+}

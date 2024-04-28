@@ -1,0 +1,14 @@
+import { forwardRef, type ForwardRefRenderFunction } from 'react';
+
+import { type {{pascalCase name}}Props } from './types';
+
+const {{pascalCase name}}Ref: ForwardRefRenderFunction<HTMLDivElement, {{pascalCase name}}Props> = (
+  { ...props },
+  ref,
+) => (
+  <div ref={ref} {...props}>
+    <h1>{{pascalCase name}}</h1>
+  </div>
+);
+
+export const {{pascalCase name}} = forwardRef({{pascalCase name}}Ref);

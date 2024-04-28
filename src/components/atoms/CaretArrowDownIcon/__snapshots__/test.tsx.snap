@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CaretArrowDownIcon /> should render the caret arrow down icon correctly 1`] = `
+<svg
+  fill="none"
+  height="24"
+  viewBox="0 0 24 24"
+  width="24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M19.9201 8.95L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.95"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-miterlimit="10"
+    stroke-width="1.5"
+  />
+</svg>
+`;

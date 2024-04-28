@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheckBox /> should render the CheckBox correctly 1`] = `
+<button
+  aria-checked="false"
+  class="relative size-5 cursor-pointer appearance-none rounded-md border border-gray-200 transition-all before:absolute before:left-2/4 before:top-2/4 before:block before:size-12 before:-translate-x-2/4 before:-translate-y-2/4 before:rounded-full before:bg-gray-500 before:opacity-0 before:transition-opacity checked:border-primary-400 checked:bg-primary-400 checked:before:bg-primary-400 hover:before:opacity-10 dark:border-dark-700"
+  data-state="unchecked"
+  role="checkbox"
+  type="button"
+  value="on"
+/>
+`;

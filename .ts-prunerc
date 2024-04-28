@@ -1,0 +1,3 @@
+{
+  "ignore": "app|pages|stories|graphql|.storybook|types|generated|.d.ts|stories.tsx|jest.config.ts|commitlint.config.ts|tailwind.config.ts|next.config.mjs|plopfile.mjs|middleware.ts|src/lib/auth.ts|apollo|codegen.ts"
+}

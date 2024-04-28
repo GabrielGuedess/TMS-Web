@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ComboBox /> should render the ComboBox correctly 1`] = `
+<button
+  aria-controls="radix-:r0:"
+  aria-expanded="false"
+  aria-haspopup="dialog"
+  class="group relative flex items-center justify-between rounded-lg border-2 border-zumthor-100 bg-white-lilac-50 p-3 text-sm font-medium text-comet-500 transition-all hover:bg-porcelain-50 focus:outline-none dark:border-shark-950 dark:bg-shark-950 dark:text-dark-300 dark:hover:opacity-60 focus:border-primary-300 dark:focus:border-primary-400 dark:data-[state="open"]:border-primary-400 data-[state="open"]:border-primary-300 focus:placeholder:opacity-100"
+  data-state="closed"
+  type="button"
+>
+  Brazil
+  <label
+    class="pointer-events-none absolute left-4 top-[-47%] z-10 translate-y-1/2 px-[3px] text-sm text-comet-400 transition-all before:absolute before:inset-0 before:-z-10 before:block before:w-full before:bg-white-lilac-50 before:transition-all group-focus:text-primary-300 group-data-[state="open"]:text-primary-400 dark:text-dark-300 before:dark:bg-smoke-950"
+  >
+    País
+  </label>
+</button>
+`;

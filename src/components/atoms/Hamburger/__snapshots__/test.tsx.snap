@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Hamburger /> should render the hamburger correctly 1`] = `
+<div
+  class="z-50"
+>
+  <div
+    aria-expanded="false"
+    aria-label="Hamburger"
+    class="hamburger-react"
+    role="button"
+    style="cursor: pointer; height: 48px; position: relative; transition: 0.4s cubic-bezier(0, 0, 0, 1); user-select: none; width: 48px; outline: none; transform: none;"
+    tabindex="0"
+  >
+    <div
+      style="background: currentColor; height: 3px; left: 8px; position: absolute; width: 32px; top: 13px; transition: 0.4s cubic-bezier(0, 0, 0, 1); transform: none;"
+    />
+    <div
+      style="background: currentColor; height: 3px; left: 8px; position: absolute; width: 32px; top: 23px; transition: 0.4s cubic-bezier(0, 0, 0, 1); transform: none;"
+    />
+    <div
+      style="background: currentColor; height: 3px; left: 8px; position: absolute; width: 32px; top: 33px; transition: 0.4s cubic-bezier(0, 0, 0, 1); transform: none;"
+    />
+  </div>
+</div>
+`;

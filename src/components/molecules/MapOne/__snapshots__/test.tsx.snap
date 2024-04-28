@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MapOne /> should render the map one correctly 1`] = `
+<div
+  class="col-span-12 flex flex-col gap-8 rounded border border-zumthor-100 bg-white-lilac-50 px-7 py-6 shadow-default transition-all dark:border-shark-950 dark:bg-smoke-950 xl:col-span-7"
+>
+  <h4
+    class="mb-2 text-xl font-semibold text-shark-900 dark:text-white-lilac-50"
+  >
+    Região dos Usuários
+  </h4>
+  <div
+    class="mapOne h-96"
+  />
+</div>
+`;

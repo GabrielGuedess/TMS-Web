@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Map /> should render the map correctly 1`] = `
+<div
+  class="h-[40rem] w-full rounded-sm"
+  id="map"
+/>
+`;

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Badge /> should render the badge 1`] = `
+<div
+  class="relative w-min"
+>
+  <div
+    class="absolute left-0 top-0 size-full rounded opacity-[16%] bg-primary-400"
+  />
+  <div
+    class="flex px-[0.625rem] py-[0.313rem] text-primary-400"
+  >
+    <span
+      class="z-10 text-center text-[0.813rem] font-semibold capitalize"
+    >
+      Test
+    </span>
+  </div>
+</div>
+`;

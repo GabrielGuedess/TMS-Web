@@ -1,0 +1,291 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> should render the header correctly 1`] = `
+<header
+  class="w-full bg-white-lilac-50 rounded-b-lg sm:rounded-none fixed sm:static z-30 py-4 drop-shadow-1 px-4 sm:px-7 transition-all dark:border-shark-950 border-b dark:bg-smoke-950 shadow-default"
+>
+  <div
+    class="relative flex h-8 w-full items-center justify-between sm:h-auto lg:justify-center "
+  >
+    <div
+      class="hidden md:flex"
+    >
+      <div
+        class="flex h-11 items-center gap-3"
+      >
+        <input
+          class="w-64 rounded-lg bg-porcelain-50 dark:bg-shark-950 px-5 py-3 dark:placeholder:text-white-lilac-50 text-sm text-port-gore-950 outline-primary-400 placeholder:text-port-gore-950/80 transition-all"
+          placeholder="Pesquisar..."
+        />
+        <button
+          aria-label="search"
+          class="flex aspect-square h-full items-center justify-center rounded-lg text-rock-blue-500 outline-primary-400 transition-all hover:text-primary-400 focus:text-primary-400"
+          type="button"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 23 20"
+            width="23"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21.7481 18.3109L17.7502 14.6309C19.3021 12.8353 20.0536 10.5562 19.8502 8.2622C19.6469 5.9682 18.5042 3.83368 16.6571 2.29754C14.8099 0.761407 12.3988 -0.0595894 9.91939 0.00337096C7.44 0.0663314 5.08084 1.00846 3.327 2.63604C1.57315 4.26362 0.557928 6.45294 0.490083 8.75382C0.422238 11.0547 1.30693 13.2923 2.96224 15.0064C4.61755 16.7206 6.91766 17.781 9.38963 17.9697C11.8616 18.1584 14.3175 17.461 16.2524 16.0209L20.2179 19.7009C20.3181 19.7946 20.4373 19.869 20.5686 19.9198C20.6999 19.9706 20.8407 19.9967 20.983 19.9967C21.1252 19.9967 21.2661 19.9706 21.3974 19.9198C21.5287 19.869 21.6479 19.7946 21.7481 19.7009C21.9423 19.5144 22.0509 19.2652 22.0509 19.0059C22.0509 18.7466 21.9423 18.4974 21.7481 18.3109ZM10.2072 16.0209C8.71531 16.0209 7.25694 15.6104 6.01649 14.8412C4.77604 14.072 3.80923 12.9788 3.23831 11.6997C2.6674 10.4206 2.51802 9.01314 2.80907 7.65527C3.10012 6.2974 3.81853 5.05012 4.87344 4.07115C5.92836 3.09219 7.2724 2.4255 8.73561 2.1554C10.1988 1.88531 11.7155 2.02393 13.0938 2.55374C14.4721 3.08356 15.6502 3.98076 16.479 5.13191C17.3079 6.28305 17.7502 7.63643 17.7502 9.0209C17.7502 10.8774 16.9555 12.6579 15.5409 13.9706C14.1263 15.2834 12.2077 16.0209 10.2072 16.0209Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      class="z-50 flex text-rock-blue-500 md:hidden"
+    >
+      <div
+        aria-expanded="false"
+        aria-label="Hamburger"
+        class="hamburger-react"
+        role="button"
+        style="cursor: pointer; height: 48px; position: relative; transition: 0.4s cubic-bezier(0, 0, 0, 1); user-select: none; width: 48px; outline: none; transform: none;"
+        tabindex="0"
+      >
+        <div
+          style="background: currentColor; height: 2px; left: 13px; position: absolute; width: 22px; top: 16px; transition: 0.4s cubic-bezier(0, 0, 0, 1); transform: none;"
+        />
+        <div
+          style="background: currentColor; height: 2px; left: 13px; position: absolute; width: 22px; top: 23px; transition: 0.4s cubic-bezier(0, 0, 0, 1); transform: none;"
+        />
+        <div
+          style="background: currentColor; height: 2px; left: 13px; position: absolute; width: 22px; top: 30px; transition: 0.4s cubic-bezier(0, 0, 0, 1); transform: none;"
+        />
+      </div>
+    </div>
+    <div
+      class="fixed left-0 top-0 flex h-screen w-full flex-col items-center justify-center bg-white-lilac-50 transition-all dark:bg-smoke-950 md:hidden opacity-0 pointer-events-none"
+    >
+      <nav
+        class="flex w-full flex-col gap-1"
+      >
+        <a
+          class="w-full p-4 text-center text-xl transition-all dark:hover:bg-shark-950 hover:bg-primary-400 text-comet-500 dark:text-dark-300 hover:text-white-lilac-50"
+          href="/dashboard"
+        >
+          Dashboard
+        </a>
+        <a
+          class="w-full p-4 text-center text-xl transition-all dark:hover:bg-shark-950 hover:bg-primary-400 text-comet-500 dark:text-dark-300 hover:text-white-lilac-50"
+          href="/dashboard/collaborators"
+        >
+          Colaborador
+        </a>
+        <a
+          class="w-full p-4 text-center text-xl transition-all dark:hover:bg-shark-950 hover:bg-primary-400 text-comet-500 dark:text-dark-300 hover:text-white-lilac-50"
+          href="/dashboard/point-record"
+        >
+          Registro de Ponto
+        </a>
+        <a
+          class="w-full p-4 text-center text-xl transition-all dark:hover:bg-shark-950 hover:bg-primary-400 text-comet-500 dark:text-dark-300 hover:text-white-lilac-50"
+          href="/dashboard/absenteeism"
+        >
+          Absenteísmo
+        </a>
+        <a
+          class="w-full p-4 text-center text-xl transition-all dark:hover:bg-shark-950 hover:bg-primary-400 text-comet-500 dark:text-dark-300 hover:text-white-lilac-50"
+          href="/dashboard/vacation"
+        >
+          Férias
+        </a>
+        <a
+          class="w-full p-4 text-center text-xl transition-all dark:hover:bg-shark-950 hover:bg-primary-400 text-comet-500 dark:text-dark-300 hover:text-white-lilac-50"
+          href="/dashboard/work-schedule"
+        >
+          Jornada de Trabalho
+        </a>
+        <a
+          class="w-full p-4 text-center text-xl transition-all dark:hover:bg-shark-950 hover:bg-primary-400 text-comet-500 dark:text-dark-300 hover:text-white-lilac-50"
+          href="/dashboard/benefits/benefits"
+        >
+          Benefícios
+        </a>
+        <a
+          class="w-full p-4 text-center text-xl transition-all dark:hover:bg-shark-950 hover:bg-primary-400 text-comet-500 dark:text-dark-300 hover:text-white-lilac-50"
+          href="/dashboard/benefits/employee-benefits"
+        >
+          Benefícios do Colaborador
+        </a>
+      </nav>
+      <button
+        aria-checked="false"
+        aria-label="switch"
+        class="m-0 block h-[1.875rem] w-14 rounded-full bg-porcelain-50 outline-primary-400 transition-all dark:bg-shark-950 absolute bottom-10"
+        data-state="unchecked"
+        role="switch"
+        type="button"
+        value="on"
+      >
+        <span
+          data-state="unchecked"
+        >
+          <div
+            class="absolute left-[3px] top-1/2 flex size-6 -translate-y-1/2 translate-x-0 items-center justify-center rounded-full bg-white-lilac-50 shadow-switcher duration-75 ease-linear dark:!right-[3px] dark:!translate-x-full dark:bg-smoke-950 dark:shadow-none"
+          >
+            <svg
+              class="text-rock-blue-500 transition-all dark:hidden"
+              fill="none"
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M19.14 19.14L19.01 19.01M19.01 4.99L19.14 4.86L19.01 4.99ZM4.86 19.14L4.99 19.01L4.86 19.14ZM12 2.08V2V2.08ZM12 22V21.92V22ZM2.08 12H2H2.08ZM22 12H21.92H22ZM4.99 4.99L4.86 4.86L4.99 4.99Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+            <svg
+              class="hidden text-rock-blue-500 transition-all dark:inline-block"
+              fill="none"
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.03009 12.42C2.39009 17.57 6.76009 21.76 11.9901 21.99C15.6801 22.15 18.9801 20.43 20.9601 17.72C21.7801 16.61 21.3401 15.87 19.9701 16.12C19.3001 16.24 18.6101 16.29 17.8901 16.26C13.0001 16.06 9.00009 11.97 8.98009 7.13999C8.97009 5.83999 9.24009 4.60999 9.73009 3.48999C10.2701 2.24999 9.62009 1.65999 8.37009 2.18999C4.41009 3.85999 1.70009 7.84999 2.03009 12.42Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+        </span>
+      </button>
+    </div>
+    <div
+      class="flex items-center gap-4 sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2"
+    >
+      <button
+        aria-checked="false"
+        aria-label="switch"
+        class="relative m-0 h-[1.875rem] w-14 rounded-full bg-porcelain-50 outline-primary-400 transition-all dark:bg-shark-950 hidden md:flex"
+        data-state="unchecked"
+        role="switch"
+        type="button"
+        value="on"
+      >
+        <span
+          data-state="unchecked"
+        >
+          <div
+            class="absolute left-[3px] top-1/2 flex size-6 -translate-y-1/2 translate-x-0 items-center justify-center rounded-full bg-white-lilac-50 shadow-switcher duration-75 ease-linear dark:!right-[3px] dark:!translate-x-full dark:bg-smoke-950 dark:shadow-none"
+          >
+            <svg
+              class="text-rock-blue-500 transition-all dark:hidden"
+              fill="none"
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M19.14 19.14L19.01 19.01M19.01 4.99L19.14 4.86L19.01 4.99ZM4.86 19.14L4.99 19.01L4.86 19.14ZM12 2.08V2V2.08ZM12 22V21.92V22ZM2.08 12H2H2.08ZM22 12H21.92H22ZM4.99 4.99L4.86 4.86L4.99 4.99Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+            <svg
+              class="hidden text-rock-blue-500 transition-all dark:inline-block"
+              fill="none"
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.03009 12.42C2.39009 17.57 6.76009 21.76 11.9901 21.99C15.6801 22.15 18.9801 20.43 20.9601 17.72C21.7801 16.61 21.3401 15.87 19.9701 16.12C19.3001 16.24 18.6101 16.29 17.8901 16.26C13.0001 16.06 9.00009 11.97 8.98009 7.13999C8.97009 5.83999 9.24009 4.60999 9.73009 3.48999C10.2701 2.24999 9.62009 1.65999 8.37009 2.18999C4.41009 3.85999 1.70009 7.84999 2.03009 12.42Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+        </span>
+      </button>
+      <button
+        aria-label="notifications"
+        class="p-2 text-rock-blue-500 outline-primary-400 transition-all hover:text-primary-400 focus:text-primary-400"
+        type="button"
+      >
+        <div
+          class="relative transition-all"
+        >
+          <strong
+            class="absolute right-0 top-0 aspect-square rounded-full bg-primary-400 px-1 text-center text-[0.5rem] text-white-lilac-50"
+          >
+            2
+          </strong>
+          <svg
+            fill="none"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 18.0233C21 18.5113 20.6043 18.907 20.1163 18.907H3.88372C3.39565 18.907 3 18.5113 3 18.0233C3 17.5352 3.39566 17.1395 3.88372 17.1395H3.9V10.9809C3.9 6.57288 7.527 3 12 3C16.473 3 20.1 6.57288 20.1 10.9809V17.1395H20.1163C20.6043 17.1395 21 17.5352 21 18.0233ZM5.7 17.1395H18.3V10.9809C18.3 7.5494 15.4794 4.76744 12 4.76744C8.5206 4.76744 5.7 7.5494 5.7 10.9809V17.1395ZM9.97604 20.7558C9.73121 20.2608 10.1977 19.7907 10.75 19.7907H13.25C13.8023 19.7907 14.2688 20.2608 14.024 20.7558C13.9155 20.9751 13.7699 21.1773 13.591 21.3529C13.169 21.7672 12.5967 22 12 22C11.4033 22 10.831 21.7672 10.409 21.3529C10.2301 21.1773 10.0845 20.9751 9.97604 20.7558Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </button>
+      <button
+        aria-label="profile"
+        class="flex items-center gap-3 p-[2px] outline-primary-400"
+        type="button"
+      >
+        <div
+          data-testid="Mock CurrentAvatar"
+        />
+        <svg
+          class="hidden text-primary-400 sm:flex"
+          fill="none"
+          height="20"
+          viewBox="0 0 24 24"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19.9201 8.95L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.95"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            stroke-width="1.5"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+`;

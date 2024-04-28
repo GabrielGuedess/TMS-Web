@@ -1,0 +1,656 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Overview /> should render the overview correctly 1`] = `
+<section
+  class="flex flex-col gap-4 md:grid-cols-2 md:gap-6"
+>
+  <div
+    class="glow-capture grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-[1.875rem]"
+    style="position: relative; --glow-size: 400px;"
+  >
+    <div
+      class="glow"
+      style="display: grid; --glow-top: 0px; --glow-left: 0px;"
+    >
+      <div
+        class="rounded"
+        style="grid-area: 1/1/1/1;"
+      >
+        <div
+          class="rounded border border-zumthor-100 bg-white-lilac-50 px-[1.875rem] py-6 shadow-default transition-all glow:border-glow glow:bg-glow/[.15] glow:ring-1 glow:ring-glow dark:border-shark-950 dark:bg-smoke-950"
+        >
+          <div
+            class="flex size-[2.875rem] items-center justify-center rounded-full bg-porcelain-50 transition-all dark:bg-shark-950"
+          >
+            <svg
+              class="transition-all glow:text-glow"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M19.14 19.14L19.01 19.01M19.01 4.99L19.14 4.86L19.01 4.99ZM4.86 19.14L4.99 19.01L4.86 19.14ZM12 2.08V2V2.08ZM12 22V21.92V22ZM2.08 12H2H2.08ZM22 12H21.92H22ZM4.99 4.99L4.86 4.86L4.99 4.99Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+          <div
+            class="mt-4 flex items-end justify-between"
+          >
+            <div>
+              <h4
+                class="text-[1.5rem] font-bold text-shark-900 transition-all dark:text-white"
+              >
+                $3.456K
+              </h4>
+              <span
+                class="text-sm font-medium text-comet-500 transition-all dark:text-dark-300"
+              >
+                Total views
+              </span>
+            </div>
+            <span
+              class="flex items-center gap-1 text-sm font-medium text-success-500"
+            >
+              0.43%
+              <svg
+                class="text-success-500"
+                fill="none"
+                height="10"
+                viewBox="0 0 10 10"
+                width="10"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="glow-mask rounded"
+        glow="true"
+        style="--glow-color: green; grid-area: 1/1/1/1; pointer-events: none; mask: radial-gradient(var(--glow-size) var(--glow-size) at calc(var(--glow-x, -99999px) - var(--glow-left, 0px))
+calc(var(--glow-y, -99999px) - var(--glow-top, 0px)), #000000 1%, transparent 50%);"
+      >
+        <div
+          class="rounded border border-zumthor-100 bg-white-lilac-50 px-[1.875rem] py-6 shadow-default transition-all glow:border-glow glow:bg-glow/[.15] glow:ring-1 glow:ring-glow dark:border-shark-950 dark:bg-smoke-950"
+        >
+          <div
+            class="flex size-[2.875rem] items-center justify-center rounded-full bg-porcelain-50 transition-all dark:bg-shark-950"
+          >
+            <svg
+              class="transition-all glow:text-glow"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M19.14 19.14L19.01 19.01M19.01 4.99L19.14 4.86L19.01 4.99ZM4.86 19.14L4.99 19.01L4.86 19.14ZM12 2.08V2V2.08ZM12 22V21.92V22ZM2.08 12H2H2.08ZM22 12H21.92H22ZM4.99 4.99L4.86 4.86L4.99 4.99Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+          <div
+            class="mt-4 flex items-end justify-between"
+          >
+            <div>
+              <h4
+                class="text-[1.5rem] font-bold text-shark-900 transition-all dark:text-white"
+              >
+                $3.456K
+              </h4>
+              <span
+                class="text-sm font-medium text-comet-500 transition-all dark:text-dark-300"
+              >
+                Total views
+              </span>
+            </div>
+            <span
+              class="flex items-center gap-1 text-sm font-medium text-success-500"
+            >
+              0.43%
+              <svg
+                class="text-success-500"
+                fill="none"
+                height="10"
+                viewBox="0 0 10 10"
+                width="10"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="glow"
+      style="display: grid; --glow-top: 0px; --glow-left: 0px;"
+    >
+      <div
+        class="rounded"
+        style="grid-area: 1/1/1/1;"
+      >
+        <div
+          class="rounded border border-zumthor-100 bg-white-lilac-50 px-[1.875rem] py-6 shadow-default transition-all glow:border-glow glow:bg-glow/[.15] glow:ring-1 glow:ring-glow dark:border-shark-950 dark:bg-smoke-950"
+        >
+          <div
+            class="flex size-[2.875rem] items-center justify-center rounded-full bg-porcelain-50 transition-all dark:bg-shark-950"
+          >
+            <svg
+              class="transition-all glow:text-glow"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.03009 12.42C2.39009 17.57 6.76009 21.76 11.9901 21.99C15.6801 22.15 18.9801 20.43 20.9601 17.72C21.7801 16.61 21.3401 15.87 19.9701 16.12C19.3001 16.24 18.6101 16.29 17.8901 16.26C13.0001 16.06 9.00009 11.97 8.98009 7.13999C8.97009 5.83999 9.24009 4.60999 9.73009 3.48999C10.2701 2.24999 9.62009 1.65999 8.37009 2.18999C4.41009 3.85999 1.70009 7.84999 2.03009 12.42Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+          <div
+            class="mt-4 flex items-end justify-between"
+          >
+            <div>
+              <h4
+                class="text-[1.5rem] font-bold text-shark-900 transition-all dark:text-white"
+              >
+                $45,2K
+              </h4>
+              <span
+                class="text-sm font-medium text-comet-500 transition-all dark:text-dark-300"
+              >
+                Total Profit
+              </span>
+            </div>
+            <span
+              class="flex items-center gap-1 text-sm font-medium text-success-500"
+            >
+              4.35%
+              <svg
+                class="text-success-500"
+                fill="none"
+                height="10"
+                viewBox="0 0 10 10"
+                width="10"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="glow-mask rounded"
+        glow="true"
+        style="--glow-color: green; grid-area: 1/1/1/1; pointer-events: none; mask: radial-gradient(var(--glow-size) var(--glow-size) at calc(var(--glow-x, -99999px) - var(--glow-left, 0px))
+calc(var(--glow-y, -99999px) - var(--glow-top, 0px)), #000000 1%, transparent 50%);"
+      >
+        <div
+          class="rounded border border-zumthor-100 bg-white-lilac-50 px-[1.875rem] py-6 shadow-default transition-all glow:border-glow glow:bg-glow/[.15] glow:ring-1 glow:ring-glow dark:border-shark-950 dark:bg-smoke-950"
+        >
+          <div
+            class="flex size-[2.875rem] items-center justify-center rounded-full bg-porcelain-50 transition-all dark:bg-shark-950"
+          >
+            <svg
+              class="transition-all glow:text-glow"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.03009 12.42C2.39009 17.57 6.76009 21.76 11.9901 21.99C15.6801 22.15 18.9801 20.43 20.9601 17.72C21.7801 16.61 21.3401 15.87 19.9701 16.12C19.3001 16.24 18.6101 16.29 17.8901 16.26C13.0001 16.06 9.00009 11.97 8.98009 7.13999C8.97009 5.83999 9.24009 4.60999 9.73009 3.48999C10.2701 2.24999 9.62009 1.65999 8.37009 2.18999C4.41009 3.85999 1.70009 7.84999 2.03009 12.42Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+          <div
+            class="mt-4 flex items-end justify-between"
+          >
+            <div>
+              <h4
+                class="text-[1.5rem] font-bold text-shark-900 transition-all dark:text-white"
+              >
+                $45,2K
+              </h4>
+              <span
+                class="text-sm font-medium text-comet-500 transition-all dark:text-dark-300"
+              >
+                Total Profit
+              </span>
+            </div>
+            <span
+              class="flex items-center gap-1 text-sm font-medium text-success-500"
+            >
+              4.35%
+              <svg
+                class="text-success-500"
+                fill="none"
+                height="10"
+                viewBox="0 0 10 10"
+                width="10"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="glow"
+      style="display: grid; --glow-top: 0px; --glow-left: 0px;"
+    >
+      <div
+        class="rounded"
+        style="grid-area: 1/1/1/1;"
+      >
+        <div
+          class="rounded border border-zumthor-100 bg-white-lilac-50 px-[1.875rem] py-6 shadow-default transition-all glow:border-glow glow:bg-glow/[.15] glow:ring-1 glow:ring-glow dark:border-shark-950 dark:bg-smoke-950"
+        >
+          <div
+            class="flex size-[2.875rem] items-center justify-center rounded-full bg-porcelain-50 transition-all dark:bg-shark-950"
+          >
+            <svg
+              class="transition-all glow:text-glow"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M15.71 15.18L12.61 13.33C12.07 13.01 11.63 12.24 11.63 11.61V7.51001"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+          <div
+            class="mt-4 flex items-end justify-between"
+          >
+            <div>
+              <h4
+                class="text-[1.5rem] font-bold text-shark-900 transition-all dark:text-white"
+              >
+                2.450
+              </h4>
+              <span
+                class="text-sm font-medium text-comet-500 transition-all dark:text-dark-300"
+              >
+                Total Product
+              </span>
+            </div>
+            <span
+              class="flex items-center gap-1 text-sm font-medium text-success-500"
+            >
+              2.59%
+              <svg
+                class="text-success-500"
+                fill="none"
+                height="10"
+                viewBox="0 0 10 10"
+                width="10"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="glow-mask rounded"
+        glow="true"
+        style="--glow-color: green; grid-area: 1/1/1/1; pointer-events: none; mask: radial-gradient(var(--glow-size) var(--glow-size) at calc(var(--glow-x, -99999px) - var(--glow-left, 0px))
+calc(var(--glow-y, -99999px) - var(--glow-top, 0px)), #000000 1%, transparent 50%);"
+      >
+        <div
+          class="rounded border border-zumthor-100 bg-white-lilac-50 px-[1.875rem] py-6 shadow-default transition-all glow:border-glow glow:bg-glow/[.15] glow:ring-1 glow:ring-glow dark:border-shark-950 dark:bg-smoke-950"
+        >
+          <div
+            class="flex size-[2.875rem] items-center justify-center rounded-full bg-porcelain-50 transition-all dark:bg-shark-950"
+          >
+            <svg
+              class="transition-all glow:text-glow"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M15.71 15.18L12.61 13.33C12.07 13.01 11.63 12.24 11.63 11.61V7.51001"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+          <div
+            class="mt-4 flex items-end justify-between"
+          >
+            <div>
+              <h4
+                class="text-[1.5rem] font-bold text-shark-900 transition-all dark:text-white"
+              >
+                2.450
+              </h4>
+              <span
+                class="text-sm font-medium text-comet-500 transition-all dark:text-dark-300"
+              >
+                Total Product
+              </span>
+            </div>
+            <span
+              class="flex items-center gap-1 text-sm font-medium text-success-500"
+            >
+              2.59%
+              <svg
+                class="text-success-500"
+                fill="none"
+                height="10"
+                viewBox="0 0 10 10"
+                width="10"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="glow"
+      style="display: grid; --glow-top: 0px; --glow-left: 0px;"
+    >
+      <div
+        class="rounded"
+        style="grid-area: 1/1/1/1;"
+      >
+        <div
+          class="rounded border border-zumthor-100 bg-white-lilac-50 px-[1.875rem] py-6 shadow-default transition-all glow:border-glow glow:bg-glow/[.15] glow:ring-1 glow:ring-glow dark:border-shark-950 dark:bg-smoke-950"
+        >
+          <div
+            class="flex size-[2.875rem] items-center justify-center rounded-full bg-porcelain-50 transition-all dark:bg-shark-950"
+          >
+            <svg
+              class="transition-all glow:text-glow"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 7.16C17.94 7.15 17.87 7.15 17.81 7.16C16.43 7.11 15.33 5.98 15.33 4.58C15.33 3.15 16.48 2 17.91 2C19.34 2 20.49 3.16 20.49 4.58C20.48 5.98 19.38 7.11 18 7.16Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M16.9699 14.44C18.3399 14.67 19.8499 14.43 20.9099 13.72C22.3199 12.78 22.3199 11.24 20.9099 10.3C19.8399 9.59004 18.3099 9.35003 16.9399 9.59003"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M5.96998 7.16C6.02998 7.15 6.09998 7.15 6.15998 7.16C7.53998 7.11 8.63998 5.98 8.63998 4.58C8.63998 3.15 7.48998 2 6.05998 2C4.62998 2 3.47998 3.16 3.47998 4.58C3.48998 5.98 4.58998 7.11 5.96998 7.16Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M6.99994 14.44C5.62994 14.67 4.11994 14.43 3.05994 13.72C1.64994 12.78 1.64994 11.24 3.05994 10.3C4.12994 9.59004 5.65994 9.35003 7.02994 9.59003"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M12 14.63C11.94 14.62 11.87 14.62 11.81 14.63C10.43 14.58 9.32996 13.45 9.32996 12.05C9.32996 10.62 10.48 9.46997 11.91 9.46997C13.34 9.46997 14.49 10.63 14.49 12.05C14.48 13.45 13.38 14.59 12 14.63Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M9.08997 17.78C7.67997 18.72 7.67997 20.26 9.08997 21.2C10.69 22.27 13.31 22.27 14.91 21.2C16.32 20.26 16.32 18.72 14.91 17.78C13.32 16.72 10.69 16.72 9.08997 17.78Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+          <div
+            class="mt-4 flex items-end justify-between"
+          >
+            <div>
+              <h4
+                class="text-[1.5rem] font-bold text-shark-900 transition-all dark:text-white"
+              >
+                3.456
+              </h4>
+              <span
+                class="text-sm font-medium text-comet-500 transition-all dark:text-dark-300"
+              >
+                Total Users
+              </span>
+            </div>
+            <span
+              class="flex items-center gap-1 text-sm font-medium text-red-500"
+            >
+              0.95%
+              <svg
+                class="text-red-500"
+                fill="none"
+                height="10"
+                viewBox="0 0 10 10"
+                width="10"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5.64284 7.69237L9.09102 4.33987L10 5.22362L5 10.0849L-8.98488e-07 5.22362L0.908973 4.33987L4.35716 7.69237L4.35716 0.0848701L5.64284 0.0848704L5.64284 7.69237Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="glow-mask rounded"
+        glow="true"
+        style="--glow-color: red; grid-area: 1/1/1/1; pointer-events: none; mask: radial-gradient(var(--glow-size) var(--glow-size) at calc(var(--glow-x, -99999px) - var(--glow-left, 0px))
+calc(var(--glow-y, -99999px) - var(--glow-top, 0px)), #000000 1%, transparent 50%);"
+      >
+        <div
+          class="rounded border border-zumthor-100 bg-white-lilac-50 px-[1.875rem] py-6 shadow-default transition-all glow:border-glow glow:bg-glow/[.15] glow:ring-1 glow:ring-glow dark:border-shark-950 dark:bg-smoke-950"
+        >
+          <div
+            class="flex size-[2.875rem] items-center justify-center rounded-full bg-porcelain-50 transition-all dark:bg-shark-950"
+          >
+            <svg
+              class="transition-all glow:text-glow"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 7.16C17.94 7.15 17.87 7.15 17.81 7.16C16.43 7.11 15.33 5.98 15.33 4.58C15.33 3.15 16.48 2 17.91 2C19.34 2 20.49 3.16 20.49 4.58C20.48 5.98 19.38 7.11 18 7.16Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M16.9699 14.44C18.3399 14.67 19.8499 14.43 20.9099 13.72C22.3199 12.78 22.3199 11.24 20.9099 10.3C19.8399 9.59004 18.3099 9.35003 16.9399 9.59003"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M5.96998 7.16C6.02998 7.15 6.09998 7.15 6.15998 7.16C7.53998 7.11 8.63998 5.98 8.63998 4.58C8.63998 3.15 7.48998 2 6.05998 2C4.62998 2 3.47998 3.16 3.47998 4.58C3.48998 5.98 4.58998 7.11 5.96998 7.16Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M6.99994 14.44C5.62994 14.67 4.11994 14.43 3.05994 13.72C1.64994 12.78 1.64994 11.24 3.05994 10.3C4.12994 9.59004 5.65994 9.35003 7.02994 9.59003"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M12 14.63C11.94 14.62 11.87 14.62 11.81 14.63C10.43 14.58 9.32996 13.45 9.32996 12.05C9.32996 10.62 10.48 9.46997 11.91 9.46997C13.34 9.46997 14.49 10.63 14.49 12.05C14.48 13.45 13.38 14.59 12 14.63Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+              <path
+                d="M9.08997 17.78C7.67997 18.72 7.67997 20.26 9.08997 21.2C10.69 22.27 13.31 22.27 14.91 21.2C16.32 20.26 16.32 18.72 14.91 17.78C13.32 16.72 10.69 16.72 9.08997 17.78Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+          <div
+            class="mt-4 flex items-end justify-between"
+          >
+            <div>
+              <h4
+                class="text-[1.5rem] font-bold text-shark-900 transition-all dark:text-white"
+              >
+                3.456
+              </h4>
+              <span
+                class="text-sm font-medium text-comet-500 transition-all dark:text-dark-300"
+              >
+                Total Users
+              </span>
+            </div>
+            <span
+              class="flex items-center gap-1 text-sm font-medium text-red-500"
+            >
+              0.95%
+              <svg
+                class="text-red-500"
+                fill="none"
+                height="10"
+                viewBox="0 0 10 10"
+                width="10"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5.64284 7.69237L9.09102 4.33987L10 5.22362L5 10.0849L-8.98488e-07 5.22362L0.908973 4.33987L4.35716 7.69237L4.35716 0.0848701L5.64284 0.0848704L5.64284 7.69237Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    data-testid="Mock ChartOne"
+  />
+  <div
+    class="2xl:mt-[1.875rem'] 2xl:gap-[1.875rem'] mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6"
+  >
+    <div
+      data-testid="Mock MapOne"
+    />
+    <div
+      data-testid="Mock ChartThree"
+    />
+  </div>
+</section>
+`;

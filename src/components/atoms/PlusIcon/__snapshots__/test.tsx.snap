@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PlusIcon /> should render the PlusIcon correctly 1`] = `
+<svg
+  fill="none"
+  height="24"
+  viewBox="0 0 24 24"
+  width="24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M5 12h14m-7 7V5"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+  />
+</svg>
+`;

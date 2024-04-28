@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Select /> should render the select correctly 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-controls="radix-:r0:"
+  aria-expanded="false"
+  class="group relative flex items-center justify-between rounded-lg border-2 border-zumthor-100 bg-white-lilac-50 px-3 py-1.5 text-sm font-medium text-comet-500 transition-all hover:bg-porcelain-50 focus:outline-none dark:border-shark-950 dark:bg-shark-950 dark:text-dark-300 dark:hover:opacity-60 focus:border-primary-300 dark:focus:border-primary-400 dark:data-[state="open"]:border-primary-400 data-[state="open"]:border-primary-300 focus:placeholder:opacity-100"
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  role="combobox"
+  type="button"
+>
+  <span
+    style="pointer-events: none;"
+  >
+    value
+  </span>
+  <span
+    aria-hidden="true"
+  >
+    <svg
+      aria-hidden="true"
+      class="ms-2.5 size-2.5"
+      fill="none"
+      viewBox="0 0 10 6"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="m1 1 4 4 4-4"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      />
+    </svg>
+  </span>
+</button>
+`;

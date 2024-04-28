@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CaretRightIcon /> should render the caret right icon correctly 1`] = `
+<div>
+  <svg
+    fill="none"
+    height="18"
+    viewBox="0 0 25 24"
+    width="18"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9.5 6L15.5 12L9.5 18"
+      stroke="#4B465C"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.5"
+    />
+    <path
+      d="M9.5 6L15.5 12L9.5 18"
+      stroke="white"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-opacity="0.2"
+      stroke-width="1.5"
+    />
+  </svg>
+</div>
+`;
