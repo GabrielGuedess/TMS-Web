@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_OWN_RECIPIENTS = gql`
+export const QUERY_SENDERS = gql`
   query GetAllSender(
     $limit: Int
     $offset: Int

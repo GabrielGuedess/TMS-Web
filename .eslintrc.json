@@ -451,15 +451,25 @@
       "error",
       {
         "ignoreContent": [
+          "physicalCustomerId",
           "CreateWorkSchedule",
-          "PhysicalCustomerInput",
-          "updatePhysicalCustomerId",
-          "PhysicalCustomerModel",
-          "PhysicalCustomerUpdateManyInput",
+          "vehicleBodyworkInput",
           "WorkScheduleOverview",
+          "PhysicalCustomerInput",
+          "physicalCustomerOrder",
+          "PhysicalCustomerModel",
           "DataTableWorkSchedule",
+          "vehicleBodyworkIUpdate",
+          "PhysicalCustomerOrders",
+          "PhysicalCustomerOrderModel",
+          "UpdateManyVehicleBodyworks",
+          "updatePhysicalCustomerId",
           "OrderByWithRelationInput",
-          "DataTablePhysicalCustomers"
+          "DataTableVehicleBodyWorks",
+          "DataTablePhysicalCustomers",
+          "UpdateManyPhysicalCustomerOrder",
+          "PhysicalCustomerUpdateManyInput",
+          "DeleteManyPhysicalCustomerOrder"
         ]
       }
     ],

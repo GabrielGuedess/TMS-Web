@@ -48,9 +48,12 @@ export const DropdownSide = ({
       </Accordion.Trigger>
 
       <Accordion.Content
-        className={clsx('mt-4 flex min-w-min flex-col gap-2', {
-          hidden: !isNavbarOpen,
-        })}
+        className={clsx(
+          'flex min-w-min flex-col gap-2 data-[state="open"]:mt-4',
+          {
+            hidden: !isNavbarOpen,
+          },
+        )}
       >
         {children}
       </Accordion.Content>

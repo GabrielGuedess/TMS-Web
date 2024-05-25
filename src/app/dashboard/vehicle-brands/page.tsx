@@ -1,5 +1,5 @@
-import { Senders as SendersTemplate } from 'templates/Senders';
+import { VehicleBrands as VehicleBrandsTemplate } from 'templates/VehicleBrands';
 
-const Senders = async () => <SendersTemplate />;
+const VehicleBrands = async () => <VehicleBrandsTemplate />;
 
-export default Senders;
+export default VehicleBrands;

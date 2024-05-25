@@ -19,7 +19,7 @@ export const Hamburger = ({ className, ...props }: HamburgerProps) => {
 
   return (
     <>
-      <div className={twMerge('z-50', className)}>
+      <div className={twMerge('z-40', className)}>
         <Sling
           toggled={isOpen}
           label="Hamburger"
