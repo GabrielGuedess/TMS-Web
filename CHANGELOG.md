@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.0.0...v1.1.0) (2024-05-25)
+
+
+### Features
+
+* add new fields from backend ([3b32031](https://github.com/GabrielGuedess/TMS-Web/commit/3b32031c9c79568cc3992ba7697617b8903347d4))
+
 # 1.0.0 (2024-04-28)
 
 
