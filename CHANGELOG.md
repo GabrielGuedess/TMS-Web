@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.1.0...v1.2.0) (2024-06-08)
+
+
+### Features
+
+* add new creates ([c2809eb](https://github.com/GabrielGuedess/TMS-Web/commit/c2809ebd34178b9ee1f7d9d6f1ad9caedff1fbd3))
+
 # [1.1.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.0.0...v1.1.0) (2024-05-25)
 
 
