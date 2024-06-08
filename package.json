@@ -85,6 +85,7 @@
     "cpf-cnpj-validator": "^1.0.3",
     "date-fns": "^3.3.1",
     "dayjs": "^1.11.10",
+    "framer-motion": "^11.2.10",
     "graphql": "^16.8.1",
     "gsap": "^3.12.5",
     "hamburger-react": "^2.5.0",

@@ -15,16 +15,17 @@ export const MUTATION_DELETE_LEGAL_CLIENT_QUOTE_TABLE = gql`
       id
       kindService
       mass
-      natureService
       nf_value
       recipientId
       senderId
-      typeCte
       typeMerchandise
       updated_at
       updated_by
       volume
       who_pays
+      nf_number
+      nf_serie
+      digital_signature
     }
   }
 `;

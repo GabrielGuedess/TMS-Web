@@ -98,7 +98,6 @@ const DatePickerRef: ForwardRefRenderFunction<
           weekStartsOn={1}
           onSelect={setDate}
           defaultMonth={date}
-          toDate={new Date()}
           captionLayout="dropdown-buttons"
           {...props}
         />

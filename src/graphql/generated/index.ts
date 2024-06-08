@@ -40,7 +40,7 @@ export type Scalars = {
 };
 
 export type AdressInput = {
-  uf: Scalars['String']['input'];
+  uf: UfEnum;
   city: Scalars['String']['input'];
   street: Scalars['String']['input'];
   postalCod: Scalars['String']['input'];
@@ -331,91 +331,6 @@ export type CompanyVehicleWhereInput = {
   created_at?: InputMaybe<DateTimeFilter>;
 };
 
-export type CompletedOrdersInput = {
-  vehicle_id: Scalars['String']['input'];
-  start_at: Scalars['Timestamp']['input'];
-  total_distance: Scalars['Float']['input'];
-  total_spend_liters: Scalars['Float']['input'];
-  total_spending_money: Scalars['Float']['input'];
-  end_at?: InputMaybe<Scalars['Timestamp']['input']>;
-  legal_customer_order_id?: InputMaybe<Scalars['String']['input']>;
-  physical_customer_order_id?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type CompletedOrdersModel = {
-  id: Scalars['String']['output'];
-  Vehicle: VehicleCarModel;
-  CreatedUser: UserModelRefereces;
-  UpdatedUser: UserModelRefereces;
-  __typename?: 'CompletedOrdersModel';
-  end_at: Scalars['Timestamp']['output'];
-  created_by: Scalars['String']['output'];
-  updated_by: Scalars['String']['output'];
-  vehicle_id: Scalars['String']['output'];
-  start_at: Scalars['Timestamp']['output'];
-  total_distance: Scalars['Float']['output'];
-  order_processing: Scalars['String']['output'];
-  total_spend_liters: Scalars['Float']['output'];
-  LegalClientOrders: Array<LegalClientOrderModel>;
-  total_spending_money: Scalars['Float']['output'];
-  order_processing_number: Scalars['String']['output'];
-  PhysicalCustomerOrders: Array<PhysicalCustomerOrderModel>;
-  updated_at: Scalars['Timestamp']['output'];
-  created_at: Scalars['Timestamp']['output'];
-};
-
-export type CompletedOrdersOrderByWithRelationInput = {
-  id?: InputMaybe<SortOrder>;
-  end_at?: InputMaybe<SortOrder>;
-  start_at?: InputMaybe<SortOrder>;
-  created_by?: InputMaybe<SortOrder>;
-  updated_by?: InputMaybe<SortOrder>;
-  vehicle_id?: InputMaybe<SortOrder>;
-  total_distance?: InputMaybe<SortOrder>;
-  total_spend_liters?: InputMaybe<SortOrder>;
-  total_spending_money?: InputMaybe<SortOrder>;
-  order_processing_number?: InputMaybe<SortOrder>;
-  Vehicle?: InputMaybe<VehicleOrderByWithRelationInput>;
-  LegalClientOrder?: InputMaybe<LegalClientOrderOrderByRelationAggregateInput>;
-  PhysicalCustomerOrder?: InputMaybe<PhysicalCustomerOrderOrderByRelationAggregateInput>;
-  updated_at?: InputMaybe<SortOrder>;
-  created_at?: InputMaybe<SortOrder>;
-};
-
-export type CompletedOrdersUpdateInput = {
-  end_at?: InputMaybe<Scalars['Timestamp']['input']>;
-  vehicle_id?: InputMaybe<Scalars['String']['input']>;
-  start_at?: InputMaybe<Scalars['Timestamp']['input']>;
-  total_distance?: InputMaybe<Scalars['Float']['input']>;
-  total_spend_liters?: InputMaybe<Scalars['Float']['input']>;
-  total_spending_money?: InputMaybe<Scalars['Float']['input']>;
-  legal_customer_order_id?: InputMaybe<Scalars['String']['input']>;
-  physical_customer_order_id?: InputMaybe<Scalars['String']['input']>;
-  disconnect_legal_client_order?: InputMaybe<Scalars['String']['input']>;
-  disconnect_physical_customer_order?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type CompletedOrdersWhereInput = {
-  id?: InputMaybe<StringFilter>;
-  end_at?: InputMaybe<DateTimeFilter>;
-  created_by?: InputMaybe<StringFilter>;
-  start_at?: InputMaybe<DateTimeFilter>;
-  updated_by?: InputMaybe<StringFilter>;
-  vehicle_id?: InputMaybe<StringFilter>;
-  Vehicle?: InputMaybe<VehicleWhereInput>;
-  total_distance?: InputMaybe<FloatFilter>;
-  total_spend_liters?: InputMaybe<FloatFilter>;
-  total_spending_money?: InputMaybe<FloatFilter>;
-  OR?: InputMaybe<Array<CompletedOrdersWhereInput>>;
-  AND?: InputMaybe<Array<CompletedOrdersWhereInput>>;
-  NOT?: InputMaybe<Array<CompletedOrdersWhereInput>>;
-  order_processing_number?: InputMaybe<StringFilter>;
-  LegalClientOrder?: InputMaybe<LegalClientOrderListRelationFilter>;
-  PhysicalCustomerOrder?: InputMaybe<PhysicalCustomerOrderListRelationFilter>;
-  updated_at?: InputMaybe<DateTimeFilter>;
-  created_at?: InputMaybe<DateTimeFilter>;
-};
-
 export type ContractOutsoucedDriverUpdateInput = {
   cpf?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -569,6 +484,20 @@ export type FloatFilter = {
   in?: InputMaybe<Array<Scalars['Float']['input']>>;
   notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
+
+export enum FormPayment {
+  CashPayment = 'CASH_PAYMENT',
+  PaymentByPix = 'PAYMENT_BY_PIX',
+  CashInPayment = 'CASH_IN_PAYMENT',
+  AdvancePayment = 'ADVANCE_PAYMENT',
+  PaymentByCheck = 'PAYMENT_BY_CHECK',
+  PaymentByInvoice = 'PAYMENT_BY_INVOICE',
+  PaymentByBankSlip = 'PAYMENT_BY_BANK_SLIP',
+  PaymentByConsignment = 'PAYMENT_BY_CONSIGNMENT',
+  PaymentByFreightCard = 'PAYMENT_BY_FREIGHT_CARD',
+  PaymentByBankTransfer = 'PAYMENT_BY_BANK_TRANSFER',
+  PaymentByCreditDebitCard = 'PAYMENT_BY_CREDIT_DEBIT_CARD',
+}
 
 export type FreightExpenseInput = {
   value: Scalars['Float']['input'];
@@ -851,8 +780,15 @@ export type IntNullableFilter = {
   notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
+export enum KindOfServicerOrder {
+  Ltl = 'LTL',
+  LoadCapacity = 'LOAD_CAPACITY',
+  HazardousCargo = 'HAZARDOUS_CARGO',
+  RefrigeratedCargo = 'REFRIGERATED_CARGO',
+}
+
 export type LegalClientCteInput = {
-  cteType: Scalars['String']['input'];
+  cteType: TypesCteEnum;
   orderId: Scalars['String']['input'];
   observations?: InputMaybe<Scalars['String']['input']>;
 };
@@ -873,12 +809,13 @@ export type LegalClientCteOrderByWithRelationInput = {
   type_cte?: InputMaybe<SortOrder>;
   access_key?: InputMaybe<SortOrder>;
   cte_number?: InputMaybe<SortOrder>;
+  autorization?: InputMaybe<SortOrder>;
   observations?: InputMaybe<SortOrder>;
   LegalClientOrder?: InputMaybe<LegalClientOrderOrderByWithRelationInput>;
 };
 
 export type LegalClientCteUpdateInput = {
-  cteType?: InputMaybe<Scalars['String']['input']>;
+  cteType?: InputMaybe<TypesCteEnum>;
   orderId?: InputMaybe<Scalars['String']['input']>;
   observations?: InputMaybe<Scalars['String']['input']>;
 };
@@ -890,6 +827,7 @@ export type LegalClientCteWhereInput = {
   access_key?: InputMaybe<StringFilter>;
   cte_number?: InputMaybe<StringFilter>;
   observations?: InputMaybe<StringFilter>;
+  autorization?: InputMaybe<DateTimeFilter>;
   OR?: InputMaybe<Array<LegalClientCteWhereInput>>;
   AND?: InputMaybe<Array<LegalClientCteWhereInput>>;
   NOT?: InputMaybe<Array<LegalClientCteWhereInput>>;
@@ -1005,7 +943,6 @@ export type LegalClientOrderOrderByWithRelationInput = {
   LegalContract?: InputMaybe<LegalContractOrderByWithRelationInput>;
   CarrierCompany?: InputMaybe<CarrierCompanyOrderByWithRelationInput>;
   LegalClientCte?: InputMaybe<LegalClientCteOrderByWithRelationInput>;
-  CompletedOrders?: InputMaybe<CompletedOrdersOrderByWithRelationInput>;
   OrderProcessing?: InputMaybe<OrderProcessingOrderByWithRelationInput>;
   QuoteTable?: InputMaybe<LegalClientQuoteTableOrderByWithRelationInput>;
   FreightExpenses?: InputMaybe<FreightExpensesOrderByRelationAggregateInput>;
@@ -1056,7 +993,6 @@ export type LegalClientOrderWhereInput = {
   LegalClientCte?: InputMaybe<LegalClientCteWhereInput>;
   completed_orders_id?: InputMaybe<StringNullableFilter>;
   order_processing_id?: InputMaybe<StringNullableFilter>;
-  CompletedOrders?: InputMaybe<CompletedOrdersWhereInput>;
   OrderProcessing?: InputMaybe<OrderProcessingWhereInput>;
   QuoteTable?: InputMaybe<LegalClientQuoteTableWhereInput>;
   FreightExpenses?: InputMaybe<FreightExpensesListRelationFilter>;
@@ -1066,21 +1002,21 @@ export type LegalClientOrderWhereInput = {
 };
 
 export type LegalClientQuoteTableInput = {
+  who_pays: WhoIsPay;
+  formPayment: FormPayment;
   adressOrigin: AdressInput;
   adressDestiny: AdressInput;
   amount: Scalars['Int']['input'];
   mass: Scalars['Float']['input'];
+  kindService: KindOfServicerOrder;
+  typeMerchandise: TypeMerchandise;
   volume: Scalars['Float']['input'];
   nf_value: Scalars['Float']['input'];
-  typeCte: Scalars['String']['input'];
+  nf_serie: Scalars['String']['input'];
   senderId: Scalars['String']['input'];
-  who_pays: Scalars['String']['input'];
+  nf_number: Scalars['String']['input'];
   description: Scalars['String']['input'];
-  formPayment: Scalars['String']['input'];
-  kindService: Scalars['String']['input'];
   recipientId: Scalars['String']['input'];
-  natureService: Scalars['String']['input'];
-  typeMerchandise: Scalars['String']['input'];
 };
 
 export type LegalClientQuoteTableListRelationFilter = {
@@ -1103,10 +1039,11 @@ export type LegalClientQuoteTableModel = {
   volume: Scalars['Float']['output'];
   icms_id: Scalars['String']['output'];
   nf_value: Scalars['Float']['output'];
-  typeCte: Scalars['String']['output'];
   codQuote: Scalars['String']['output'];
+  nf_serie: Scalars['String']['output'];
   senderId: Scalars['String']['output'];
   who_pays: Scalars['String']['output'];
+  nf_number: Scalars['String']['output'];
   created_by: Scalars['String']['output'];
   updated_by: Scalars['String']['output'];
   description: Scalars['String']['output'];
@@ -1114,8 +1051,8 @@ export type LegalClientQuoteTableModel = {
   kindService: Scalars['String']['output'];
   recipientId: Scalars['String']['output'];
   __typename?: 'LegalClientQuoteTableModel';
-  natureService: Scalars['String']['output'];
   typeMerchandise: Scalars['String']['output'];
+  digital_signature: Scalars['String']['output'];
   updated_at: Scalars['Timestamp']['output'];
   created_at: Scalars['Timestamp']['output'];
 };
@@ -1130,10 +1067,11 @@ export type LegalClientQuoteTableOrderByWithRelationInput = {
   amount?: InputMaybe<SortOrder>;
   volume?: InputMaybe<SortOrder>;
   icms_id?: InputMaybe<SortOrder>;
+  nf_serie?: InputMaybe<SortOrder>;
   nf_value?: InputMaybe<SortOrder>;
-  type_cte?: InputMaybe<SortOrder>;
   who_pays?: InputMaybe<SortOrder>;
   cod_quote?: InputMaybe<SortOrder>;
+  nf_number?: InputMaybe<SortOrder>;
   sender_id?: InputMaybe<SortOrder>;
   created_by?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
@@ -1141,10 +1079,10 @@ export type LegalClientQuoteTableOrderByWithRelationInput = {
   form_payment?: InputMaybe<SortOrder>;
   kind_service?: InputMaybe<SortOrder>;
   recipient_id?: InputMaybe<SortOrder>;
-  nature_service?: InputMaybe<SortOrder>;
   adress_origin_id?: InputMaybe<SortOrder>;
   type_merchandise?: InputMaybe<SortOrder>;
   adress_destiny_id?: InputMaybe<SortOrder>;
+  digital_signature?: InputMaybe<SortOrder>;
   Icms?: InputMaybe<IcmsOrderByWithRelationInput>;
   Sender?: InputMaybe<SenderOrderByWithRelationInput>;
   CreatedBy?: InputMaybe<UserOrderByWithRelationInput>;
@@ -1158,40 +1096,40 @@ export type LegalClientQuoteTableOrderByWithRelationInput = {
 };
 
 export type LegalClientQuoteTableUpdate = {
+  who_pays?: InputMaybe<WhoIsPay>;
+  formPayment?: InputMaybe<FormPayment>;
   adressOrigin?: InputMaybe<AdressInput>;
   adressDestiny?: InputMaybe<AdressInput>;
   amount?: InputMaybe<Scalars['Int']['input']>;
   mass?: InputMaybe<Scalars['Float']['input']>;
+  kindService?: InputMaybe<KindOfServicerOrder>;
+  typeMerchandise?: InputMaybe<TypeMerchandise>;
   volume?: InputMaybe<Scalars['Float']['input']>;
   nf_value?: InputMaybe<Scalars['Float']['input']>;
-  typeCte?: InputMaybe<Scalars['String']['input']>;
+  nf_serie?: InputMaybe<Scalars['String']['input']>;
   senderId?: InputMaybe<Scalars['String']['input']>;
-  who_pays?: InputMaybe<Scalars['String']['input']>;
+  nf_number?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  formPayment?: InputMaybe<Scalars['String']['input']>;
-  kindService?: InputMaybe<Scalars['String']['input']>;
   recipientId?: InputMaybe<Scalars['String']['input']>;
-  natureService?: InputMaybe<Scalars['String']['input']>;
-  typeMerchandise?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type LegalClientQuoteTableUpdateManyInput = {
   id: Scalars['String']['input'];
+  who_pays?: InputMaybe<WhoIsPay>;
+  formPayment?: InputMaybe<FormPayment>;
   adressOrigin?: InputMaybe<AdressInput>;
   adressDestiny?: InputMaybe<AdressInput>;
   amount?: InputMaybe<Scalars['Int']['input']>;
   mass?: InputMaybe<Scalars['Float']['input']>;
+  kindService?: InputMaybe<KindOfServicerOrder>;
+  typeMerchandise?: InputMaybe<TypeMerchandise>;
   volume?: InputMaybe<Scalars['Float']['input']>;
   nf_value?: InputMaybe<Scalars['Float']['input']>;
-  typeCte?: InputMaybe<Scalars['String']['input']>;
+  nf_serie?: InputMaybe<Scalars['String']['input']>;
   senderId?: InputMaybe<Scalars['String']['input']>;
-  who_pays?: InputMaybe<Scalars['String']['input']>;
+  nf_number?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  formPayment?: InputMaybe<Scalars['String']['input']>;
-  kindService?: InputMaybe<Scalars['String']['input']>;
   recipientId?: InputMaybe<Scalars['String']['input']>;
-  natureService?: InputMaybe<Scalars['String']['input']>;
-  typeMerchandise?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type LegalClientQuoteTableWhereInput = {
@@ -1202,9 +1140,10 @@ export type LegalClientQuoteTableWhereInput = {
   Icms?: InputMaybe<IcmsWhereInput>;
   icms_id?: InputMaybe<StringFilter>;
   nf_value?: InputMaybe<FloatFilter>;
-  type_cte?: InputMaybe<StringFilter>;
+  nf_serie?: InputMaybe<StringFilter>;
   who_pays?: InputMaybe<StringFilter>;
   cod_quote?: InputMaybe<StringFilter>;
+  nf_number?: InputMaybe<StringFilter>;
   sender_id?: InputMaybe<StringFilter>;
   Sender?: InputMaybe<SenderWhereInput>;
   created_by?: InputMaybe<StringFilter>;
@@ -1215,11 +1154,11 @@ export type LegalClientQuoteTableWhereInput = {
   form_payment?: InputMaybe<StringFilter>;
   kind_service?: InputMaybe<StringFilter>;
   recipient_id?: InputMaybe<StringFilter>;
-  nature_service?: InputMaybe<StringFilter>;
   Recipient?: InputMaybe<RecipientWhereInput>;
   adress_origin_id?: InputMaybe<StringFilter>;
   type_merchandise?: InputMaybe<StringFilter>;
   adress_destiny_id?: InputMaybe<StringFilter>;
+  digital_signature?: InputMaybe<StringFilter>;
   AdressOrigin?: InputMaybe<AdressesWhereInput>;
   AdressDestiny?: InputMaybe<AdressesWhereInput>;
   OR?: InputMaybe<Array<LegalClientQuoteTableWhereInput>>;
@@ -1356,7 +1295,8 @@ export type LegalContractWhereInput = {
 };
 
 export type LegalPersonInput = {
-  uf: Scalars['String']['input'];
+  uf: UfEnum;
+  cep: Scalars['String']['input'];
   city: Scalars['String']['input'];
   cnpj: Scalars['String']['input'];
   email: Scalars['String']['input'];
@@ -1376,7 +1316,9 @@ export type LegalPersonModel = {
   id: Scalars['String']['output'];
   __typename?: 'LegalPersonModel';
   uf: Scalars['String']['output'];
+  cep: Scalars['String']['output'];
   city: Scalars['String']['output'];
+  cnpj: Scalars['String']['output'];
   email: Scalars['String']['output'];
   first_phone: Scalars['String']['output'];
   fantasy_name: Scalars['String']['output'];
@@ -1395,6 +1337,7 @@ export type LegalPersonModel = {
 export type LegalPersonOrderByWithRelationInput = {
   id?: InputMaybe<SortOrder>;
   uf?: InputMaybe<SortOrder>;
+  cep?: InputMaybe<SortOrder>;
   city?: InputMaybe<SortOrder>;
   cnpj?: InputMaybe<SortOrder>;
   email?: InputMaybe<SortOrder>;
@@ -1419,7 +1362,8 @@ export type LegalPersonOrderByWithRelationInput = {
 };
 
 export type LegalPersonUpdateInput = {
-  uf?: InputMaybe<Scalars['String']['input']>;
+  uf?: InputMaybe<UfEnum>;
+  cep?: InputMaybe<Scalars['String']['input']>;
   city?: InputMaybe<Scalars['String']['input']>;
   cnpj?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
@@ -1438,6 +1382,7 @@ export type LegalPersonUpdateInput = {
 export type LegalPersonWhereInput = {
   id?: InputMaybe<StringFilter>;
   uf?: InputMaybe<StringFilter>;
+  cep?: InputMaybe<StringFilter>;
   city?: InputMaybe<StringFilter>;
   cnpj?: InputMaybe<StringFilter>;
   email?: InputMaybe<StringFilter>;
@@ -1620,6 +1565,58 @@ export type MaintenanceWhereInput = {
   created_at?: InputMaybe<DateTimeFilter>;
 };
 
+export type ManifestInput = {
+  order_processing_id: Scalars['String']['input'];
+};
+
+export type ManifestListRelationFilter = {
+  none?: InputMaybe<ManifestWhereInput>;
+  some?: InputMaybe<ManifestWhereInput>;
+  every?: InputMaybe<ManifestWhereInput>;
+};
+
+export type ManifestModel = {
+  __typename?: 'ManifestModel';
+  serie: Scalars['String']['output'];
+  number: Scalars['String']['output'];
+  acess_key: Scalars['String']['output'];
+  num_protocol: Scalars['String']['output'];
+  emission_date: Scalars['Timestamp']['output'];
+  order_processing_id: Scalars['String']['output'];
+  manifest_url?: Maybe<Scalars['String']['output']>;
+};
+
+export type ManifestOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type ManifestOrderByWithRelationInput = {
+  id?: InputMaybe<SortOrder>;
+  serie?: InputMaybe<SortOrder>;
+  number?: InputMaybe<SortOrder>;
+  acess_key?: InputMaybe<SortOrder>;
+  manifest_url?: InputMaybe<SortOrder>;
+  num_protocol?: InputMaybe<SortOrder>;
+  emission_date?: InputMaybe<SortOrder>;
+  order_processing_id?: InputMaybe<SortOrder>;
+  OrderProcessing?: InputMaybe<OrderProcessingOrderByWithRelationInput>;
+};
+
+export type ManifestWhereInput = {
+  id?: InputMaybe<StringFilter>;
+  serie?: InputMaybe<StringFilter>;
+  number?: InputMaybe<StringFilter>;
+  acess_key?: InputMaybe<StringFilter>;
+  num_protocol?: InputMaybe<StringFilter>;
+  OR?: InputMaybe<Array<ManifestWhereInput>>;
+  emission_date?: InputMaybe<DateTimeFilter>;
+  AND?: InputMaybe<Array<ManifestWhereInput>>;
+  NOT?: InputMaybe<Array<ManifestWhereInput>>;
+  order_processing_id?: InputMaybe<StringFilter>;
+  manifest_url?: InputMaybe<StringNullableFilter>;
+  OrderProcessing?: InputMaybe<OrderProcessingWhereInput>;
+};
+
 export type Mutation = {
   login: AuthModel;
   createIcms: IcmsModel;
@@ -1633,6 +1630,7 @@ export type Mutation = {
   deleteSender: SenderModel;
   updateSender: SenderModel;
   createIncident: IncidentModel;
+  createManifest: ManifestModel;
   deleteIncident: IncidentModel;
   updateIncident: IncidentModel;
   createOwnDriver: OwnDriverModel;
@@ -1676,14 +1674,12 @@ export type Mutation = {
   updateFreightExpense: FreightExpenseModel;
   updateLegalClientCte: LegalClientCteModel;
   createCompanyVehicle: CompanyVehicleIModel;
-  createCompletedOrders: CompletedOrdersModel;
   createOrderProcessing: OrderProcessingModel;
   createVehicleBodywork: VehicleBodyworkModel;
   deleteManyOwnDrivers: Array<OwnDriverModel>;
   deleteManyRecipients: Array<RecipientModel>;
   deleteOrderProcessing: OrderProcessingModel;
   deleteVehicleBodywork: VehicleBodyworkModel;
-  updateCompletedOrders: CompletedOrdersModel;
   updateManyOwnDrivers: Array<OwnDriverModel>;
   updateManyRecipients: Array<RecipientModel>;
   updateOrderProcessing: OrderProcessingModel;
@@ -1776,10 +1772,6 @@ export type MutationCreateCompanyVehicleArgs = {
   CompanyVehicleInput: CompanyVehicleInput;
 };
 
-export type MutationCreateCompletedOrdersArgs = {
-  data: CompletedOrdersInput;
-};
-
 export type MutationCreateContractOutsourcedDriverArgs = {
   CompanyVehicleInput: ContractOutsourcedDriverInput;
 };
@@ -1822,6 +1814,10 @@ export type MutationCreateMaintenanceArgs = {
 
 export type MutationCreateMaintenanceCompanyArgs = {
   maintenancecompanyInput: MaintenanceCompanyInput;
+};
+
+export type MutationCreateManifestArgs = {
+  data: ManifestInput;
 };
 
 export type MutationCreateOrderProcessingArgs = {
@@ -2098,11 +2094,6 @@ export type MutationUpdateCarriercompanyArgs = {
   data: CarrierCompanyUpdateInput;
 };
 
-export type MutationUpdateCompletedOrdersArgs = {
-  id: Scalars['String']['input'];
-  data: CompletedOrdersUpdateInput;
-};
-
 export type MutationUpdateFreightExpenseArgs = {
   id: Scalars['String']['input'];
   upData: FreightExpenseUpdateInput;
@@ -2362,8 +2353,8 @@ export type MutationUpdateoutsourcedTransportVehicleArgs = {
 };
 
 export type NaturalPersonInput = {
+  uf: UfEnum;
   rg: Scalars['String']['input'];
-  uf: Scalars['String']['input'];
   cep: Scalars['String']['input'];
   cpf: Scalars['String']['input'];
   city: Scalars['String']['input'];
@@ -2431,8 +2422,8 @@ export type NaturalPersonOrderByWithRelationInput = {
 };
 
 export type NaturalPersonUpdate = {
+  uf?: InputMaybe<UfEnum>;
   rg?: InputMaybe<Scalars['String']['input']>;
-  uf?: InputMaybe<Scalars['String']['input']>;
   cep?: InputMaybe<Scalars['String']['input']>;
   cpf?: InputMaybe<Scalars['String']['input']>;
   city?: InputMaybe<Scalars['String']['input']>;
@@ -2570,6 +2561,7 @@ export type NestedStringNullableFilter = {
 
 export type OrderProcessingInput = {
   status: StatusOrder;
+  driver_id: Scalars['String']['input'];
   vehicle_id: Scalars['String']['input'];
   start_at: Scalars['Timestamp']['input'];
   total_distance: Scalars['Float']['input'];
@@ -2580,13 +2572,21 @@ export type OrderProcessingInput = {
   physical_customer_order_ids?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
+export type OrderProcessingListRelationFilter = {
+  none?: InputMaybe<OrderProcessingWhereInput>;
+  some?: InputMaybe<OrderProcessingWhereInput>;
+  every?: InputMaybe<OrderProcessingWhereInput>;
+};
+
 export type OrderProcessingModel = {
   id: Scalars['String']['output'];
   status: StatusOrder;
   Vehicle: VehicleCarModel;
+  OwnDriver: OwnDriverModel;
   CreatedUser: UserModelRefereces;
   UpdatedUser: UserModelRefereces;
   __typename?: 'OrderProcessingModel';
+  driver_id: Scalars['String']['output'];
   end_at: Scalars['Timestamp']['output'];
   created_by: Scalars['String']['output'];
   updated_by: Scalars['String']['output'];
@@ -2603,11 +2603,16 @@ export type OrderProcessingModel = {
   created_at: Scalars['Timestamp']['output'];
 };
 
+export type OrderProcessingOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
 export type OrderProcessingOrderByWithRelationInput = {
   id?: InputMaybe<SortOrder>;
   end_at?: InputMaybe<SortOrder>;
   status?: InputMaybe<SortOrder>;
   start_at?: InputMaybe<SortOrder>;
+  driver_id?: InputMaybe<SortOrder>;
   created_by?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
   vehicle_id?: InputMaybe<SortOrder>;
@@ -2616,7 +2621,9 @@ export type OrderProcessingOrderByWithRelationInput = {
   total_spending_money?: InputMaybe<SortOrder>;
   order_processing_number?: InputMaybe<SortOrder>;
   Vehicle?: InputMaybe<VehicleOrderByWithRelationInput>;
+  OwnDriver?: InputMaybe<OwnDriverOrderByWithRelationInput>;
   Incident?: InputMaybe<IncidentOrderByRelationAggregateInput>;
+  Manifest?: InputMaybe<ManifestOrderByRelationAggregateInput>;
   LegalClientOrder?: InputMaybe<LegalClientOrderOrderByRelationAggregateInput>;
   PhysicalCustomerOrder?: InputMaybe<PhysicalCustomerOrderOrderByRelationAggregateInput>;
   updated_at?: InputMaybe<SortOrder>;
@@ -2625,6 +2632,7 @@ export type OrderProcessingOrderByWithRelationInput = {
 
 export type OrderProcessingUpdateInput = {
   status?: InputMaybe<StatusOrder>;
+  driver_id?: InputMaybe<Scalars['String']['input']>;
   end_at?: InputMaybe<Scalars['Timestamp']['input']>;
   vehicle_id?: InputMaybe<Scalars['String']['input']>;
   start_at?: InputMaybe<Scalars['Timestamp']['input']>;
@@ -2640,6 +2648,7 @@ export type OrderProcessingUpdateInput = {
 export type OrderProcessingUpdateManyInput = {
   id: Scalars['String']['input'];
   status?: InputMaybe<StatusOrder>;
+  driver_id?: InputMaybe<Scalars['String']['input']>;
   end_at?: InputMaybe<Scalars['Timestamp']['input']>;
   vehicle_id?: InputMaybe<Scalars['String']['input']>;
   start_at?: InputMaybe<Scalars['Timestamp']['input']>;
@@ -2655,16 +2664,19 @@ export type OrderProcessingUpdateManyInput = {
 export type OrderProcessingWhereInput = {
   id?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringFilter>;
+  driver_id?: InputMaybe<StringFilter>;
   created_by?: InputMaybe<StringFilter>;
   start_at?: InputMaybe<DateTimeFilter>;
   updated_by?: InputMaybe<StringFilter>;
   vehicle_id?: InputMaybe<StringFilter>;
   Vehicle?: InputMaybe<VehicleWhereInput>;
   total_distance?: InputMaybe<FloatFilter>;
+  OwnDriver?: InputMaybe<OwnDriverWhereInput>;
   end_at?: InputMaybe<DateTimeNullableFilter>;
   total_spend_liters?: InputMaybe<FloatFilter>;
   total_spending_money?: InputMaybe<FloatFilter>;
   Incident?: InputMaybe<IncidentListRelationFilter>;
+  Manifest?: InputMaybe<ManifestListRelationFilter>;
   OR?: InputMaybe<Array<OrderProcessingWhereInput>>;
   AND?: InputMaybe<Array<OrderProcessingWhereInput>>;
   NOT?: InputMaybe<Array<OrderProcessingWhereInput>>;
@@ -3110,7 +3122,6 @@ export type OutsourcedVehicleOrderByWithRelationInput = {
   created_by?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
   vehicle_id?: InputMaybe<SortOrder>;
-  order_processing_id?: InputMaybe<SortOrder>;
   CreatedBy?: InputMaybe<UserOrderByWithRelationInput>;
   UpdatedBy?: InputMaybe<UserOrderByWithRelationInput>;
   Vehicle?: InputMaybe<VehicleOrderByWithRelationInput>;
@@ -3134,7 +3145,6 @@ export type OutsourcedVehicleWhereInput = {
   OR?: InputMaybe<Array<OutsourcedVehicleWhereInput>>;
   AND?: InputMaybe<Array<OutsourcedVehicleWhereInput>>;
   NOT?: InputMaybe<Array<OutsourcedVehicleWhereInput>>;
-  order_processing_id?: InputMaybe<StringNullableFilter>;
   OutsourcedDriver?: InputMaybe<OutsourcedDriverWhereInput>;
   updated_at?: InputMaybe<DateTimeFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
@@ -3191,6 +3201,7 @@ export type OwnDriverOrderByWithRelationInput = {
   CreatedBy?: InputMaybe<UserOrderByWithRelationInput>;
   UpdatedBy?: InputMaybe<UserOrderByWithRelationInput>;
   NaturalPerson?: InputMaybe<NaturalPersonOrderByWithRelationInput>;
+  OrderProcessing?: InputMaybe<OrderProcessingOrderByRelationAggregateInput>;
   updated_at?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
 };
@@ -3231,12 +3242,13 @@ export type OwnDriverWhereInput = {
   NOT?: InputMaybe<Array<OwnDriverWhereInput>>;
   natural_person_id?: InputMaybe<StringFilter>;
   NaturalPerson?: InputMaybe<NaturalPersonWhereInput>;
+  OrderProcessing?: InputMaybe<OrderProcessingListRelationFilter>;
   updated_at?: InputMaybe<DateTimeFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
 };
 
 export type PhysicalCustomerCteInput = {
-  cteType: Scalars['String']['input'];
+  cteType: TypesCteEnum;
   orderId: Scalars['String']['input'];
   observations?: InputMaybe<Scalars['String']['input']>;
 };
@@ -3257,12 +3269,13 @@ export type PhysicalCustomerCteOrderByWithRelationInput = {
   type_cte?: InputMaybe<SortOrder>;
   access_key?: InputMaybe<SortOrder>;
   cte_number?: InputMaybe<SortOrder>;
+  autorization?: InputMaybe<SortOrder>;
   observations?: InputMaybe<SortOrder>;
   PhysicalCustomerOrder?: InputMaybe<PhysicalCustomerOrderOrderByWithRelationInput>;
 };
 
 export type PhysicalCustomerCteUpdateInput = {
-  cteType?: InputMaybe<Scalars['String']['input']>;
+  cteType?: InputMaybe<TypesCteEnum>;
   orderId?: InputMaybe<Scalars['String']['input']>;
   observations?: InputMaybe<Scalars['String']['input']>;
 };
@@ -3274,6 +3287,7 @@ export type PhysicalCustomerCteWhereInput = {
   access_key?: InputMaybe<StringFilter>;
   cte_number?: InputMaybe<StringFilter>;
   observations?: InputMaybe<StringFilter>;
+  autorization?: InputMaybe<DateTimeFilter>;
   OR?: InputMaybe<Array<PhysicalCustomerCteWhereInput>>;
   AND?: InputMaybe<Array<PhysicalCustomerCteWhereInput>>;
   NOT?: InputMaybe<Array<PhysicalCustomerCteWhereInput>>;
@@ -3343,14 +3357,20 @@ export type PhysicalCustomerOrderModel = {
   UpdatedUser: UserModelRefereces;
   order: Scalars['String']['output'];
   CarrierCompany: CarrierCompanyModel;
+  pis_tax: Scalars['Float']['output'];
+  icms_tax: Scalars['Float']['output'];
   Quote: PhysicalCustomerQuoteTableModel;
+  cofins_tax: Scalars['Float']['output'];
   PhysicalCustomer: PhysicalCustomerModel;
   carrier_id: Scalars['String']['output'];
   created_by: Scalars['String']['output'];
   updated_by: Scalars['String']['output'];
   __typename?: 'PhysicalCustomerOrderModel';
   expenses: Array<FreightExpenseOrderModel>;
+  calculate_icms: Scalars['Float']['output'];
+  calculated_pis: Scalars['Float']['output'];
   quote_table_id: Scalars['String']['output'];
+  calculate_cofins: Scalars['Float']['output'];
   physicalCustomerId: Scalars['String']['output'];
   total_receivable?: Maybe<Scalars['Float']['output']>;
   total_tax_payable?: Maybe<Scalars['Float']['output']>;
@@ -3379,7 +3399,6 @@ export type PhysicalCustomerOrderOrderByWithRelationInput = {
   CreatedBy?: InputMaybe<UserOrderByWithRelationInput>;
   UpdatedBy?: InputMaybe<UserOrderByWithRelationInput>;
   CarrierCompany?: InputMaybe<CarrierCompanyOrderByWithRelationInput>;
-  CompletedOrders?: InputMaybe<CompletedOrdersOrderByWithRelationInput>;
   OrderProcessing?: InputMaybe<OrderProcessingOrderByWithRelationInput>;
   PhysicalCustomer?: InputMaybe<PhysicalCustomerOrderByWithRelationInput>;
   FreightExpenses?: InputMaybe<FreightExpensesOrderByRelationAggregateInput>;
@@ -3420,7 +3439,6 @@ export type PhysicalCustomerOrderWhereInput = {
   completedOrdersId?: InputMaybe<StringNullableFilter>;
   CarrierCompany?: InputMaybe<CarrierCompanyWhereInput>;
   order_processing_id?: InputMaybe<StringNullableFilter>;
-  CompletedOrders?: InputMaybe<CompletedOrdersWhereInput>;
   OR?: InputMaybe<Array<PhysicalCustomerOrderWhereInput>>;
   OrderProcessing?: InputMaybe<OrderProcessingWhereInput>;
   AND?: InputMaybe<Array<PhysicalCustomerOrderWhereInput>>;
@@ -3434,21 +3452,21 @@ export type PhysicalCustomerOrderWhereInput = {
 };
 
 export type PhysicalCustomerQuoteTableInput = {
+  who_pays: WhoIsPay;
+  formPayment: FormPayment;
   adressOrigin: AdressInput;
   adressDestiny: AdressInput;
   mass: Scalars['Float']['input'];
+  kindService: KindOfServicerOrder;
+  typeMerchandise: TypeMerchandise;
   amount: Scalars['Float']['input'];
   volume: Scalars['Float']['input'];
   nf_value: Scalars['Float']['input'];
-  typeCte: Scalars['String']['input'];
+  nf_serie: Scalars['String']['input'];
   senderId: Scalars['String']['input'];
-  who_pays: Scalars['String']['input'];
+  nf_number: Scalars['String']['input'];
   description: Scalars['String']['input'];
-  formPayment: Scalars['String']['input'];
-  kindService: Scalars['String']['input'];
   recipientId: Scalars['String']['input'];
-  natureService: Scalars['String']['input'];
-  typeMerchandise: Scalars['String']['input'];
 };
 
 export type PhysicalCustomerQuoteTableListRelationFilter = {
@@ -3471,19 +3489,20 @@ export type PhysicalCustomerQuoteTableModel = {
   volume: Scalars['Float']['output'];
   icms_id: Scalars['String']['output'];
   nf_value: Scalars['Float']['output'];
-  typeCte: Scalars['String']['output'];
   codQuote: Scalars['String']['output'];
+  nf_serie: Scalars['String']['output'];
   senderId: Scalars['String']['output'];
   who_pays: Scalars['String']['output'];
+  nf_number: Scalars['String']['output'];
   created_by: Scalars['String']['output'];
   updated_by: Scalars['String']['output'];
   description: Scalars['String']['output'];
   formPayment: Scalars['String']['output'];
   kindService: Scalars['String']['output'];
   recipientId: Scalars['String']['output'];
-  natureService: Scalars['String']['output'];
   typeMerchandise: Scalars['String']['output'];
   __typename?: 'PhysicalCustomerQuoteTableModel';
+  digital_signature: Scalars['String']['output'];
   updated_at: Scalars['Timestamp']['output'];
   created_at: Scalars['Timestamp']['output'];
 };
@@ -3498,21 +3517,22 @@ export type PhysicalCustomerQuoteTableOrderByWithRelationInput = {
   amount?: InputMaybe<SortOrder>;
   volume?: InputMaybe<SortOrder>;
   icms_id?: InputMaybe<SortOrder>;
+  nf_serie?: InputMaybe<SortOrder>;
   nf_value?: InputMaybe<SortOrder>;
   senderId?: InputMaybe<SortOrder>;
-  type_cte?: InputMaybe<SortOrder>;
   who_pays?: InputMaybe<SortOrder>;
   cod_quote?: InputMaybe<SortOrder>;
+  nf_number?: InputMaybe<SortOrder>;
   created_by?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
   description?: InputMaybe<SortOrder>;
   form_payment?: InputMaybe<SortOrder>;
   kind_service?: InputMaybe<SortOrder>;
   recipient_id?: InputMaybe<SortOrder>;
-  natute_service?: InputMaybe<SortOrder>;
   adress_origin_id?: InputMaybe<SortOrder>;
   type_merchandise?: InputMaybe<SortOrder>;
   adress_destiny_id?: InputMaybe<SortOrder>;
+  digital_signature?: InputMaybe<SortOrder>;
   Icms?: InputMaybe<IcmsOrderByWithRelationInput>;
   Sender?: InputMaybe<SenderOrderByWithRelationInput>;
   CreatedBy?: InputMaybe<UserOrderByWithRelationInput>;
@@ -3526,21 +3546,21 @@ export type PhysicalCustomerQuoteTableOrderByWithRelationInput = {
 };
 
 export type PhysicalCustomerQuoteTableUpdate = {
+  who_pays?: InputMaybe<WhoIsPay>;
+  formPayment?: InputMaybe<FormPayment>;
   adressOrigin?: InputMaybe<AdressInput>;
   adressDestiny?: InputMaybe<AdressInput>;
   mass?: InputMaybe<Scalars['Float']['input']>;
+  kindService?: InputMaybe<KindOfServicerOrder>;
+  typeMerchandise?: InputMaybe<TypeMerchandise>;
   amount?: InputMaybe<Scalars['Float']['input']>;
   volume?: InputMaybe<Scalars['Float']['input']>;
   nf_value?: InputMaybe<Scalars['Float']['input']>;
-  typeCte?: InputMaybe<Scalars['String']['input']>;
+  nf_serie?: InputMaybe<Scalars['String']['input']>;
   senderId?: InputMaybe<Scalars['String']['input']>;
-  who_pays?: InputMaybe<Scalars['String']['input']>;
+  nf_number?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  formPayment?: InputMaybe<Scalars['String']['input']>;
-  kindService?: InputMaybe<Scalars['String']['input']>;
   recipientId?: InputMaybe<Scalars['String']['input']>;
-  natureService?: InputMaybe<Scalars['String']['input']>;
-  typeMerchandise?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PhysicalCustomerQuoteTableWhereInput = {
@@ -3551,10 +3571,11 @@ export type PhysicalCustomerQuoteTableWhereInput = {
   Icms?: InputMaybe<IcmsWhereInput>;
   icms_id?: InputMaybe<StringFilter>;
   nf_value?: InputMaybe<FloatFilter>;
+  nf_serie?: InputMaybe<StringFilter>;
   senderId?: InputMaybe<StringFilter>;
-  type_cte?: InputMaybe<StringFilter>;
   who_pays?: InputMaybe<StringFilter>;
   cod_quote?: InputMaybe<StringFilter>;
+  nf_number?: InputMaybe<StringFilter>;
   Sender?: InputMaybe<SenderWhereInput>;
   created_by?: InputMaybe<StringFilter>;
   updated_by?: InputMaybe<StringFilter>;
@@ -3564,11 +3585,11 @@ export type PhysicalCustomerQuoteTableWhereInput = {
   form_payment?: InputMaybe<StringFilter>;
   kind_service?: InputMaybe<StringFilter>;
   recipient_id?: InputMaybe<StringFilter>;
-  natute_service?: InputMaybe<StringFilter>;
   Recipient?: InputMaybe<RecipientWhereInput>;
   adress_origin_id?: InputMaybe<StringFilter>;
   type_merchandise?: InputMaybe<StringFilter>;
   adress_destiny_id?: InputMaybe<StringFilter>;
+  digital_signature?: InputMaybe<StringFilter>;
   AdressOrigin?: InputMaybe<AdressesWhereInput>;
   AdressDestiny?: InputMaybe<AdressesWhereInput>;
   OR?: InputMaybe<Array<PhysicalCustomerQuoteTableWhereInput>>;
@@ -3616,6 +3637,7 @@ export type Query = {
   getSender: SenderModel;
   users: Array<UserModel>;
   getIncident: IncidentModel;
+  getManifest: ManifestModel;
   getRecipient: RecipientModel;
   getMaintenance: MaintenanceModel;
   getVehicleType: VehicleTypeModel;
@@ -3629,10 +3651,10 @@ export type Query = {
   getAllOwnDriver: Array<OwnDriverModel>;
   getFreightExpense: FreightExpenseModel;
   totalUsers: Scalars['Float']['output'];
+  countManifest: Scalars['Int']['output'];
   getCompanyVehicle: CompanyVehicleIModel;
   generatePhysicalCustomerCte: CtePDfModel;
   getAllSender?: Maybe<Array<SenderModel>>;
-  getCompletedOrders: CompletedOrdersModel;
   getOrderProcessing: OrderProcessingModel;
   totalSenders: Scalars['Float']['output'];
   countIncident: Scalars['Float']['output'];
@@ -3643,6 +3665,7 @@ export type Query = {
   totalOwnDrivers: Scalars['Float']['output'];
   totalRecipients: Scalars['Float']['output'];
   countLegalContract: Scalars['Int']['output'];
+  getAllManifest?: Maybe<Array<ManifestModel>>;
   getAllVehicleBrand: Array<VehicleBrandModel>;
   getTypeOfMaintenance: TypeOfMaintenanceModel;
   getAllIncidents?: Maybe<Array<IncidentModel>>;
@@ -3663,8 +3686,8 @@ export type Query = {
   getAllCompanyVehicle: Array<CompanyVehicleIModel>;
   totalCarrierCompanies: Scalars['Float']['output'];
   totalVehicleBodyworks: Scalars['Float']['output'];
-  getAllCompletedOrders: Array<CompletedOrdersModel>;
   getAllLegalClient?: Maybe<Array<LegalClientModel>>;
+  getAllLegalPerson?: Maybe<Array<LegalPersonModel>>;
   getAllMaintenance?: Maybe<Array<MaintenanceModel>>;
   getAllOrderProcessing: Array<OrderProcessingModel>;
   getPhysicalCustomer?: Maybe<PhysicalCustomerModel>;
@@ -3677,6 +3700,7 @@ export type Query = {
   getAllOutsourcedDriver: Array<OutsourcedDriverModel>;
   getAllPhysicalCustomer: Array<PhysicalCustomerModel>;
   getAllLegalContract?: Maybe<Array<LegalContractModel>>;
+  getAllNaturalPerson?: Maybe<Array<NaturalPersonModel>>;
   getAllVehicleModel?: Maybe<Array<VehicleModelGraphql>>;
   getAllOutsourcedVehicle: Array<OutsourcedVehicleIModel>;
   getLegalClientOrderModel?: Maybe<LegalClientOrderModel>;
@@ -3748,6 +3772,10 @@ export type QueryCountMaintenanceCompanyArgs = {
   where?: InputMaybe<MaintenanceCompanyWhereInput>;
 };
 
+export type QueryCountManifestArgs = {
+  where?: InputMaybe<ManifestWhereInput>;
+};
+
 export type QueryCountOrderProcessingArgs = {
   where?: InputMaybe<OrderProcessingWhereInput>;
 };
@@ -3787,13 +3815,6 @@ export type QueryGetAllCompanyVehicleArgs = {
   offset?: Scalars['Int']['input'];
   where?: InputMaybe<CompanyVehicleWhereInput>;
   sort?: InputMaybe<CompanyVehicleOrderByWithRelationInput>;
-};
-
-export type QueryGetAllCompletedOrdersArgs = {
-  limit?: Scalars['Int']['input'];
-  offset?: Scalars['Int']['input'];
-  where?: InputMaybe<CompletedOrdersWhereInput>;
-  sort?: InputMaybe<CompletedOrdersOrderByWithRelationInput>;
 };
 
 export type QueryGetAllContractOutsourcedDriverArgs = {
@@ -3859,6 +3880,13 @@ export type QueryGetAllLegalContractArgs = {
   sort?: InputMaybe<LegalContractOrderByWithRelationInput>;
 };
 
+export type QueryGetAllLegalPersonArgs = {
+  limit?: Scalars['Int']['input'];
+  offset?: Scalars['Int']['input'];
+  where?: InputMaybe<LegalPersonWhereInput>;
+  sort?: InputMaybe<LegalPersonOrderByWithRelationInput>;
+};
+
 export type QueryGetAllMaintenanceArgs = {
   limit?: Scalars['Int']['input'];
   offset?: Scalars['Int']['input'];
@@ -3871,6 +3899,20 @@ export type QueryGetAllMaintenanceCompanyArgs = {
   offset?: Scalars['Int']['input'];
   where?: InputMaybe<MaintenanceCompanyWhereInput>;
   sort?: InputMaybe<MaintenanceCompanyOrderByWithRelationInput>;
+};
+
+export type QueryGetAllManifestArgs = {
+  limit?: Scalars['Int']['input'];
+  offset?: Scalars['Int']['input'];
+  where?: InputMaybe<ManifestWhereInput>;
+  sort?: InputMaybe<ManifestOrderByWithRelationInput>;
+};
+
+export type QueryGetAllNaturalPersonArgs = {
+  limit?: Scalars['Int']['input'];
+  offset?: Scalars['Int']['input'];
+  where?: InputMaybe<NaturalPersonWhereInput>;
+  sort?: InputMaybe<NaturalPersonOrderByWithRelationInput>;
 };
 
 export type QueryGetAllOrderProcessingArgs = {
@@ -4025,12 +4067,6 @@ export type QueryGetCompanyVehicleArgs = {
   vehicleId?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type QueryGetCompletedOrdersArgs = {
-  id?: InputMaybe<Scalars['String']['input']>;
-  vehicleData?: InputMaybe<GetVehicleTypeArgs>;
-  order_processing?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type QueryGetContractOutsourcedDriverArgs = {
   id?: InputMaybe<Scalars['String']['input']>;
   contractNumber?: InputMaybe<Scalars['String']['input']>;
@@ -4088,6 +4124,10 @@ export type QueryGetMaintenanceCompanyModelArgs = {
   fantasyName?: InputMaybe<Scalars['String']['input']>;
   corporateName?: InputMaybe<Scalars['String']['input']>;
   legalPersonId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type QueryGetManifestArgs = {
+  id: Scalars['String']['input'];
 };
 
 export type QueryGetOrderProcessingArgs = {
@@ -4481,6 +4521,22 @@ export enum TypeMaintenanceEnum {
   PreventiveMaintenance = 'PREVENTIVE_MAINTENANCE',
 }
 
+export enum TypeMerchandise {
+  Dry = 'DRY',
+  Bulk = 'BULK',
+  Liquid = 'LIQUID',
+  Packaged = 'PACKAGED',
+  Hazardous = 'HAZARDOUS',
+  Perishables = 'PERISHABLES',
+  RawMaterials = 'RAW_MATERIALS',
+  SpecialCargo = 'SPECIAL_CARGO',
+  Containerized = 'CONTAINERIZED',
+  ConsumerGoods = 'CONSUMER_GOODS',
+  NonPerishables = 'NON_PERISHABLES',
+  FinishedProducts = 'FINISHED_PRODUCTS',
+  IndustrialSupplies = 'INDUSTRIAL_SUPPLIES',
+}
+
 export type TypeOfMaintenanceInput = {
   typeMaintenance: TypeMaintenanceEnum;
   description: Scalars['String']['input'];
@@ -4542,6 +4598,48 @@ export type TypeOfMaintenanceWhereInput = {
   updated_at?: InputMaybe<DateTimeFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
 };
+
+export enum TypesCteEnum {
+  NormalCte = 'NORMAL_CTE',
+  StorageCte = 'STORAGE_CTE',
+  ReroutingCte = 'REROUTING_CTE',
+  ReplacementCte = 'REPLACEMENT_CTE',
+  CancellationCte = 'CANCELLATION_CTE',
+  ComplementaryCte = 'COMPLEMENTARY_CTE',
+  SubcontractingCte = 'SUBCONTRACTING_CTE',
+  StorageTransitCte = 'STORAGE_TRANSIT_CTE',
+  IntermediateReroutingCte = 'INTERMEDIATE_REROUTING_CTE',
+}
+
+export enum UfEnum {
+  Ac = 'AC',
+  Al = 'AL',
+  Am = 'AM',
+  Ap = 'AP',
+  Ba = 'BA',
+  Ce = 'CE',
+  Df = 'DF',
+  Es = 'ES',
+  Go = 'GO',
+  Ma = 'MA',
+  Mg = 'MG',
+  Ms = 'MS',
+  Mt = 'MT',
+  Pa = 'PA',
+  Pb = 'PB',
+  Pe = 'PE',
+  Pi = 'PI',
+  Pr = 'PR',
+  Rj = 'RJ',
+  Rn = 'RN',
+  Ro = 'RO',
+  Rr = 'RR',
+  Rs = 'RS',
+  Sc = 'SC',
+  Se = 'SE',
+  Sp = 'SP',
+  To = 'TO',
+}
 
 export type UserInput = {
   name: Scalars['String']['input'];
@@ -5049,7 +5147,6 @@ export type VehicleOrderByWithRelationInput = {
   Model?: InputMaybe<VehicleModelOrderByWithRelationInput>;
   Maintenance?: InputMaybe<MaintenanceOrderByRelationAggregateInput>;
   CompanyVehicle?: InputMaybe<CompanyVehicleOrderByWithRelationInput>;
-  CompletedOrders?: InputMaybe<CompletedOrdersOrderByWithRelationInput>;
   OrderProcessing?: InputMaybe<OrderProcessingOrderByWithRelationInput>;
   OutsourcedVehicle?: InputMaybe<OutsourcedVehicleOrderByWithRelationInput>;
   OutsourcedTransportVehicle?: InputMaybe<OutsourcedTransportVehicleOrderByWithRelationInput>;
@@ -5158,12 +5255,18 @@ export type VehicleWhereInput = {
   Model?: InputMaybe<VehicleModelWhereInput>;
   NOT?: InputMaybe<Array<VehicleWhereInput>>;
   CompanyVehicle?: InputMaybe<CompanyVehicleWhereInput>;
-  CompletedOrders?: InputMaybe<CompletedOrdersWhereInput>;
   Maintenance?: InputMaybe<MaintenanceListRelationFilter>;
   OrderProcessing?: InputMaybe<OrderProcessingWhereInput>;
   OutsourcedVehicle?: InputMaybe<OutsourcedVehicleWhereInput>;
   OutsourcedTransportVehicle?: InputMaybe<OutsourcedTransportVehicleWhereInput>;
 };
+
+export enum WhoIsPay {
+  Sender = 'SENDER',
+  Carrier = 'CARRIER',
+  Recipient = 'RECIPIENT',
+  ServiceTaker = 'SERVICE_TAKER',
+}
 
 export type CreateCarrierCompanyMutationVariables = Exact<{
   carrier: CarrierCompanyInput;
@@ -5693,19 +5796,20 @@ export type CreateLegalClientQuoteTableMutation = {
     amount: number;
     volume: number;
     icms_id: string;
-    typeCte: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
     who_pays: string;
+    nf_serie: string;
+    nf_number: string;
     created_by: string;
     updated_by: string;
     description: string;
     formPayment: string;
     kindService: string;
     recipientId: string;
-    natureService: string;
     typeMerchandise: string;
+    digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
     updated_at: any;
     created_at: any;
@@ -5724,19 +5828,20 @@ export type DeleteLegalClientQuoteTableMutation = {
     amount: number;
     volume: number;
     icms_id: string;
-    typeCte: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
     who_pays: string;
+    nf_serie: string;
+    nf_number: string;
     created_by: string;
     updated_by: string;
     description: string;
     formPayment: string;
     kindService: string;
     recipientId: string;
-    natureService: string;
     typeMerchandise: string;
+    digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
     updated_at: any;
     created_at: any;
@@ -5755,19 +5860,20 @@ export type DeleteManyLegalClientQuoteTableMutation = {
     amount: number;
     volume: number;
     icms_id: string;
-    typeCte: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
     who_pays: string;
+    nf_serie: string;
+    nf_number: string;
     created_by: string;
     updated_by: string;
     description: string;
     formPayment: string;
     kindService: string;
     recipientId: string;
-    natureService: string;
     typeMerchandise: string;
+    digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
     updated_at: any;
     created_at: any;
@@ -5787,19 +5893,20 @@ export type UpdateLegalClientQuoteTableMutation = {
     amount: number;
     volume: number;
     icms_id: string;
-    typeCte: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
     who_pays: string;
+    nf_serie: string;
+    nf_number: string;
     created_by: string;
     updated_by: string;
     description: string;
     formPayment: string;
     kindService: string;
     recipientId: string;
-    natureService: string;
     typeMerchandise: string;
+    digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
     updated_at: any;
     created_at: any;
@@ -5820,19 +5927,20 @@ export type UpdateManyLegalClientQuoteTableMutation = {
     amount: number;
     volume: number;
     icms_id: string;
-    typeCte: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
     who_pays: string;
+    nf_serie: string;
+    nf_number: string;
     created_by: string;
     updated_by: string;
     description: string;
     formPayment: string;
     kindService: string;
     recipientId: string;
-    natureService: string;
     typeMerchandise: string;
+    digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
     updated_at: any;
     created_at: any;
@@ -7161,6 +7269,22 @@ export type GetAllCarrierCompanyQuery = {
   }>;
 };
 
+export type GetAllCarrierCompanyComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<CarrierCompanyWhereInput>;
+  sort?: InputMaybe<CarrierCompanyOrderByWithRelationInput>;
+}>;
+
+export type GetAllCarrierCompanyComboQuery = {
+  __typename?: 'Query';
+  getAllCarrierCompany?: null | Array<{
+    id: string;
+    rntrc: string;
+    __typename?: 'CarrierCompanyModel';
+  }>;
+};
+
 export type GetAllFreightExpensesQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -7227,6 +7351,23 @@ export type GetAllIncidentsQuery = {
   }>;
 };
 
+export type GetAllLegalClientOrderComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<LegalClientOrderWhereInput>;
+  sort?: InputMaybe<LegalClientOrderOrderByWithRelationInput>;
+}>;
+
+export type GetAllLegalClientOrderComboQuery = {
+  __typename?: 'Query';
+  countLegalClientOrder: number;
+  getAllLegalClientOrder?: null | Array<{
+    id: string;
+    order: string;
+    __typename?: 'LegalClientOrderModel';
+  }>;
+};
+
 export type GetAllLegalClientOrderQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -7260,6 +7401,23 @@ export type GetAllLegalClientOrderQuery = {
   }>;
 };
 
+export type GetAllLegalClientQuoteTableComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<LegalClientQuoteTableWhereInput>;
+  sort?: InputMaybe<LegalClientQuoteTableOrderByWithRelationInput>;
+}>;
+
+export type GetAllLegalClientQuoteTableComboQuery = {
+  __typename?: 'Query';
+  getAllLegalClientQuoteTable: Array<{
+    id: string;
+    codQuote: string;
+    description: string;
+    __typename?: 'LegalClientQuoteTableModel';
+  }>;
+};
+
 export type GetAllLegalClientQuoteTableQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -7276,19 +7434,20 @@ export type GetAllLegalClientQuoteTableQuery = {
     amount: number;
     volume: number;
     icms_id: string;
-    typeCte: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
     who_pays: string;
+    nf_serie: string;
+    nf_number: string;
     created_by: string;
     updated_by: string;
     description: string;
     formPayment: string;
     kindService: string;
     recipientId: string;
-    natureService: string;
     typeMerchandise: string;
+    digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
     updated_at: any;
     created_at: any;
@@ -7314,6 +7473,65 @@ export type GetAllLegalClientQuery = {
     __typename?: 'LegalClientModel';
     updated_at: any;
     created_at: any;
+  }>;
+};
+
+export type GetAllLegalContractComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<LegalContractWhereInput>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<LegalContractOrderByWithRelationInput>;
+}>;
+
+export type GetAllLegalContractComboQuery = {
+  __typename?: 'Query';
+  getAllLegalContract?: null | Array<{
+    id: string;
+    contract_number: string;
+    __typename?: 'LegalContractModel';
+  }>;
+};
+
+export type GetAllLegalContractQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<LegalContractWhereInput>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<LegalContractOrderByWithRelationInput>;
+}>;
+
+export type GetAllLegalContractQuery = {
+  __typename?: 'Query';
+  countLegalContract: number;
+  getAllLegalContract?: null | Array<{
+    id: string;
+    created_by: string;
+    updated_by: string;
+    effective_date: any;
+    observations: string;
+    contract_number: string;
+    legal_client_id: string;
+    carrier_company_id: string;
+    delivery_conditions: string;
+    __typename?: 'LegalContractModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
+export type GetAllLegalPersonComboQueryVariables = Exact<{
+  where?: InputMaybe<LegalPersonWhereInput>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<LegalPersonOrderByWithRelationInput>;
+}>;
+
+export type GetAllLegalPersonComboQuery = {
+  __typename?: 'Query';
+  getAllLegalPerson?: null | Array<{
+    id: string;
+    cnpj: string;
+    fantasy_name: string;
+    __typename?: 'LegalPersonModel';
   }>;
 };
 
@@ -7363,6 +7581,69 @@ export type GetAllMaintenanceQuery = {
   }>;
 };
 
+export type GetAllNaturalPersonComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<NaturalPersonWhereInput>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<NaturalPersonOrderByWithRelationInput>;
+}>;
+
+export type GetAllNaturalPersonComboQuery = {
+  __typename?: 'Query';
+  getAllNaturalPerson?: null | Array<{
+    id: string;
+    cpf: string;
+    name: string;
+    __typename?: 'NaturalPersonModel';
+  }>;
+};
+
+export type GetAllOrderProcessingComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<OrderProcessingWhereInput>;
+  sort?: InputMaybe<OrderProcessingOrderByWithRelationInput>;
+}>;
+
+export type GetAllOrderProcessingComboQuery = {
+  __typename?: 'Query';
+  getAllOrderProcessing: Array<{
+    id: string;
+    order_processing_number: string;
+    __typename?: 'OrderProcessingModel';
+  }>;
+};
+
+export type GetAllOrderProcessingQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<OrderProcessingWhereInput>;
+  sort?: InputMaybe<OrderProcessingOrderByWithRelationInput>;
+}>;
+
+export type GetAllOrderProcessingQuery = {
+  __typename?: 'Query';
+  countOrderProcessing: number;
+  getAllOrderProcessing: Array<{
+    id: string;
+    end_at: any;
+    start_at: any;
+    driver_id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    status: StatusOrder;
+    total_distance: number;
+    order_processing: string;
+    total_spend_liters: number;
+    total_spending_money: number;
+    order_processing_number: string;
+    __typename?: 'OrderProcessingModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
 export type GetAllOwnDriverQueryVariables = Exact<{
   where?: InputMaybe<OwnDriverWhereInput>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7386,6 +7667,22 @@ export type GetAllOwnDriverQuery = {
     __typename?: 'OwnDriverModel';
     updated_at: any;
     created_at: any;
+  }>;
+};
+
+export type GetAllPhysicalCustomerOrderComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PhysicalCustomerOrderWhereInput>;
+  sort?: InputMaybe<PhysicalCustomerOrderOrderByWithRelationInput>;
+}>;
+
+export type GetAllPhysicalCustomerOrderComboQuery = {
+  __typename?: 'Query';
+  getAllPhysicalCustomerOrder?: null | Array<{
+    id: string;
+    order: string;
+    __typename?: 'PhysicalCustomerOrderModel';
   }>;
 };
 
@@ -7416,6 +7713,22 @@ export type GetAllPhysicalCustomerOrderQuery = {
   }>;
 };
 
+export type GetAllPhysicalCustomerComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PhysicalCustomerWhereInput>;
+  sort?: InputMaybe<PhysicalCustomerOrderByWithRelationInput>;
+}>;
+
+export type GetAllPhysicalCustomerComboQuery = {
+  __typename?: 'Query';
+  getAllPhysicalCustomer: Array<{
+    id: string;
+    __typename?: 'PhysicalCustomerModel';
+    NaturalPerson: { cpf: string; __typename?: 'NaturalPersonModel' };
+  }>;
+};
+
 export type GetAllPhysicalCustomerQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -7438,6 +7751,33 @@ export type GetAllPhysicalCustomerQuery = {
   }>;
 };
 
+export type GetAllRecipientComboQueryVariables = Exact<{
+  where?: InputMaybe<RecipientWhereInput>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<RecipientOrderByWithRelationInput>;
+}>;
+
+export type GetAllRecipientComboQuery = {
+  __typename?: 'Query';
+  getAllRecipient?: null | Array<{
+    id: string;
+    __typename?: 'RecipientModel';
+    NaturalPerson?: null | {
+      id: string;
+      cpf: string;
+      name: string;
+      __typename?: 'NaturalPersonModel';
+    };
+    LegalPerson?: null | {
+      id: string;
+      cnpj: string;
+      fantasy_name: string;
+      __typename?: 'LegalPersonModel';
+    };
+  }>;
+};
+
 export type GetAllRecipientQueryVariables = Exact<{
   where?: InputMaybe<RecipientWhereInput>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7455,6 +7795,33 @@ export type GetAllRecipientQuery = {
     __typename?: 'RecipientModel';
     legal_person_id?: null | string;
     natural_person_id?: null | string;
+  }>;
+};
+
+export type GetAllSenderComboQueryVariables = Exact<{
+  where?: InputMaybe<SenderWhereInput>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SenderOrderByWithRelationInput>;
+}>;
+
+export type GetAllSenderComboQuery = {
+  __typename?: 'Query';
+  getAllSender?: null | Array<{
+    id: string;
+    __typename?: 'SenderModel';
+    NaturalPerson?: null | {
+      id: string;
+      cpf: string;
+      name: string;
+      __typename?: 'NaturalPersonModel';
+    };
+    LegalPerson?: null | {
+      id: string;
+      cnpj: string;
+      fantasy_name: string;
+      __typename?: 'LegalPersonModel';
+    };
   }>;
 };
 
@@ -9290,16 +9657,17 @@ export const CreateLegalClientQuoteTableDocument = gql`
       id
       kindService
       mass
-      natureService
       nf_value
       recipientId
       senderId
-      typeCte
       typeMerchandise
       updated_at
       updated_by
       volume
       who_pays
+      nf_number
+      nf_serie
+      digital_signature
     }
   }
 `;
@@ -9368,16 +9736,17 @@ export const DeleteLegalClientQuoteTableDocument = gql`
       id
       kindService
       mass
-      natureService
       nf_value
       recipientId
       senderId
-      typeCte
       typeMerchandise
       updated_at
       updated_by
       volume
       who_pays
+      nf_number
+      nf_serie
+      digital_signature
     }
   }
 `;
@@ -9444,16 +9813,17 @@ export const DeleteManyLegalClientQuoteTableDocument = gql`
       id
       kindService
       mass
-      natureService
       nf_value
       recipientId
       senderId
-      typeCte
       typeMerchandise
       updated_at
       updated_by
       volume
       who_pays
+      nf_number
+      nf_serie
+      digital_signature
     }
   }
 `;
@@ -9526,16 +9896,17 @@ export const UpdateLegalClientQuoteTableDocument = gql`
       id
       kindService
       mass
-      natureService
       nf_value
       recipientId
       senderId
-      typeCte
       typeMerchandise
       updated_at
       updated_by
       volume
       who_pays
+      nf_number
+      nf_serie
+      digital_signature
     }
   }
 `;
@@ -9605,16 +9976,17 @@ export const UpdateManyLegalClientQuoteTableDocument = gql`
       id
       kindService
       mass
-      natureService
       nf_value
       recipientId
       senderId
-      typeCte
       typeMerchandise
       updated_at
       updated_by
       volume
       who_pays
+      nf_number
+      nf_serie
+      digital_signature
     }
   }
 `;
@@ -14006,6 +14378,103 @@ export type GetAllCarrierCompanyQueryResult = Apollo.QueryResult<
   GetAllCarrierCompanyQueryVariables
 >;
 
+export const GetAllCarrierCompanyComboDocument = gql`
+  query GetAllCarrierCompanyCombo(
+    $limit: Int
+    $offset: Int
+    $sort: CarrierCompanyOrderByWithRelationInput
+    $where: CarrierCompanyWhereInput
+  ) {
+    getAllCarrierCompany(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      id
+      rntrc
+    }
+  }
+`;
+
+/**
+ * __useGetAllCarrierCompanyComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllCarrierCompanyComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllCarrierCompanyComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllCarrierCompanyComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllCarrierCompanyComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllCarrierCompanyComboQuery,
+    GetAllCarrierCompanyComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllCarrierCompanyComboQuery,
+    GetAllCarrierCompanyComboQueryVariables
+  >(GetAllCarrierCompanyComboDocument, options);
+}
+
+export function useGetAllCarrierCompanyComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllCarrierCompanyComboQuery,
+    GetAllCarrierCompanyComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllCarrierCompanyComboQuery,
+    GetAllCarrierCompanyComboQueryVariables
+  >(GetAllCarrierCompanyComboDocument, options);
+}
+
+export function useGetAllCarrierCompanyComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllCarrierCompanyComboQuery,
+    GetAllCarrierCompanyComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllCarrierCompanyComboQuery,
+    GetAllCarrierCompanyComboQueryVariables
+  >(GetAllCarrierCompanyComboDocument, options);
+}
+
+export type GetAllCarrierCompanyComboQueryHookResult = ReturnType<
+  typeof useGetAllCarrierCompanyComboQuery
+>;
+
+export type GetAllCarrierCompanyComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllCarrierCompanyComboLazyQuery
+>;
+
+export type GetAllCarrierCompanyComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllCarrierCompanyComboSuspenseQuery
+>;
+
+export type GetAllCarrierCompanyComboQueryResult = Apollo.QueryResult<
+  GetAllCarrierCompanyComboQuery,
+  GetAllCarrierCompanyComboQueryVariables
+>;
+
 export const GetAllFreightExpensesDocument = gql`
   query GetAllFreightExpenses(
     $limit: Int
@@ -14308,6 +14777,104 @@ export type GetAllIncidentsQueryResult = Apollo.QueryResult<
   GetAllIncidentsQueryVariables
 >;
 
+export const GetAllLegalClientOrderComboDocument = gql`
+  query GetAllLegalClientOrderCombo(
+    $limit: Int
+    $offset: Int
+    $sort: LegalClientOrderOrderByWithRelationInput
+    $where: LegalClientOrderWhereInput
+  ) {
+    countLegalClientOrder(where: $where)
+    getAllLegalClientOrder(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      id
+      order
+    }
+  }
+`;
+
+/**
+ * __useGetAllLegalClientOrderComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllLegalClientOrderComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllLegalClientOrderComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllLegalClientOrderComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllLegalClientOrderComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllLegalClientOrderComboQuery,
+    GetAllLegalClientOrderComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllLegalClientOrderComboQuery,
+    GetAllLegalClientOrderComboQueryVariables
+  >(GetAllLegalClientOrderComboDocument, options);
+}
+
+export function useGetAllLegalClientOrderComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllLegalClientOrderComboQuery,
+    GetAllLegalClientOrderComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllLegalClientOrderComboQuery,
+    GetAllLegalClientOrderComboQueryVariables
+  >(GetAllLegalClientOrderComboDocument, options);
+}
+
+export function useGetAllLegalClientOrderComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllLegalClientOrderComboQuery,
+    GetAllLegalClientOrderComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllLegalClientOrderComboQuery,
+    GetAllLegalClientOrderComboQueryVariables
+  >(GetAllLegalClientOrderComboDocument, options);
+}
+
+export type GetAllLegalClientOrderComboQueryHookResult = ReturnType<
+  typeof useGetAllLegalClientOrderComboQuery
+>;
+
+export type GetAllLegalClientOrderComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllLegalClientOrderComboLazyQuery
+>;
+
+export type GetAllLegalClientOrderComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllLegalClientOrderComboSuspenseQuery
+>;
+
+export type GetAllLegalClientOrderComboQueryResult = Apollo.QueryResult<
+  GetAllLegalClientOrderComboQuery,
+  GetAllLegalClientOrderComboQueryVariables
+>;
+
 export const GetAllLegalClientOrderDocument = gql`
   query GetAllLegalClientOrder(
     $limit: Int
@@ -14422,6 +14989,103 @@ export type GetAllLegalClientOrderQueryResult = Apollo.QueryResult<
   GetAllLegalClientOrderQueryVariables
 >;
 
+export const GetAllLegalClientQuoteTableComboDocument = gql`
+  query GetAllLegalClientQuoteTableCombo(
+    $limit: Int
+    $offset: Int
+    $sort: LegalClientQuoteTableOrderByWithRelationInput
+    $where: LegalClientQuoteTableWhereInput
+  ) {
+    getAllLegalClientQuoteTable(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      codQuote
+      description
+      id
+    }
+  }
+`;
+
+/**
+ * __useGetAllLegalClientQuoteTableComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllLegalClientQuoteTableComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllLegalClientQuoteTableComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllLegalClientQuoteTableComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllLegalClientQuoteTableComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllLegalClientQuoteTableComboQuery,
+    GetAllLegalClientQuoteTableComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllLegalClientQuoteTableComboQuery,
+    GetAllLegalClientQuoteTableComboQueryVariables
+  >(GetAllLegalClientQuoteTableComboDocument, options);
+}
+
+export function useGetAllLegalClientQuoteTableComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllLegalClientQuoteTableComboQuery,
+    GetAllLegalClientQuoteTableComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllLegalClientQuoteTableComboQuery,
+    GetAllLegalClientQuoteTableComboQueryVariables
+  >(GetAllLegalClientQuoteTableComboDocument, options);
+}
+
+export function useGetAllLegalClientQuoteTableComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllLegalClientQuoteTableComboQuery,
+    GetAllLegalClientQuoteTableComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllLegalClientQuoteTableComboQuery,
+    GetAllLegalClientQuoteTableComboQueryVariables
+  >(GetAllLegalClientQuoteTableComboDocument, options);
+}
+
+export type GetAllLegalClientQuoteTableComboQueryHookResult = ReturnType<
+  typeof useGetAllLegalClientQuoteTableComboQuery
+>;
+
+export type GetAllLegalClientQuoteTableComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllLegalClientQuoteTableComboLazyQuery
+>;
+
+export type GetAllLegalClientQuoteTableComboSuspenseQueryHookResult =
+  ReturnType<typeof useGetAllLegalClientQuoteTableComboSuspenseQuery>;
+
+export type GetAllLegalClientQuoteTableComboQueryResult = Apollo.QueryResult<
+  GetAllLegalClientQuoteTableComboQuery,
+  GetAllLegalClientQuoteTableComboQueryVariables
+>;
+
 export const GetAllLegalClientQuoteTableDocument = gql`
   query GetAllLegalClientQuoteTable(
     $limit: Int
@@ -14446,16 +15110,17 @@ export const GetAllLegalClientQuoteTableDocument = gql`
       id
       kindService
       mass
-      natureService
       nf_value
       recipientId
       senderId
-      typeCte
       typeMerchandise
       updated_at
       updated_by
       volume
       who_pays
+      nf_number
+      nf_serie
+      digital_signature
     }
   }
 `;
@@ -14639,6 +15304,308 @@ export type GetAllLegalClientSuspenseQueryHookResult = ReturnType<
 export type GetAllLegalClientQueryResult = Apollo.QueryResult<
   GetAllLegalClientQuery,
   GetAllLegalClientQueryVariables
+>;
+
+export const GetAllLegalContractComboDocument = gql`
+  query GetAllLegalContractCombo(
+    $limit: Int
+    $offset: Int
+    $sort: LegalContractOrderByWithRelationInput
+    $where: LegalContractWhereInput
+  ) {
+    getAllLegalContract(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      contract_number
+      id
+    }
+  }
+`;
+
+/**
+ * __useGetAllLegalContractComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllLegalContractComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllLegalContractComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllLegalContractComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllLegalContractComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllLegalContractComboQuery,
+    GetAllLegalContractComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllLegalContractComboQuery,
+    GetAllLegalContractComboQueryVariables
+  >(GetAllLegalContractComboDocument, options);
+}
+
+export function useGetAllLegalContractComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllLegalContractComboQuery,
+    GetAllLegalContractComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllLegalContractComboQuery,
+    GetAllLegalContractComboQueryVariables
+  >(GetAllLegalContractComboDocument, options);
+}
+
+export function useGetAllLegalContractComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllLegalContractComboQuery,
+    GetAllLegalContractComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllLegalContractComboQuery,
+    GetAllLegalContractComboQueryVariables
+  >(GetAllLegalContractComboDocument, options);
+}
+
+export type GetAllLegalContractComboQueryHookResult = ReturnType<
+  typeof useGetAllLegalContractComboQuery
+>;
+
+export type GetAllLegalContractComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllLegalContractComboLazyQuery
+>;
+
+export type GetAllLegalContractComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllLegalContractComboSuspenseQuery
+>;
+
+export type GetAllLegalContractComboQueryResult = Apollo.QueryResult<
+  GetAllLegalContractComboQuery,
+  GetAllLegalContractComboQueryVariables
+>;
+
+export const GetAllLegalContractDocument = gql`
+  query GetAllLegalContract(
+    $limit: Int
+    $offset: Int
+    $sort: LegalContractOrderByWithRelationInput
+    $where: LegalContractWhereInput
+  ) {
+    countLegalContract(where: $where)
+    getAllLegalContract(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      carrier_company_id
+      contract_number
+      created_at
+      created_by
+      delivery_conditions
+      effective_date
+      id
+      legal_client_id
+      observations
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetAllLegalContractQuery__
+ *
+ * To run a query within a React component, call `useGetAllLegalContractQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllLegalContractQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllLegalContractQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllLegalContractQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllLegalContractQuery,
+    GetAllLegalContractQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllLegalContractQuery,
+    GetAllLegalContractQueryVariables
+  >(GetAllLegalContractDocument, options);
+}
+
+export function useGetAllLegalContractLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllLegalContractQuery,
+    GetAllLegalContractQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllLegalContractQuery,
+    GetAllLegalContractQueryVariables
+  >(GetAllLegalContractDocument, options);
+}
+
+export function useGetAllLegalContractSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllLegalContractQuery,
+    GetAllLegalContractQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllLegalContractQuery,
+    GetAllLegalContractQueryVariables
+  >(GetAllLegalContractDocument, options);
+}
+
+export type GetAllLegalContractQueryHookResult = ReturnType<
+  typeof useGetAllLegalContractQuery
+>;
+
+export type GetAllLegalContractLazyQueryHookResult = ReturnType<
+  typeof useGetAllLegalContractLazyQuery
+>;
+
+export type GetAllLegalContractSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllLegalContractSuspenseQuery
+>;
+
+export type GetAllLegalContractQueryResult = Apollo.QueryResult<
+  GetAllLegalContractQuery,
+  GetAllLegalContractQueryVariables
+>;
+
+export const GetAllLegalPersonComboDocument = gql`
+  query GetAllLegalPersonCombo(
+    $limit: Int
+    $offset: Int
+    $sort: LegalPersonOrderByWithRelationInput
+    $where: LegalPersonWhereInput
+  ) {
+    getAllLegalPerson(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      id
+      fantasy_name
+      cnpj
+    }
+  }
+`;
+
+/**
+ * __useGetAllLegalPersonComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllLegalPersonComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllLegalPersonComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllLegalPersonComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllLegalPersonComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllLegalPersonComboQuery,
+    GetAllLegalPersonComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllLegalPersonComboQuery,
+    GetAllLegalPersonComboQueryVariables
+  >(GetAllLegalPersonComboDocument, options);
+}
+
+export function useGetAllLegalPersonComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllLegalPersonComboQuery,
+    GetAllLegalPersonComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllLegalPersonComboQuery,
+    GetAllLegalPersonComboQueryVariables
+  >(GetAllLegalPersonComboDocument, options);
+}
+
+export function useGetAllLegalPersonComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllLegalPersonComboQuery,
+    GetAllLegalPersonComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllLegalPersonComboQuery,
+    GetAllLegalPersonComboQueryVariables
+  >(GetAllLegalPersonComboDocument, options);
+}
+
+export type GetAllLegalPersonComboQueryHookResult = ReturnType<
+  typeof useGetAllLegalPersonComboQuery
+>;
+
+export type GetAllLegalPersonComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllLegalPersonComboLazyQuery
+>;
+
+export type GetAllLegalPersonComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllLegalPersonComboSuspenseQuery
+>;
+
+export type GetAllLegalPersonComboQueryResult = Apollo.QueryResult<
+  GetAllLegalPersonComboQuery,
+  GetAllLegalPersonComboQueryVariables
 >;
 
 export const GetAllMaintenanceCompanyDocument = gql`
@@ -14849,6 +15816,312 @@ export type GetAllMaintenanceQueryResult = Apollo.QueryResult<
   GetAllMaintenanceQueryVariables
 >;
 
+export const GetAllNaturalPersonComboDocument = gql`
+  query GetAllNaturalPersonCombo(
+    $limit: Int
+    $offset: Int
+    $sort: NaturalPersonOrderByWithRelationInput
+    $where: NaturalPersonWhereInput
+  ) {
+    getAllNaturalPerson(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      id
+      name
+      cpf
+    }
+  }
+`;
+
+/**
+ * __useGetAllNaturalPersonComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllNaturalPersonComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllNaturalPersonComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllNaturalPersonComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllNaturalPersonComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllNaturalPersonComboQuery,
+    GetAllNaturalPersonComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllNaturalPersonComboQuery,
+    GetAllNaturalPersonComboQueryVariables
+  >(GetAllNaturalPersonComboDocument, options);
+}
+
+export function useGetAllNaturalPersonComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllNaturalPersonComboQuery,
+    GetAllNaturalPersonComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllNaturalPersonComboQuery,
+    GetAllNaturalPersonComboQueryVariables
+  >(GetAllNaturalPersonComboDocument, options);
+}
+
+export function useGetAllNaturalPersonComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllNaturalPersonComboQuery,
+    GetAllNaturalPersonComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllNaturalPersonComboQuery,
+    GetAllNaturalPersonComboQueryVariables
+  >(GetAllNaturalPersonComboDocument, options);
+}
+
+export type GetAllNaturalPersonComboQueryHookResult = ReturnType<
+  typeof useGetAllNaturalPersonComboQuery
+>;
+
+export type GetAllNaturalPersonComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllNaturalPersonComboLazyQuery
+>;
+
+export type GetAllNaturalPersonComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllNaturalPersonComboSuspenseQuery
+>;
+
+export type GetAllNaturalPersonComboQueryResult = Apollo.QueryResult<
+  GetAllNaturalPersonComboQuery,
+  GetAllNaturalPersonComboQueryVariables
+>;
+
+export const GetAllOrderProcessingComboDocument = gql`
+  query GetAllOrderProcessingCombo(
+    $limit: Int
+    $offset: Int
+    $sort: OrderProcessingOrderByWithRelationInput
+    $where: OrderProcessingWhereInput
+  ) {
+    getAllOrderProcessing(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      id
+      order_processing_number
+    }
+  }
+`;
+
+/**
+ * __useGetAllOrderProcessingComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllOrderProcessingComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllOrderProcessingComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllOrderProcessingComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllOrderProcessingComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllOrderProcessingComboQuery,
+    GetAllOrderProcessingComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllOrderProcessingComboQuery,
+    GetAllOrderProcessingComboQueryVariables
+  >(GetAllOrderProcessingComboDocument, options);
+}
+
+export function useGetAllOrderProcessingComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllOrderProcessingComboQuery,
+    GetAllOrderProcessingComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllOrderProcessingComboQuery,
+    GetAllOrderProcessingComboQueryVariables
+  >(GetAllOrderProcessingComboDocument, options);
+}
+
+export function useGetAllOrderProcessingComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllOrderProcessingComboQuery,
+    GetAllOrderProcessingComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllOrderProcessingComboQuery,
+    GetAllOrderProcessingComboQueryVariables
+  >(GetAllOrderProcessingComboDocument, options);
+}
+
+export type GetAllOrderProcessingComboQueryHookResult = ReturnType<
+  typeof useGetAllOrderProcessingComboQuery
+>;
+
+export type GetAllOrderProcessingComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllOrderProcessingComboLazyQuery
+>;
+
+export type GetAllOrderProcessingComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllOrderProcessingComboSuspenseQuery
+>;
+
+export type GetAllOrderProcessingComboQueryResult = Apollo.QueryResult<
+  GetAllOrderProcessingComboQuery,
+  GetAllOrderProcessingComboQueryVariables
+>;
+
+export const GetAllOrderProcessingDocument = gql`
+  query GetAllOrderProcessing(
+    $limit: Int
+    $offset: Int
+    $sort: OrderProcessingOrderByWithRelationInput
+    $where: OrderProcessingWhereInput
+  ) {
+    countOrderProcessing(where: $where)
+    getAllOrderProcessing(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      created_at
+      created_by
+      driver_id
+      end_at
+      id
+      order_processing
+      order_processing_number
+      start_at
+      status
+      total_distance
+      total_spend_liters
+      total_spending_money
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+/**
+ * __useGetAllOrderProcessingQuery__
+ *
+ * To run a query within a React component, call `useGetAllOrderProcessingQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllOrderProcessingQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllOrderProcessingQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllOrderProcessingQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllOrderProcessingQuery,
+    GetAllOrderProcessingQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllOrderProcessingQuery,
+    GetAllOrderProcessingQueryVariables
+  >(GetAllOrderProcessingDocument, options);
+}
+
+export function useGetAllOrderProcessingLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllOrderProcessingQuery,
+    GetAllOrderProcessingQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllOrderProcessingQuery,
+    GetAllOrderProcessingQueryVariables
+  >(GetAllOrderProcessingDocument, options);
+}
+
+export function useGetAllOrderProcessingSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllOrderProcessingQuery,
+    GetAllOrderProcessingQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllOrderProcessingQuery,
+    GetAllOrderProcessingQueryVariables
+  >(GetAllOrderProcessingDocument, options);
+}
+
+export type GetAllOrderProcessingQueryHookResult = ReturnType<
+  typeof useGetAllOrderProcessingQuery
+>;
+
+export type GetAllOrderProcessingLazyQueryHookResult = ReturnType<
+  typeof useGetAllOrderProcessingLazyQuery
+>;
+
+export type GetAllOrderProcessingSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllOrderProcessingSuspenseQuery
+>;
+
+export type GetAllOrderProcessingQueryResult = Apollo.QueryResult<
+  GetAllOrderProcessingQuery,
+  GetAllOrderProcessingQueryVariables
+>;
+
 export const GetAllOwnDriverDocument = gql`
   query GetAllOwnDriver(
     $limit: Int
@@ -14954,6 +16227,102 @@ export type GetAllOwnDriverSuspenseQueryHookResult = ReturnType<
 export type GetAllOwnDriverQueryResult = Apollo.QueryResult<
   GetAllOwnDriverQuery,
   GetAllOwnDriverQueryVariables
+>;
+
+export const GetAllPhysicalCustomerOrderComboDocument = gql`
+  query GetAllPhysicalCustomerOrderCombo(
+    $limit: Int
+    $offset: Int
+    $sort: PhysicalCustomerOrderOrderByWithRelationInput
+    $where: PhysicalCustomerOrderWhereInput
+  ) {
+    getAllPhysicalCustomerOrder(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      id
+      order
+    }
+  }
+`;
+
+/**
+ * __useGetAllPhysicalCustomerOrderComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllPhysicalCustomerOrderComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllPhysicalCustomerOrderComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllPhysicalCustomerOrderComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllPhysicalCustomerOrderComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllPhysicalCustomerOrderComboQuery,
+    GetAllPhysicalCustomerOrderComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllPhysicalCustomerOrderComboQuery,
+    GetAllPhysicalCustomerOrderComboQueryVariables
+  >(GetAllPhysicalCustomerOrderComboDocument, options);
+}
+
+export function useGetAllPhysicalCustomerOrderComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllPhysicalCustomerOrderComboQuery,
+    GetAllPhysicalCustomerOrderComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllPhysicalCustomerOrderComboQuery,
+    GetAllPhysicalCustomerOrderComboQueryVariables
+  >(GetAllPhysicalCustomerOrderComboDocument, options);
+}
+
+export function useGetAllPhysicalCustomerOrderComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllPhysicalCustomerOrderComboQuery,
+    GetAllPhysicalCustomerOrderComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllPhysicalCustomerOrderComboQuery,
+    GetAllPhysicalCustomerOrderComboQueryVariables
+  >(GetAllPhysicalCustomerOrderComboDocument, options);
+}
+
+export type GetAllPhysicalCustomerOrderComboQueryHookResult = ReturnType<
+  typeof useGetAllPhysicalCustomerOrderComboQuery
+>;
+
+export type GetAllPhysicalCustomerOrderComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllPhysicalCustomerOrderComboLazyQuery
+>;
+
+export type GetAllPhysicalCustomerOrderComboSuspenseQueryHookResult =
+  ReturnType<typeof useGetAllPhysicalCustomerOrderComboSuspenseQuery>;
+
+export type GetAllPhysicalCustomerOrderComboQueryResult = Apollo.QueryResult<
+  GetAllPhysicalCustomerOrderComboQuery,
+  GetAllPhysicalCustomerOrderComboQueryVariables
 >;
 
 export const GetAllPhysicalCustomerOrderDocument = gql`
@@ -15064,6 +16433,105 @@ export type GetAllPhysicalCustomerOrderQueryResult = Apollo.QueryResult<
   GetAllPhysicalCustomerOrderQueryVariables
 >;
 
+export const GetAllPhysicalCustomerComboDocument = gql`
+  query GetAllPhysicalCustomerCombo(
+    $limit: Int
+    $offset: Int
+    $sort: PhysicalCustomerOrderByWithRelationInput
+    $where: PhysicalCustomerWhereInput
+  ) {
+    getAllPhysicalCustomer(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      id
+      NaturalPerson {
+        cpf
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetAllPhysicalCustomerComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllPhysicalCustomerComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllPhysicalCustomerComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllPhysicalCustomerComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllPhysicalCustomerComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllPhysicalCustomerComboQuery,
+    GetAllPhysicalCustomerComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllPhysicalCustomerComboQuery,
+    GetAllPhysicalCustomerComboQueryVariables
+  >(GetAllPhysicalCustomerComboDocument, options);
+}
+
+export function useGetAllPhysicalCustomerComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllPhysicalCustomerComboQuery,
+    GetAllPhysicalCustomerComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllPhysicalCustomerComboQuery,
+    GetAllPhysicalCustomerComboQueryVariables
+  >(GetAllPhysicalCustomerComboDocument, options);
+}
+
+export function useGetAllPhysicalCustomerComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllPhysicalCustomerComboQuery,
+    GetAllPhysicalCustomerComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllPhysicalCustomerComboQuery,
+    GetAllPhysicalCustomerComboQueryVariables
+  >(GetAllPhysicalCustomerComboDocument, options);
+}
+
+export type GetAllPhysicalCustomerComboQueryHookResult = ReturnType<
+  typeof useGetAllPhysicalCustomerComboQuery
+>;
+
+export type GetAllPhysicalCustomerComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllPhysicalCustomerComboLazyQuery
+>;
+
+export type GetAllPhysicalCustomerComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllPhysicalCustomerComboSuspenseQuery
+>;
+
+export type GetAllPhysicalCustomerComboQueryResult = Apollo.QueryResult<
+  GetAllPhysicalCustomerComboQuery,
+  GetAllPhysicalCustomerComboQueryVariables
+>;
+
 export const GetAllPhysicalCustomerDocument = gql`
   query GetAllPhysicalCustomer(
     $limit: Int
@@ -15167,6 +16635,112 @@ export type GetAllPhysicalCustomerQueryResult = Apollo.QueryResult<
   GetAllPhysicalCustomerQueryVariables
 >;
 
+export const GetAllRecipientComboDocument = gql`
+  query GetAllRecipientCombo(
+    $limit: Int
+    $offset: Int
+    $sort: RecipientOrderByWithRelationInput
+    $where: RecipientWhereInput
+  ) {
+    getAllRecipient(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      id
+      NaturalPerson {
+        id
+        cpf
+        name
+      }
+      LegalPerson {
+        id
+        cnpj
+        fantasy_name
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetAllRecipientComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllRecipientComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRecipientComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllRecipientComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllRecipientComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllRecipientComboQuery,
+    GetAllRecipientComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllRecipientComboQuery,
+    GetAllRecipientComboQueryVariables
+  >(GetAllRecipientComboDocument, options);
+}
+
+export function useGetAllRecipientComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllRecipientComboQuery,
+    GetAllRecipientComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllRecipientComboQuery,
+    GetAllRecipientComboQueryVariables
+  >(GetAllRecipientComboDocument, options);
+}
+
+export function useGetAllRecipientComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllRecipientComboQuery,
+    GetAllRecipientComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllRecipientComboQuery,
+    GetAllRecipientComboQueryVariables
+  >(GetAllRecipientComboDocument, options);
+}
+
+export type GetAllRecipientComboQueryHookResult = ReturnType<
+  typeof useGetAllRecipientComboQuery
+>;
+
+export type GetAllRecipientComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllRecipientComboLazyQuery
+>;
+
+export type GetAllRecipientComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllRecipientComboSuspenseQuery
+>;
+
+export type GetAllRecipientComboQueryResult = Apollo.QueryResult<
+  GetAllRecipientComboQuery,
+  GetAllRecipientComboQueryVariables
+>;
+
 export const GetAllRecipientDocument = gql`
   query GetAllRecipient(
     $limit: Int
@@ -15266,6 +16840,107 @@ export type GetAllRecipientSuspenseQueryHookResult = ReturnType<
 export type GetAllRecipientQueryResult = Apollo.QueryResult<
   GetAllRecipientQuery,
   GetAllRecipientQueryVariables
+>;
+
+export const GetAllSenderComboDocument = gql`
+  query GetAllSenderCombo(
+    $limit: Int
+    $offset: Int
+    $sort: SenderOrderByWithRelationInput
+    $where: SenderWhereInput
+  ) {
+    getAllSender(limit: $limit, offset: $offset, sort: $sort, where: $where) {
+      id
+      NaturalPerson {
+        id
+        cpf
+        name
+      }
+      LegalPerson {
+        id
+        cnpj
+        fantasy_name
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetAllSenderComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllSenderComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllSenderComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllSenderComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllSenderComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllSenderComboQuery,
+    GetAllSenderComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllSenderComboQuery,
+    GetAllSenderComboQueryVariables
+  >(GetAllSenderComboDocument, options);
+}
+
+export function useGetAllSenderComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllSenderComboQuery,
+    GetAllSenderComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllSenderComboQuery,
+    GetAllSenderComboQueryVariables
+  >(GetAllSenderComboDocument, options);
+}
+
+export function useGetAllSenderComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllSenderComboQuery,
+    GetAllSenderComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllSenderComboQuery,
+    GetAllSenderComboQueryVariables
+  >(GetAllSenderComboDocument, options);
+}
+
+export type GetAllSenderComboQueryHookResult = ReturnType<
+  typeof useGetAllSenderComboQuery
+>;
+
+export type GetAllSenderComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllSenderComboLazyQuery
+>;
+
+export type GetAllSenderComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllSenderComboSuspenseQuery
+>;
+
+export type GetAllSenderComboQueryResult = Apollo.QueryResult<
+  GetAllSenderComboQuery,
+  GetAllSenderComboQueryVariables
 >;
 
 export const GetAllSenderDocument = gql`

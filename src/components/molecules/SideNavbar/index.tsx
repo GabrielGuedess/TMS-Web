@@ -30,7 +30,7 @@ const SideNavbarRef: ForwardRefRenderFunction<HTMLElement, SideNavbarProps> = (
   ref,
 ) => (
   <nav ref={ref} {...props}>
-    <div className="flex-1 overflow-y-auto">
+    <div className="no-scrollbar h-[calc(100vh-7.625rem)] overflow-y-auto">
       <Accordion.Root
         type="single"
         className={twMerge('flex flex-col gap-4', className)}

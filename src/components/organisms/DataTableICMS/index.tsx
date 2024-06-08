@@ -43,10 +43,10 @@ import { PreLoader } from 'components/atoms/PreLoader';
 import { CloseIcon } from 'components/atoms/CloseIcon';
 import { TrashIcon } from 'components/atoms/TrashIcon';
 import { CustomError } from 'components/molecules/CustomError';
+import { SendAngleIcon } from 'components/atoms/SendAngleIcon';
 import { PageIndicator } from 'components/molecules/PageIndicator';
 import { CloseCircleIcon } from 'components/atoms/CloseCircleIcon';
 import { MinusCircleIcon } from 'components/atoms/MinusCircleIcon';
-import { ProfileSearchIcon } from 'components/atoms/ProfileSearchIcon';
 
 import { type OptionalWithIdProps } from 'helpers/OptionalWithIdProps';
 
@@ -937,7 +937,7 @@ export const DataTableICMS = ({ ...props }: DataTableICMSProps) => {
                         href={`/dashboard/icms/${selectedRows[0].id}/general`}
                         className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
                       >
-                        <ProfileSearchIcon size={20} />
+                        <SendAngleIcon size={20} />
                       </Link>
                     )}
                     <AlertDialog.Root

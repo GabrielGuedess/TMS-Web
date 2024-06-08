@@ -1,12 +1,12 @@
 import { Breadcrumb } from 'components/atoms/Breadcrumb';
-import { CreateUser } from 'components/organisms/CreateUser';
+import { CreatePhysicalCustomer } from 'components/organisms/CreatePhysicalCustomer';
 
-const NewUser = async () => (
+const Page = async () => (
   <section className="flex flex-col gap-4 md:grid-cols-2 md:gap-6">
-    <Breadcrumb pageName="Novo Usuário" />
+    <Breadcrumb pageName="Novo Cliente Físico" />
 
-    <CreateUser />
+    <CreatePhysicalCustomer />
   </section>
 );
 
-export default NewUser;
+export default Page;
