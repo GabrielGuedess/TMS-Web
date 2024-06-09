@@ -14,6 +14,11 @@ export const QUERY_LEGAL_CLIENTS = gql`
       sort: $sort
       where: $where
     ) {
+      LegalPerson {
+        id
+        fantasy_name
+        cnpj
+      }
       branch
       created_at
       created_by

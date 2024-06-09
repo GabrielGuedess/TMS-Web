@@ -1,21 +1,27 @@
 import { apollo } from 'apollo/client';
 
-import { QUERY_USER } from 'graphql/queries/user/user';
-import { type UserQuery, type UserQueryVariables } from 'graphql/generated';
+import { QUERY_PHYSICAL_CUSTOMER } from 'graphql/queries/physical-customer/physicalCustomer';
+import {
+  type GetPhysicalCustomerQuery,
+  type GetPhysicalCustomerQueryVariables,
+} from 'graphql/generated';
 
-import { UserGeneral } from 'components/organisms/UserGeneral';
+import { PhysicalCustomerGeneral } from 'components/organisms/PhysicalCustomerGeneral';
 
 const Page = async ({ params }: { params: { id: string } }) => {
-  const { data, error } = await apollo().query<UserQuery, UserQueryVariables>({
-    query: QUERY_USER,
-    variables: { userId: params.id },
+  const { data, error } = await apollo().query<
+    GetPhysicalCustomerQuery,
+    GetPhysicalCustomerQueryVariables
+  >({
+    query: QUERY_PHYSICAL_CUSTOMER,
+    variables: { getPhysicalCustomerId: params.id },
   });
 
   if (error?.message) {
     return <span>Not Found!</span>;
   }
 
-  return <UserGeneral data={data} />;
+  return <PhysicalCustomerGeneral data={data} />;
 };
 
 export default Page;

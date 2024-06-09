@@ -1,13 +1,19 @@
 import { apollo } from 'apollo/client';
 
-import { QUERY_USER } from 'graphql/queries/user/user';
-import { type UserQuery, type UserQueryVariables } from 'graphql/generated';
+import { QUERY_VEHICLE_BRAND } from 'graphql/queries/vehicle-brand/vehicleBrand';
+import {
+  type UserQueryVariables,
+  type GetVehicleBrandQuery,
+} from 'graphql/generated';
 
-import { UserGeneral } from 'components/organisms/UserGeneral';
+import { VehicleBrandGeneral } from 'components/organisms/VehicleBrandGeneral';
 
 const Page = async ({ params }: { params: { id: string } }) => {
-  const { data, error } = await apollo().query<UserQuery, UserQueryVariables>({
-    query: QUERY_USER,
+  const { data, error } = await apollo().query<
+    GetVehicleBrandQuery,
+    UserQueryVariables
+  >({
+    query: QUERY_VEHICLE_BRAND,
     variables: { userId: params.id },
   });
 
@@ -15,7 +21,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
     return <span>Not Found!</span>;
   }
 
-  return <UserGeneral data={data} />;
+  return <VehicleBrandGeneral data={data} />;
 };
 
 export default Page;

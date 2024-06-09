@@ -11,6 +11,12 @@ export type LegalClientProps = {
   updated_by: string;
   legal_person_id: string;
   __typename?: 'LegalClientModel';
+  LegalPerson: {
+    id: string;
+    cnpj: string;
+    fantasy_name: string;
+    __typename?: 'LegalPersonModel';
+  };
   updated_at: Date;
   created_at: Date;
 };

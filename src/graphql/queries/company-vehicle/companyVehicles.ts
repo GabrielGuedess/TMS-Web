@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_VEHICLE_MODELS = gql`
+export const QUERY_COMPANY_VEHICLES = gql`
   query GetAllCompanyVehicle(
     $limit: Int
     $offset: Int

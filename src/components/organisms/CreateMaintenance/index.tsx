@@ -15,7 +15,7 @@ import {
   QueryMode,
   useGetAllVehiclesComboQuery,
   useCreateMaintenanceMutation,
-  useGetAllVehicleTypesComboQuery,
+  useGetAllTypeOfMaintenanceComboQuery,
   useGetAllMaintenanceCompanyComboQuery,
 } from 'graphql/generated';
 
@@ -40,8 +40,10 @@ const CreateMaintenanceRef: ForwardRefRenderFunction<
 > = ({ className, ...props }, ref) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const [isLoadingSearchVehicleType, setIsLoadingSearchVehicleType] =
-    useState(false);
+  const [
+    isLoadingSearchTypeOfMaintenance,
+    setIsLoadingSearchTypeOfMaintenance,
+  ] = useState(false);
   const [isLoadingSearchVehicle, setIsLoadingSearchVehicle] = useState(false);
   const [
     isLoadingSearchMaintenanceCompany,
@@ -49,15 +51,15 @@ const CreateMaintenanceRef: ForwardRefRenderFunction<
   ] = useState(false);
 
   const [searchMaintenanceCompany, setSearchMaintenanceCompany] = useState('');
-  const [searchVehicleType, setSearchVehicleType] = useState('');
+  const [searchTypeOfMaintenance, setSearchTypeOfMaintenance] = useState('');
   const [searchVehicle, setSearchVehicle] = useState('');
 
   const router = useRouter();
 
   const [createMaintenance] = useCreateMaintenanceMutation();
 
-  const { data: dataVehicleTypes, refetch: refetchVehicleTypes } =
-    useGetAllVehicleTypesComboQuery();
+  const { data: dataTypeOfMaintenances, refetch: refetchTypeOfMaintenances } =
+    useGetAllTypeOfMaintenanceComboQuery();
 
   const { data: dataVehicles, refetch: refetchVehicles } =
     useGetAllVehiclesComboQuery();
@@ -80,26 +82,26 @@ const CreateMaintenanceRef: ForwardRefRenderFunction<
     },
   });
 
-  const handleSearchVehicleType = async () => {
-    setIsLoadingSearchVehicleType(true);
+  const handleSearchTypeOfMaintenance = async () => {
+    setIsLoadingSearchTypeOfMaintenance(true);
 
     try {
-      await refetchVehicleTypes({
+      await refetchTypeOfMaintenances({
         where: {
           OR: [
             {
-              name: {
-                contains: searchVehicleType,
+              typeMaintenance: {
                 mode: QueryMode.Insensitive,
+                contains: searchTypeOfMaintenance,
               },
             },
           ],
         },
       });
     } catch {
-      toast.error('Erro ao carregar os Tipos de Veiculo!');
+      toast.error('Erro ao carregar os Tipos de Manutenção!');
     } finally {
-      setIsLoadingSearchVehicleType(false);
+      setIsLoadingSearchTypeOfMaintenance(false);
     }
   };
 
@@ -136,8 +138,8 @@ const CreateMaintenanceRef: ForwardRefRenderFunction<
             {
               LegalPerson: {
                 cnpj: {
-                  contains: searchVehicle,
                   mode: QueryMode.Insensitive,
+                  contains: searchMaintenanceCompany,
                 },
               },
             },
@@ -189,13 +191,13 @@ const CreateMaintenanceRef: ForwardRefRenderFunction<
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
-      if (searchVehicleType !== '') {
-        handleSearchVehicleType();
+      if (searchTypeOfMaintenance !== '') {
+        handleSearchTypeOfMaintenance();
       }
     }, 1000);
 
     return () => clearTimeout(delayDebounce);
-  }, [searchVehicleType]);
+  }, [searchTypeOfMaintenance]);
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
@@ -234,22 +236,24 @@ const CreateMaintenanceRef: ForwardRefRenderFunction<
           <Controller
             render={({ field: { value, onChange } }) => (
               <ComboBox
-                values={dataVehicleTypes?.getAllVehicleTypes?.map(item => ({
-                  id: item.id,
-                  description: `${item.name}`,
-                }))}
+                values={dataTypeOfMaintenances?.getAllTypeOfMaintenance?.map(
+                  item => ({
+                    id: item.id,
+                    description: `${item.typeMaintenance}`,
+                  }),
+                )}
                 value={value}
-                label="Tipo de Veiculo"
-                search={searchVehicleType}
+                label="Tipo de Manuteção"
                 isInvalid={!!errors.type?.id}
-                setSearch={setSearchVehicleType}
+                search={searchTypeOfMaintenance}
                 setValue={item => onChange(item)}
-                isLoading={isLoadingSearchVehicleType}
+                setSearch={setSearchTypeOfMaintenance}
                 errorMessage={errors.type?.id?.message}
-                placeholder="Selecione a Tipo de Veiculo"
-                emptyMessage="Tipo de Veiculo não encontrado"
+                placeholder="Selecione a Tipo de Manuteção"
+                isLoading={isLoadingSearchTypeOfMaintenance}
                 className="bg-transparent dark:bg-transparent"
-                placeholderCommand="Pesquise a Tipo de Veiculo..."
+                emptyMessage="Tipo de Manuteção não encontrado"
+                placeholderCommand="Pesquise a Tipo de Manuteção..."
               />
             )}
             name="type"

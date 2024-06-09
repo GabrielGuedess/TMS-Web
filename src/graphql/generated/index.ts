@@ -7651,6 +7651,30 @@ export type GetAllCarrierCompanyComboQuery = {
   }>;
 };
 
+export type GetCompanyVehicleQueryVariables = Exact<{
+  getCompanyVehicleId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetCompanyVehicleQuery = {
+  __typename?: 'Query';
+  getCompanyVehicle: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    carrier_company_id: string;
+    __typename?: 'CompanyVehicleIModel';
+    Vehicle: { id: string; plate: string; __typename?: 'VehicleCarModel' };
+    CarrierCompany: {
+      id: string;
+      rntrc: string;
+      __typename?: 'CarrierCompanyModel';
+    };
+    updated_at: any;
+    created_at: any;
+  };
+};
+
 export type GetAllCompanyVehicleQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -7815,6 +7839,55 @@ export type GetAllLegalClientOrderComboQuery = {
   }>;
 };
 
+export type GetLegalClientOrderModelQueryVariables = Exact<{
+  getLegalClientOrderModelId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetLegalClientOrderModelQuery = {
+  __typename?: 'Query';
+  getLegalClientOrderModel?: null | {
+    id: string;
+    order: string;
+    pis_tax: number;
+    icms_tax: number;
+    carrier_id: string;
+    cofins_tax: number;
+    created_by: string;
+    updated_by: string;
+    calculate_icms: number;
+    calculated_pis: number;
+    quote_table_id: string;
+    calculate_cofins: number;
+    legal_contract_id: string;
+    total_receivable?: null | number;
+    total_tax_payable?: null | number;
+    total_shipping_cost?: null | number;
+    __typename?: 'LegalClientOrderModel';
+    Quote: {
+      id: string;
+      codQuote: string;
+      __typename?: 'LegalClientQuoteTableModel';
+    };
+    LegalContract: {
+      id: string;
+      contract_number: string;
+      __typename?: 'LegalContractModel';
+    };
+    CarrierCompany: {
+      __typename?: 'CarrierCompanyModel';
+      LegalPerson: { cnpj: string; __typename?: 'LegalPersonModel' };
+    };
+    expenses?: null | Array<{
+      id?: null | string;
+      value: number;
+      expenseName: string;
+      __typename?: 'FreightExpenseOrderModel';
+    }>;
+    updated_at: any;
+    created_at: any;
+  };
+};
+
 export type GetAllLegalClientOrderQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -7901,6 +7974,30 @@ export type GetAllLegalClientQuoteTableQuery = {
   }>;
 };
 
+export type GetLegalClientModelQueryVariables = Exact<{
+  cnpj?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetLegalClientModelQuery = {
+  __typename?: 'Query';
+  getLegalClientModel: {
+    id: string;
+    branch: string;
+    created_by: string;
+    updated_by: string;
+    legal_person_id: string;
+    __typename?: 'LegalClientModel';
+    LegalPerson: {
+      id: string;
+      cnpj: string;
+      fantasy_name: string;
+      __typename?: 'LegalPersonModel';
+    };
+    updated_at: any;
+    created_at: any;
+  };
+};
+
 export type GetAllLegalClientQueryVariables = Exact<{
   where?: InputMaybe<LegalClientWhereInput>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7918,6 +8015,12 @@ export type GetAllLegalClientQuery = {
     updated_by: string;
     legal_person_id: string;
     __typename?: 'LegalClientModel';
+    LegalPerson: {
+      id: string;
+      cnpj: string;
+      fantasy_name: string;
+      __typename?: 'LegalPersonModel';
+    };
     updated_at: any;
     created_at: any;
   }>;
@@ -8019,6 +8122,73 @@ export type GetAllMaintenanceCompanyQuery = {
     updated_at: any;
     created_at: any;
   }>;
+};
+
+export type GetMaintenanceCompanyModelQueryVariables = Exact<{
+  getMaintenanceCompanyModelId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetMaintenanceCompanyModelQuery = {
+  __typename?: 'Query';
+  getMaintenanceCompanyModel: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    legal_person_id: string;
+    specialty_maintenance?: null | string;
+    __typename?: 'MaintenanceCompanyModel';
+    LegalPerson: {
+      id: string;
+      cnpj: string;
+      fantasy_name: string;
+      __typename?: 'LegalPersonModel';
+    };
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type GetMaintenanceQueryVariables = Exact<{
+  getMaintenanceId: Scalars['String']['input'];
+}>;
+
+export type GetMaintenanceQuery = {
+  __typename?: 'Query';
+  getMaintenance: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    finished_at?: any | null;
+    maintenance_company_id: string;
+    type_of_maintenance_id: string;
+    __typename?: 'MaintenanceModel';
+    TypeOfMaintenance: {
+      id: string;
+      typeMaintenance: string;
+      __typename?: 'TypeOfMaintenanceModel';
+    };
+    MaintenanceCompany: {
+      __typename?: 'MaintenanceCompanyModel';
+      LegalPerson: {
+        id: string;
+        cnpj: string;
+        __typename?: 'LegalPersonModel';
+      };
+    };
+    Vehicle: {
+      id: string;
+      plate: string;
+      __typename?: 'VehicleCarModel';
+      VehicleModel: {
+        id: string;
+        name: string;
+        __typename?: 'VehicleModelReferences';
+      };
+    };
+    updated_at: any;
+    created_at: any;
+  };
 };
 
 export type GetAllMaintenanceQueryVariables = Exact<{
@@ -8178,6 +8348,56 @@ export type GetAllPhysicalCustomerOrderComboQuery = {
   }>;
 };
 
+export type GetPhysicalCustomerOrderModelQueryVariables = Exact<{
+  getPhysicalCustomerOrderModelId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetPhysicalCustomerOrderModelQuery = {
+  __typename?: 'Query';
+  getPhysicalCustomerOrderModel?: null | {
+    id: string;
+    order: string;
+    pis_tax: number;
+    icms_tax: number;
+    carrier_id: string;
+    cofins_tax: number;
+    created_by: string;
+    updated_by: string;
+    calculate_icms: number;
+    calculated_pis: number;
+    quote_table_id: string;
+    calculate_cofins: number;
+    physicalCustomerId: string;
+    total_receivable?: null | number;
+    total_tax_payable?: null | number;
+    total_shipping_cost?: null | number;
+    __typename?: 'PhysicalCustomerOrderModel';
+    CarrierCompany: {
+      id: string;
+      rntrc: string;
+      __typename?: 'CarrierCompanyModel';
+    };
+    Quote: {
+      id: string;
+      codQuote: string;
+      __typename?: 'PhysicalCustomerQuoteTableModel';
+    };
+    expenses: Array<{
+      id?: null | string;
+      value: number;
+      expenseName: string;
+      __typename?: 'FreightExpenseOrderModel';
+    }>;
+    PhysicalCustomer: {
+      id: string;
+      __typename?: 'PhysicalCustomerModel';
+      NaturalPerson: { cpf: string; __typename?: 'NaturalPersonModel' };
+    };
+    updated_at: any;
+    created_at: any;
+  };
+};
+
 export type GetAllPhysicalCustomerOrderQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -8303,6 +8523,30 @@ export type GetAllPhysicalCustomerComboQuery = {
     __typename?: 'PhysicalCustomerModel';
     NaturalPerson: { cpf: string; __typename?: 'NaturalPersonModel' };
   }>;
+};
+
+export type GetPhysicalCustomerQueryVariables = Exact<{
+  getPhysicalCustomerId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetPhysicalCustomerQuery = {
+  __typename?: 'Query';
+  getPhysicalCustomer?: null | {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    branch?: null | string;
+    natural_person_id: string;
+    __typename?: 'PhysicalCustomerModel';
+    NaturalPerson: {
+      id: string;
+      cpf: string;
+      name: string;
+      __typename?: 'NaturalPersonModel';
+    };
+    updated_at: any;
+    created_at: any;
+  };
 };
 
 export type GetAllPhysicalCustomerQueryVariables = Exact<{
@@ -8449,6 +8693,27 @@ export type GetAllSenderQuery = {
   }>;
 };
 
+export type GetAllTypeOfMaintenanceComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TypeOfMaintenanceWhereInput>;
+  sort?: InputMaybe<TypeOfMaintenanceOrderByWithRelationInput>;
+}>;
+
+export type GetAllTypeOfMaintenanceComboQuery = {
+  __typename?: 'Query';
+  getAllTypeOfMaintenance?: null | Array<{
+    id: string;
+    created_by: string;
+    updated_by: string;
+    description: string;
+    typeMaintenance: string;
+    __typename?: 'TypeOfMaintenanceModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
 export type AvatarQueryVariables = Exact<{
   userId?: InputMaybe<Scalars['String']['input']>;
 }>;
@@ -8519,6 +8784,31 @@ export type GetAllVehicleBodyworkComboQuery = {
   }>;
 };
 
+export type GetVehicleBodyworkModelQueryVariables = Exact<{
+  getVehicleBodyworkModelId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetVehicleBodyworkModelQuery = {
+  __typename?: 'Query';
+  getVehicleBodyworkModel: {
+    id: string;
+    mass: number;
+    name: string;
+    axles: number;
+    volume: number;
+    created_by: string;
+    updated_by: string;
+    __typename?: 'VehicleBodyworkModel';
+    VehicleTypes?: null | Array<{
+      id: string;
+      name: string;
+      __typename?: 'VehicleTypeModel';
+    }>;
+    updated_at: any;
+    created_at: any;
+  };
+};
+
 export type GetAllVehicleBodyworkQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -8559,6 +8849,28 @@ export type GetAllVehicleBrandComboQuery = {
   }>;
 };
 
+export type GetVehicleBrandQueryVariables = Exact<{
+  getVehicleBrandId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetVehicleBrandQuery = {
+  __typename?: 'Query';
+  getVehicleBrand: {
+    id: string;
+    name: string;
+    created_by: string;
+    updated_by: string;
+    __typename?: 'VehicleBrandModel';
+    VehicleModels?: null | {
+      id: string;
+      name: string;
+      __typename?: 'VehicleModelGraphql';
+    };
+    updated_at: any;
+    created_at: any;
+  };
+};
+
 export type GetAllVehicleBrandQueryVariables = Exact<{
   where?: InputMaybe<VehicleBrandWhereInput>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -8578,6 +8890,35 @@ export type GetAllVehicleBrandQuery = {
     updated_at: any;
     created_at: any;
   }>;
+};
+
+export type GetVehicleModelQueryVariables = Exact<{
+  getVehicleModelId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetVehicleModelQuery = {
+  __typename?: 'Query';
+  getVehicleModel: {
+    id: string;
+    name: string;
+    axles: number;
+    weight: number;
+    type_id: string;
+    brand_id: string;
+    created_by: string;
+    updated_by: string;
+    capacity_max: number;
+    capacity_per_axle: number;
+    __typename?: 'VehicleModelGraphql';
+    VehicleType: { id: string; name: string; __typename?: 'VehicleTypeModel' };
+    VehicleBrand: {
+      id: string;
+      name: string;
+      __typename?: 'VehicleBrandReferences';
+    };
+    updated_at: any;
+    created_at: any;
+  };
 };
 
 export type GetAllVehicleModelQueryVariables = Exact<{
@@ -8621,6 +8962,30 @@ export type GetAllVehicleTypesComboQuery = {
     name: string;
     __typename?: 'VehicleTypeModel';
   }>;
+};
+
+export type GetVehicleTypeQueryVariables = Exact<{
+  getVehicleTypeId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetVehicleTypeQuery = {
+  __typename?: 'Query';
+  getVehicleType: {
+    id: string;
+    name: string;
+    bodyWork: boolean;
+    created_by: string;
+    updated_by: string;
+    __typename?: 'VehicleTypeModel';
+    BodyWorks?: null | Array<{
+      id: string;
+      name: string;
+      axles: number;
+      __typename?: 'VehicleBodyworkModel';
+    }>;
+    updated_at: any;
+    created_at: any;
+  };
 };
 
 export type GetAllVehicleTypesQueryVariables = Exact<{
@@ -15978,6 +16343,103 @@ export type GetAllCarrierCompanyComboQueryResult = Apollo.QueryResult<
   GetAllCarrierCompanyComboQueryVariables
 >;
 
+export const GetCompanyVehicleDocument = gql`
+  query GetCompanyVehicle($getCompanyVehicleId: String) {
+    getCompanyVehicle(id: $getCompanyVehicleId) {
+      CarrierCompany {
+        id
+        rntrc
+      }
+      Vehicle {
+        id
+        plate
+      }
+      carrier_company_id
+      created_at
+      created_by
+      id
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+/**
+ * __useGetCompanyVehicleQuery__
+ *
+ * To run a query within a React component, call `useGetCompanyVehicleQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCompanyVehicleQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCompanyVehicleQuery({
+ *   variables: {
+ *      getCompanyVehicleId: // value for 'getCompanyVehicleId'
+ *   },
+ * });
+ */
+export function useGetCompanyVehicleQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetCompanyVehicleQuery,
+    GetCompanyVehicleQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetCompanyVehicleQuery,
+    GetCompanyVehicleQueryVariables
+  >(GetCompanyVehicleDocument, options);
+}
+
+export function useGetCompanyVehicleLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetCompanyVehicleQuery,
+    GetCompanyVehicleQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetCompanyVehicleQuery,
+    GetCompanyVehicleQueryVariables
+  >(GetCompanyVehicleDocument, options);
+}
+
+export function useGetCompanyVehicleSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetCompanyVehicleQuery,
+    GetCompanyVehicleQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetCompanyVehicleQuery,
+    GetCompanyVehicleQueryVariables
+  >(GetCompanyVehicleDocument, options);
+}
+
+export type GetCompanyVehicleQueryHookResult = ReturnType<
+  typeof useGetCompanyVehicleQuery
+>;
+
+export type GetCompanyVehicleLazyQueryHookResult = ReturnType<
+  typeof useGetCompanyVehicleLazyQuery
+>;
+
+export type GetCompanyVehicleSuspenseQueryHookResult = ReturnType<
+  typeof useGetCompanyVehicleSuspenseQuery
+>;
+
+export type GetCompanyVehicleQueryResult = Apollo.QueryResult<
+  GetCompanyVehicleQuery,
+  GetCompanyVehicleQueryVariables
+>;
+
 export const GetAllCompanyVehicleDocument = gql`
   query GetAllCompanyVehicle(
     $limit: Int
@@ -16748,6 +17210,124 @@ export type GetAllLegalClientOrderComboQueryResult = Apollo.QueryResult<
   GetAllLegalClientOrderComboQueryVariables
 >;
 
+export const GetLegalClientOrderModelDocument = gql`
+  query GetLegalClientOrderModel($getLegalClientOrderModelId: String) {
+    getLegalClientOrderModel(id: $getLegalClientOrderModelId) {
+      CarrierCompany {
+        LegalPerson {
+          cnpj
+        }
+      }
+      LegalContract {
+        id
+        contract_number
+      }
+      Quote {
+        id
+        codQuote
+      }
+      expenses {
+        expenseName
+        id
+        value
+      }
+      calculate_cofins
+      calculate_icms
+      calculated_pis
+      carrier_id
+      cofins_tax
+      created_at
+      created_by
+      icms_tax
+      id
+      legal_contract_id
+      order
+      pis_tax
+      quote_table_id
+      total_receivable
+      total_shipping_cost
+      total_tax_payable
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetLegalClientOrderModelQuery__
+ *
+ * To run a query within a React component, call `useGetLegalClientOrderModelQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLegalClientOrderModelQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLegalClientOrderModelQuery({
+ *   variables: {
+ *      getLegalClientOrderModelId: // value for 'getLegalClientOrderModelId'
+ *   },
+ * });
+ */
+export function useGetLegalClientOrderModelQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetLegalClientOrderModelQuery,
+    GetLegalClientOrderModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetLegalClientOrderModelQuery,
+    GetLegalClientOrderModelQueryVariables
+  >(GetLegalClientOrderModelDocument, options);
+}
+
+export function useGetLegalClientOrderModelLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetLegalClientOrderModelQuery,
+    GetLegalClientOrderModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetLegalClientOrderModelQuery,
+    GetLegalClientOrderModelQueryVariables
+  >(GetLegalClientOrderModelDocument, options);
+}
+
+export function useGetLegalClientOrderModelSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetLegalClientOrderModelQuery,
+    GetLegalClientOrderModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetLegalClientOrderModelQuery,
+    GetLegalClientOrderModelQueryVariables
+  >(GetLegalClientOrderModelDocument, options);
+}
+
+export type GetLegalClientOrderModelQueryHookResult = ReturnType<
+  typeof useGetLegalClientOrderModelQuery
+>;
+
+export type GetLegalClientOrderModelLazyQueryHookResult = ReturnType<
+  typeof useGetLegalClientOrderModelLazyQuery
+>;
+
+export type GetLegalClientOrderModelSuspenseQueryHookResult = ReturnType<
+  typeof useGetLegalClientOrderModelSuspenseQuery
+>;
+
+export type GetLegalClientOrderModelQueryResult = Apollo.QueryResult<
+  GetLegalClientOrderModelQuery,
+  GetLegalClientOrderModelQueryVariables
+>;
+
 export const GetAllLegalClientOrderDocument = gql`
   query GetAllLegalClientOrder(
     $limit: Int
@@ -17076,6 +17656,100 @@ export type GetAllLegalClientQuoteTableQueryResult = Apollo.QueryResult<
   GetAllLegalClientQuoteTableQueryVariables
 >;
 
+export const GetLegalClientModelDocument = gql`
+  query GetLegalClientModel($cnpj: String) {
+    getLegalClientModel(cnpj: $cnpj) {
+      LegalPerson {
+        id
+        fantasy_name
+        cnpj
+      }
+      branch
+      created_at
+      created_by
+      id
+      legal_person_id
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetLegalClientModelQuery__
+ *
+ * To run a query within a React component, call `useGetLegalClientModelQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLegalClientModelQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLegalClientModelQuery({
+ *   variables: {
+ *      cnpj: // value for 'cnpj'
+ *   },
+ * });
+ */
+export function useGetLegalClientModelQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetLegalClientModelQuery,
+    GetLegalClientModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetLegalClientModelQuery,
+    GetLegalClientModelQueryVariables
+  >(GetLegalClientModelDocument, options);
+}
+
+export function useGetLegalClientModelLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetLegalClientModelQuery,
+    GetLegalClientModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetLegalClientModelQuery,
+    GetLegalClientModelQueryVariables
+  >(GetLegalClientModelDocument, options);
+}
+
+export function useGetLegalClientModelSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetLegalClientModelQuery,
+    GetLegalClientModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetLegalClientModelQuery,
+    GetLegalClientModelQueryVariables
+  >(GetLegalClientModelDocument, options);
+}
+
+export type GetLegalClientModelQueryHookResult = ReturnType<
+  typeof useGetLegalClientModelQuery
+>;
+
+export type GetLegalClientModelLazyQueryHookResult = ReturnType<
+  typeof useGetLegalClientModelLazyQuery
+>;
+
+export type GetLegalClientModelSuspenseQueryHookResult = ReturnType<
+  typeof useGetLegalClientModelSuspenseQuery
+>;
+
+export type GetLegalClientModelQueryResult = Apollo.QueryResult<
+  GetLegalClientModelQuery,
+  GetLegalClientModelQueryVariables
+>;
+
 export const GetAllLegalClientDocument = gql`
   query GetAllLegalClient(
     $limit: Int
@@ -17090,6 +17764,11 @@ export const GetAllLegalClientDocument = gql`
       sort: $sort
       where: $where
     ) {
+      LegalPerson {
+        id
+        fantasy_name
+        cnpj
+      }
       branch
       created_at
       created_by
@@ -17682,6 +18361,213 @@ export type GetAllMaintenanceCompanySuspenseQueryHookResult = ReturnType<
 export type GetAllMaintenanceCompanyQueryResult = Apollo.QueryResult<
   GetAllMaintenanceCompanyQuery,
   GetAllMaintenanceCompanyQueryVariables
+>;
+
+export const GetMaintenanceCompanyModelDocument = gql`
+  query GetMaintenanceCompanyModel($getMaintenanceCompanyModelId: String) {
+    getMaintenanceCompanyModel(id: $getMaintenanceCompanyModelId) {
+      LegalPerson {
+        id
+        cnpj
+        fantasy_name
+      }
+      created_at
+      created_by
+      id
+      legal_person_id
+      specialty_maintenance
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetMaintenanceCompanyModelQuery__
+ *
+ * To run a query within a React component, call `useGetMaintenanceCompanyModelQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMaintenanceCompanyModelQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMaintenanceCompanyModelQuery({
+ *   variables: {
+ *      getMaintenanceCompanyModelId: // value for 'getMaintenanceCompanyModelId'
+ *   },
+ * });
+ */
+export function useGetMaintenanceCompanyModelQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetMaintenanceCompanyModelQuery,
+    GetMaintenanceCompanyModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetMaintenanceCompanyModelQuery,
+    GetMaintenanceCompanyModelQueryVariables
+  >(GetMaintenanceCompanyModelDocument, options);
+}
+
+export function useGetMaintenanceCompanyModelLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetMaintenanceCompanyModelQuery,
+    GetMaintenanceCompanyModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetMaintenanceCompanyModelQuery,
+    GetMaintenanceCompanyModelQueryVariables
+  >(GetMaintenanceCompanyModelDocument, options);
+}
+
+export function useGetMaintenanceCompanyModelSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetMaintenanceCompanyModelQuery,
+    GetMaintenanceCompanyModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetMaintenanceCompanyModelQuery,
+    GetMaintenanceCompanyModelQueryVariables
+  >(GetMaintenanceCompanyModelDocument, options);
+}
+
+export type GetMaintenanceCompanyModelQueryHookResult = ReturnType<
+  typeof useGetMaintenanceCompanyModelQuery
+>;
+
+export type GetMaintenanceCompanyModelLazyQueryHookResult = ReturnType<
+  typeof useGetMaintenanceCompanyModelLazyQuery
+>;
+
+export type GetMaintenanceCompanyModelSuspenseQueryHookResult = ReturnType<
+  typeof useGetMaintenanceCompanyModelSuspenseQuery
+>;
+
+export type GetMaintenanceCompanyModelQueryResult = Apollo.QueryResult<
+  GetMaintenanceCompanyModelQuery,
+  GetMaintenanceCompanyModelQueryVariables
+>;
+
+export const GetMaintenanceDocument = gql`
+  query GetMaintenance($getMaintenanceId: String!) {
+    getMaintenance(id: $getMaintenanceId) {
+      MaintenanceCompany {
+        LegalPerson {
+          id
+          cnpj
+        }
+      }
+      TypeOfMaintenance {
+        id
+        typeMaintenance
+      }
+      Vehicle {
+        id
+        plate
+        VehicleModel {
+          id
+          name
+        }
+      }
+      created_at
+      created_by
+      finished_at
+      id
+      maintenance_company_id
+      type_of_maintenance_id
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+/**
+ * __useGetMaintenanceQuery__
+ *
+ * To run a query within a React component, call `useGetMaintenanceQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMaintenanceQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMaintenanceQuery({
+ *   variables: {
+ *      getMaintenanceId: // value for 'getMaintenanceId'
+ *   },
+ * });
+ */
+export function useGetMaintenanceQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetMaintenanceQuery,
+    GetMaintenanceQueryVariables
+  > &
+    (
+      | { skip: boolean }
+      | { skip?: boolean; variables: GetMaintenanceQueryVariables }
+    ),
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<GetMaintenanceQuery, GetMaintenanceQueryVariables>(
+    GetMaintenanceDocument,
+    options,
+  );
+}
+
+export function useGetMaintenanceLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetMaintenanceQuery,
+    GetMaintenanceQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<GetMaintenanceQuery, GetMaintenanceQueryVariables>(
+    GetMaintenanceDocument,
+    options,
+  );
+}
+
+export function useGetMaintenanceSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetMaintenanceQuery,
+    GetMaintenanceQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetMaintenanceQuery,
+    GetMaintenanceQueryVariables
+  >(GetMaintenanceDocument, options);
+}
+
+export type GetMaintenanceQueryHookResult = ReturnType<
+  typeof useGetMaintenanceQuery
+>;
+
+export type GetMaintenanceLazyQueryHookResult = ReturnType<
+  typeof useGetMaintenanceLazyQuery
+>;
+
+export type GetMaintenanceSuspenseQueryHookResult = ReturnType<
+  typeof useGetMaintenanceSuspenseQuery
+>;
+
+export type GetMaintenanceQueryResult = Apollo.QueryResult<
+  GetMaintenanceQuery,
+  GetMaintenanceQueryVariables
 >;
 
 export const GetAllMaintenanceDocument = gql`
@@ -18396,6 +19282,127 @@ export type GetAllPhysicalCustomerOrderComboQueryResult = Apollo.QueryResult<
   GetAllPhysicalCustomerOrderComboQueryVariables
 >;
 
+export const GetPhysicalCustomerOrderModelDocument = gql`
+  query GetPhysicalCustomerOrderModel(
+    $getPhysicalCustomerOrderModelId: String
+  ) {
+    getPhysicalCustomerOrderModel(id: $getPhysicalCustomerOrderModelId) {
+      calculate_cofins
+      calculate_icms
+      calculated_pis
+      carrier_id
+      cofins_tax
+      created_at
+      created_by
+      icms_tax
+      id
+      order
+      physicalCustomerId
+      pis_tax
+      quote_table_id
+      total_receivable
+      total_shipping_cost
+      total_tax_payable
+      updated_at
+      updated_by
+      expenses {
+        expenseName
+        id
+        value
+      }
+      PhysicalCustomer {
+        id
+        NaturalPerson {
+          cpf
+        }
+      }
+      CarrierCompany {
+        id
+        rntrc
+      }
+      Quote {
+        id
+        codQuote
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetPhysicalCustomerOrderModelQuery__
+ *
+ * To run a query within a React component, call `useGetPhysicalCustomerOrderModelQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPhysicalCustomerOrderModelQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPhysicalCustomerOrderModelQuery({
+ *   variables: {
+ *      getPhysicalCustomerOrderModelId: // value for 'getPhysicalCustomerOrderModelId'
+ *   },
+ * });
+ */
+export function useGetPhysicalCustomerOrderModelQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetPhysicalCustomerOrderModelQuery,
+    GetPhysicalCustomerOrderModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetPhysicalCustomerOrderModelQuery,
+    GetPhysicalCustomerOrderModelQueryVariables
+  >(GetPhysicalCustomerOrderModelDocument, options);
+}
+
+export function useGetPhysicalCustomerOrderModelLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetPhysicalCustomerOrderModelQuery,
+    GetPhysicalCustomerOrderModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetPhysicalCustomerOrderModelQuery,
+    GetPhysicalCustomerOrderModelQueryVariables
+  >(GetPhysicalCustomerOrderModelDocument, options);
+}
+
+export function useGetPhysicalCustomerOrderModelSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetPhysicalCustomerOrderModelQuery,
+    GetPhysicalCustomerOrderModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetPhysicalCustomerOrderModelQuery,
+    GetPhysicalCustomerOrderModelQueryVariables
+  >(GetPhysicalCustomerOrderModelDocument, options);
+}
+
+export type GetPhysicalCustomerOrderModelQueryHookResult = ReturnType<
+  typeof useGetPhysicalCustomerOrderModelQuery
+>;
+
+export type GetPhysicalCustomerOrderModelLazyQueryHookResult = ReturnType<
+  typeof useGetPhysicalCustomerOrderModelLazyQuery
+>;
+
+export type GetPhysicalCustomerOrderModelSuspenseQueryHookResult = ReturnType<
+  typeof useGetPhysicalCustomerOrderModelSuspenseQuery
+>;
+
+export type GetPhysicalCustomerOrderModelQueryResult = Apollo.QueryResult<
+  GetPhysicalCustomerOrderModelQuery,
+  GetPhysicalCustomerOrderModelQueryVariables
+>;
+
 export const GetAllPhysicalCustomerOrderDocument = gql`
   query GetAllPhysicalCustomerOrder(
     $limit: Int
@@ -18918,6 +19925,100 @@ export type GetAllPhysicalCustomerComboSuspenseQueryHookResult = ReturnType<
 export type GetAllPhysicalCustomerComboQueryResult = Apollo.QueryResult<
   GetAllPhysicalCustomerComboQuery,
   GetAllPhysicalCustomerComboQueryVariables
+>;
+
+export const GetPhysicalCustomerDocument = gql`
+  query GetPhysicalCustomer($getPhysicalCustomerId: String) {
+    getPhysicalCustomer(id: $getPhysicalCustomerId) {
+      NaturalPerson {
+        id
+        name
+        cpf
+      }
+      branch
+      created_at
+      created_by
+      id
+      natural_person_id
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetPhysicalCustomerQuery__
+ *
+ * To run a query within a React component, call `useGetPhysicalCustomerQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPhysicalCustomerQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPhysicalCustomerQuery({
+ *   variables: {
+ *      getPhysicalCustomerId: // value for 'getPhysicalCustomerId'
+ *   },
+ * });
+ */
+export function useGetPhysicalCustomerQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetPhysicalCustomerQuery,
+    GetPhysicalCustomerQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetPhysicalCustomerQuery,
+    GetPhysicalCustomerQueryVariables
+  >(GetPhysicalCustomerDocument, options);
+}
+
+export function useGetPhysicalCustomerLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetPhysicalCustomerQuery,
+    GetPhysicalCustomerQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetPhysicalCustomerQuery,
+    GetPhysicalCustomerQueryVariables
+  >(GetPhysicalCustomerDocument, options);
+}
+
+export function useGetPhysicalCustomerSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetPhysicalCustomerQuery,
+    GetPhysicalCustomerQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetPhysicalCustomerQuery,
+    GetPhysicalCustomerQueryVariables
+  >(GetPhysicalCustomerDocument, options);
+}
+
+export type GetPhysicalCustomerQueryHookResult = ReturnType<
+  typeof useGetPhysicalCustomerQuery
+>;
+
+export type GetPhysicalCustomerLazyQueryHookResult = ReturnType<
+  typeof useGetPhysicalCustomerLazyQuery
+>;
+
+export type GetPhysicalCustomerSuspenseQueryHookResult = ReturnType<
+  typeof useGetPhysicalCustomerSuspenseQuery
+>;
+
+export type GetPhysicalCustomerQueryResult = Apollo.QueryResult<
+  GetPhysicalCustomerQuery,
+  GetPhysicalCustomerQueryVariables
 >;
 
 export const GetAllPhysicalCustomerDocument = gql`
@@ -19524,6 +20625,108 @@ export type GetAllSenderQueryResult = Apollo.QueryResult<
   GetAllSenderQueryVariables
 >;
 
+export const GetAllTypeOfMaintenanceComboDocument = gql`
+  query GetAllTypeOfMaintenanceCombo(
+    $limit: Int
+    $offset: Int
+    $sort: TypeOfMaintenanceOrderByWithRelationInput
+    $where: TypeOfMaintenanceWhereInput
+  ) {
+    getAllTypeOfMaintenance(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      created_at
+      created_by
+      description
+      id
+      typeMaintenance
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetAllTypeOfMaintenanceComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllTypeOfMaintenanceComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllTypeOfMaintenanceComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllTypeOfMaintenanceComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllTypeOfMaintenanceComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllTypeOfMaintenanceComboQuery,
+    GetAllTypeOfMaintenanceComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllTypeOfMaintenanceComboQuery,
+    GetAllTypeOfMaintenanceComboQueryVariables
+  >(GetAllTypeOfMaintenanceComboDocument, options);
+}
+
+export function useGetAllTypeOfMaintenanceComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllTypeOfMaintenanceComboQuery,
+    GetAllTypeOfMaintenanceComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllTypeOfMaintenanceComboQuery,
+    GetAllTypeOfMaintenanceComboQueryVariables
+  >(GetAllTypeOfMaintenanceComboDocument, options);
+}
+
+export function useGetAllTypeOfMaintenanceComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllTypeOfMaintenanceComboQuery,
+    GetAllTypeOfMaintenanceComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllTypeOfMaintenanceComboQuery,
+    GetAllTypeOfMaintenanceComboQueryVariables
+  >(GetAllTypeOfMaintenanceComboDocument, options);
+}
+
+export type GetAllTypeOfMaintenanceComboQueryHookResult = ReturnType<
+  typeof useGetAllTypeOfMaintenanceComboQuery
+>;
+
+export type GetAllTypeOfMaintenanceComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllTypeOfMaintenanceComboLazyQuery
+>;
+
+export type GetAllTypeOfMaintenanceComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllTypeOfMaintenanceComboSuspenseQuery
+>;
+
+export type GetAllTypeOfMaintenanceComboQueryResult = Apollo.QueryResult<
+  GetAllTypeOfMaintenanceComboQuery,
+  GetAllTypeOfMaintenanceComboQueryVariables
+>;
+
 export const AvatarDocument = gql`
   query Avatar($userId: String) {
     user(id: $userId) {
@@ -19857,6 +21060,101 @@ export type GetAllVehicleBodyworkComboQueryResult = Apollo.QueryResult<
   GetAllVehicleBodyworkComboQueryVariables
 >;
 
+export const GetVehicleBodyworkModelDocument = gql`
+  query GetVehicleBodyworkModel($getVehicleBodyworkModelId: String) {
+    getVehicleBodyworkModel(id: $getVehicleBodyworkModelId) {
+      VehicleTypes {
+        id
+        name
+      }
+      axles
+      created_at
+      created_by
+      id
+      mass
+      name
+      updated_at
+      updated_by
+      volume
+    }
+  }
+`;
+
+/**
+ * __useGetVehicleBodyworkModelQuery__
+ *
+ * To run a query within a React component, call `useGetVehicleBodyworkModelQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetVehicleBodyworkModelQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetVehicleBodyworkModelQuery({
+ *   variables: {
+ *      getVehicleBodyworkModelId: // value for 'getVehicleBodyworkModelId'
+ *   },
+ * });
+ */
+export function useGetVehicleBodyworkModelQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetVehicleBodyworkModelQuery,
+    GetVehicleBodyworkModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetVehicleBodyworkModelQuery,
+    GetVehicleBodyworkModelQueryVariables
+  >(GetVehicleBodyworkModelDocument, options);
+}
+
+export function useGetVehicleBodyworkModelLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetVehicleBodyworkModelQuery,
+    GetVehicleBodyworkModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetVehicleBodyworkModelQuery,
+    GetVehicleBodyworkModelQueryVariables
+  >(GetVehicleBodyworkModelDocument, options);
+}
+
+export function useGetVehicleBodyworkModelSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetVehicleBodyworkModelQuery,
+    GetVehicleBodyworkModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetVehicleBodyworkModelQuery,
+    GetVehicleBodyworkModelQueryVariables
+  >(GetVehicleBodyworkModelDocument, options);
+}
+
+export type GetVehicleBodyworkModelQueryHookResult = ReturnType<
+  typeof useGetVehicleBodyworkModelQuery
+>;
+
+export type GetVehicleBodyworkModelLazyQueryHookResult = ReturnType<
+  typeof useGetVehicleBodyworkModelLazyQuery
+>;
+
+export type GetVehicleBodyworkModelSuspenseQueryHookResult = ReturnType<
+  typeof useGetVehicleBodyworkModelSuspenseQuery
+>;
+
+export type GetVehicleBodyworkModelQueryResult = Apollo.QueryResult<
+  GetVehicleBodyworkModelQuery,
+  GetVehicleBodyworkModelQueryVariables
+>;
+
 export const GetAllVehicleBodyworkDocument = gql`
   query GetAllVehicleBodywork(
     $limit: Int
@@ -20059,6 +21357,98 @@ export type GetAllVehicleBrandComboQueryResult = Apollo.QueryResult<
   GetAllVehicleBrandComboQueryVariables
 >;
 
+export const GetVehicleBrandDocument = gql`
+  query GetVehicleBrand($getVehicleBrandId: String) {
+    getVehicleBrand(id: $getVehicleBrandId) {
+      VehicleModels {
+        id
+        name
+      }
+      created_at
+      created_by
+      id
+      name
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetVehicleBrandQuery__
+ *
+ * To run a query within a React component, call `useGetVehicleBrandQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetVehicleBrandQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetVehicleBrandQuery({
+ *   variables: {
+ *      getVehicleBrandId: // value for 'getVehicleBrandId'
+ *   },
+ * });
+ */
+export function useGetVehicleBrandQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetVehicleBrandQuery,
+    GetVehicleBrandQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<GetVehicleBrandQuery, GetVehicleBrandQueryVariables>(
+    GetVehicleBrandDocument,
+    options,
+  );
+}
+
+export function useGetVehicleBrandLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetVehicleBrandQuery,
+    GetVehicleBrandQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetVehicleBrandQuery,
+    GetVehicleBrandQueryVariables
+  >(GetVehicleBrandDocument, options);
+}
+
+export function useGetVehicleBrandSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetVehicleBrandQuery,
+    GetVehicleBrandQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetVehicleBrandQuery,
+    GetVehicleBrandQueryVariables
+  >(GetVehicleBrandDocument, options);
+}
+
+export type GetVehicleBrandQueryHookResult = ReturnType<
+  typeof useGetVehicleBrandQuery
+>;
+
+export type GetVehicleBrandLazyQueryHookResult = ReturnType<
+  typeof useGetVehicleBrandLazyQuery
+>;
+
+export type GetVehicleBrandSuspenseQueryHookResult = ReturnType<
+  typeof useGetVehicleBrandSuspenseQuery
+>;
+
+export type GetVehicleBrandQueryResult = Apollo.QueryResult<
+  GetVehicleBrandQuery,
+  GetVehicleBrandQueryVariables
+>;
+
 export const GetAllVehicleBrandDocument = gql`
   query GetAllVehicleBrand(
     $limit: Int
@@ -20159,6 +21549,108 @@ export type GetAllVehicleBrandSuspenseQueryHookResult = ReturnType<
 export type GetAllVehicleBrandQueryResult = Apollo.QueryResult<
   GetAllVehicleBrandQuery,
   GetAllVehicleBrandQueryVariables
+>;
+
+export const GetVehicleModelDocument = gql`
+  query GetVehicleModel($getVehicleModelId: String) {
+    getVehicleModel(id: $getVehicleModelId) {
+      VehicleBrand {
+        id
+        name
+      }
+      VehicleType {
+        id
+        name
+      }
+      axles
+      brand_id
+      capacity_max
+      capacity_per_axle
+      created_at
+      created_by
+      id
+      name
+      type_id
+      updated_at
+      updated_by
+      weight
+    }
+  }
+`;
+
+/**
+ * __useGetVehicleModelQuery__
+ *
+ * To run a query within a React component, call `useGetVehicleModelQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetVehicleModelQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetVehicleModelQuery({
+ *   variables: {
+ *      getVehicleModelId: // value for 'getVehicleModelId'
+ *   },
+ * });
+ */
+export function useGetVehicleModelQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetVehicleModelQuery,
+    GetVehicleModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<GetVehicleModelQuery, GetVehicleModelQueryVariables>(
+    GetVehicleModelDocument,
+    options,
+  );
+}
+
+export function useGetVehicleModelLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetVehicleModelQuery,
+    GetVehicleModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetVehicleModelQuery,
+    GetVehicleModelQueryVariables
+  >(GetVehicleModelDocument, options);
+}
+
+export function useGetVehicleModelSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetVehicleModelQuery,
+    GetVehicleModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetVehicleModelQuery,
+    GetVehicleModelQueryVariables
+  >(GetVehicleModelDocument, options);
+}
+
+export type GetVehicleModelQueryHookResult = ReturnType<
+  typeof useGetVehicleModelQuery
+>;
+
+export type GetVehicleModelLazyQueryHookResult = ReturnType<
+  typeof useGetVehicleModelLazyQuery
+>;
+
+export type GetVehicleModelSuspenseQueryHookResult = ReturnType<
+  typeof useGetVehicleModelSuspenseQuery
+>;
+
+export type GetVehicleModelQueryResult = Apollo.QueryResult<
+  GetVehicleModelQuery,
+  GetVehicleModelQueryVariables
 >;
 
 export const GetAllVehicleModelDocument = gql`
@@ -20364,6 +21856,100 @@ export type GetAllVehicleTypesComboSuspenseQueryHookResult = ReturnType<
 export type GetAllVehicleTypesComboQueryResult = Apollo.QueryResult<
   GetAllVehicleTypesComboQuery,
   GetAllVehicleTypesComboQueryVariables
+>;
+
+export const GetVehicleTypeDocument = gql`
+  query GetVehicleType($getVehicleTypeId: String) {
+    getVehicleType(id: $getVehicleTypeId) {
+      BodyWorks {
+        id
+        name
+        axles
+      }
+      bodyWork
+      created_at
+      created_by
+      id
+      name
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetVehicleTypeQuery__
+ *
+ * To run a query within a React component, call `useGetVehicleTypeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetVehicleTypeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetVehicleTypeQuery({
+ *   variables: {
+ *      getVehicleTypeId: // value for 'getVehicleTypeId'
+ *   },
+ * });
+ */
+export function useGetVehicleTypeQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetVehicleTypeQuery,
+    GetVehicleTypeQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<GetVehicleTypeQuery, GetVehicleTypeQueryVariables>(
+    GetVehicleTypeDocument,
+    options,
+  );
+}
+
+export function useGetVehicleTypeLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetVehicleTypeQuery,
+    GetVehicleTypeQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<GetVehicleTypeQuery, GetVehicleTypeQueryVariables>(
+    GetVehicleTypeDocument,
+    options,
+  );
+}
+
+export function useGetVehicleTypeSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetVehicleTypeQuery,
+    GetVehicleTypeQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetVehicleTypeQuery,
+    GetVehicleTypeQueryVariables
+  >(GetVehicleTypeDocument, options);
+}
+
+export type GetVehicleTypeQueryHookResult = ReturnType<
+  typeof useGetVehicleTypeQuery
+>;
+
+export type GetVehicleTypeLazyQueryHookResult = ReturnType<
+  typeof useGetVehicleTypeLazyQuery
+>;
+
+export type GetVehicleTypeSuspenseQueryHookResult = ReturnType<
+  typeof useGetVehicleTypeSuspenseQuery
+>;
+
+export type GetVehicleTypeQueryResult = Apollo.QueryResult<
+  GetVehicleTypeQuery,
+  GetVehicleTypeQueryVariables
 >;
 
 export const GetAllVehicleTypesDocument = gql`
