@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.3.0...v1.4.0) (2024-06-09)
+
+
+### Features
+
+* add new updates to the project ([674bb2b](https://github.com/GabrielGuedess/TMS-Web/commit/674bb2bfec62afaf983f5a3b69e0c676293297ce))
+
 # [1.3.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.2.0...v1.3.0) (2024-06-09)
 
 
