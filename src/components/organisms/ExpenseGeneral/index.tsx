@@ -69,11 +69,12 @@ const ExpenseGeneralRef: ForwardRefRenderFunction<
       expenseName: data.getFreightExpense.expenseName,
       legalClientOrder: {
         id: data?.getFreightExpense?.legalClientOrderId ?? '',
-        description: '',
+        description: data?.getFreightExpense?.LegalClientOrder?.order ?? '',
       },
       physicalCustomerOrder: {
         id: data?.getFreightExpense?.physicalCustomerOrderId ?? '',
-        description: '',
+        description:
+          data?.getFreightExpense?.PhysicalCustomerOrder?.order ?? '',
       },
     },
   });
@@ -297,7 +298,7 @@ const ExpenseGeneralRef: ForwardRefRenderFunction<
             aria-label="Update Expense"
             className="min-w-[12.404rem]"
           >
-            Criar Despesa
+            Atualizar Despesa
           </Button>
         </div>
       </form>

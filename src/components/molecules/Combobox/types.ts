@@ -13,6 +13,7 @@ export type ComboBoxProps = {
   isLoading?: boolean;
   placeholder: string;
   isInvalid?: boolean;
+  isDisable?: boolean;
   emptyMessage: string;
   errorMessage?: string;
   values?: ValueProps[];

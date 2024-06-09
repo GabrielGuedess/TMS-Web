@@ -234,7 +234,7 @@ const IncidentGeneralRef: ForwardRefRenderFunction<
             aria-label="Update Incident"
             className="min-w-[12.404rem]"
           >
-            Atualizar Incident
+            Atualizar Incidente
           </Button>
         </div>
       </form>

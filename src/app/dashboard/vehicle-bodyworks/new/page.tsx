@@ -3,7 +3,7 @@ import { CreateVehicleBodywork } from 'components/organisms/CreateVehicleBodywor
 
 const Page = async () => (
   <section className="flex flex-col gap-4 md:grid-cols-2 md:gap-6">
-    <Breadcrumb pageName="Novo Usuário" />
+    <Breadcrumb pageName="Nova Carroceria" />
 
     <CreateVehicleBodywork />
   </section>

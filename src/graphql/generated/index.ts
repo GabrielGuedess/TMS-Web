@@ -517,7 +517,9 @@ export type FreightExpenseModel = {
   id: Scalars['String']['output'];
   value: Scalars['Float']['output'];
   __typename?: 'FreightExpenseModel';
+  LegalClientOrder: LegalClientOrderModel;
   expenseName: Scalars['String']['output'];
+  PhysicalCustomerOrder: PhysicalCustomerOrderModel;
   legalClientOrderId?: Maybe<Scalars['String']['output']>;
   physicalCustomerOrderId?: Maybe<Scalars['String']['output']>;
 };
@@ -7710,6 +7712,16 @@ export type GetFreightExpenseQuery = {
     __typename?: 'FreightExpenseModel';
     legalClientOrderId?: null | string;
     physicalCustomerOrderId?: null | string;
+    LegalClientOrder: {
+      id: string;
+      order: string;
+      __typename?: 'LegalClientOrderModel';
+    };
+    PhysicalCustomerOrder: {
+      id: string;
+      order: string;
+      __typename?: 'PhysicalCustomerOrderModel';
+    };
   };
 };
 
@@ -16551,6 +16563,14 @@ export const GetFreightExpenseDocument = gql`
       legalClientOrderId
       physicalCustomerOrderId
       value
+      LegalClientOrder {
+        id
+        order
+      }
+      PhysicalCustomerOrder {
+        id
+        order
+      }
     }
   }
 `;

@@ -8,6 +8,14 @@ export const QUERY_FREIGHT_EXPENSE = gql`
       legalClientOrderId
       physicalCustomerOrderId
       value
+      LegalClientOrder {
+        id
+        order
+      }
+      PhysicalCustomerOrder {
+        id
+        order
+      }
     }
   }
 `;

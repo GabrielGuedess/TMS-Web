@@ -19,6 +19,7 @@ export const ComboBox = ({
   placeholder,
   emptyMessage,
   errorMessage,
+  isDisable = false,
   isInvalid = false,
   isLoading = false,
   placeholderCommand,
@@ -31,16 +32,20 @@ export const ComboBox = ({
       <Popover.Trigger
         className={twMerge(
           clsx(
-            'group relative flex items-center justify-between rounded-lg border-2 border-zumthor-100 bg-white-lilac-50 p-3 text-sm font-medium text-comet-500 transition-all hover:bg-porcelain-50 focus:border-primary-300 focus:outline-none data-[state="open"]:border-primary-300 dark:border-shark-950 dark:bg-shark-950 dark:text-dark-300 dark:hover:opacity-60 dark:focus:border-primary-400 dark:data-[state="open"]:border-primary-400',
+            'group relative flex items-center justify-between rounded-lg border-2 border-zumthor-100 bg-white-lilac-50 p-3 text-sm font-medium text-comet-500 transition-all focus:outline-none data-[state="open"]:border-primary-300 dark:border-shark-950 dark:bg-shark-950 dark:text-dark-300 dark:data-[state="open"]:border-primary-400',
             {
+              'opacity-20': isDisable,
               'border-danger-500 text-red-500 dark:border-danger-500':
                 isInvalid,
+              'hover:bg-porcelain-50 focus:border-primary-300 dark:hover:opacity-60 dark:focus:border-primary-400':
+                !isDisable,
               'focus:border-primary-300 dark:focus:border-primary-400 dark:data-[state="open"]:border-primary-400 data-[state="open"]:border-primary-300 focus:placeholder:opacity-100':
                 !isInvalid,
             },
           ),
           className,
         )}
+        disabled={isDisable}
       >
         {value?.description || placeholder}
 

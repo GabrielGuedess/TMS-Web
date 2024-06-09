@@ -26,6 +26,16 @@ describe('<ExpenseGeneral />', () => {
             legalClientOrderId: '',
             physicalCustomerOrderId: '',
             __typename: 'FreightExpenseModel',
+            LegalClientOrder: {
+              id: '',
+              order: '',
+              __typename: 'LegalClientOrderModel',
+            },
+            PhysicalCustomerOrder: {
+              id: '',
+              order: '',
+              __typename: 'PhysicalCustomerOrderModel',
+            },
           },
         }}
       />,
