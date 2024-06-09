@@ -103,6 +103,8 @@ const CreatePhysicalCustomerRef: ForwardRefRenderFunction<
 
       toast.success('Cliente Físico criado com sucesso!');
 
+      router.refresh();
+
       router.push(
         `/dashboard/physical-customers/${PhysicalCustomer.data?.createPhysicalCustomer.id}/general`,
       );

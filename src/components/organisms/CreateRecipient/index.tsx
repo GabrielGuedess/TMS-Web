@@ -146,6 +146,8 @@ const CreateRecipientRef: ForwardRefRenderFunction<
 
       toast.success('Destinatário criado com sucesso!');
 
+      router.refresh();
+
       router.push(
         `/dashboard/recipients/${recipient.data?.createRecipient.id}/general`,
       );

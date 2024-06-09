@@ -103,6 +103,8 @@ const CreateLegalClientRef: ForwardRefRenderFunction<
 
       toast.success('Cliente Jurídico criado com sucesso!');
 
+      router.refresh();
+
       router.push(
         `/dashboard/physical-customers/${LegalClient.data?.createLegalClient.id}/general`,
       );

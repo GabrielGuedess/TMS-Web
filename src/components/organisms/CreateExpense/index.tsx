@@ -139,6 +139,8 @@ const CreateExpenseRef: ForwardRefRenderFunction<
 
       toast.success('Despesa criado com sucesso!');
 
+      router.refresh();
+
       router.push(
         `/dashboard/expenses/${expense.data?.createFreightExpense.id}/general`,
       );

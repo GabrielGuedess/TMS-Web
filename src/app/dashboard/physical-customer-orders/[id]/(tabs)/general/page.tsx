@@ -5,7 +5,7 @@ import { type UserQuery, type UserQueryVariables } from 'graphql/generated';
 
 import { UserGeneral } from 'components/organisms/UserGeneral';
 
-const General = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: { id: string } }) => {
   const { data, error } = await apollo().query<UserQuery, UserQueryVariables>({
     query: QUERY_USER,
     variables: { userId: params.id },
@@ -18,4 +18,4 @@ const General = async ({ params }: { params: { id: string } }) => {
   return <UserGeneral data={data} />;
 };
 
-export default General;
+export default Page;

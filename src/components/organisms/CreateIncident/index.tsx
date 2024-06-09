@@ -107,6 +107,8 @@ const CreateIncidentRef: ForwardRefRenderFunction<
 
       toast.success('Incidente criado com sucesso!');
 
+      router.refresh();
+
       router.push(
         `/dashboard/incidents/${Incident.data?.createIncident.id}/general`,
       );

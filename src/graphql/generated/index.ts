@@ -313,6 +313,13 @@ export type CompanyVehicleUpdateInput = {
   carrier_company_id?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type CompanyVehicleUpdateManyInput = {
+  id: Scalars['String']['input'];
+  Vehicle?: InputMaybe<VehicleInput>;
+  vehicle_id?: InputMaybe<Scalars['String']['input']>;
+  carrier_company_id?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type CompanyVehicleWhereInput = {
   id?: InputMaybe<StringFilter>;
   company_id?: InputMaybe<StringFilter>;
@@ -1674,6 +1681,7 @@ export type Mutation = {
   updateFreightExpense: FreightExpenseModel;
   updateLegalClientCte: LegalClientCteModel;
   createCompanyVehicle: CompanyVehicleIModel;
+  deleteCompanyVehicle: CompanyVehicleIModel;
   createOrderProcessing: OrderProcessingModel;
   createVehicleBodywork: VehicleBodyworkModel;
   deleteManyOwnDrivers: Array<OwnDriverModel>;
@@ -1720,8 +1728,10 @@ export type Mutation = {
   deleteManyFreightExpenses: Array<FreightExpenseModel>;
   updateManyFreightExpenses: Array<FreightExpenseModel>;
   deleteManyCarrierCompanies: Array<CarrierCompanyModel>;
+  deleteManyCompanyVehicles: Array<CompanyVehicleIModel>;
   deleteManyOrderProcessing: Array<OrderProcessingModel>;
   updateManyCarrierCompanies: Array<CarrierCompanyModel>;
+  updateManyCompanyVehicles: Array<CompanyVehicleIModel>;
   updateManyOrderProcessing: Array<OrderProcessingModel>;
   createLegalClientQuoteTable: LegalClientQuoteTableModel;
   createPhysicalCustomerOrder: PhysicalCustomerOrderModel;
@@ -1745,6 +1755,7 @@ export type Mutation = {
   createOutsourcedTransportCompany: OutsourcedTransportCompanyModel;
   createOutsourcedTransportVehicle: OutsourcedTransportVehicleModel;
   createPhysicalCustomerQuoteTable: PhysicalCustomerQuoteTableModel;
+  deletePhysicalCustomerQuoteTable: PhysicalCustomerQuoteTableModel;
   updatePhysicalCustomerQuoteTable: PhysicalCustomerQuoteTableModel;
   updateoutsourcedTransportCompany: OutsourcedTransportCompanyModel;
   updateoutsourcedTransportVehicle: OutsourcedTransportVehicleModel;
@@ -1754,6 +1765,8 @@ export type Mutation = {
   updateManyPhysicalCustomerOrder: Array<PhysicalCustomerOrderModel>;
   deleteManyContractOutsourcedDriver: Array<ContractOutsourcedDriverModel>;
   updatedManyContractOutsourcedDriver: Array<ContractOutsourcedDriverModel>;
+  deleteManyPhysicalCustomerQuoteTable: Array<PhysicalCustomerQuoteTableModel>;
+  updateManyPhysicalCustomerQuoteTable: Array<PhysicalCustomerQuoteTableModel>;
   createOutsourcedTransportCompanyDriver: OutsourcedTransportCompanyDriverModel;
   updateoutsourcedTransportCompanyDriver: OutsourcedTransportCompanyDriverModel;
   createOutsourcedTransportCompanyContract: OutsourcedTransportCompanyContractModel;
@@ -1905,6 +1918,10 @@ export type MutationDeleteCarrierCompanyArgs = {
   id: Scalars['String']['input'];
 };
 
+export type MutationDeleteCompanyVehicleArgs = {
+  id: Scalars['String']['input'];
+};
+
 export type MutationDeleteContractOutsourcedDriverArgs = {
   id: Scalars['String']['input'];
 };
@@ -1947,6 +1964,10 @@ export type MutationDeleteMaintenanceCompanyArgs = {
 
 export type MutationDeleteManyCarrierCompaniesArgs = {
   deleteManyCarrierCompanies: Array<Scalars['String']['input']>;
+};
+
+export type MutationDeleteManyCompanyVehiclesArgs = {
+  deleteManyCompanyVehicles: Array<Scalars['String']['input']>;
 };
 
 export type MutationDeleteManyContractOutsourcedDriverArgs = {
@@ -2005,6 +2026,10 @@ export type MutationDeleteManyPhysicalCustomerOrderArgs = {
   ids: Array<Scalars['String']['input']>;
 };
 
+export type MutationDeleteManyPhysicalCustomerQuoteTableArgs = {
+  ids: Array<Scalars['String']['input']>;
+};
+
 export type MutationDeleteManyPhysicalCustomersArgs = {
   deleteManyPhysicalCustomers: Array<Scalars['String']['input']>;
 };
@@ -2054,6 +2079,10 @@ export type MutationDeletePhysicalCustomerArgs = {
 };
 
 export type MutationDeletePhysicalCustomerOrderArgs = {
+  id: Scalars['String']['input'];
+};
+
+export type MutationDeletePhysicalCustomerQuoteTableArgs = {
   id: Scalars['String']['input'];
 };
 
@@ -2138,6 +2167,10 @@ export type MutationUpdateManyCarrierCompaniesArgs = {
   updateManyCarrierCompanies: Array<CarrierCompanyUpdateManyInput>;
 };
 
+export type MutationUpdateManyCompanyVehiclesArgs = {
+  updateManyCompanyVehicles: Array<CompanyVehicleUpdateManyInput>;
+};
+
 export type MutationUpdateManyFreightExpensesArgs = {
   Data: Array<FreightExpenseUpdateManyInput>;
 };
@@ -2188,6 +2221,10 @@ export type MutationUpdateManyOwnDriversArgs = {
 
 export type MutationUpdateManyPhysicalCustomerOrderArgs = {
   data: Array<PhysicalCustomerOrderUpdateManyInput>;
+};
+
+export type MutationUpdateManyPhysicalCustomerQuoteTableArgs = {
+  data: Array<PhysicalCustomerQuoteTableUpdateManyInput>;
 };
 
 export type MutationUpdateManyPhysicalCustomersArgs = {
@@ -3563,6 +3600,25 @@ export type PhysicalCustomerQuoteTableUpdate = {
   recipientId?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type PhysicalCustomerQuoteTableUpdateManyInput = {
+  id: Scalars['String']['input'];
+  who_pays?: InputMaybe<WhoIsPay>;
+  formPayment?: InputMaybe<FormPayment>;
+  adressOrigin?: InputMaybe<AdressInput>;
+  adressDestiny?: InputMaybe<AdressInput>;
+  mass?: InputMaybe<Scalars['Float']['input']>;
+  kindService?: InputMaybe<KindOfServicerOrder>;
+  typeMerchandise?: InputMaybe<TypeMerchandise>;
+  amount?: InputMaybe<Scalars['Float']['input']>;
+  volume?: InputMaybe<Scalars['Float']['input']>;
+  nf_value?: InputMaybe<Scalars['Float']['input']>;
+  nf_serie?: InputMaybe<Scalars['String']['input']>;
+  senderId?: InputMaybe<Scalars['String']['input']>;
+  nf_number?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  recipientId?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type PhysicalCustomerQuoteTableWhereInput = {
   id?: InputMaybe<StringFilter>;
   amount?: InputMaybe<IntFilter>;
@@ -3638,6 +3694,7 @@ export type Query = {
   users: Array<UserModel>;
   getIncident: IncidentModel;
   getManifest: ManifestModel;
+  getVehicle: VehicleCarModel;
   getRecipient: RecipientModel;
   getMaintenance: MaintenanceModel;
   getVehicleType: VehicleTypeModel;
@@ -3675,6 +3732,7 @@ export type Query = {
   totalVehicleTypes: Scalars['Float']['output'];
   countOrderProcessing: Scalars['Int']['output'];
   getAllRecipient?: Maybe<Array<RecipientModel>>;
+  getAllVehicles?: Maybe<Array<VehicleCarModel>>;
   getLegalClientCte?: Maybe<LegalClientCteModel>;
   totalVehicleBrands: Scalars['Float']['output'];
   totalVehicleModels: Scalars['Float']['output'];
@@ -3682,6 +3740,7 @@ export type Query = {
   countOutsourcedDriver: Scalars['Int']['output'];
   countFreightExpenses: Scalars['Float']['output'];
   getAllLegalClientCte: Array<LegalClientCteModel>;
+  totalCompanyVehicles: Scalars['Float']['output'];
   countMaintenanceCompany: Scalars['Int']['output'];
   getAllCompanyVehicle: Array<CompanyVehicleIModel>;
   totalCarrierCompanies: Scalars['Float']['output'];
@@ -3706,6 +3765,7 @@ export type Query = {
   getLegalClientOrderModel?: Maybe<LegalClientOrderModel>;
   getAllCarrierCompany?: Maybe<Array<CarrierCompanyModel>>;
   getPhysicalCustomerCte?: Maybe<PhysicalCustomerCteModel>;
+  countPhysicalCustomerQuoteTable: Scalars['Int']['output'];
   getAllFreightExpenses?: Maybe<Array<FreightExpenseModel>>;
   totalContractOutsourcedDriver: Scalars['Float']['output'];
   getAllPhysicalCustomerCte: Array<PhysicalCustomerCteModel>;
@@ -3786,6 +3846,10 @@ export type QueryCountOutsourcedDriverArgs = {
 
 export type QueryCountPhysicalCustomerOrderArgs = {
   where?: InputMaybe<PhysicalCustomerOrderWhereInput>;
+};
+
+export type QueryCountPhysicalCustomerQuoteTableArgs = {
+  where?: InputMaybe<PhysicalCustomerQuoteTableWhereInput>;
 };
 
 export type QueryGenerateLegalClientCteArgs = {
@@ -4048,6 +4112,13 @@ export type QueryGetAllVehicleTypesArgs = {
   sort?: InputMaybe<VehicleTypeOrderByWithRelationInput>;
 };
 
+export type QueryGetAllVehiclesArgs = {
+  limit?: Scalars['Int']['input'];
+  offset?: Scalars['Int']['input'];
+  where?: InputMaybe<VehicleWhereInput>;
+  sort?: InputMaybe<VehicleOrderByWithRelationInput>;
+};
+
 export type QueryGetCarrierCompanyModelArgs = {
   cnpj?: InputMaybe<Scalars['String']['input']>;
   fantasyName?: InputMaybe<Scalars['String']['input']>;
@@ -4224,6 +4295,11 @@ export type QueryGetTypeOfMaintenanceArgs = {
   id?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type QueryGetVehicleArgs = {
+  plate?: InputMaybe<Scalars['String']['input']>;
+  vehicleId?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type QueryGetVehicleBodyworkModelArgs = {
   id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -4246,6 +4322,10 @@ export type QueryGetVehicleTypeArgs = {
 
 export type QueryTotalCarrierCompaniesArgs = {
   where?: InputMaybe<CarrierCompanyWhereInput>;
+};
+
+export type QueryTotalCompanyVehiclesArgs = {
+  where?: InputMaybe<CompanyVehicleWhereInput>;
 };
 
 export type QueryTotalContractOutsourcedDriverArgs = {
@@ -5363,6 +5443,101 @@ export type UpdateManyCarrierCompaniesMutation = {
   }>;
 };
 
+export type CreateCompanyVehicleMutationVariables = Exact<{
+  companyVehicleInput: CompanyVehicleInput;
+}>;
+
+export type CreateCompanyVehicleMutation = {
+  __typename?: 'Mutation';
+  createCompanyVehicle: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    carrier_company_id: string;
+    __typename?: 'CompanyVehicleIModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type DeleteCompanyVehicleMutationVariables = Exact<{
+  deleteCompanyVehicleId: Scalars['String']['input'];
+}>;
+
+export type DeleteCompanyVehicleMutation = {
+  __typename?: 'Mutation';
+  deleteCompanyVehicle: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    carrier_company_id: string;
+    __typename?: 'CompanyVehicleIModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type DeleteManyCompanyVehiclesMutationVariables = Exact<{
+  deleteManyCompanyVehicles:
+    | Scalars['String']['input']
+    | Array<Scalars['String']['input']>;
+}>;
+
+export type DeleteManyCompanyVehiclesMutation = {
+  __typename?: 'Mutation';
+  deleteManyCompanyVehicles: Array<{
+    id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    carrier_company_id: string;
+    __typename?: 'CompanyVehicleIModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
+export type UpdatedCompanyVehicleMutationVariables = Exact<{
+  outsourced: CompanyVehicleUpdateInput;
+  updatedCompanyVehicleId: Scalars['String']['input'];
+}>;
+
+export type UpdatedCompanyVehicleMutation = {
+  __typename?: 'Mutation';
+  updatedCompanyVehicle: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    carrier_company_id: string;
+    __typename?: 'CompanyVehicleIModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type UpdateManyCompanyVehiclesMutationVariables = Exact<{
+  updateManyCompanyVehicles:
+    | CompanyVehicleUpdateManyInput
+    | Array<CompanyVehicleUpdateManyInput>;
+}>;
+
+export type UpdateManyCompanyVehiclesMutation = {
+  __typename?: 'Mutation';
+  updateManyCompanyVehicles: Array<{
+    id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    carrier_company_id: string;
+    __typename?: 'CompanyVehicleIModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
 export type CreateFreightExpenseMutationVariables = Exact<{
   data: FreightExpenseInput;
 }>;
@@ -6469,6 +6644,169 @@ export type UpdateManyPhysicalCustomerOrderMutation = {
   }>;
 };
 
+export type CreatePhysicalCustomerQuoteTableMutationVariables = Exact<{
+  physicalCustomerQuoteTableInput: PhysicalCustomerQuoteTableInput;
+}>;
+
+export type CreatePhysicalCustomerQuoteTableMutation = {
+  __typename?: 'Mutation';
+  createPhysicalCustomerQuoteTable: {
+    id: string;
+    mass: number;
+    amount: number;
+    volume: number;
+    icms_id: string;
+    codQuote: string;
+    nf_serie: string;
+    nf_value: number;
+    senderId: string;
+    who_pays: string;
+    nf_number: string;
+    created_by: string;
+    updated_by: string;
+    description: string;
+    formPayment: string;
+    kindService: string;
+    recipientId: string;
+    typeMerchandise: string;
+    digital_signature: string;
+    __typename?: 'PhysicalCustomerQuoteTableModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type DeletePhysicalCustomerQuoteTableMutationVariables = Exact<{
+  deletePhysicalCustomerQuoteTableId: Scalars['String']['input'];
+}>;
+
+export type DeletePhysicalCustomerQuoteTableMutation = {
+  __typename?: 'Mutation';
+  deletePhysicalCustomerQuoteTable: {
+    id: string;
+    mass: number;
+    amount: number;
+    volume: number;
+    icms_id: string;
+    codQuote: string;
+    nf_serie: string;
+    nf_value: number;
+    senderId: string;
+    who_pays: string;
+    nf_number: string;
+    created_by: string;
+    updated_by: string;
+    description: string;
+    formPayment: string;
+    kindService: string;
+    recipientId: string;
+    typeMerchandise: string;
+    digital_signature: string;
+    __typename?: 'PhysicalCustomerQuoteTableModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type DeleteManyPhysicalCustomerQuoteTableMutationVariables = Exact<{
+  ids: Scalars['String']['input'] | Array<Scalars['String']['input']>;
+}>;
+
+export type DeleteManyPhysicalCustomerQuoteTableMutation = {
+  __typename?: 'Mutation';
+  deleteManyPhysicalCustomerQuoteTable: Array<{
+    id: string;
+    mass: number;
+    amount: number;
+    volume: number;
+    icms_id: string;
+    codQuote: string;
+    nf_serie: string;
+    nf_value: number;
+    senderId: string;
+    who_pays: string;
+    nf_number: string;
+    created_by: string;
+    updated_by: string;
+    description: string;
+    formPayment: string;
+    kindService: string;
+    recipientId: string;
+    typeMerchandise: string;
+    digital_signature: string;
+    __typename?: 'PhysicalCustomerQuoteTableModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
+export type UpdatePhysicalCustomerQuoteTableMutationVariables = Exact<{
+  updatePhysicalCustomerQuoteTableId: Scalars['String']['input'];
+  physicalCustomerQuoteTableUpdate: PhysicalCustomerQuoteTableUpdate;
+}>;
+
+export type UpdatePhysicalCustomerQuoteTableMutation = {
+  __typename?: 'Mutation';
+  updatePhysicalCustomerQuoteTable: {
+    id: string;
+    mass: number;
+    amount: number;
+    volume: number;
+    icms_id: string;
+    codQuote: string;
+    nf_serie: string;
+    nf_value: number;
+    senderId: string;
+    who_pays: string;
+    nf_number: string;
+    created_by: string;
+    updated_by: string;
+    description: string;
+    formPayment: string;
+    kindService: string;
+    recipientId: string;
+    typeMerchandise: string;
+    digital_signature: string;
+    __typename?: 'PhysicalCustomerQuoteTableModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type UpdateManyPhysicalCustomerQuoteTableMutationVariables = Exact<{
+  data:
+    | PhysicalCustomerQuoteTableUpdateManyInput
+    | Array<PhysicalCustomerQuoteTableUpdateManyInput>;
+}>;
+
+export type UpdateManyPhysicalCustomerQuoteTableMutation = {
+  __typename?: 'Mutation';
+  updateManyPhysicalCustomerQuoteTable: Array<{
+    id: string;
+    mass: number;
+    amount: number;
+    volume: number;
+    icms_id: string;
+    codQuote: string;
+    nf_serie: string;
+    nf_value: number;
+    senderId: string;
+    who_pays: string;
+    nf_number: string;
+    created_by: string;
+    updated_by: string;
+    description: string;
+    formPayment: string;
+    kindService: string;
+    recipientId: string;
+    typeMerchandise: string;
+    digital_signature: string;
+    __typename?: 'PhysicalCustomerQuoteTableModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
 export type CreatePhysicalCustomerMutationVariables = Exact<{
   data: PhysicalCustomerInput;
 }>;
@@ -7247,6 +7585,29 @@ export type UpdateManyVehicleTypesMutation = {
   }>;
 };
 
+export type GetCarrierCompanyModelQueryVariables = Exact<{
+  cnpj?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetCarrierCompanyModelQuery = {
+  __typename?: 'Query';
+  getCarrierCompanyModel: {
+    id: string;
+    rntrc: string;
+    created_by: string;
+    updated_by: string;
+    legalPersonId: string;
+    __typename?: 'CarrierCompanyModel';
+    LegalPerson: {
+      cnpj: string;
+      fantasy_name: string;
+      __typename?: 'LegalPersonModel';
+    };
+    updated_at: any;
+    created_at: any;
+  };
+};
+
 export type GetAllCarrierCompanyQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -7264,6 +7625,11 @@ export type GetAllCarrierCompanyQuery = {
     updated_by: string;
     legalPersonId: string;
     __typename?: 'CarrierCompanyModel';
+    LegalPerson: {
+      cnpj: string;
+      fantasy_name: string;
+      __typename?: 'LegalPersonModel';
+    };
     updated_at: any;
     created_at: any;
   }>;
@@ -7283,6 +7649,44 @@ export type GetAllCarrierCompanyComboQuery = {
     rntrc: string;
     __typename?: 'CarrierCompanyModel';
   }>;
+};
+
+export type GetAllCompanyVehicleQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<CompanyVehicleWhereInput>;
+  sort?: InputMaybe<CompanyVehicleOrderByWithRelationInput>;
+}>;
+
+export type GetAllCompanyVehicleQuery = {
+  __typename?: 'Query';
+  totalCompanyVehicles: number;
+  getAllCompanyVehicle: Array<{
+    id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    carrier_company_id: string;
+    __typename?: 'CompanyVehicleIModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
+export type GetFreightExpenseQueryVariables = Exact<{
+  getFreightExpenseId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetFreightExpenseQuery = {
+  __typename?: 'Query';
+  getFreightExpense: {
+    id: string;
+    value: number;
+    expenseName: string;
+    __typename?: 'FreightExpenseModel';
+    legalClientOrderId?: null | string;
+    physicalCustomerOrderId?: null | string;
+  };
 };
 
 export type GetAllFreightExpensesQueryVariables = Exact<{
@@ -7325,6 +7729,49 @@ export type GetAllIcmsQuery = {
     recipient_state: string;
     __typename?: 'IcmsModel';
   }>;
+};
+
+export type GetIcmsOneQueryVariables = Exact<{
+  getIcmsId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetIcmsOneQuery = {
+  __typename?: 'Query';
+  getICMS: {
+    id: string;
+    aliquot: number;
+    created_by: string;
+    updated_by: string;
+    effective_date: any;
+    state_origin: string;
+    recipient_state: string;
+    __typename?: 'IcmsModel';
+  };
+};
+
+export type GetIncidentQueryVariables = Exact<{
+  getIncidentId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetIncidentQuery = {
+  __typename?: 'Query';
+  getIncident: {
+    id: string;
+    created_by: string;
+    date_incident: any;
+    updated_by: string;
+    description: string;
+    order_process_id: string;
+    date_resolved?: any | null;
+    __typename?: 'IncidentModel';
+    OrderProcessing: {
+      id: string;
+      order_processing_number: string;
+      __typename?: 'OrderProcessingModel';
+    };
+    updated_at: any;
+    created_at: any;
+  };
 };
 
 export type GetAllIncidentsQueryVariables = Exact<{
@@ -7535,6 +7982,23 @@ export type GetAllLegalPersonComboQuery = {
   }>;
 };
 
+export type GetAllMaintenanceCompanyComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<MaintenanceCompanyWhereInput>;
+  sort?: InputMaybe<MaintenanceCompanyOrderByWithRelationInput>;
+}>;
+
+export type GetAllMaintenanceCompanyComboQuery = {
+  __typename?: 'Query';
+  getAllMaintenanceCompany?: null | Array<{
+    id: string;
+    specialty_maintenance?: null | string;
+    __typename?: 'MaintenanceCompanyModel';
+    LegalPerson: { cnpj: string; __typename?: 'LegalPersonModel' };
+  }>;
+};
+
 export type GetAllMaintenanceCompanyQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -7644,6 +8108,34 @@ export type GetAllOrderProcessingQuery = {
   }>;
 };
 
+export type GetOwnDriverQueryVariables = Exact<{
+  getOwnDriverId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetOwnDriverQuery = {
+  __typename?: 'Query';
+  getOwnDriver?: null | {
+    id: string;
+    cnh: string;
+    created_by: string;
+    updated_by: string;
+    cnh_expiration: any;
+    cnh_category: string;
+    course_mopp: boolean;
+    company_vehicle: boolean;
+    natural_person_id: string;
+    __typename?: 'OwnDriverModel';
+    NaturalPerson: {
+      id: string;
+      cpf: string;
+      name: string;
+      __typename?: 'NaturalPersonModel';
+    };
+    updated_at: any;
+    created_at: any;
+  };
+};
+
 export type GetAllOwnDriverQueryVariables = Exact<{
   where?: InputMaybe<OwnDriverWhereInput>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7713,6 +8205,90 @@ export type GetAllPhysicalCustomerOrderQuery = {
   }>;
 };
 
+export type GetAllPhysicalCustomerQuoteTableComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PhysicalCustomerQuoteTableWhereInput>;
+  sort?: InputMaybe<PhysicalCustomerQuoteTableOrderByWithRelationInput>;
+}>;
+
+export type GetAllPhysicalCustomerQuoteTableComboQuery = {
+  __typename?: 'Query';
+  getAllPhysicalCustomerQuoteTable: Array<{
+    id: string;
+    codQuote: string;
+    __typename?: 'PhysicalCustomerQuoteTableModel';
+  }>;
+};
+
+export type GetPhysicalCustomerQuoteTableQueryVariables = Exact<{
+  getPhysicalCustomerQuoteTableId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetPhysicalCustomerQuoteTableQuery = {
+  __typename?: 'Query';
+  getPhysicalCustomerQuoteTable?: null | {
+    id: string;
+    mass: number;
+    amount: number;
+    volume: number;
+    icms_id: string;
+    codQuote: string;
+    nf_serie: string;
+    nf_value: number;
+    senderId: string;
+    who_pays: string;
+    nf_number: string;
+    created_by: string;
+    updated_by: string;
+    description: string;
+    formPayment: string;
+    kindService: string;
+    recipientId: string;
+    typeMerchandise: string;
+    digital_signature: string;
+    __typename?: 'PhysicalCustomerQuoteTableModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type GetAllPhysicalCustomerQuoteTableQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PhysicalCustomerQuoteTableWhereInput>;
+  sort?: InputMaybe<PhysicalCustomerQuoteTableOrderByWithRelationInput>;
+}>;
+
+export type GetAllPhysicalCustomerQuoteTableQuery = {
+  __typename?: 'Query';
+  countPhysicalCustomerQuoteTable: number;
+  getAllPhysicalCustomerQuoteTable: Array<{
+    id: string;
+    mass: number;
+    amount: number;
+    volume: number;
+    icms_id: string;
+    codQuote: string;
+    nf_serie: string;
+    nf_value: number;
+    senderId: string;
+    who_pays: string;
+    nf_number: string;
+    created_by: string;
+    updated_by: string;
+    description: string;
+    formPayment: string;
+    kindService: string;
+    recipientId: string;
+    typeMerchandise: string;
+    digital_signature: string;
+    __typename?: 'PhysicalCustomerQuoteTableModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
 export type GetAllPhysicalCustomerComboQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -7776,6 +8352,34 @@ export type GetAllRecipientComboQuery = {
       __typename?: 'LegalPersonModel';
     };
   }>;
+};
+
+export type GetRecipientQueryVariables = Exact<{
+  getRecipientId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetRecipientQuery = {
+  __typename?: 'Query';
+  getRecipient: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    __typename?: 'RecipientModel';
+    legal_person_id?: null | string;
+    natural_person_id?: null | string;
+    NaturalPerson?: null | {
+      id: string;
+      cpf: string;
+      name: string;
+      __typename?: 'NaturalPersonModel';
+    };
+    LegalPerson?: null | {
+      id: string;
+      cnpj: string;
+      fantasy_name: string;
+      __typename?: 'LegalPersonModel';
+    };
+  };
 };
 
 export type GetAllRecipientQueryVariables = Exact<{
@@ -7899,6 +8503,22 @@ export type UsersQuery = {
   }>;
 };
 
+export type GetAllVehicleBodyworkComboQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<VehicleBodyworkWhereInput>;
+  sort?: InputMaybe<VehicleBodyworkOrderByWithRelationInput>;
+}>;
+
+export type GetAllVehicleBodyworkComboQuery = {
+  __typename?: 'Query';
+  getAllVehicleBodywork?: null | Array<{
+    id: string;
+    axles: number;
+    __typename?: 'VehicleBodyworkModel';
+  }>;
+};
+
 export type GetAllVehicleBodyworkQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -7920,6 +8540,22 @@ export type GetAllVehicleBodyworkQuery = {
     __typename?: 'VehicleBodyworkModel';
     updated_at: any;
     created_at: any;
+  }>;
+};
+
+export type GetAllVehicleBrandComboQueryVariables = Exact<{
+  where?: InputMaybe<VehicleBrandWhereInput>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<VehicleBrandOrderByWithRelationInput>;
+}>;
+
+export type GetAllVehicleBrandComboQuery = {
+  __typename?: 'Query';
+  getAllVehicleBrand: Array<{
+    id: string;
+    name: string;
+    __typename?: 'VehicleBrandModel';
   }>;
 };
 
@@ -7971,6 +8607,22 @@ export type GetAllVehicleModelQuery = {
   }>;
 };
 
+export type GetAllVehicleTypesComboQueryVariables = Exact<{
+  where?: InputMaybe<VehicleTypeWhereInput>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<VehicleTypeOrderByWithRelationInput>;
+}>;
+
+export type GetAllVehicleTypesComboQuery = {
+  __typename?: 'Query';
+  getAllVehicleTypes?: null | Array<{
+    id: string;
+    name: string;
+    __typename?: 'VehicleTypeModel';
+  }>;
+};
+
 export type GetAllVehicleTypesQueryVariables = Exact<{
   where?: InputMaybe<VehicleTypeWhereInput>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7990,6 +8642,30 @@ export type GetAllVehicleTypesQuery = {
     __typename?: 'VehicleTypeModel';
     updated_at: any;
     created_at: any;
+  }>;
+};
+
+export type GetAllVehiclesComboQueryVariables = Exact<{
+  where?: InputMaybe<VehicleWhereInput>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<VehicleOrderByWithRelationInput>;
+}>;
+
+export type GetAllVehiclesComboQuery = {
+  __typename?: 'Query';
+  getAllVehicles?: null | Array<{
+    id: string;
+    antt: string;
+    year: string;
+    color: string;
+    plate: string;
+    renavam: string;
+    model_id: string;
+    registration: any;
+    isIpvaPaid: boolean;
+    __typename?: 'VehicleCarModel';
+    VehicleModel: { name: string; __typename?: 'VehicleModelReferences' };
   }>;
 };
 
@@ -8313,6 +8989,331 @@ export type UpdateManyCarrierCompaniesMutationOptions =
   Apollo.BaseMutationOptions<
     UpdateManyCarrierCompaniesMutation,
     UpdateManyCarrierCompaniesMutationVariables
+  >;
+
+export const CreateCompanyVehicleDocument = gql`
+  mutation CreateCompanyVehicle($companyVehicleInput: CompanyVehicleInput!) {
+    createCompanyVehicle(CompanyVehicleInput: $companyVehicleInput) {
+      carrier_company_id
+      created_at
+      created_by
+      id
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+export type CreateCompanyVehicleMutationFn = Apollo.MutationFunction<
+  CreateCompanyVehicleMutation,
+  CreateCompanyVehicleMutationVariables
+>;
+
+/**
+ * __useCreateCompanyVehicleMutation__
+ *
+ * To run a mutation, you first call `useCreateCompanyVehicleMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCompanyVehicleMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createCompanyVehicleMutation, { data, loading, error }] = useCreateCompanyVehicleMutation({
+ *   variables: {
+ *      companyVehicleInput: // value for 'companyVehicleInput'
+ *   },
+ * });
+ */
+export function useCreateCompanyVehicleMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateCompanyVehicleMutation,
+    CreateCompanyVehicleMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    CreateCompanyVehicleMutation,
+    CreateCompanyVehicleMutationVariables
+  >(CreateCompanyVehicleDocument, options);
+}
+
+export type CreateCompanyVehicleMutationHookResult = ReturnType<
+  typeof useCreateCompanyVehicleMutation
+>;
+
+export type CreateCompanyVehicleMutationResult =
+  Apollo.MutationResult<CreateCompanyVehicleMutation>;
+
+export type CreateCompanyVehicleMutationOptions = Apollo.BaseMutationOptions<
+  CreateCompanyVehicleMutation,
+  CreateCompanyVehicleMutationVariables
+>;
+
+export const DeleteCompanyVehicleDocument = gql`
+  mutation DeleteCompanyVehicle($deleteCompanyVehicleId: String!) {
+    deleteCompanyVehicle(id: $deleteCompanyVehicleId) {
+      carrier_company_id
+      created_at
+      created_by
+      id
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+export type DeleteCompanyVehicleMutationFn = Apollo.MutationFunction<
+  DeleteCompanyVehicleMutation,
+  DeleteCompanyVehicleMutationVariables
+>;
+
+/**
+ * __useDeleteCompanyVehicleMutation__
+ *
+ * To run a mutation, you first call `useDeleteCompanyVehicleMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteCompanyVehicleMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteCompanyVehicleMutation, { data, loading, error }] = useDeleteCompanyVehicleMutation({
+ *   variables: {
+ *      deleteCompanyVehicleId: // value for 'deleteCompanyVehicleId'
+ *   },
+ * });
+ */
+export function useDeleteCompanyVehicleMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteCompanyVehicleMutation,
+    DeleteCompanyVehicleMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    DeleteCompanyVehicleMutation,
+    DeleteCompanyVehicleMutationVariables
+  >(DeleteCompanyVehicleDocument, options);
+}
+
+export type DeleteCompanyVehicleMutationHookResult = ReturnType<
+  typeof useDeleteCompanyVehicleMutation
+>;
+
+export type DeleteCompanyVehicleMutationResult =
+  Apollo.MutationResult<DeleteCompanyVehicleMutation>;
+
+export type DeleteCompanyVehicleMutationOptions = Apollo.BaseMutationOptions<
+  DeleteCompanyVehicleMutation,
+  DeleteCompanyVehicleMutationVariables
+>;
+
+export const DeleteManyCompanyVehiclesDocument = gql`
+  mutation DeleteManyCompanyVehicles($deleteManyCompanyVehicles: [String!]!) {
+    deleteManyCompanyVehicles(
+      deleteManyCompanyVehicles: $deleteManyCompanyVehicles
+    ) {
+      carrier_company_id
+      created_at
+      created_by
+      id
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+export type DeleteManyCompanyVehiclesMutationFn = Apollo.MutationFunction<
+  DeleteManyCompanyVehiclesMutation,
+  DeleteManyCompanyVehiclesMutationVariables
+>;
+
+/**
+ * __useDeleteManyCompanyVehiclesMutation__
+ *
+ * To run a mutation, you first call `useDeleteManyCompanyVehiclesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteManyCompanyVehiclesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteManyCompanyVehiclesMutation, { data, loading, error }] = useDeleteManyCompanyVehiclesMutation({
+ *   variables: {
+ *      deleteManyCompanyVehicles: // value for 'deleteManyCompanyVehicles'
+ *   },
+ * });
+ */
+export function useDeleteManyCompanyVehiclesMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteManyCompanyVehiclesMutation,
+    DeleteManyCompanyVehiclesMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    DeleteManyCompanyVehiclesMutation,
+    DeleteManyCompanyVehiclesMutationVariables
+  >(DeleteManyCompanyVehiclesDocument, options);
+}
+
+export type DeleteManyCompanyVehiclesMutationHookResult = ReturnType<
+  typeof useDeleteManyCompanyVehiclesMutation
+>;
+
+export type DeleteManyCompanyVehiclesMutationResult =
+  Apollo.MutationResult<DeleteManyCompanyVehiclesMutation>;
+
+export type DeleteManyCompanyVehiclesMutationOptions =
+  Apollo.BaseMutationOptions<
+    DeleteManyCompanyVehiclesMutation,
+    DeleteManyCompanyVehiclesMutationVariables
+  >;
+
+export const UpdatedCompanyVehicleDocument = gql`
+  mutation UpdatedCompanyVehicle(
+    $updatedCompanyVehicleId: String!
+    $outsourced: CompanyVehicleUpdateInput!
+  ) {
+    updatedCompanyVehicle(
+      id: $updatedCompanyVehicleId
+      outsourced: $outsourced
+    ) {
+      carrier_company_id
+      created_at
+      created_by
+      id
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+export type UpdatedCompanyVehicleMutationFn = Apollo.MutationFunction<
+  UpdatedCompanyVehicleMutation,
+  UpdatedCompanyVehicleMutationVariables
+>;
+
+/**
+ * __useUpdatedCompanyVehicleMutation__
+ *
+ * To run a mutation, you first call `useUpdatedCompanyVehicleMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatedCompanyVehicleMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatedCompanyVehicleMutation, { data, loading, error }] = useUpdatedCompanyVehicleMutation({
+ *   variables: {
+ *      updatedCompanyVehicleId: // value for 'updatedCompanyVehicleId'
+ *      outsourced: // value for 'outsourced'
+ *   },
+ * });
+ */
+export function useUpdatedCompanyVehicleMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdatedCompanyVehicleMutation,
+    UpdatedCompanyVehicleMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    UpdatedCompanyVehicleMutation,
+    UpdatedCompanyVehicleMutationVariables
+  >(UpdatedCompanyVehicleDocument, options);
+}
+
+export type UpdatedCompanyVehicleMutationHookResult = ReturnType<
+  typeof useUpdatedCompanyVehicleMutation
+>;
+
+export type UpdatedCompanyVehicleMutationResult =
+  Apollo.MutationResult<UpdatedCompanyVehicleMutation>;
+
+export type UpdatedCompanyVehicleMutationOptions = Apollo.BaseMutationOptions<
+  UpdatedCompanyVehicleMutation,
+  UpdatedCompanyVehicleMutationVariables
+>;
+
+export const UpdateManyCompanyVehiclesDocument = gql`
+  mutation UpdateManyCompanyVehicles(
+    $updateManyCompanyVehicles: [CompanyVehicleUpdateManyInput!]!
+  ) {
+    updateManyCompanyVehicles(
+      updateManyCompanyVehicles: $updateManyCompanyVehicles
+    ) {
+      carrier_company_id
+      created_at
+      created_by
+      id
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+export type UpdateManyCompanyVehiclesMutationFn = Apollo.MutationFunction<
+  UpdateManyCompanyVehiclesMutation,
+  UpdateManyCompanyVehiclesMutationVariables
+>;
+
+/**
+ * __useUpdateManyCompanyVehiclesMutation__
+ *
+ * To run a mutation, you first call `useUpdateManyCompanyVehiclesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateManyCompanyVehiclesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateManyCompanyVehiclesMutation, { data, loading, error }] = useUpdateManyCompanyVehiclesMutation({
+ *   variables: {
+ *      updateManyCompanyVehicles: // value for 'updateManyCompanyVehicles'
+ *   },
+ * });
+ */
+export function useUpdateManyCompanyVehiclesMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateManyCompanyVehiclesMutation,
+    UpdateManyCompanyVehiclesMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    UpdateManyCompanyVehiclesMutation,
+    UpdateManyCompanyVehiclesMutationVariables
+  >(UpdateManyCompanyVehiclesDocument, options);
+}
+
+export type UpdateManyCompanyVehiclesMutationHookResult = ReturnType<
+  typeof useUpdateManyCompanyVehiclesMutation
+>;
+
+export type UpdateManyCompanyVehiclesMutationResult =
+  Apollo.MutationResult<UpdateManyCompanyVehiclesMutation>;
+
+export type UpdateManyCompanyVehiclesMutationOptions =
+  Apollo.BaseMutationOptions<
+    UpdateManyCompanyVehiclesMutation,
+    UpdateManyCompanyVehiclesMutationVariables
   >;
 
 export const CreateFreightExpenseDocument = gql`
@@ -11702,6 +12703,411 @@ export type UpdateManyPhysicalCustomerOrderMutationOptions =
     UpdateManyPhysicalCustomerOrderMutationVariables
   >;
 
+export const CreatePhysicalCustomerQuoteTableDocument = gql`
+  mutation CreatePhysicalCustomerQuoteTable(
+    $physicalCustomerQuoteTableInput: PhysicalCustomerQuoteTableInput!
+  ) {
+    createPhysicalCustomerQuoteTable(
+      physicalCustomerQuoteTableInput: $physicalCustomerQuoteTableInput
+    ) {
+      amount
+      codQuote
+      created_at
+      created_by
+      description
+      digital_signature
+      formPayment
+      icms_id
+      id
+      kindService
+      mass
+      nf_number
+      nf_serie
+      nf_value
+      recipientId
+      senderId
+      typeMerchandise
+      updated_at
+      updated_by
+      volume
+      who_pays
+    }
+  }
+`;
+
+export type CreatePhysicalCustomerQuoteTableMutationFn =
+  Apollo.MutationFunction<
+    CreatePhysicalCustomerQuoteTableMutation,
+    CreatePhysicalCustomerQuoteTableMutationVariables
+  >;
+
+/**
+ * __useCreatePhysicalCustomerQuoteTableMutation__
+ *
+ * To run a mutation, you first call `useCreatePhysicalCustomerQuoteTableMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePhysicalCustomerQuoteTableMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createPhysicalCustomerQuoteTableMutation, { data, loading, error }] = useCreatePhysicalCustomerQuoteTableMutation({
+ *   variables: {
+ *      physicalCustomerQuoteTableInput: // value for 'physicalCustomerQuoteTableInput'
+ *   },
+ * });
+ */
+export function useCreatePhysicalCustomerQuoteTableMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreatePhysicalCustomerQuoteTableMutation,
+    CreatePhysicalCustomerQuoteTableMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    CreatePhysicalCustomerQuoteTableMutation,
+    CreatePhysicalCustomerQuoteTableMutationVariables
+  >(CreatePhysicalCustomerQuoteTableDocument, options);
+}
+
+export type CreatePhysicalCustomerQuoteTableMutationHookResult = ReturnType<
+  typeof useCreatePhysicalCustomerQuoteTableMutation
+>;
+
+export type CreatePhysicalCustomerQuoteTableMutationResult =
+  Apollo.MutationResult<CreatePhysicalCustomerQuoteTableMutation>;
+
+export type CreatePhysicalCustomerQuoteTableMutationOptions =
+  Apollo.BaseMutationOptions<
+    CreatePhysicalCustomerQuoteTableMutation,
+    CreatePhysicalCustomerQuoteTableMutationVariables
+  >;
+
+export const DeletePhysicalCustomerQuoteTableDocument = gql`
+  mutation DeletePhysicalCustomerQuoteTable(
+    $deletePhysicalCustomerQuoteTableId: String!
+  ) {
+    deletePhysicalCustomerQuoteTable(id: $deletePhysicalCustomerQuoteTableId) {
+      amount
+      codQuote
+      created_at
+      created_by
+      description
+      digital_signature
+      formPayment
+      icms_id
+      id
+      kindService
+      mass
+      nf_number
+      nf_serie
+      nf_value
+      recipientId
+      senderId
+      typeMerchandise
+      updated_at
+      updated_by
+      volume
+      who_pays
+    }
+  }
+`;
+
+export type DeletePhysicalCustomerQuoteTableMutationFn =
+  Apollo.MutationFunction<
+    DeletePhysicalCustomerQuoteTableMutation,
+    DeletePhysicalCustomerQuoteTableMutationVariables
+  >;
+
+/**
+ * __useDeletePhysicalCustomerQuoteTableMutation__
+ *
+ * To run a mutation, you first call `useDeletePhysicalCustomerQuoteTableMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeletePhysicalCustomerQuoteTableMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deletePhysicalCustomerQuoteTableMutation, { data, loading, error }] = useDeletePhysicalCustomerQuoteTableMutation({
+ *   variables: {
+ *      deletePhysicalCustomerQuoteTableId: // value for 'deletePhysicalCustomerQuoteTableId'
+ *   },
+ * });
+ */
+export function useDeletePhysicalCustomerQuoteTableMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeletePhysicalCustomerQuoteTableMutation,
+    DeletePhysicalCustomerQuoteTableMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    DeletePhysicalCustomerQuoteTableMutation,
+    DeletePhysicalCustomerQuoteTableMutationVariables
+  >(DeletePhysicalCustomerQuoteTableDocument, options);
+}
+
+export type DeletePhysicalCustomerQuoteTableMutationHookResult = ReturnType<
+  typeof useDeletePhysicalCustomerQuoteTableMutation
+>;
+
+export type DeletePhysicalCustomerQuoteTableMutationResult =
+  Apollo.MutationResult<DeletePhysicalCustomerQuoteTableMutation>;
+
+export type DeletePhysicalCustomerQuoteTableMutationOptions =
+  Apollo.BaseMutationOptions<
+    DeletePhysicalCustomerQuoteTableMutation,
+    DeletePhysicalCustomerQuoteTableMutationVariables
+  >;
+
+export const DeleteManyPhysicalCustomerQuoteTableDocument = gql`
+  mutation DeleteManyPhysicalCustomerQuoteTable($ids: [String!]!) {
+    deleteManyPhysicalCustomerQuoteTable(ids: $ids) {
+      amount
+      codQuote
+      created_at
+      created_by
+      description
+      digital_signature
+      formPayment
+      icms_id
+      id
+      kindService
+      mass
+      nf_number
+      nf_serie
+      nf_value
+      recipientId
+      senderId
+      typeMerchandise
+      updated_at
+      updated_by
+      volume
+      who_pays
+    }
+  }
+`;
+
+export type DeleteManyPhysicalCustomerQuoteTableMutationFn =
+  Apollo.MutationFunction<
+    DeleteManyPhysicalCustomerQuoteTableMutation,
+    DeleteManyPhysicalCustomerQuoteTableMutationVariables
+  >;
+
+/**
+ * __useDeleteManyPhysicalCustomerQuoteTableMutation__
+ *
+ * To run a mutation, you first call `useDeleteManyPhysicalCustomerQuoteTableMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteManyPhysicalCustomerQuoteTableMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteManyPhysicalCustomerQuoteTableMutation, { data, loading, error }] = useDeleteManyPhysicalCustomerQuoteTableMutation({
+ *   variables: {
+ *      ids: // value for 'ids'
+ *   },
+ * });
+ */
+export function useDeleteManyPhysicalCustomerQuoteTableMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteManyPhysicalCustomerQuoteTableMutation,
+    DeleteManyPhysicalCustomerQuoteTableMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    DeleteManyPhysicalCustomerQuoteTableMutation,
+    DeleteManyPhysicalCustomerQuoteTableMutationVariables
+  >(DeleteManyPhysicalCustomerQuoteTableDocument, options);
+}
+
+export type DeleteManyPhysicalCustomerQuoteTableMutationHookResult = ReturnType<
+  typeof useDeleteManyPhysicalCustomerQuoteTableMutation
+>;
+
+export type DeleteManyPhysicalCustomerQuoteTableMutationResult =
+  Apollo.MutationResult<DeleteManyPhysicalCustomerQuoteTableMutation>;
+
+export type DeleteManyPhysicalCustomerQuoteTableMutationOptions =
+  Apollo.BaseMutationOptions<
+    DeleteManyPhysicalCustomerQuoteTableMutation,
+    DeleteManyPhysicalCustomerQuoteTableMutationVariables
+  >;
+
+export const UpdatePhysicalCustomerQuoteTableDocument = gql`
+  mutation UpdatePhysicalCustomerQuoteTable(
+    $updatePhysicalCustomerQuoteTableId: String!
+    $physicalCustomerQuoteTableUpdate: PhysicalCustomerQuoteTableUpdate!
+  ) {
+    updatePhysicalCustomerQuoteTable(
+      id: $updatePhysicalCustomerQuoteTableId
+      physicalCustomerQuoteTableUpdate: $physicalCustomerQuoteTableUpdate
+    ) {
+      amount
+      codQuote
+      created_at
+      created_by
+      description
+      digital_signature
+      formPayment
+      icms_id
+      id
+      kindService
+      mass
+      nf_number
+      nf_serie
+      nf_value
+      recipientId
+      senderId
+      typeMerchandise
+      updated_at
+      updated_by
+      volume
+      who_pays
+    }
+  }
+`;
+
+export type UpdatePhysicalCustomerQuoteTableMutationFn =
+  Apollo.MutationFunction<
+    UpdatePhysicalCustomerQuoteTableMutation,
+    UpdatePhysicalCustomerQuoteTableMutationVariables
+  >;
+
+/**
+ * __useUpdatePhysicalCustomerQuoteTableMutation__
+ *
+ * To run a mutation, you first call `useUpdatePhysicalCustomerQuoteTableMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePhysicalCustomerQuoteTableMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePhysicalCustomerQuoteTableMutation, { data, loading, error }] = useUpdatePhysicalCustomerQuoteTableMutation({
+ *   variables: {
+ *      updatePhysicalCustomerQuoteTableId: // value for 'updatePhysicalCustomerQuoteTableId'
+ *      physicalCustomerQuoteTableUpdate: // value for 'physicalCustomerQuoteTableUpdate'
+ *   },
+ * });
+ */
+export function useUpdatePhysicalCustomerQuoteTableMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdatePhysicalCustomerQuoteTableMutation,
+    UpdatePhysicalCustomerQuoteTableMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    UpdatePhysicalCustomerQuoteTableMutation,
+    UpdatePhysicalCustomerQuoteTableMutationVariables
+  >(UpdatePhysicalCustomerQuoteTableDocument, options);
+}
+
+export type UpdatePhysicalCustomerQuoteTableMutationHookResult = ReturnType<
+  typeof useUpdatePhysicalCustomerQuoteTableMutation
+>;
+
+export type UpdatePhysicalCustomerQuoteTableMutationResult =
+  Apollo.MutationResult<UpdatePhysicalCustomerQuoteTableMutation>;
+
+export type UpdatePhysicalCustomerQuoteTableMutationOptions =
+  Apollo.BaseMutationOptions<
+    UpdatePhysicalCustomerQuoteTableMutation,
+    UpdatePhysicalCustomerQuoteTableMutationVariables
+  >;
+
+export const UpdateManyPhysicalCustomerQuoteTableDocument = gql`
+  mutation UpdateManyPhysicalCustomerQuoteTable(
+    $data: [PhysicalCustomerQuoteTableUpdateManyInput!]!
+  ) {
+    updateManyPhysicalCustomerQuoteTable(data: $data) {
+      amount
+      codQuote
+      created_at
+      created_by
+      description
+      digital_signature
+      formPayment
+      icms_id
+      id
+      kindService
+      mass
+      nf_number
+      nf_serie
+      nf_value
+      recipientId
+      senderId
+      typeMerchandise
+      updated_at
+      updated_by
+      volume
+      who_pays
+    }
+  }
+`;
+
+export type UpdateManyPhysicalCustomerQuoteTableMutationFn =
+  Apollo.MutationFunction<
+    UpdateManyPhysicalCustomerQuoteTableMutation,
+    UpdateManyPhysicalCustomerQuoteTableMutationVariables
+  >;
+
+/**
+ * __useUpdateManyPhysicalCustomerQuoteTableMutation__
+ *
+ * To run a mutation, you first call `useUpdateManyPhysicalCustomerQuoteTableMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateManyPhysicalCustomerQuoteTableMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateManyPhysicalCustomerQuoteTableMutation, { data, loading, error }] = useUpdateManyPhysicalCustomerQuoteTableMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateManyPhysicalCustomerQuoteTableMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateManyPhysicalCustomerQuoteTableMutation,
+    UpdateManyPhysicalCustomerQuoteTableMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    UpdateManyPhysicalCustomerQuoteTableMutation,
+    UpdateManyPhysicalCustomerQuoteTableMutationVariables
+  >(UpdateManyPhysicalCustomerQuoteTableDocument, options);
+}
+
+export type UpdateManyPhysicalCustomerQuoteTableMutationHookResult = ReturnType<
+  typeof useUpdateManyPhysicalCustomerQuoteTableMutation
+>;
+
+export type UpdateManyPhysicalCustomerQuoteTableMutationResult =
+  Apollo.MutationResult<UpdateManyPhysicalCustomerQuoteTableMutation>;
+
+export type UpdateManyPhysicalCustomerQuoteTableMutationOptions =
+  Apollo.BaseMutationOptions<
+    UpdateManyPhysicalCustomerQuoteTableMutation,
+    UpdateManyPhysicalCustomerQuoteTableMutationVariables
+  >;
+
 export const CreatePhysicalCustomerDocument = gql`
   mutation CreatePhysicalCustomer($data: PhysicalCustomerInput!) {
     createPhysicalCustomer(data: $data) {
@@ -14275,6 +15681,99 @@ export type UpdateManyVehicleTypesMutationOptions = Apollo.BaseMutationOptions<
   UpdateManyVehicleTypesMutationVariables
 >;
 
+export const GetCarrierCompanyModelDocument = gql`
+  query GetCarrierCompanyModel($cnpj: String) {
+    getCarrierCompanyModel(cnpj: $cnpj) {
+      created_at
+      created_by
+      id
+      legalPersonId
+      rntrc
+      updated_at
+      updated_by
+      LegalPerson {
+        cnpj
+        fantasy_name
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetCarrierCompanyModelQuery__
+ *
+ * To run a query within a React component, call `useGetCarrierCompanyModelQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCarrierCompanyModelQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCarrierCompanyModelQuery({
+ *   variables: {
+ *      cnpj: // value for 'cnpj'
+ *   },
+ * });
+ */
+export function useGetCarrierCompanyModelQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetCarrierCompanyModelQuery,
+    GetCarrierCompanyModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetCarrierCompanyModelQuery,
+    GetCarrierCompanyModelQueryVariables
+  >(GetCarrierCompanyModelDocument, options);
+}
+
+export function useGetCarrierCompanyModelLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetCarrierCompanyModelQuery,
+    GetCarrierCompanyModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetCarrierCompanyModelQuery,
+    GetCarrierCompanyModelQueryVariables
+  >(GetCarrierCompanyModelDocument, options);
+}
+
+export function useGetCarrierCompanyModelSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetCarrierCompanyModelQuery,
+    GetCarrierCompanyModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetCarrierCompanyModelQuery,
+    GetCarrierCompanyModelQueryVariables
+  >(GetCarrierCompanyModelDocument, options);
+}
+
+export type GetCarrierCompanyModelQueryHookResult = ReturnType<
+  typeof useGetCarrierCompanyModelQuery
+>;
+
+export type GetCarrierCompanyModelLazyQueryHookResult = ReturnType<
+  typeof useGetCarrierCompanyModelLazyQuery
+>;
+
+export type GetCarrierCompanyModelSuspenseQueryHookResult = ReturnType<
+  typeof useGetCarrierCompanyModelSuspenseQuery
+>;
+
+export type GetCarrierCompanyModelQueryResult = Apollo.QueryResult<
+  GetCarrierCompanyModelQuery,
+  GetCarrierCompanyModelQueryVariables
+>;
+
 export const GetAllCarrierCompanyDocument = gql`
   query GetAllCarrierCompany(
     $limit: Int
@@ -14296,6 +15795,10 @@ export const GetAllCarrierCompanyDocument = gql`
       rntrc
       updated_at
       updated_by
+      LegalPerson {
+        cnpj
+        fantasy_name
+      }
     }
   }
 `;
@@ -14473,6 +15976,196 @@ export type GetAllCarrierCompanyComboSuspenseQueryHookResult = ReturnType<
 export type GetAllCarrierCompanyComboQueryResult = Apollo.QueryResult<
   GetAllCarrierCompanyComboQuery,
   GetAllCarrierCompanyComboQueryVariables
+>;
+
+export const GetAllCompanyVehicleDocument = gql`
+  query GetAllCompanyVehicle(
+    $limit: Int
+    $offset: Int
+    $sort: CompanyVehicleOrderByWithRelationInput
+    $where: CompanyVehicleWhereInput
+  ) {
+    totalCompanyVehicles(where: $where)
+    getAllCompanyVehicle(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      carrier_company_id
+      created_at
+      created_by
+      id
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+/**
+ * __useGetAllCompanyVehicleQuery__
+ *
+ * To run a query within a React component, call `useGetAllCompanyVehicleQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllCompanyVehicleQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllCompanyVehicleQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllCompanyVehicleQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllCompanyVehicleQuery,
+    GetAllCompanyVehicleQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllCompanyVehicleQuery,
+    GetAllCompanyVehicleQueryVariables
+  >(GetAllCompanyVehicleDocument, options);
+}
+
+export function useGetAllCompanyVehicleLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllCompanyVehicleQuery,
+    GetAllCompanyVehicleQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllCompanyVehicleQuery,
+    GetAllCompanyVehicleQueryVariables
+  >(GetAllCompanyVehicleDocument, options);
+}
+
+export function useGetAllCompanyVehicleSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllCompanyVehicleQuery,
+    GetAllCompanyVehicleQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllCompanyVehicleQuery,
+    GetAllCompanyVehicleQueryVariables
+  >(GetAllCompanyVehicleDocument, options);
+}
+
+export type GetAllCompanyVehicleQueryHookResult = ReturnType<
+  typeof useGetAllCompanyVehicleQuery
+>;
+
+export type GetAllCompanyVehicleLazyQueryHookResult = ReturnType<
+  typeof useGetAllCompanyVehicleLazyQuery
+>;
+
+export type GetAllCompanyVehicleSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllCompanyVehicleSuspenseQuery
+>;
+
+export type GetAllCompanyVehicleQueryResult = Apollo.QueryResult<
+  GetAllCompanyVehicleQuery,
+  GetAllCompanyVehicleQueryVariables
+>;
+
+export const GetFreightExpenseDocument = gql`
+  query GetFreightExpense($getFreightExpenseId: String) {
+    getFreightExpense(id: $getFreightExpenseId) {
+      expenseName
+      id
+      legalClientOrderId
+      physicalCustomerOrderId
+      value
+    }
+  }
+`;
+
+/**
+ * __useGetFreightExpenseQuery__
+ *
+ * To run a query within a React component, call `useGetFreightExpenseQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFreightExpenseQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFreightExpenseQuery({
+ *   variables: {
+ *      getFreightExpenseId: // value for 'getFreightExpenseId'
+ *   },
+ * });
+ */
+export function useGetFreightExpenseQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetFreightExpenseQuery,
+    GetFreightExpenseQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetFreightExpenseQuery,
+    GetFreightExpenseQueryVariables
+  >(GetFreightExpenseDocument, options);
+}
+
+export function useGetFreightExpenseLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetFreightExpenseQuery,
+    GetFreightExpenseQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetFreightExpenseQuery,
+    GetFreightExpenseQueryVariables
+  >(GetFreightExpenseDocument, options);
+}
+
+export function useGetFreightExpenseSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetFreightExpenseQuery,
+    GetFreightExpenseQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetFreightExpenseQuery,
+    GetFreightExpenseQueryVariables
+  >(GetFreightExpenseDocument, options);
+}
+
+export type GetFreightExpenseQueryHookResult = ReturnType<
+  typeof useGetFreightExpenseQuery
+>;
+
+export type GetFreightExpenseLazyQueryHookResult = ReturnType<
+  typeof useGetFreightExpenseLazyQuery
+>;
+
+export type GetFreightExpenseSuspenseQueryHookResult = ReturnType<
+  typeof useGetFreightExpenseSuspenseQuery
+>;
+
+export type GetFreightExpenseQueryResult = Apollo.QueryResult<
+  GetFreightExpenseQuery,
+  GetFreightExpenseQueryVariables
 >;
 
 export const GetAllFreightExpensesDocument = gql`
@@ -14670,6 +16363,186 @@ export type GetAllIcmsSuspenseQueryHookResult = ReturnType<
 export type GetAllIcmsQueryResult = Apollo.QueryResult<
   GetAllIcmsQuery,
   GetAllIcmsQueryVariables
+>;
+
+export const GetIcmsOneDocument = gql`
+  query GetICMSOne($getIcmsId: String) {
+    getICMS(id: $getIcmsId) {
+      aliquot
+      created_by
+      effective_date
+      id
+      recipient_state
+      state_origin
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetIcmsOneQuery__
+ *
+ * To run a query within a React component, call `useGetIcmsOneQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetIcmsOneQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetIcmsOneQuery({
+ *   variables: {
+ *      getIcmsId: // value for 'getIcmsId'
+ *   },
+ * });
+ */
+export function useGetIcmsOneQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetIcmsOneQuery,
+    GetIcmsOneQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<GetIcmsOneQuery, GetIcmsOneQueryVariables>(
+    GetIcmsOneDocument,
+    options,
+  );
+}
+
+export function useGetIcmsOneLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetIcmsOneQuery,
+    GetIcmsOneQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<GetIcmsOneQuery, GetIcmsOneQueryVariables>(
+    GetIcmsOneDocument,
+    options,
+  );
+}
+
+export function useGetIcmsOneSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetIcmsOneQuery,
+    GetIcmsOneQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<GetIcmsOneQuery, GetIcmsOneQueryVariables>(
+    GetIcmsOneDocument,
+    options,
+  );
+}
+
+export type GetIcmsOneQueryHookResult = ReturnType<typeof useGetIcmsOneQuery>;
+
+export type GetIcmsOneLazyQueryHookResult = ReturnType<
+  typeof useGetIcmsOneLazyQuery
+>;
+
+export type GetIcmsOneSuspenseQueryHookResult = ReturnType<
+  typeof useGetIcmsOneSuspenseQuery
+>;
+
+export type GetIcmsOneQueryResult = Apollo.QueryResult<
+  GetIcmsOneQuery,
+  GetIcmsOneQueryVariables
+>;
+
+export const GetIncidentDocument = gql`
+  query GetIncident($getIncidentId: String) {
+    getIncident(id: $getIncidentId) {
+      created_at
+      created_by
+      date_incident
+      date_resolved
+      description
+      id
+      order_process_id
+      updated_at
+      updated_by
+      OrderProcessing {
+        id
+        order_processing_number
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetIncidentQuery__
+ *
+ * To run a query within a React component, call `useGetIncidentQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetIncidentQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetIncidentQuery({
+ *   variables: {
+ *      getIncidentId: // value for 'getIncidentId'
+ *   },
+ * });
+ */
+export function useGetIncidentQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetIncidentQuery,
+    GetIncidentQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<GetIncidentQuery, GetIncidentQueryVariables>(
+    GetIncidentDocument,
+    options,
+  );
+}
+
+export function useGetIncidentLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetIncidentQuery,
+    GetIncidentQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<GetIncidentQuery, GetIncidentQueryVariables>(
+    GetIncidentDocument,
+    options,
+  );
+}
+
+export function useGetIncidentSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetIncidentQuery,
+    GetIncidentQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<GetIncidentQuery, GetIncidentQueryVariables>(
+    GetIncidentDocument,
+    options,
+  );
+}
+
+export type GetIncidentQueryHookResult = ReturnType<typeof useGetIncidentQuery>;
+
+export type GetIncidentLazyQueryHookResult = ReturnType<
+  typeof useGetIncidentLazyQuery
+>;
+
+export type GetIncidentSuspenseQueryHookResult = ReturnType<
+  typeof useGetIncidentSuspenseQuery
+>;
+
+export type GetIncidentQueryResult = Apollo.QueryResult<
+  GetIncidentQuery,
+  GetIncidentQueryVariables
 >;
 
 export const GetAllIncidentsDocument = gql`
@@ -15608,6 +17481,106 @@ export type GetAllLegalPersonComboQueryResult = Apollo.QueryResult<
   GetAllLegalPersonComboQueryVariables
 >;
 
+export const GetAllMaintenanceCompanyComboDocument = gql`
+  query GetAllMaintenanceCompanyCombo(
+    $limit: Int
+    $offset: Int
+    $where: MaintenanceCompanyWhereInput
+    $sort: MaintenanceCompanyOrderByWithRelationInput
+  ) {
+    getAllMaintenanceCompany(
+      limit: $limit
+      offset: $offset
+      where: $where
+      sort: $sort
+    ) {
+      id
+      specialty_maintenance
+      LegalPerson {
+        cnpj
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetAllMaintenanceCompanyComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllMaintenanceCompanyComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllMaintenanceCompanyComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllMaintenanceCompanyComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      where: // value for 'where'
+ *      sort: // value for 'sort'
+ *   },
+ * });
+ */
+export function useGetAllMaintenanceCompanyComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllMaintenanceCompanyComboQuery,
+    GetAllMaintenanceCompanyComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllMaintenanceCompanyComboQuery,
+    GetAllMaintenanceCompanyComboQueryVariables
+  >(GetAllMaintenanceCompanyComboDocument, options);
+}
+
+export function useGetAllMaintenanceCompanyComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllMaintenanceCompanyComboQuery,
+    GetAllMaintenanceCompanyComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllMaintenanceCompanyComboQuery,
+    GetAllMaintenanceCompanyComboQueryVariables
+  >(GetAllMaintenanceCompanyComboDocument, options);
+}
+
+export function useGetAllMaintenanceCompanyComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllMaintenanceCompanyComboQuery,
+    GetAllMaintenanceCompanyComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllMaintenanceCompanyComboQuery,
+    GetAllMaintenanceCompanyComboQueryVariables
+  >(GetAllMaintenanceCompanyComboDocument, options);
+}
+
+export type GetAllMaintenanceCompanyComboQueryHookResult = ReturnType<
+  typeof useGetAllMaintenanceCompanyComboQuery
+>;
+
+export type GetAllMaintenanceCompanyComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllMaintenanceCompanyComboLazyQuery
+>;
+
+export type GetAllMaintenanceCompanyComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllMaintenanceCompanyComboSuspenseQuery
+>;
+
+export type GetAllMaintenanceCompanyComboQueryResult = Apollo.QueryResult<
+  GetAllMaintenanceCompanyComboQuery,
+  GetAllMaintenanceCompanyComboQueryVariables
+>;
+
 export const GetAllMaintenanceCompanyDocument = gql`
   query GetAllMaintenanceCompany(
     $limit: Int
@@ -16122,6 +18095,104 @@ export type GetAllOrderProcessingQueryResult = Apollo.QueryResult<
   GetAllOrderProcessingQueryVariables
 >;
 
+export const GetOwnDriverDocument = gql`
+  query GetOwnDriver($getOwnDriverId: String) {
+    getOwnDriver(id: $getOwnDriverId) {
+      cnh
+      cnh_category
+      cnh_expiration
+      company_vehicle
+      course_mopp
+      created_at
+      created_by
+      id
+      natural_person_id
+      updated_at
+      updated_by
+      NaturalPerson {
+        id
+        cpf
+        name
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetOwnDriverQuery__
+ *
+ * To run a query within a React component, call `useGetOwnDriverQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetOwnDriverQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetOwnDriverQuery({
+ *   variables: {
+ *      getOwnDriverId: // value for 'getOwnDriverId'
+ *   },
+ * });
+ */
+export function useGetOwnDriverQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetOwnDriverQuery,
+    GetOwnDriverQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<GetOwnDriverQuery, GetOwnDriverQueryVariables>(
+    GetOwnDriverDocument,
+    options,
+  );
+}
+
+export function useGetOwnDriverLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetOwnDriverQuery,
+    GetOwnDriverQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<GetOwnDriverQuery, GetOwnDriverQueryVariables>(
+    GetOwnDriverDocument,
+    options,
+  );
+}
+
+export function useGetOwnDriverSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetOwnDriverQuery,
+    GetOwnDriverQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<GetOwnDriverQuery, GetOwnDriverQueryVariables>(
+    GetOwnDriverDocument,
+    options,
+  );
+}
+
+export type GetOwnDriverQueryHookResult = ReturnType<
+  typeof useGetOwnDriverQuery
+>;
+
+export type GetOwnDriverLazyQueryHookResult = ReturnType<
+  typeof useGetOwnDriverLazyQuery
+>;
+
+export type GetOwnDriverSuspenseQueryHookResult = ReturnType<
+  typeof useGetOwnDriverSuspenseQuery
+>;
+
+export type GetOwnDriverQueryResult = Apollo.QueryResult<
+  GetOwnDriverQuery,
+  GetOwnDriverQueryVariables
+>;
+
 export const GetAllOwnDriverDocument = gql`
   query GetAllOwnDriver(
     $limit: Int
@@ -16433,6 +18504,323 @@ export type GetAllPhysicalCustomerOrderQueryResult = Apollo.QueryResult<
   GetAllPhysicalCustomerOrderQueryVariables
 >;
 
+export const GetAllPhysicalCustomerQuoteTableComboDocument = gql`
+  query GetAllPhysicalCustomerQuoteTableCombo(
+    $limit: Int
+    $offset: Int
+    $sort: PhysicalCustomerQuoteTableOrderByWithRelationInput
+    $where: PhysicalCustomerQuoteTableWhereInput
+  ) {
+    getAllPhysicalCustomerQuoteTable(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      codQuote
+      id
+    }
+  }
+`;
+
+/**
+ * __useGetAllPhysicalCustomerQuoteTableComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllPhysicalCustomerQuoteTableComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllPhysicalCustomerQuoteTableComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllPhysicalCustomerQuoteTableComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllPhysicalCustomerQuoteTableComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllPhysicalCustomerQuoteTableComboQuery,
+    GetAllPhysicalCustomerQuoteTableComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllPhysicalCustomerQuoteTableComboQuery,
+    GetAllPhysicalCustomerQuoteTableComboQueryVariables
+  >(GetAllPhysicalCustomerQuoteTableComboDocument, options);
+}
+
+export function useGetAllPhysicalCustomerQuoteTableComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllPhysicalCustomerQuoteTableComboQuery,
+    GetAllPhysicalCustomerQuoteTableComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllPhysicalCustomerQuoteTableComboQuery,
+    GetAllPhysicalCustomerQuoteTableComboQueryVariables
+  >(GetAllPhysicalCustomerQuoteTableComboDocument, options);
+}
+
+export function useGetAllPhysicalCustomerQuoteTableComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllPhysicalCustomerQuoteTableComboQuery,
+    GetAllPhysicalCustomerQuoteTableComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllPhysicalCustomerQuoteTableComboQuery,
+    GetAllPhysicalCustomerQuoteTableComboQueryVariables
+  >(GetAllPhysicalCustomerQuoteTableComboDocument, options);
+}
+
+export type GetAllPhysicalCustomerQuoteTableComboQueryHookResult = ReturnType<
+  typeof useGetAllPhysicalCustomerQuoteTableComboQuery
+>;
+
+export type GetAllPhysicalCustomerQuoteTableComboLazyQueryHookResult =
+  ReturnType<typeof useGetAllPhysicalCustomerQuoteTableComboLazyQuery>;
+
+export type GetAllPhysicalCustomerQuoteTableComboSuspenseQueryHookResult =
+  ReturnType<typeof useGetAllPhysicalCustomerQuoteTableComboSuspenseQuery>;
+
+export type GetAllPhysicalCustomerQuoteTableComboQueryResult =
+  Apollo.QueryResult<
+    GetAllPhysicalCustomerQuoteTableComboQuery,
+    GetAllPhysicalCustomerQuoteTableComboQueryVariables
+  >;
+
+export const GetPhysicalCustomerQuoteTableDocument = gql`
+  query GetPhysicalCustomerQuoteTable(
+    $getPhysicalCustomerQuoteTableId: String
+  ) {
+    getPhysicalCustomerQuoteTable(id: $getPhysicalCustomerQuoteTableId) {
+      amount
+      codQuote
+      created_at
+      created_by
+      description
+      digital_signature
+      formPayment
+      icms_id
+      id
+      kindService
+      mass
+      nf_number
+      nf_serie
+      nf_value
+      recipientId
+      senderId
+      typeMerchandise
+      updated_at
+      updated_by
+      volume
+      who_pays
+    }
+  }
+`;
+
+/**
+ * __useGetPhysicalCustomerQuoteTableQuery__
+ *
+ * To run a query within a React component, call `useGetPhysicalCustomerQuoteTableQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPhysicalCustomerQuoteTableQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPhysicalCustomerQuoteTableQuery({
+ *   variables: {
+ *      getPhysicalCustomerQuoteTableId: // value for 'getPhysicalCustomerQuoteTableId'
+ *   },
+ * });
+ */
+export function useGetPhysicalCustomerQuoteTableQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetPhysicalCustomerQuoteTableQuery,
+    GetPhysicalCustomerQuoteTableQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetPhysicalCustomerQuoteTableQuery,
+    GetPhysicalCustomerQuoteTableQueryVariables
+  >(GetPhysicalCustomerQuoteTableDocument, options);
+}
+
+export function useGetPhysicalCustomerQuoteTableLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetPhysicalCustomerQuoteTableQuery,
+    GetPhysicalCustomerQuoteTableQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetPhysicalCustomerQuoteTableQuery,
+    GetPhysicalCustomerQuoteTableQueryVariables
+  >(GetPhysicalCustomerQuoteTableDocument, options);
+}
+
+export function useGetPhysicalCustomerQuoteTableSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetPhysicalCustomerQuoteTableQuery,
+    GetPhysicalCustomerQuoteTableQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetPhysicalCustomerQuoteTableQuery,
+    GetPhysicalCustomerQuoteTableQueryVariables
+  >(GetPhysicalCustomerQuoteTableDocument, options);
+}
+
+export type GetPhysicalCustomerQuoteTableQueryHookResult = ReturnType<
+  typeof useGetPhysicalCustomerQuoteTableQuery
+>;
+
+export type GetPhysicalCustomerQuoteTableLazyQueryHookResult = ReturnType<
+  typeof useGetPhysicalCustomerQuoteTableLazyQuery
+>;
+
+export type GetPhysicalCustomerQuoteTableSuspenseQueryHookResult = ReturnType<
+  typeof useGetPhysicalCustomerQuoteTableSuspenseQuery
+>;
+
+export type GetPhysicalCustomerQuoteTableQueryResult = Apollo.QueryResult<
+  GetPhysicalCustomerQuoteTableQuery,
+  GetPhysicalCustomerQuoteTableQueryVariables
+>;
+
+export const GetAllPhysicalCustomerQuoteTableDocument = gql`
+  query GetAllPhysicalCustomerQuoteTable(
+    $limit: Int
+    $offset: Int
+    $sort: PhysicalCustomerQuoteTableOrderByWithRelationInput
+    $where: PhysicalCustomerQuoteTableWhereInput
+  ) {
+    countPhysicalCustomerQuoteTable(where: $where)
+    getAllPhysicalCustomerQuoteTable(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      amount
+      codQuote
+      created_at
+      created_by
+      description
+      digital_signature
+      formPayment
+      icms_id
+      id
+      kindService
+      mass
+      nf_number
+      nf_serie
+      nf_value
+      recipientId
+      senderId
+      typeMerchandise
+      updated_at
+      updated_by
+      volume
+      who_pays
+    }
+  }
+`;
+
+/**
+ * __useGetAllPhysicalCustomerQuoteTableQuery__
+ *
+ * To run a query within a React component, call `useGetAllPhysicalCustomerQuoteTableQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllPhysicalCustomerQuoteTableQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllPhysicalCustomerQuoteTableQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllPhysicalCustomerQuoteTableQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllPhysicalCustomerQuoteTableQuery,
+    GetAllPhysicalCustomerQuoteTableQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllPhysicalCustomerQuoteTableQuery,
+    GetAllPhysicalCustomerQuoteTableQueryVariables
+  >(GetAllPhysicalCustomerQuoteTableDocument, options);
+}
+
+export function useGetAllPhysicalCustomerQuoteTableLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllPhysicalCustomerQuoteTableQuery,
+    GetAllPhysicalCustomerQuoteTableQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllPhysicalCustomerQuoteTableQuery,
+    GetAllPhysicalCustomerQuoteTableQueryVariables
+  >(GetAllPhysicalCustomerQuoteTableDocument, options);
+}
+
+export function useGetAllPhysicalCustomerQuoteTableSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllPhysicalCustomerQuoteTableQuery,
+    GetAllPhysicalCustomerQuoteTableQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllPhysicalCustomerQuoteTableQuery,
+    GetAllPhysicalCustomerQuoteTableQueryVariables
+  >(GetAllPhysicalCustomerQuoteTableDocument, options);
+}
+
+export type GetAllPhysicalCustomerQuoteTableQueryHookResult = ReturnType<
+  typeof useGetAllPhysicalCustomerQuoteTableQuery
+>;
+
+export type GetAllPhysicalCustomerQuoteTableLazyQueryHookResult = ReturnType<
+  typeof useGetAllPhysicalCustomerQuoteTableLazyQuery
+>;
+
+export type GetAllPhysicalCustomerQuoteTableSuspenseQueryHookResult =
+  ReturnType<typeof useGetAllPhysicalCustomerQuoteTableSuspenseQuery>;
+
+export type GetAllPhysicalCustomerQuoteTableQueryResult = Apollo.QueryResult<
+  GetAllPhysicalCustomerQuoteTableQuery,
+  GetAllPhysicalCustomerQuoteTableQueryVariables
+>;
+
 export const GetAllPhysicalCustomerComboDocument = gql`
   query GetAllPhysicalCustomerCombo(
     $limit: Int
@@ -16739,6 +19127,103 @@ export type GetAllRecipientComboSuspenseQueryHookResult = ReturnType<
 export type GetAllRecipientComboQueryResult = Apollo.QueryResult<
   GetAllRecipientComboQuery,
   GetAllRecipientComboQueryVariables
+>;
+
+export const GetRecipientDocument = gql`
+  query GetRecipient($getRecipientId: String) {
+    getRecipient(id: $getRecipientId) {
+      created_by
+      id
+      legal_person_id
+      natural_person_id
+      updated_by
+      LegalPerson {
+        id
+        fantasy_name
+        cnpj
+      }
+      NaturalPerson {
+        id
+        cpf
+        name
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetRecipientQuery__
+ *
+ * To run a query within a React component, call `useGetRecipientQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRecipientQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRecipientQuery({
+ *   variables: {
+ *      getRecipientId: // value for 'getRecipientId'
+ *   },
+ * });
+ */
+export function useGetRecipientQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetRecipientQuery,
+    GetRecipientQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<GetRecipientQuery, GetRecipientQueryVariables>(
+    GetRecipientDocument,
+    options,
+  );
+}
+
+export function useGetRecipientLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetRecipientQuery,
+    GetRecipientQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<GetRecipientQuery, GetRecipientQueryVariables>(
+    GetRecipientDocument,
+    options,
+  );
+}
+
+export function useGetRecipientSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetRecipientQuery,
+    GetRecipientQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<GetRecipientQuery, GetRecipientQueryVariables>(
+    GetRecipientDocument,
+    options,
+  );
+}
+
+export type GetRecipientQueryHookResult = ReturnType<
+  typeof useGetRecipientQuery
+>;
+
+export type GetRecipientLazyQueryHookResult = ReturnType<
+  typeof useGetRecipientLazyQuery
+>;
+
+export type GetRecipientSuspenseQueryHookResult = ReturnType<
+  typeof useGetRecipientSuspenseQuery
+>;
+
+export type GetRecipientQueryResult = Apollo.QueryResult<
+  GetRecipientQuery,
+  GetRecipientQueryVariables
 >;
 
 export const GetAllRecipientDocument = gql`
@@ -17275,6 +19760,103 @@ export type UsersQueryResult = Apollo.QueryResult<
   UsersQueryVariables
 >;
 
+export const GetAllVehicleBodyworkComboDocument = gql`
+  query GetAllVehicleBodyworkCombo(
+    $limit: Int
+    $offset: Int
+    $where: VehicleBodyworkWhereInput
+    $sort: VehicleBodyworkOrderByWithRelationInput
+  ) {
+    getAllVehicleBodywork(
+      limit: $limit
+      offset: $offset
+      where: $where
+      sort: $sort
+    ) {
+      axles
+      id
+    }
+  }
+`;
+
+/**
+ * __useGetAllVehicleBodyworkComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllVehicleBodyworkComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllVehicleBodyworkComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllVehicleBodyworkComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      where: // value for 'where'
+ *      sort: // value for 'sort'
+ *   },
+ * });
+ */
+export function useGetAllVehicleBodyworkComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllVehicleBodyworkComboQuery,
+    GetAllVehicleBodyworkComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllVehicleBodyworkComboQuery,
+    GetAllVehicleBodyworkComboQueryVariables
+  >(GetAllVehicleBodyworkComboDocument, options);
+}
+
+export function useGetAllVehicleBodyworkComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllVehicleBodyworkComboQuery,
+    GetAllVehicleBodyworkComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllVehicleBodyworkComboQuery,
+    GetAllVehicleBodyworkComboQueryVariables
+  >(GetAllVehicleBodyworkComboDocument, options);
+}
+
+export function useGetAllVehicleBodyworkComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllVehicleBodyworkComboQuery,
+    GetAllVehicleBodyworkComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllVehicleBodyworkComboQuery,
+    GetAllVehicleBodyworkComboQueryVariables
+  >(GetAllVehicleBodyworkComboDocument, options);
+}
+
+export type GetAllVehicleBodyworkComboQueryHookResult = ReturnType<
+  typeof useGetAllVehicleBodyworkComboQuery
+>;
+
+export type GetAllVehicleBodyworkComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllVehicleBodyworkComboLazyQuery
+>;
+
+export type GetAllVehicleBodyworkComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllVehicleBodyworkComboSuspenseQuery
+>;
+
+export type GetAllVehicleBodyworkComboQueryResult = Apollo.QueryResult<
+  GetAllVehicleBodyworkComboQuery,
+  GetAllVehicleBodyworkComboQueryVariables
+>;
+
 export const GetAllVehicleBodyworkDocument = gql`
   query GetAllVehicleBodywork(
     $limit: Int
@@ -17378,6 +19960,103 @@ export type GetAllVehicleBodyworkSuspenseQueryHookResult = ReturnType<
 export type GetAllVehicleBodyworkQueryResult = Apollo.QueryResult<
   GetAllVehicleBodyworkQuery,
   GetAllVehicleBodyworkQueryVariables
+>;
+
+export const GetAllVehicleBrandComboDocument = gql`
+  query GetAllVehicleBrandCombo(
+    $limit: Int
+    $offset: Int
+    $sort: VehicleBrandOrderByWithRelationInput
+    $where: VehicleBrandWhereInput
+  ) {
+    getAllVehicleBrand(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      id
+      name
+    }
+  }
+`;
+
+/**
+ * __useGetAllVehicleBrandComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllVehicleBrandComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllVehicleBrandComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllVehicleBrandComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllVehicleBrandComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllVehicleBrandComboQuery,
+    GetAllVehicleBrandComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllVehicleBrandComboQuery,
+    GetAllVehicleBrandComboQueryVariables
+  >(GetAllVehicleBrandComboDocument, options);
+}
+
+export function useGetAllVehicleBrandComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllVehicleBrandComboQuery,
+    GetAllVehicleBrandComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllVehicleBrandComboQuery,
+    GetAllVehicleBrandComboQueryVariables
+  >(GetAllVehicleBrandComboDocument, options);
+}
+
+export function useGetAllVehicleBrandComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllVehicleBrandComboQuery,
+    GetAllVehicleBrandComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllVehicleBrandComboQuery,
+    GetAllVehicleBrandComboQueryVariables
+  >(GetAllVehicleBrandComboDocument, options);
+}
+
+export type GetAllVehicleBrandComboQueryHookResult = ReturnType<
+  typeof useGetAllVehicleBrandComboQuery
+>;
+
+export type GetAllVehicleBrandComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllVehicleBrandComboLazyQuery
+>;
+
+export type GetAllVehicleBrandComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllVehicleBrandComboSuspenseQuery
+>;
+
+export type GetAllVehicleBrandComboQueryResult = Apollo.QueryResult<
+  GetAllVehicleBrandComboQuery,
+  GetAllVehicleBrandComboQueryVariables
 >;
 
 export const GetAllVehicleBrandDocument = gql`
@@ -17590,6 +20269,103 @@ export type GetAllVehicleModelQueryResult = Apollo.QueryResult<
   GetAllVehicleModelQueryVariables
 >;
 
+export const GetAllVehicleTypesComboDocument = gql`
+  query GetAllVehicleTypesCombo(
+    $limit: Int
+    $offset: Int
+    $sort: VehicleTypeOrderByWithRelationInput
+    $where: VehicleTypeWhereInput
+  ) {
+    getAllVehicleTypes(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      where: $where
+    ) {
+      id
+      name
+    }
+  }
+`;
+
+/**
+ * __useGetAllVehicleTypesComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllVehicleTypesComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllVehicleTypesComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllVehicleTypesComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllVehicleTypesComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllVehicleTypesComboQuery,
+    GetAllVehicleTypesComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllVehicleTypesComboQuery,
+    GetAllVehicleTypesComboQueryVariables
+  >(GetAllVehicleTypesComboDocument, options);
+}
+
+export function useGetAllVehicleTypesComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllVehicleTypesComboQuery,
+    GetAllVehicleTypesComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllVehicleTypesComboQuery,
+    GetAllVehicleTypesComboQueryVariables
+  >(GetAllVehicleTypesComboDocument, options);
+}
+
+export function useGetAllVehicleTypesComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllVehicleTypesComboQuery,
+    GetAllVehicleTypesComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllVehicleTypesComboQuery,
+    GetAllVehicleTypesComboQueryVariables
+  >(GetAllVehicleTypesComboDocument, options);
+}
+
+export type GetAllVehicleTypesComboQueryHookResult = ReturnType<
+  typeof useGetAllVehicleTypesComboQuery
+>;
+
+export type GetAllVehicleTypesComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllVehicleTypesComboLazyQuery
+>;
+
+export type GetAllVehicleTypesComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllVehicleTypesComboSuspenseQuery
+>;
+
+export type GetAllVehicleTypesComboQueryResult = Apollo.QueryResult<
+  GetAllVehicleTypesComboQuery,
+  GetAllVehicleTypesComboQueryVariables
+>;
+
 export const GetAllVehicleTypesDocument = gql`
   query GetAllVehicleTypes(
     $limit: Int
@@ -17691,4 +20467,106 @@ export type GetAllVehicleTypesSuspenseQueryHookResult = ReturnType<
 export type GetAllVehicleTypesQueryResult = Apollo.QueryResult<
   GetAllVehicleTypesQuery,
   GetAllVehicleTypesQueryVariables
+>;
+
+export const GetAllVehiclesComboDocument = gql`
+  query GetAllVehiclesCombo(
+    $limit: Int
+    $offset: Int
+    $sort: VehicleOrderByWithRelationInput
+    $where: VehicleWhereInput
+  ) {
+    getAllVehicles(limit: $limit, offset: $offset, sort: $sort, where: $where) {
+      antt
+      color
+      id
+      isIpvaPaid
+      model_id
+      plate
+      registration
+      renavam
+      year
+      VehicleModel {
+        name
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetAllVehiclesComboQuery__
+ *
+ * To run a query within a React component, call `useGetAllVehiclesComboQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllVehiclesComboQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllVehiclesComboQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      sort: // value for 'sort'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllVehiclesComboQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAllVehiclesComboQuery,
+    GetAllVehiclesComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetAllVehiclesComboQuery,
+    GetAllVehiclesComboQueryVariables
+  >(GetAllVehiclesComboDocument, options);
+}
+
+export function useGetAllVehiclesComboLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAllVehiclesComboQuery,
+    GetAllVehiclesComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetAllVehiclesComboQuery,
+    GetAllVehiclesComboQueryVariables
+  >(GetAllVehiclesComboDocument, options);
+}
+
+export function useGetAllVehiclesComboSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetAllVehiclesComboQuery,
+    GetAllVehiclesComboQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetAllVehiclesComboQuery,
+    GetAllVehiclesComboQueryVariables
+  >(GetAllVehiclesComboDocument, options);
+}
+
+export type GetAllVehiclesComboQueryHookResult = ReturnType<
+  typeof useGetAllVehiclesComboQuery
+>;
+
+export type GetAllVehiclesComboLazyQueryHookResult = ReturnType<
+  typeof useGetAllVehiclesComboLazyQuery
+>;
+
+export type GetAllVehiclesComboSuspenseQueryHookResult = ReturnType<
+  typeof useGetAllVehiclesComboSuspenseQuery
+>;
+
+export type GetAllVehiclesComboQueryResult = Apollo.QueryResult<
+  GetAllVehiclesComboQuery,
+  GetAllVehiclesComboQueryVariables
 >;

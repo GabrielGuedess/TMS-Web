@@ -71,6 +71,8 @@ const CreateICMSRef: ForwardRefRenderFunction<
 
       toast.success('ICMS criado com sucesso!');
 
+      router.refresh();
+
       router.push(`/dashboard/icms/${ICMS.data?.createIcms.id}/general`);
     } catch (error) {
       if (error instanceof ApolloError) {

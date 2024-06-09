@@ -218,6 +218,8 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
 
       toast.success('Cotação criado com sucesso!');
 
+      router.refresh();
+
       router.push(
         `/dashboard/own-drivers/${LegalClientQuoteTable.data?.createLegalClientQuoteTable.id}/general`,
       );

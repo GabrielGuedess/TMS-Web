@@ -80,6 +80,8 @@ const CreateUserRef: ForwardRefRenderFunction<
 
       toast.success('Usuário criado com sucesso!');
 
+      router.refresh();
+
       router.push(`/dashboard/users/${user.data?.createUser.id}/general`);
     } catch (error) {
       if (error instanceof ApolloError) {

@@ -79,13 +79,6 @@ const SideNavbarRef: ForwardRefRenderFunction<HTMLElement, SideNavbarProps> = (
         />
 
         <SideButton
-          isOpen={isOpen}
-          icon={PriceIcon}
-          title="Cotação Jurídico"
-          href="/dashboard/legal-client-quote-tables"
-        />
-
-        <SideButton
           title="ICMS"
           isOpen={isOpen}
           icon={IcmsIcon}
@@ -105,6 +98,27 @@ const SideNavbarRef: ForwardRefRenderFunction<HTMLElement, SideNavbarProps> = (
           icon={WarningIcon}
           href="/dashboard/incidents"
         />
+
+        <DropdownSide
+          title="Cotação"
+          icon={PriceIcon}
+          isNavbarOpen={isOpen}
+          subPath="/dashboard/quotes"
+        >
+          <SideButton
+            title="Físico"
+            isOpen={isOpen}
+            href="/dashboard/physical-customer-quote-tables"
+            isSubButton
+          />
+
+          <SideButton
+            isOpen={isOpen}
+            title="Jurídico"
+            href="/dashboard/legal-client-quote-tables"
+            isSubButton
+          />
+        </DropdownSide>
 
         <DropdownSide
           title="Pedidos"

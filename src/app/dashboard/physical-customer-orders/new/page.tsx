@@ -1,7 +1,7 @@
 import { Breadcrumb } from 'components/atoms/Breadcrumb';
 import { CreatePhysicalCustomerOrder } from 'components/organisms/CreatePhysicalCustomerOrder';
 
-const NewUser = async () => (
+const Page = async () => (
   <section className="flex flex-col gap-4 md:grid-cols-2 md:gap-6">
     <Breadcrumb pageName="Novo Pedido Físico" />
 
@@ -9,4 +9,4 @@ const NewUser = async () => (
   </section>
 );
 
-export default NewUser;
+export default Page;

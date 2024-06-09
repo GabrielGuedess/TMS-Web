@@ -6,6 +6,8 @@ import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import * as Accordion from '@radix-ui/react-accordion';
 
+import { ChevronDown } from 'components/atoms/ChevronDown';
+
 import { type DropdownSideProps } from './types';
 
 export const DropdownSide = ({
@@ -21,35 +23,41 @@ export const DropdownSide = ({
 
   return (
     <Accordion.Item value={subPath} className="min-w-min">
-      <Accordion.Trigger>
-        <div
+      <Accordion.Trigger asChild>
+        <button
           className={twMerge(
             clsx(
-              'flex w-auto items-center gap-9 rounded-xl p-3 outline-primary-400 transition-all',
+              'flex w-auto items-center gap-9 rounded-xl p-3 outline-primary-400 transition-all [&[data-state=open]>div>svg]:rotate-180',
               'text-comet-500 dark:text-dark-300',
-              'hover:bg-primary-400/90 hover:text-white-lilac-50 focus:bg-primary-400/90 focus:text-white-lilac-50 dark:hover:text-white-lilac-50',
+              'hover:bg-primary-400/90 hover:text-white-lilac-50 dark:hover:text-white-lilac-50',
               {
                 'lg:w-64 lg:rounded lg:px-6 lg:py-2': isNavbarOpen,
                 'bg-primary-400/90': isDropdownOpen && !isNavbarOpen,
               },
             ),
           )}
+          type="button"
         >
           <Icon size={24} />
 
           <div
-            className={clsx('text-[0.938rem] font-light lg:flex', {
-              'lg:hidden': !isNavbarOpen,
-            })}
+            className={clsx(
+              'flex-1 items-center justify-between text-[0.938rem] font-light lg:flex',
+              {
+                'lg:hidden': !isNavbarOpen,
+              },
+            )}
           >
             <span>{title}</span>
+
+            <ChevronDown className="hidden size-4 shrink-0 transition-transform duration-200 lg:flex" />
           </div>
-        </div>
+        </button>
       </Accordion.Trigger>
 
       <Accordion.Content
         className={clsx(
-          'flex min-w-min flex-col gap-2 data-[state="open"]:mt-4',
+          'min-w-min overflow-hidden data-[state="open"]:mt-2 data-[state="open"]:flex data-[state="closed"]:animate-accordion-up data-[state="open"]:animate-accordion-down data-[state="open"]:flex-col data-[state="open"]:gap-2',
           {
             hidden: !isNavbarOpen,
           },

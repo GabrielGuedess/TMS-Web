@@ -827,7 +827,7 @@ export const DataTableVehicleBodyWorks = ({
           </div>
 
           <div className="relative flex flex-1 gap-3 md:flex-initial">
-            <Link href="/dashboard/vehicle-types/new">
+            <Link href="/dashboard/vehicle-bodyworks/new">
               <Button variant="label">Adicionar Carroceria de Veículo</Button>
             </Link>
 
@@ -933,7 +933,7 @@ export const DataTableVehicleBodyWorks = ({
                   >
                     {selectedRows.length === 1 && (
                       <Link
-                        href={`/dashboard/vehicle-types/${selectedRows[0].id}/general`}
+                        href={`/dashboard/vehicle-bodyworks/${selectedRows[0].id}/general`}
                         className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
                       >
                         <SendAngleIcon size={20} />

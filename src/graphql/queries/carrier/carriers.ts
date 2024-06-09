@@ -21,6 +21,10 @@ export const QUERY_CARRIERS = gql`
       rntrc
       updated_at
       updated_by
+      LegalPerson {
+        cnpj
+        fantasy_name
+      }
     }
   }
 `;

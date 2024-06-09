@@ -1,24 +1,23 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_RECIPIENTS = gql`
-  query GetAllRecipient(
-    $limit: Int
-    $offset: Int
-    $sort: RecipientOrderByWithRelationInput
-    $where: RecipientWhereInput
-  ) {
-    totalRecipients(where: $where)
-    getAllRecipient(
-      limit: $limit
-      offset: $offset
-      sort: $sort
-      where: $where
-    ) {
+export const QUERY_RECIPIENT = gql`
+  query GetRecipient($getRecipientId: String) {
+    getRecipient(id: $getRecipientId) {
       created_by
       id
       legal_person_id
       natural_person_id
       updated_by
+      LegalPerson {
+        id
+        fantasy_name
+        cnpj
+      }
+      NaturalPerson {
+        id
+        cpf
+        name
+      }
     }
   }
 `;

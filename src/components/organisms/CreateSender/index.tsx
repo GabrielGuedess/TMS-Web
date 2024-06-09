@@ -38,6 +38,7 @@ const CreateSenderRef: ForwardRefRenderFunction<
   CreateSenderProps
 > = ({ className, ...props }, ref) => {
   const [isLoading, setIsLoading] = useState(false);
+
   const [isLoadingSearchNaturalPerson, setIsLoadingSearchNaturalPerson] =
     useState(false);
   const [isLoadingSearchLegalPerson, setIsLoadingSearchLegalPerson] =
@@ -145,6 +146,8 @@ const CreateSenderRef: ForwardRefRenderFunction<
       });
 
       toast.success('Remetente criado com sucesso!');
+
+      router.refresh();
 
       router.push(`/dashboard/senders/${Sender.data?.createSender.id}/general`);
     } catch (error) {

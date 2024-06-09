@@ -11,6 +11,10 @@ export type CarrierProps = {
   updated_by: string;
   legalPersonId: string;
   __typename?: 'CarrierCompanyModel';
+  LegalPerson: {
+    cnpj: string;
+    fantasy_name: string;
+  };
   updated_at: Date;
   created_at: Date;
 };

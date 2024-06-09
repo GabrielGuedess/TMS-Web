@@ -132,6 +132,8 @@ const CreateOwnDriverRef: ForwardRefRenderFunction<
 
       toast.success('Motorista Próprio criado com sucesso!');
 
+      router.refresh();
+
       router.push(
         `/dashboard/own-drivers/${ownDriver.data?.createOwnDriver.id}/general`,
       );

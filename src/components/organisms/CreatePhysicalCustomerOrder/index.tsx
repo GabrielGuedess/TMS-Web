@@ -16,7 +16,7 @@ import {
   useGetAllCarrierCompanyComboQuery,
   useGetAllPhysicalCustomerComboQuery,
   useCreatePhysicalCustomerOrderMutation,
-  useGetAllLegalClientQuoteTableComboQuery,
+  useGetAllPhysicalCustomerQuoteTableComboQuery,
 } from 'graphql/generated';
 
 import { toast } from 'sonner';
@@ -48,14 +48,16 @@ const CreatePhysicalCustomerOrderRef: ForwardRefRenderFunction<
   const [isLoadingSearchPhysicalCustomer, setIsLoadingSearchPhysicalCustomer] =
     useState(false);
   const [
-    isLoadingSearchLegalClientQuoteTable,
-    setIsLoadingSearchLegalClientQuoteTable,
+    isLoadingSearchPhysicalCustomerQuoteTable,
+    setIsLoadingSearchPhysicalCustomerQuoteTable,
   ] = useState(false);
 
   const [searchCarrier, setSearchCarrier] = useState('');
   const [searchPhysicalCustomer, setSearchPhysicalCustomer] = useState('');
-  const [searchLegalClientQuoteTable, setSearchLegalClientQuoteTable] =
-    useState('');
+  const [
+    searchPhysicalCustomerQuoteTable,
+    setSearchPhysicalCustomerQuoteTable,
+  ] = useState('');
 
   const router = useRouter();
 
@@ -69,9 +71,9 @@ const CreatePhysicalCustomerOrderRef: ForwardRefRenderFunction<
     useGetAllPhysicalCustomerComboQuery();
 
   const {
-    data: dataLegalClientQuoteTable,
-    refetch: refetchLegalClientQuoteTable,
-  } = useGetAllLegalClientQuoteTableComboQuery();
+    data: dataPhysicalCustomerQuoteTable,
+    refetch: refetchPhysicalCustomerQuoteTable,
+  } = useGetAllPhysicalCustomerQuoteTableComboQuery();
 
   const {
     control,
@@ -142,17 +144,17 @@ const CreatePhysicalCustomerOrderRef: ForwardRefRenderFunction<
     }
   };
 
-  const handleSearchLegalClientQuoteTable = async () => {
-    setIsLoadingSearchLegalClientQuoteTable(true);
+  const handleSearchPhysicalCustomerQuoteTable = async () => {
+    setIsLoadingSearchPhysicalCustomerQuoteTable(true);
 
     try {
-      await refetchLegalClientQuoteTable({
+      await refetchPhysicalCustomerQuoteTable({
         where: {
           OR: [
             {
               cod_quote: {
                 mode: QueryMode.Insensitive,
-                contains: searchLegalClientQuoteTable,
+                contains: searchPhysicalCustomerQuoteTable,
               },
             },
           ],
@@ -161,7 +163,7 @@ const CreatePhysicalCustomerOrderRef: ForwardRefRenderFunction<
     } catch {
       toast.error('Erro ao carregar as Cotações!');
     } finally {
-      setIsLoadingSearchLegalClientQuoteTable(false);
+      setIsLoadingSearchPhysicalCustomerQuoteTable(false);
     }
   };
 
@@ -177,13 +179,13 @@ const CreatePhysicalCustomerOrderRef: ForwardRefRenderFunction<
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
-      if (searchLegalClientQuoteTable !== '') {
-        handleSearchLegalClientQuoteTable();
+      if (searchPhysicalCustomerQuoteTable !== '') {
+        handleSearchPhysicalCustomerQuoteTable();
       }
     }, 1000);
 
     return () => clearTimeout(delayDebounce);
-  }, [searchLegalClientQuoteTable]);
+  }, [searchPhysicalCustomerQuoteTable]);
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
@@ -211,6 +213,8 @@ const CreatePhysicalCustomerOrderRef: ForwardRefRenderFunction<
       });
 
       toast.success('Pedido Físico criado com sucesso!');
+
+      router.refresh();
 
       router.push(
         `/dashboard/own-drivers/${PhysicalCustomerOrder.data?.createPhysicalCustomerOrder.id}/general`,
@@ -299,24 +303,24 @@ const CreatePhysicalCustomerOrderRef: ForwardRefRenderFunction<
           <Controller
             render={({ field: { value, onChange } }) => (
               <ComboBox
-                values={dataLegalClientQuoteTable?.getAllLegalClientQuoteTable?.map(
+                values={dataPhysicalCustomerQuoteTable?.getAllPhysicalCustomerQuoteTable?.map(
                   item => ({
                     id: item.id,
                     description: `${item.codQuote}`,
                   }),
                 )}
                 value={value}
-                label="Cotação Jurídica"
+                label="Cotação Física"
                 setValue={item => onChange(item)}
                 isInvalid={!!errors.quoteTable?.id}
-                search={searchLegalClientQuoteTable}
-                setSearch={setSearchLegalClientQuoteTable}
-                placeholder="Selecione a Cotação Jurídica"
+                placeholder="Selecione a Cotação Física"
+                search={searchPhysicalCustomerQuoteTable}
+                emptyMessage="Cotação Física não encontrado"
                 errorMessage={errors.quoteTable?.id?.message}
-                emptyMessage="Cotação Jurídica não encontrado"
                 className="bg-transparent dark:bg-transparent"
-                isLoading={isLoadingSearchLegalClientQuoteTable}
-                placeholderCommand="Pesquise a Cotação Jurídica..."
+                setSearch={setSearchPhysicalCustomerQuoteTable}
+                placeholderCommand="Pesquise a Cotação Física..."
+                isLoading={isLoadingSearchPhysicalCustomerQuoteTable}
               />
             )}
             control={control}

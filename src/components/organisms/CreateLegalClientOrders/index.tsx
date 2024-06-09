@@ -209,6 +209,8 @@ const CreateLegalClientOrderRef: ForwardRefRenderFunction<
 
       toast.success('Pedido Jurídico criado com sucesso!');
 
+      router.refresh();
+
       router.push(
         `/dashboard/legal-client-orders/${legalClientOrder.data?.createLegalClientOrder.id}/general`,
       );

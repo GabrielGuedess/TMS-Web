@@ -18,13 +18,6 @@ export default {
         'auto-fill': 'repeat(auto-fill, minmax(15.625rem, 1fr));',
         'auto-fill-card': 'repeat(auto-fill, minmax(21.094rem, 1fr));',
       },
-      animation: {
-        lights: 'lights 5s 750ms linear infinite',
-        contentShow: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
-        overlayShow: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
-        slideDownAndFade:
-          'slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
-      },
       boxShadow: {
         card: '0px 1px 3px rgba(0, 0, 0, 0.12)',
         'switch-1': '0px 0px 5px rgba(0, 0, 0, 0.15)',
@@ -33,10 +26,27 @@ export default {
         switcher:
           '0px 2px 4px rgba(0, 0, 0, 0.2), inset 0px 2px 2px #FFFFFF, inset 0px -1px 1px rgba(0, 0, 0, 0.1)',
       },
+      animation: {
+        lights: 'lights 5s 750ms linear infinite',
+        contentShow: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+        overlayShow: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+        'accordion-up': 'accordion-up 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+        'accordion-down': 'accordion-down 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+        slideDownAndFade:
+          'slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+      },
       keyframes: {
         overlayShow: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        'accordion-up': {
+          to: { height: '0' },
+          from: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         slideDownAndFade: {
           '100%': {

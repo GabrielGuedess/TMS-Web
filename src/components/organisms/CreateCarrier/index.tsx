@@ -109,6 +109,8 @@ const CreateCarrierRef: ForwardRefRenderFunction<
 
       toast.success('Transportadora criado com sucesso!');
 
+      router.refresh();
+
       router.push(
         `/dashboard/carrier-companies/${carrier.data?.createCarrierCompany.id}/general`,
       );
