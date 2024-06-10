@@ -19,7 +19,6 @@ const naturalPersonManual = z
     cpf: z.string(),
     city: z.string(),
     name: z.string(),
-    gender: z.string(),
     nationality: z.string(),
     uf: z.nativeEnum(UfEnum),
     neighborhood: z.string(),
@@ -30,6 +29,7 @@ const naturalPersonManual = z
     third_phone: z.string().optional().nullable(),
     date_birth: z.date().default(dayjs().toDate()),
     second_phone: z.string().optional().nullable(),
+    gender: z.enum(['Masculino', 'Feminino']).default('Masculino'),
     first_phone: z.string().min(11, 'No deve ter no mínimo 8 caracteres'),
   })
   .strict()

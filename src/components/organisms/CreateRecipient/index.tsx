@@ -353,6 +353,20 @@ const CreateRecipientRef: ForwardRefRenderFunction<
               <Controller
                 render={({ field: { value, onChange } }) => (
                   <Input
+                    mask={[
+                      /\d/,
+                      /\d/,
+                      '.',
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      '.',
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      '-',
+                      /\d/,
+                    ]}
                     label="RG"
                     value={value}
                     aria-label="RG"
@@ -370,16 +384,16 @@ const CreateRecipientRef: ForwardRefRenderFunction<
 
               <Controller
                 render={({ field: { value, onChange } }) => (
-                  <Input
+                  <Select
                     value={value}
                     label="Gênero"
                     aria-label="Gênero"
-                    onChange={onChange}
                     placeholder="Gênero"
+                    onValueChange={onChange}
+                    className="p-3 dark:bg-smoke-950"
+                    values={['Masculino', 'Feminino']}
                     isInvalid={!!errors.naturalPersonManual?.gender?.message}
                     errorMessage={errors.naturalPersonManual?.gender?.message}
-                    required
-                    isFullWidth
                   />
                 )}
                 control={control}
@@ -395,6 +409,23 @@ const CreateRecipientRef: ForwardRefRenderFunction<
                     errorMessage={
                       errors.naturalPersonManual?.first_phone?.message
                     }
+                    mask={[
+                      '(',
+                      /\d/,
+                      /\d/,
+                      ')',
+                      ' ',
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      '-',
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                    ]}
                     value={value}
                     label="Celular"
                     onChange={onChange}
@@ -492,6 +523,7 @@ const CreateRecipientRef: ForwardRefRenderFunction<
                     onChange={onChange}
                     isInvalid={!!errors.naturalPersonManual?.cep?.message}
                     errorMessage={errors.naturalPersonManual?.cep?.message}
+                    mask={[/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
                     required
                     isFullWidth
                   />
@@ -572,6 +604,7 @@ const CreateRecipientRef: ForwardRefRenderFunction<
                       errors.naturalPersonManual?.address_number?.message
                     }
                     value={value}
+                    type="number"
                     label="Numero"
                     aria-label="Numero"
                     onChange={onChange}
@@ -676,6 +709,23 @@ const CreateRecipientRef: ForwardRefRenderFunction<
                     errorMessage={
                       errors.legalPersonManual?.first_phone?.message
                     }
+                    mask={[
+                      '(',
+                      /\d/,
+                      /\d/,
+                      ')',
+                      ' ',
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      '-',
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                    ]}
                     value={value}
                     label="Celular"
                     onChange={onChange}
@@ -738,6 +788,7 @@ const CreateRecipientRef: ForwardRefRenderFunction<
                     onChange={onChange}
                     isInvalid={!!errors.legalPersonManual?.cep?.message}
                     errorMessage={errors.legalPersonManual?.cep?.message}
+                    mask={[/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
                     required
                     isFullWidth
                   />

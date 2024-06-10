@@ -179,14 +179,14 @@ export const DataTableSenders = ({ ...props }: DataTableSendersProps) => {
         filter: true,
         editable: true,
         field: 'legal_person_id',
-        headerName: 'Pessoa Física',
+        headerName: 'Pessoa Jurídica',
         filterParams: filterParametersText,
       },
       {
         filter: true,
         editable: true,
         field: 'natural_person_id',
-        headerName: 'Pessoa Natural',
+        headerName: 'Pessoa Física',
         filterParams: filterParametersText,
       },
       {

@@ -8625,15 +8625,45 @@ export type GetRecipientQuery = {
     natural_person_id?: null | string;
     NaturalPerson?: null | {
       id: string;
+      rg: string;
+      uf: string;
+      cep: string;
       cpf: string;
+      city: string;
       name: string;
+      email: string;
+      gender: string;
+      date_birth: any;
+      first_phone: string;
+      nationality: string;
+      neighborhood: string;
+      public_place: string;
+      address_number: string;
+      complement?: null | string;
+      third_phone?: null | string;
+      second_phone?: null | string;
       __typename?: 'NaturalPersonModel';
     };
     LegalPerson?: null | {
       id: string;
+      uf: string;
+      cep: string;
+      city: string;
       cnpj: string;
+      email: string;
+      first_phone: string;
       fantasy_name: string;
+      neighborhood: string;
+      public_place: string;
+      address_number: string;
+      corporate_name: string;
+      complement?: null | string;
+      state_registration: string;
+      third_phone?: null | string;
+      second_phone?: null | string;
       __typename?: 'LegalPersonModel';
+      updated_at: any;
+      created_at: any;
     };
   };
 };
@@ -8683,6 +8713,64 @@ export type GetAllSenderComboQuery = {
       __typename?: 'LegalPersonModel';
     };
   }>;
+};
+
+export type GetSenderQueryVariables = Exact<{
+  getSenderId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetSenderQuery = {
+  __typename?: 'Query';
+  getSender: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    __typename?: 'SenderModel';
+    legal_person_id?: null | string;
+    natural_person_id?: null | string;
+    NaturalPerson?: null | {
+      id: string;
+      rg: string;
+      uf: string;
+      cep: string;
+      cpf: string;
+      city: string;
+      name: string;
+      email: string;
+      gender: string;
+      date_birth: any;
+      first_phone: string;
+      nationality: string;
+      neighborhood: string;
+      public_place: string;
+      address_number: string;
+      complement?: null | string;
+      third_phone?: null | string;
+      second_phone?: null | string;
+      __typename?: 'NaturalPersonModel';
+    };
+    LegalPerson?: null | {
+      id: string;
+      uf: string;
+      cep: string;
+      city: string;
+      cnpj: string;
+      email: string;
+      first_phone: string;
+      fantasy_name: string;
+      neighborhood: string;
+      public_place: string;
+      address_number: string;
+      corporate_name: string;
+      complement?: null | string;
+      state_registration: string;
+      third_phone?: null | string;
+      second_phone?: null | string;
+      __typename?: 'LegalPersonModel';
+      updated_at: any;
+      created_at: any;
+    };
+  };
 };
 
 export type GetAllSenderQueryVariables = Exact<{
@@ -20253,21 +20341,51 @@ export type GetAllRecipientComboQueryResult = Apollo.QueryResult<
 export const GetRecipientDocument = gql`
   query GetRecipient($getRecipientId: String) {
     getRecipient(id: $getRecipientId) {
+      LegalPerson {
+        address_number
+        cep
+        city
+        cnpj
+        complement
+        corporate_name
+        created_at
+        email
+        fantasy_name
+        first_phone
+        id
+        neighborhood
+        public_place
+        second_phone
+        state_registration
+        third_phone
+        uf
+        updated_at
+      }
+      NaturalPerson {
+        address_number
+        cep
+        city
+        complement
+        cpf
+        date_birth
+        email
+        first_phone
+        gender
+        id
+        name
+        nationality
+        neighborhood
+        public_place
+        rg
+        second_phone
+        third_phone
+        uf
+      }
       created_by
       id
       legal_person_id
       natural_person_id
       updated_by
-      LegalPerson {
-        id
-        fantasy_name
-        cnpj
-      }
-      NaturalPerson {
-        id
-        cpf
-        name
-      }
     }
   }
 `;
@@ -20547,6 +20665,131 @@ export type GetAllSenderComboSuspenseQueryHookResult = ReturnType<
 export type GetAllSenderComboQueryResult = Apollo.QueryResult<
   GetAllSenderComboQuery,
   GetAllSenderComboQueryVariables
+>;
+
+export const GetSenderDocument = gql`
+  query GetSender($getSenderId: String) {
+    getSender(id: $getSenderId) {
+      LegalPerson {
+        address_number
+        cep
+        city
+        cnpj
+        complement
+        corporate_name
+        created_at
+        email
+        fantasy_name
+        first_phone
+        id
+        neighborhood
+        public_place
+        second_phone
+        state_registration
+        third_phone
+        uf
+        updated_at
+      }
+      NaturalPerson {
+        address_number
+        cep
+        city
+        complement
+        cpf
+        date_birth
+        email
+        first_phone
+        gender
+        id
+        name
+        nationality
+        neighborhood
+        public_place
+        rg
+        second_phone
+        third_phone
+        uf
+      }
+      created_by
+      id
+      legal_person_id
+      natural_person_id
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetSenderQuery__
+ *
+ * To run a query within a React component, call `useGetSenderQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSenderQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSenderQuery({
+ *   variables: {
+ *      getSenderId: // value for 'getSenderId'
+ *   },
+ * });
+ */
+export function useGetSenderQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetSenderQuery,
+    GetSenderQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<GetSenderQuery, GetSenderQueryVariables>(
+    GetSenderDocument,
+    options,
+  );
+}
+
+export function useGetSenderLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetSenderQuery,
+    GetSenderQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<GetSenderQuery, GetSenderQueryVariables>(
+    GetSenderDocument,
+    options,
+  );
+}
+
+export function useGetSenderSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetSenderQuery,
+    GetSenderQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<GetSenderQuery, GetSenderQueryVariables>(
+    GetSenderDocument,
+    options,
+  );
+}
+
+export type GetSenderQueryHookResult = ReturnType<typeof useGetSenderQuery>;
+
+export type GetSenderLazyQueryHookResult = ReturnType<
+  typeof useGetSenderLazyQuery
+>;
+
+export type GetSenderSuspenseQueryHookResult = ReturnType<
+  typeof useGetSenderSuspenseQuery
+>;
+
+export type GetSenderQueryResult = Apollo.QueryResult<
+  GetSenderQuery,
+  GetSenderQueryVariables
 >;
 
 export const GetAllSenderDocument = gql`

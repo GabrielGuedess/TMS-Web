@@ -14,6 +14,9 @@ const naturalPerson = z
 
 const naturalPersonManual = z
   .object({
+    rg: z.string(),
+    cep: z.string(),
+    cpf: z.string(),
     city: z.string(),
     name: z.string(),
     nationality: z.string(),
@@ -26,14 +29,8 @@ const naturalPersonManual = z
     third_phone: z.string().optional().nullable(),
     date_birth: z.date().default(dayjs().toDate()),
     second_phone: z.string().optional().nullable(),
-    rg: z.string().transform(value => onlyNumbers(value)),
-    cep: z.string().transform(value => onlyNumbers(value)),
-    cpf: z.string().transform(value => onlyNumbers(value)),
     gender: z.enum(['Masculino', 'Feminino']).default('Masculino'),
-    first_phone: z
-      .string()
-      .min(11, 'No deve ter no mínimo 8 caracteres')
-      .transform(value => onlyNumbers(value)),
+    first_phone: z.string().min(11, 'No deve ter no mínimo 8 caracteres'),
   })
   .strict()
   .nullable()
@@ -41,6 +38,7 @@ const naturalPersonManual = z
 
 const legalPersonManual = z
   .object({
+    cep: z.string(),
     city: z.string(),
     fantasy_name: z.string(),
     uf: z.nativeEnum(UfEnum),
@@ -52,13 +50,9 @@ const legalPersonManual = z
     complement: z.string().optional().nullable(),
     third_phone: z.string().optional().nullable(),
     second_phone: z.string().optional().nullable(),
-    cep: z.string().transform(value => onlyNumbers(value)),
     cnpj: z.string().transform(value => onlyNumbers(value)),
+    first_phone: z.string().min(11, 'No deve ter no mínimo 11 caracteres'),
     state_registration: z.string().min(8, 'No deve ter no mínimo 8 caracteres'),
-    first_phone: z
-      .string()
-      .min(11, 'No deve ter no mínimo 8 caracteres')
-      .transform(value => onlyNumbers(value)),
   })
   .strict()
   .nullable()
@@ -71,7 +65,7 @@ const legalPerson = z
   })
   .strict();
 
-export const createSenderSchema = z
+export const senderGeneralSchema = z
   .object({
     legalPerson,
     naturalPerson,

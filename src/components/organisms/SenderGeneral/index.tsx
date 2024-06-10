@@ -1,7 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { useForm, Controller } from 'react-hook-form';
 import {
   useState,
@@ -14,12 +12,13 @@ import {
 import {
   UfEnum,
   QueryMode,
-  useCreateSenderMutation,
+  useUpdateSenderMutation,
   useGetAllLegalPersonComboQuery,
   useGetAllNaturalPersonComboQuery,
 } from 'graphql/generated';
 
 import clsx from 'clsx';
+import dayjs from 'dayjs';
 import { toast } from 'sonner';
 import { twMerge } from 'tailwind-merge';
 import { ApolloError } from '@apollo/client';
@@ -34,17 +33,17 @@ import { CloseIcon } from 'components/atoms/CloseIcon';
 import { ComboBox } from 'components/molecules/Combobox';
 import { DatePicker } from 'components/molecules/DatePicker';
 
-import { createSenderSchema } from './schema';
+import { senderGeneralSchema } from './schema';
 import {
-  type CreateSenderProps,
-  type CreateSenderInputProps,
-  type CreateSenderOutputProps,
+  type SenderGeneralProps,
+  type SenderGeneralInputProps,
+  type SenderGeneralOutputProps,
 } from './types';
 
-const CreateSenderRef: ForwardRefRenderFunction<
+const SenderGeneralRef: ForwardRefRenderFunction<
   ElementRef<'div'>,
-  CreateSenderProps
-> = ({ className, ...props }, ref) => {
+  SenderGeneralProps
+> = ({ data, className, ...props }, ref) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [isLoadingSearchNaturalPerson, setIsLoadingSearchNaturalPerson] =
@@ -55,9 +54,7 @@ const CreateSenderRef: ForwardRefRenderFunction<
   const [searchLegalPerson, setSearchLegalPerson] = useState('');
   const [searchNaturalPerson, setSearchNaturalPerson] = useState('');
 
-  const router = useRouter();
-
-  const [createSender] = useCreateSenderMutation();
+  const [updateSender] = useUpdateSenderMutation();
 
   const { data: dataNaturalPersons, refetch: refetchNaturalPersons } =
     useGetAllNaturalPersonComboQuery();
@@ -71,19 +68,65 @@ const CreateSenderRef: ForwardRefRenderFunction<
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateSenderInputProps>({
-    resolver: zodResolver(createSenderSchema),
+  } = useForm<SenderGeneralInputProps>({
+    resolver: zodResolver(senderGeneralSchema),
     defaultValues: {
-      type: 'Física',
-      reference: 'auto',
+      reference: 'manual',
+      type: data?.getSender?.NaturalPerson?.cpf ? 'Física' : 'Jurídica',
       legalPerson: {
-        id: '',
-        description: '',
+        id: data?.getSender?.legal_person_id ?? '',
+        description: data?.getSender?.LegalPerson?.cnpj ?? '',
       },
       naturalPerson: {
-        id: '',
-        description: '',
+        id: data?.getSender?.natural_person_id ?? '',
+        description: data?.getSender?.NaturalPerson?.cpf ?? '',
       },
+      ...(data?.getSender?.LegalPerson?.cnpj && {
+        legalPersonManual: {
+          cep: data?.getSender?.LegalPerson?.cep,
+          cnpj: data?.getSender?.LegalPerson?.cnpj,
+          city: data?.getSender?.LegalPerson?.city,
+          email: data?.getSender?.LegalPerson?.email,
+
+          uf: data?.getSender?.LegalPerson?.uf as UfEnum,
+          complement: data?.getSender?.LegalPerson?.complement,
+          first_phone: data?.getSender?.LegalPerson?.first_phone,
+          third_phone: data?.getSender?.LegalPerson?.third_phone,
+          fantasy_name: data?.getSender?.LegalPerson?.fantasy_name,
+          neighborhood: data?.getSender?.LegalPerson?.neighborhood,
+          public_place: data?.getSender?.LegalPerson?.public_place,
+          second_phone: data?.getSender?.LegalPerson?.second_phone,
+          corporate_name: data?.getSender?.LegalPerson?.corporate_name,
+          address_number: data?.getSender?.LegalPerson?.address_number,
+          state_registration: data?.getSender?.LegalPerson?.state_registration,
+        },
+      }),
+      ...(data?.getSender?.NaturalPerson?.cpf && {
+        naturalPersonManual: {
+          rg: data?.getSender?.NaturalPerson?.rg,
+          cep: data?.getSender?.NaturalPerson?.cep,
+          cpf: data?.getSender?.NaturalPerson?.cpf,
+          city: data?.getSender?.NaturalPerson?.city,
+          name: data?.getSender?.NaturalPerson?.name,
+          email: data?.getSender?.NaturalPerson?.email,
+          uf: data?.getSender?.NaturalPerson?.uf as UfEnum,
+          complement: data?.getSender?.NaturalPerson?.complement,
+          first_phone: data?.getSender?.NaturalPerson?.first_phone,
+          nationality: data?.getSender?.NaturalPerson?.nationality,
+          third_phone: data?.getSender?.NaturalPerson?.third_phone,
+          neighborhood: data?.getSender?.NaturalPerson?.neighborhood,
+          public_place: data?.getSender?.NaturalPerson?.public_place,
+          second_phone: data?.getSender?.NaturalPerson?.second_phone,
+          address_number: data?.getSender?.NaturalPerson?.address_number,
+          date_birth: dayjs(
+            data?.getSender?.NaturalPerson?.date_birth as Date,
+          ).toDate(),
+          gender:
+            data?.getSender?.NaturalPerson?.gender === 'Masculino'
+              ? 'Masculino'
+              : 'Feminino',
+        },
+      }),
     },
   });
 
@@ -145,48 +188,98 @@ const CreateSenderRef: ForwardRefRenderFunction<
     }
   };
 
-  const handleCreate = async (data: CreateSenderOutputProps) => {
+  const handleUpdate = async (newData: SenderGeneralOutputProps) => {
     setIsLoading(true);
 
     try {
-      const Sender = await createSender({
+      await updateSender({
         variables: {
-          sender: {
-            ...(data.type === 'Física' &&
-              data.reference === 'manual' && {
-                NaturalPerson: data.naturalPersonManual,
+          updateSenderId: data.getSender.id,
+          data: {
+            ...(newData.type === 'Física' &&
+              newData.reference === 'manual' && {
+                NaturalPerson: {
+                  ...(data?.getSender?.NaturalPerson?.rg !==
+                    newData?.naturalPersonManual?.rg && {
+                    rg: newData?.naturalPersonManual?.rg,
+                  }),
+                  ...(data?.getSender?.NaturalPerson?.cpf !==
+                    newData?.naturalPersonManual?.cpf && {
+                    cpf: newData?.naturalPersonManual?.cpf,
+                  }),
+                  uf: newData?.naturalPersonManual?.uf,
+                  cep: newData?.naturalPersonManual?.cep,
+                  city: newData?.naturalPersonManual?.city,
+                  name: newData?.naturalPersonManual?.name,
+                  email: newData?.naturalPersonManual?.email,
+                  gender: newData?.naturalPersonManual?.gender,
+                  complement: newData?.naturalPersonManual?.complement,
+                  date_birth: newData?.naturalPersonManual?.date_birth,
+                  first_phone: newData?.naturalPersonManual?.first_phone,
+                  nationality: newData?.naturalPersonManual?.nationality,
+                  third_phone: newData?.naturalPersonManual?.third_phone,
+                  neighborhood: newData?.naturalPersonManual?.neighborhood,
+                  public_place: newData?.naturalPersonManual?.public_place,
+                  second_phone: newData?.naturalPersonManual?.second_phone,
+                  address_number: newData?.naturalPersonManual?.address_number,
+                },
               }),
-            ...(data.type === 'Jurídica' &&
-              data.reference === 'manual' && {
-                LegalPerson: data.legalPersonManual,
+            ...(newData.type === 'Jurídica' &&
+              newData.reference === 'manual' && {
+                LegalPerson: {
+                  ...(data?.getSender?.LegalPerson?.cnpj !==
+                    newData?.legalPersonManual?.cnpj && {
+                    cnpj: newData?.legalPersonManual?.cnpj,
+                  }),
+                  ...(data?.getSender?.LegalPerson?.state_registration !==
+                    newData?.legalPersonManual?.state_registration && {
+                    state_registration:
+                      newData?.legalPersonManual?.state_registration,
+                  }),
+                  ...(data?.getSender?.LegalPerson?.corporate_name !==
+                    newData?.legalPersonManual?.corporate_name && {
+                    corporate_name: newData?.legalPersonManual?.corporate_name,
+                  }),
+                  ...(data?.getSender?.LegalPerson?.fantasy_name !==
+                    newData?.legalPersonManual?.fantasy_name && {
+                    fantasy_name: newData?.legalPersonManual?.corporate_name,
+                  }),
+                  uf: newData?.legalPersonManual?.uf,
+                  cep: newData?.legalPersonManual?.cep,
+                  city: newData?.legalPersonManual?.city,
+                  email: newData?.legalPersonManual?.email,
+                  complement: newData?.legalPersonManual?.complement,
+                  first_phone: newData?.legalPersonManual?.first_phone,
+                  third_phone: newData?.legalPersonManual?.third_phone,
+                  neighborhood: newData?.legalPersonManual?.neighborhood,
+                  public_place: newData?.legalPersonManual?.public_place,
+                  second_phone: newData?.legalPersonManual?.second_phone,
+                  address_number: newData?.legalPersonManual?.address_number,
+                },
               }),
-            ...(data.type === 'Física' &&
-              data.reference === 'auto' && {
-                natural_person_id: data.naturalPerson.id,
+            ...(newData.type === 'Física' &&
+              newData.reference === 'auto' && {
+                natural_person_id: newData.naturalPerson.id,
               }),
-            ...(data.type === 'Jurídica' &&
-              data.reference === 'auto' && {
-                legal_person_id: data.legalPerson.id,
+            ...(newData.type === 'Jurídica' &&
+              newData.reference === 'auto' && {
+                legal_person_id: newData.legalPerson.id,
               }),
           },
         },
       });
 
-      toast.success('Remetente criado com sucesso!');
-
-      router.refresh();
-
-      router.push(`/dashboard/senders/${Sender.data?.createSender.id}/general`);
+      toast.success('Remetente atualizado com sucesso!');
     } catch (error) {
       if (error instanceof ApolloError) {
-        toast.error('Erro ao criar Remetente!', {
+        toast.error('Erro ao atualizar Remetente!', {
           description: error.message,
         });
 
         return;
       }
 
-      toast.error('Erro ao criar Remetente!');
+      toast.error('Erro ao atualizar Remetente!');
     } finally {
       setIsLoading(false);
     }
@@ -921,6 +1014,7 @@ const CreateSenderRef: ForwardRefRenderFunction<
               />
             </div>
           )}
+
           <div className="flex w-full justify-center">
             <button
               onClick={() => {
@@ -959,9 +1053,9 @@ const CreateSenderRef: ForwardRefRenderFunction<
         <div className="flex w-full justify-center sm:justify-end">
           <Button
             onClick={handleSubmit((values: unknown) => {
-              const data = values as CreateSenderOutputProps;
+              const update = values as SenderGeneralOutputProps;
 
-              handleCreate(data);
+              handleUpdate(update);
             })}
             type="button"
             color="success"
@@ -971,7 +1065,7 @@ const CreateSenderRef: ForwardRefRenderFunction<
             aria-label="Update Sender"
             className="min-w-[12.404rem]"
           >
-            Criar Remetente
+            Atualizar Remetente
           </Button>
         </div>
       </form>
@@ -979,4 +1073,4 @@ const CreateSenderRef: ForwardRefRenderFunction<
   );
 };
 
-export const CreateSender = forwardRef(CreateSenderRef);
+export const SenderGeneral = forwardRef(SenderGeneralRef);

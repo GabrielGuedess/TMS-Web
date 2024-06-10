@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_RECIPIENT = gql`
-  query GetRecipient($getRecipientId: String) {
-    getRecipient(id: $getRecipientId) {
+export const QUERY_SENDER = gql`
+  query GetSender($getSenderId: String) {
+    getSender(id: $getSenderId) {
       LegalPerson {
         address_number
         cep

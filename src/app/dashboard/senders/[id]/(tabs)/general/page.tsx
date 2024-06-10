@@ -1,21 +1,27 @@
 import { apollo } from 'apollo/client';
 
-import { QUERY_USER } from 'graphql/queries/user/user';
-import { type UserQuery, type UserQueryVariables } from 'graphql/generated';
+import { QUERY_SENDER } from 'graphql/queries/sender/sender';
+import {
+  type GetSenderQuery,
+  type GetSenderQueryVariables,
+} from 'graphql/generated';
 
-import { UserGeneral } from 'components/organisms/UserGeneral';
+import { SenderGeneral } from 'components/organisms/SenderGeneral';
 
 const Page = async ({ params }: { params: { id: string } }) => {
-  const { data, error } = await apollo().query<UserQuery, UserQueryVariables>({
-    query: QUERY_USER,
-    variables: { userId: params.id },
+  const { data, error } = await apollo().query<
+    GetSenderQuery,
+    GetSenderQueryVariables
+  >({
+    query: QUERY_SENDER,
+    variables: { getSenderId: params.id },
   });
 
   if (error?.message) {
     return <span>Not Found!</span>;
   }
 
-  return <UserGeneral data={data} />;
+  return <SenderGeneral data={data} />;
 };
 
 export default Page;
