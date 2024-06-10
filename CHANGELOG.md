@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.5.0...v1.6.0) (2024-06-10)
+
+
+### Features
+
+* add sender update ([cc99f3b](https://github.com/GabrielGuedess/TMS-Web/commit/cc99f3beb5d467e535554a9f5594a7625a033a3f))
+
 # [1.5.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.4.0...v1.5.0) (2024-06-10)
 
 
