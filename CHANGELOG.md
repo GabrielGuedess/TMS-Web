@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.4.0...v1.5.0) (2024-06-10)
+
+
+### Features
+
+* add new sender and recipient ([7816edf](https://github.com/GabrielGuedess/TMS-Web/commit/7816edfc3068665e18f38eee736e73618f72ad0b))
+
 # [1.4.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.3.0...v1.4.0) (2024-06-09)
 
 
