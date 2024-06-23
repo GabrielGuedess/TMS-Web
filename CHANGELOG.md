@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.7.0...v1.8.0) (2024-06-23)
+
+
+### Features
+
+* add cte in orders ([f215d1c](https://github.com/GabrielGuedess/TMS-Web/commit/f215d1c68aff198e3b101ca1d8b40bfce0a30d4e))
+
 # [1.7.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.6.0...v1.7.0) (2024-06-23)
 
 
