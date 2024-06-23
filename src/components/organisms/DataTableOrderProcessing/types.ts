@@ -9,15 +9,14 @@ import { type OptionalWithIdProps } from 'helpers/OptionalWithIdProps';
 
 export type OrderProcessingProps = {
   id: string;
-  end_at: Date;
   start_at: Date;
   driver_id: string;
   created_by: string;
   updated_by: string;
   vehicle_id: string;
   status: StatusOrder;
+  end_at?: Date | null;
   total_distance: number;
-  order_processing: string;
   total_spend_liters: number;
   total_spending_money: number;
   order_processing_number: string;

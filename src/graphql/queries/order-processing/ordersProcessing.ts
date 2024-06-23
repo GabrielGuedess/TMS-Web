@@ -19,7 +19,6 @@ export const QUERY_ORDERS_PROCESSING = gql`
       driver_id
       end_at
       id
-      order_processing
       order_processing_number
       start_at
       status

@@ -9,19 +9,14 @@ import Link from 'next/link';
 import { useMemo, useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
-import { apollo } from 'apollo/client';
-
-import { QUERY_GENERATE_PHYSICAL_CUSTOMER_CTE } from 'graphql/mutations/physical-customer-cte/generate';
 import {
   TypesCteEnum,
   useGetAllPhysicalCustomerOrderQuery,
   type PhysicalCustomerOrderWhereInput,
   useCreatePhysicalCustomerCteMutation,
-  type GeneratePhysicalCustomerCteQuery,
   type PhysicalCustomerOrderUpdateManyInput,
   useUpdateManyPhysicalCustomerOrderMutation,
   useDeleteManyPhysicalCustomerOrderMutation,
-  type GeneratePhysicalCustomerCteQueryVariables,
 } from 'graphql/generated';
 
 import clsx from 'clsx';
@@ -29,9 +24,9 @@ import dayjs from 'dayjs';
 import { toast } from 'sonner';
 import { AgGridReact } from 'ag-grid-react';
 import { ApolloError } from '@apollo/client';
-import { useSession } from 'next-auth/react';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Popover from '@radix-ui/react-popover';
+import { generateCTE } from 'actions/cte/generate';
 import { zodResolver } from '@hookform/resolvers/zod';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
@@ -113,8 +108,6 @@ export const DataTablePhysicalCustomerOrders = ({
   const [update] = useUpdateManyPhysicalCustomerOrderMutation();
   const [deletePhysicalCustomerOrders] =
     useDeleteManyPhysicalCustomerOrderMutation();
-
-  const { data } = useSession();
 
   const [createCTE] = useCreatePhysicalCustomerCteMutation();
 
@@ -386,36 +379,34 @@ export const DataTablePhysicalCustomerOrders = ({
   const handleCreateCTE = async (cte: CTESchemaProps) => {
     setIsGeneratingCTE(true);
 
-    const { data: resultCTE } = await createCTE({
-      variables: {
-        data: {
-          cteType: cte.type,
-          observations: cte.observations,
-          orderId: selectedRows?.[0]?.id ?? '',
-        },
-      },
-    });
-
-    if (resultCTE?.createPhysicalCustomerCte?.id) {
-      await apollo().query<
-        GeneratePhysicalCustomerCteQuery,
-        GeneratePhysicalCustomerCteQueryVariables
-      >({
-        query: QUERY_GENERATE_PHYSICAL_CUSTOMER_CTE,
-        context: {
-          headers: {
-            authorization: `Bearer ${data?.token}`,
-          },
-        },
+    try {
+      const { data: resultCTE } = await createCTE({
         variables: {
-          request: {
-            ctePhysicalCustomerId: resultCTE.createPhysicalCustomerCte.id,
+          data: {
+            cteType: cte.type,
+            observations: cte.observations,
+            orderId: selectedRows?.[0]?.id ?? '',
           },
         },
       });
-    }
 
-    setIsGeneratingCTE(false);
+      if (resultCTE?.createPhysicalCustomerCte?.id) {
+        const { data: generateCte } = await generateCTE({
+          request: {
+            ctePhysicalCustomerId: resultCTE?.createPhysicalCustomerCte?.id,
+          },
+        });
+        window.open(
+          generateCte.generatePhysicalCustomerCte.cteUrl,
+          '_blank',
+          'noopener,noreferrer',
+        );
+      }
+    } catch (error) {
+      toast.error(String(error));
+    } finally {
+      setIsGeneratingCTE(false);
+    }
   };
 
   const handleSearch = async ({ search }: { search: string }) => {

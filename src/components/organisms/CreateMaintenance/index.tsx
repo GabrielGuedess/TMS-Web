@@ -265,7 +265,7 @@ const CreateMaintenanceRef: ForwardRefRenderFunction<
               <ComboBox
                 values={dataVehicles?.getAllVehicles?.map(item => ({
                   id: item.id,
-                  description: `${item.VehicleModel.name} - ${item.plate}`,
+                  description: `${item?.VehicleModel?.name ?? ''} - ${item.plate}`,
                 }))}
                 value={value}
                 label="Veiculo"

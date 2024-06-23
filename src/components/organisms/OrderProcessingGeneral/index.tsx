@@ -1,7 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import {
   useState,
@@ -16,7 +14,7 @@ import {
   StatusOrder,
   useGetAllOwnDriverQuery,
   useGetAllVehiclesComboQuery,
-  useCreateOrderProcessingMutation,
+  useUpdateOrderProcessingMutation,
   useGetAllLegalClientOrderComboQuery,
   useGetAllPhysicalCustomerOrderComboQuery,
 } from 'graphql/generated';
@@ -36,17 +34,17 @@ import { ComboBox } from 'components/molecules/Combobox';
 import { DatePicker } from 'components/molecules/DatePicker';
 import { CloseCircleIcon } from 'components/atoms/CloseCircleIcon';
 
-import { createOrderProcessingSchema } from './schema';
+import { orderProcessingGeneralSchema } from './schema';
 import {
-  type CreateOrderProcessingProps,
-  type CreateOrderProcessingInputProps,
-  type CreateOrderProcessingOutputProps,
+  type OrderProcessingGeneralProps,
+  type OrderProcessingGeneralInputProps,
+  type OrderProcessingGeneralOutputProps,
 } from './types';
 
-const CreateOrderProcessingRef: ForwardRefRenderFunction<
+const OrderProcessingGeneralRef: ForwardRefRenderFunction<
   ElementRef<'div'>,
-  CreateOrderProcessingProps
-> = ({ className, ...props }, ref) => {
+  OrderProcessingGeneralProps
+> = ({ data, className, ...props }, ref) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [isLoadingSearchDriverOrder, setIsLoadingSearchDriverOrder] =
@@ -66,9 +64,7 @@ const CreateOrderProcessingRef: ForwardRefRenderFunction<
     useState('');
   const [searchLegalClientOrder, setSearchLegalClientOrder] = useState('');
 
-  const router = useRouter();
-
-  const [createOrderProcessing] = useCreateOrderProcessingMutation();
+  const [updateOrderProcessing] = useUpdateOrderProcessingMutation();
 
   const { data: dataDriverOrders, refetch: refetchDriverOrders } =
     useGetAllOwnDriverQuery();
@@ -85,19 +81,22 @@ const CreateOrderProcessingRef: ForwardRefRenderFunction<
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateOrderProcessingInputProps>({
-    resolver: zodResolver(createOrderProcessingSchema),
+  } = useForm<OrderProcessingGeneralInputProps>({
+    resolver: zodResolver(orderProcessingGeneralSchema),
     defaultValues: {
-      total_distance: '',
-      total_spend_liters: '',
-      legalCustomerOrder: [],
-      total_spending_money: '',
-      physicalCustomerOrder: [],
-      start_at: dayjs().toDate(),
-      driver: { id: '', description: '' },
+      total_distance: String(data.getOrderProcessing.total_distance),
+      start_at: dayjs(data.getOrderProcessing.start_at as Date).toDate(),
+      total_spend_liters: String(data.getOrderProcessing.total_spend_liters),
+      total_spending_money: String(
+        data.getOrderProcessing.total_spending_money,
+      ),
+      driver: {
+        id: data.getOrderProcessing.OwnDriver.id,
+        description: data.getOrderProcessing.OwnDriver.cnh,
+      },
       vehicle: {
-        id: '',
-        description: '',
+        id: data.getOrderProcessing.vehicle_id,
+        description: `${data.getOrderProcessing?.Vehicle?.VehicleModel?.name ?? ''} - ${data.getOrderProcessing?.Vehicle?.plate}`,
       },
     },
   });
@@ -212,47 +211,42 @@ const CreateOrderProcessingRef: ForwardRefRenderFunction<
     }
   };
 
-  const handleCreate = async (data: CreateOrderProcessingOutputProps) => {
+  const handleUpdate = async (newData: OrderProcessingGeneralOutputProps) => {
     setIsLoading(true);
 
     try {
-      const OrderProcessing = await createOrderProcessing({
+      await updateOrderProcessing({
         variables: {
+          updateOrderProcessingId: data.getOrderProcessing.id ?? '',
           data: {
-            start_at: data.start_at,
-            driver_id: data.driver.id,
+            start_at: newData.start_at,
             status: StatusOrder.Created,
-            vehicle_id: data.vehicle.id,
-            total_distance: Number(data.total_distance),
-            total_spend_liters: Number(data.total_spend_liters),
-            total_spending_money: Number(data.total_spending_money),
-            legal_customer_order_ids: data.legalCustomerOrder.map(
+            driver_id: newData.driver.id,
+            vehicle_id: newData.vehicle.id,
+            total_distance: Number(newData.total_distance),
+            total_spend_liters: Number(newData.total_spend_liters),
+            total_spending_money: Number(newData.total_spending_money),
+            legal_customer_order_ids: newData.legalCustomerOrder.map(
               item => item.id,
             ),
-            physical_customer_order_ids: data.physicalCustomerOrder.map(
+            physical_customer_order_ids: newData.physicalCustomerOrder.map(
               item => item.id,
             ),
           },
         },
       });
 
-      toast.success('Processamento criado com sucesso!');
-
-      router.refresh();
-
-      router.push(
-        `/dashboard/order-processing/${OrderProcessing.data?.createOrderProcessing.id}/general`,
-      );
+      toast.success('Processamento atualizado com sucesso!');
     } catch (error) {
       if (error instanceof ApolloError) {
-        toast.error('Erro ao criar Processamento!', {
+        toast.error('Erro ao atualizar Processamento!', {
           description: error.message,
         });
 
         return;
       }
 
-      toast.error('Erro ao criar Processamento!');
+      toast.error('Erro ao atualizar Processamento!');
     } finally {
       setIsLoading(false);
     }
@@ -388,7 +382,7 @@ const CreateOrderProcessingRef: ForwardRefRenderFunction<
               <ComboBox
                 values={dataVehiclesOrders?.getAllVehicles?.map(item => ({
                   id: item.id,
-                  description: `${item?.VehicleModel?.name} - ${item.plate}`,
+                  description: `${item?.VehicleModel?.name ?? ''} - ${item.plate}`,
                 }))}
                 value={value}
                 label="Veículo"
@@ -570,20 +564,23 @@ const CreateOrderProcessingRef: ForwardRefRenderFunction<
 
         <div className="flex w-full justify-center sm:justify-end">
           <Button
+            isDisabled={
+              isLoading ||
+              data.getOrderProcessing.status === StatusOrder.Complete
+            }
             onClick={handleSubmit((values: unknown) => {
-              const data = values as CreateOrderProcessingOutputProps;
+              const update = values as OrderProcessingGeneralOutputProps;
 
-              handleCreate(data);
+              handleUpdate(update);
             })}
             type="button"
             color="success"
             variant="label"
             isLoading={isLoading}
-            isDisabled={isLoading}
             className="min-w-[12.404rem]"
             aria-label="Update OrderProcessing"
           >
-            Criar Processamento
+            Atualizar Processamento
           </Button>
         </div>
       </form>
@@ -591,4 +588,4 @@ const CreateOrderProcessingRef: ForwardRefRenderFunction<
   );
 };
 
-export const CreateOrderProcessing = forwardRef(CreateOrderProcessingRef);
+export const OrderProcessingGeneral = forwardRef(OrderProcessingGeneralRef);

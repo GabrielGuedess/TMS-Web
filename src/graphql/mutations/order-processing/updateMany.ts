@@ -10,7 +10,6 @@ export const MUTATION_UPDATE_MANY_ORDER_PROCESSING = gql`
       driver_id
       end_at
       id
-      order_processing
       order_processing_number
       start_at
       status

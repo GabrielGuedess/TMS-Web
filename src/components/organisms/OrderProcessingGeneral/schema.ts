@@ -29,7 +29,7 @@ const physicalCustomerOrder = z
   })
   .strict();
 
-export const createOrderProcessingSchema = z
+export const orderProcessingGeneralSchema = z
   .object({
     driver,
     vehicle,

@@ -1660,6 +1660,7 @@ export type Mutation = {
   deleteVehicleType: VehicleTypeModel;
   updateLegalClient: LegalClientModel;
   updateMaintenance: MaintenanceModel;
+  completedOrder: OrderProcessingModel;
   updatedVehicleType: VehicleTypeModel;
   createVehicleBrand: VehicleBrandModel;
   deleteManySenders: Array<SenderModel>;
@@ -1773,6 +1774,12 @@ export type Mutation = {
   updateoutsourcedTransportCompanyDriver: OutsourcedTransportCompanyDriverModel;
   createOutsourcedTransportCompanyContract: OutsourcedTransportCompanyContractModel;
   updateoutsourcedTransportCompanyContract: OutsourcedTransportCompanyContractModel;
+};
+
+export type MutationCompletedOrderArgs = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  vehicleData?: InputMaybe<GetVehicleTypeArgs>;
+  order_processing?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MutationCreateCarrierCompanyArgs = {
@@ -2626,13 +2633,12 @@ export type OrderProcessingModel = {
   UpdatedUser: UserModelRefereces;
   __typename?: 'OrderProcessingModel';
   driver_id: Scalars['String']['output'];
-  end_at: Scalars['Timestamp']['output'];
   created_by: Scalars['String']['output'];
   updated_by: Scalars['String']['output'];
   vehicle_id: Scalars['String']['output'];
   start_at: Scalars['Timestamp']['output'];
   total_distance: Scalars['Float']['output'];
-  order_processing: Scalars['String']['output'];
+  end_at?: Maybe<Scalars['Timestamp']['output']>;
   total_spend_liters: Scalars['Float']['output'];
   LegalClientOrders: Array<LegalClientOrderModel>;
   total_spending_money: Scalars['Float']['output'];
@@ -3292,6 +3298,12 @@ export type PhysicalCustomerCteInput = {
   observations?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type PhysicalCustomerCteListRelationFilter = {
+  none?: InputMaybe<PhysicalCustomerCteWhereInput>;
+  some?: InputMaybe<PhysicalCustomerCteWhereInput>;
+  every?: InputMaybe<PhysicalCustomerCteWhereInput>;
+};
+
 export type PhysicalCustomerCteModel = {
   id: Scalars['String']['output'];
   cteType: Scalars['String']['output'];
@@ -3300,6 +3312,10 @@ export type PhysicalCustomerCteModel = {
   cteNumber: Scalars['String']['output'];
   __typename?: 'PhysicalCustomerCteModel';
   observations?: Maybe<Scalars['String']['output']>;
+};
+
+export type PhysicalCustomerCteOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
 };
 
 export type PhysicalCustomerCteOrderByWithRelationInput = {
@@ -3441,7 +3457,7 @@ export type PhysicalCustomerOrderOrderByWithRelationInput = {
   OrderProcessing?: InputMaybe<OrderProcessingOrderByWithRelationInput>;
   PhysicalCustomer?: InputMaybe<PhysicalCustomerOrderByWithRelationInput>;
   FreightExpenses?: InputMaybe<FreightExpensesOrderByRelationAggregateInput>;
-  PhysicalCustomerCte?: InputMaybe<PhysicalCustomerCteOrderByWithRelationInput>;
+  PhysicalCustomerCte?: InputMaybe<PhysicalCustomerCteOrderByRelationAggregateInput>;
   PhysicalCustomerQuoteTable?: InputMaybe<PhysicalCustomerQuoteTableOrderByWithRelationInput>;
   updated_at?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
@@ -3484,7 +3500,7 @@ export type PhysicalCustomerOrderWhereInput = {
   NOT?: InputMaybe<Array<PhysicalCustomerOrderWhereInput>>;
   PhysicalCustomer?: InputMaybe<PhysicalCustomerWhereInput>;
   FreightExpenses?: InputMaybe<FreightExpensesListRelationFilter>;
-  PhysicalCustomerCte?: InputMaybe<PhysicalCustomerCteWhereInput>;
+  PhysicalCustomerCte?: InputMaybe<PhysicalCustomerCteListRelationFilter>;
   PhysicalCustomerQuoteTable?: InputMaybe<PhysicalCustomerQuoteTableWhereInput>;
   updated_at?: InputMaybe<DateTimeFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
@@ -5072,10 +5088,10 @@ export type VehicleCarModel = {
   color: Scalars['String']['output'];
   plate: Scalars['String']['output'];
   VehicleBrand: VehicleBrandReferences;
-  VehicleModel: VehicleModelReferences;
   renavam: Scalars['String']['output'];
   model_id: Scalars['String']['output'];
   isIpvaPaid: Scalars['Boolean']['output'];
+  VehicleModel?: Maybe<VehicleModelReferences>;
   registration: Scalars['Timestamp']['output'];
 };
 
@@ -6558,15 +6574,14 @@ export type CreateOrderProcessingMutation = {
   __typename?: 'Mutation';
   createOrderProcessing: {
     id: string;
-    end_at: any;
     start_at: any;
     driver_id: string;
     created_by: string;
     updated_by: string;
     vehicle_id: string;
+    end_at?: any | null;
     status: StatusOrder;
     total_distance: number;
-    order_processing: string;
     total_spend_liters: number;
     total_spending_money: number;
     order_processing_number: string;
@@ -6584,15 +6599,14 @@ export type DeleteOrderProcessingMutation = {
   __typename?: 'Mutation';
   deleteOrderProcessing: {
     id: string;
-    end_at: any;
     start_at: any;
     driver_id: string;
     created_by: string;
     updated_by: string;
     vehicle_id: string;
+    end_at?: any | null;
     status: StatusOrder;
     total_distance: number;
-    order_processing: string;
     total_spend_liters: number;
     total_spending_money: number;
     order_processing_number: string;
@@ -6610,15 +6624,14 @@ export type DeleteManyOrderProcessingMutation = {
   __typename?: 'Mutation';
   deleteManyOrderProcessing: Array<{
     id: string;
-    end_at: any;
     start_at: any;
     driver_id: string;
     created_by: string;
     updated_by: string;
     vehicle_id: string;
+    end_at?: any | null;
     status: StatusOrder;
     total_distance: number;
-    order_processing: string;
     total_spend_liters: number;
     total_spending_money: number;
     order_processing_number: string;
@@ -6637,15 +6650,14 @@ export type UpdateOrderProcessingMutation = {
   __typename?: 'Mutation';
   updateOrderProcessing: {
     id: string;
-    end_at: any;
     start_at: any;
     driver_id: string;
     created_by: string;
     updated_by: string;
     vehicle_id: string;
+    end_at?: any | null;
     status: StatusOrder;
     total_distance: number;
-    order_processing: string;
     total_spend_liters: number;
     total_spending_money: number;
     order_processing_number: string;
@@ -6663,15 +6675,14 @@ export type UpdateManyOrderProcessingMutation = {
   __typename?: 'Mutation';
   updateManyOrderProcessing: Array<{
     id: string;
-    end_at: any;
     start_at: any;
     driver_id: string;
     created_by: string;
     updated_by: string;
     vehicle_id: string;
+    end_at?: any | null;
     status: StatusOrder;
     total_distance: number;
-    order_processing: string;
     total_spend_liters: number;
     total_spending_money: number;
     order_processing_number: string;
@@ -8486,7 +8497,7 @@ export type GetMaintenanceQuery = {
       id: string;
       plate: string;
       __typename?: 'VehicleCarModel';
-      VehicleModel: {
+      VehicleModel?: null | {
         id: string;
         name: string;
         __typename?: 'VehicleModelReferences';
@@ -8566,15 +8577,14 @@ export type GetAllOrderProcessingQuery = {
   countOrderProcessing: number;
   getAllOrderProcessing: Array<{
     id: string;
-    end_at: any;
     start_at: any;
     driver_id: string;
     created_by: string;
     updated_by: string;
     vehicle_id: string;
+    end_at?: any | null;
     status: StatusOrder;
     total_distance: number;
-    order_processing: string;
     total_spend_liters: number;
     total_spending_money: number;
     order_processing_number: string;
@@ -8582,6 +8592,51 @@ export type GetAllOrderProcessingQuery = {
     updated_at: any;
     created_at: any;
   }>;
+};
+
+export type GetOrderProcessingOneQueryVariables = Exact<{
+  getOrderProcessingId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetOrderProcessingOneQuery = {
+  __typename?: 'Query';
+  getOrderProcessing: {
+    id: string;
+    start_at: any;
+    driver_id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    end_at?: any | null;
+    status: StatusOrder;
+    total_distance: number;
+    total_spend_liters: number;
+    total_spending_money: number;
+    order_processing_number: string;
+    __typename?: 'OrderProcessingModel';
+    OwnDriver: { id: string; cnh: string; __typename?: 'OwnDriverModel' };
+    LegalClientOrders: Array<{
+      id: string;
+      order: string;
+      __typename?: 'LegalClientOrderModel';
+    }>;
+    PhysicalCustomerOrders: Array<{
+      id: string;
+      order: string;
+      __typename?: 'PhysicalCustomerOrderModel';
+    }>;
+    Vehicle: {
+      id: string;
+      plate: string;
+      __typename?: 'VehicleCarModel';
+      VehicleModel?: null | {
+        name: string;
+        __typename?: 'VehicleModelReferences';
+      };
+    };
+    updated_at: any;
+    created_at: any;
+  };
 };
 
 export type GetOwnDriverQueryVariables = Exact<{
@@ -9424,7 +9479,10 @@ export type GetAllVehiclesComboQuery = {
     registration: any;
     isIpvaPaid: boolean;
     __typename?: 'VehicleCarModel';
-    VehicleModel: { name: string; __typename?: 'VehicleModelReferences' };
+    VehicleModel?: null | {
+      name: string;
+      __typename?: 'VehicleModelReferences';
+    };
   }>;
 };
 
@@ -13264,7 +13322,6 @@ export const CreateOrderProcessingDocument = gql`
       driver_id
       end_at
       id
-      order_processing
       order_processing_number
       start_at
       status
@@ -13334,7 +13391,6 @@ export const DeleteOrderProcessingDocument = gql`
       driver_id
       end_at
       id
-      order_processing
       order_processing_number
       start_at
       status
@@ -13404,7 +13460,6 @@ export const DeleteManyOrderProcessingDocument = gql`
       driver_id
       end_at
       id
-      order_processing
       order_processing_number
       start_at
       status
@@ -13478,7 +13533,6 @@ export const UpdateOrderProcessingDocument = gql`
       driver_id
       end_at
       id
-      order_processing
       order_processing_number
       start_at
       status
@@ -13551,7 +13605,6 @@ export const UpdateManyOrderProcessingDocument = gql`
       driver_id
       end_at
       id
-      order_processing
       order_processing_number
       start_at
       status
@@ -20283,7 +20336,6 @@ export const GetAllOrderProcessingDocument = gql`
       driver_id
       end_at
       id
-      order_processing
       order_processing_number
       start_at
       status
@@ -20373,6 +20425,121 @@ export type GetAllOrderProcessingSuspenseQueryHookResult = ReturnType<
 export type GetAllOrderProcessingQueryResult = Apollo.QueryResult<
   GetAllOrderProcessingQuery,
   GetAllOrderProcessingQueryVariables
+>;
+
+export const GetOrderProcessingOneDocument = gql`
+  query GetOrderProcessingOne($getOrderProcessingId: String) {
+    getOrderProcessing(id: $getOrderProcessingId) {
+      created_at
+      created_by
+      driver_id
+      end_at
+      id
+      order_processing_number
+      start_at
+      status
+      total_distance
+      total_spend_liters
+      total_spending_money
+      updated_at
+      updated_by
+      vehicle_id
+      OwnDriver {
+        id
+        cnh
+      }
+      Vehicle {
+        id
+        plate
+        VehicleModel {
+          name
+        }
+      }
+      LegalClientOrders {
+        id
+        order
+      }
+      PhysicalCustomerOrders {
+        id
+        order
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetOrderProcessingOneQuery__
+ *
+ * To run a query within a React component, call `useGetOrderProcessingOneQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetOrderProcessingOneQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetOrderProcessingOneQuery({
+ *   variables: {
+ *      getOrderProcessingId: // value for 'getOrderProcessingId'
+ *   },
+ * });
+ */
+export function useGetOrderProcessingOneQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetOrderProcessingOneQuery,
+    GetOrderProcessingOneQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetOrderProcessingOneQuery,
+    GetOrderProcessingOneQueryVariables
+  >(GetOrderProcessingOneDocument, options);
+}
+
+export function useGetOrderProcessingOneLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetOrderProcessingOneQuery,
+    GetOrderProcessingOneQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetOrderProcessingOneQuery,
+    GetOrderProcessingOneQueryVariables
+  >(GetOrderProcessingOneDocument, options);
+}
+
+export function useGetOrderProcessingOneSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetOrderProcessingOneQuery,
+    GetOrderProcessingOneQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetOrderProcessingOneQuery,
+    GetOrderProcessingOneQueryVariables
+  >(GetOrderProcessingOneDocument, options);
+}
+
+export type GetOrderProcessingOneQueryHookResult = ReturnType<
+  typeof useGetOrderProcessingOneQuery
+>;
+
+export type GetOrderProcessingOneLazyQueryHookResult = ReturnType<
+  typeof useGetOrderProcessingOneLazyQuery
+>;
+
+export type GetOrderProcessingOneSuspenseQueryHookResult = ReturnType<
+  typeof useGetOrderProcessingOneSuspenseQuery
+>;
+
+export type GetOrderProcessingOneQueryResult = Apollo.QueryResult<
+  GetOrderProcessingOneQuery,
+  GetOrderProcessingOneQueryVariables
 >;
 
 export const GetOwnDriverDocument = gql`

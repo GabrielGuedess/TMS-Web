@@ -264,13 +264,6 @@ export const DataTableOrderProcessing = ({
       {
         filter: true,
         editable: true,
-        field: 'order_processing',
-        filterParams: filterParametersText,
-        headerName: 'Processamento de Pedido',
-      },
-      {
-        filter: true,
-        editable: true,
         field: 'status',
         headerName: 'Status',
         filterParams: filterParametersText,
