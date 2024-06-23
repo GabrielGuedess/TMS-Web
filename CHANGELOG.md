@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.6.0...v1.7.0) (2024-06-23)
+
+
+### Features
+
+* add new fields to company vehicle ([7d34d28](https://github.com/GabrielGuedess/TMS-Web/commit/7d34d28b8ae92480ceb9c3a29b7c36c0d505ab89))
+
 # [1.6.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.5.0...v1.6.0) (2024-06-10)
 
 
