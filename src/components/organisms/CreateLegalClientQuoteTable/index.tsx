@@ -70,10 +70,10 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
   } = useForm<CreateLegalClientQuoteTableInputProps>({
     resolver: zodResolver(createLegalClientQuoteTableSchema),
     defaultValues: {
-      mass: 0,
-      amount: 0,
-      volume: 0,
-      nf_value: 0,
+      mass: '',
+      amount: '',
+      volume: '',
+      nf_value: '',
       nf_serie: '',
       nf_number: '',
       description: '',
@@ -197,18 +197,18 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
       const LegalClientQuoteTable = await createLegalClientQuoteTable({
         variables: {
           legalClientQuoteTableInput: {
-            mass: data.mass,
-            amount: data.amount,
-            volume: data.volume,
             nf_serie: data.nf_serie,
-            nf_value: data.nf_value,
             who_pays: data.who_pays,
+            mass: Number(data.mass),
             senderId: data.sender.id,
             nf_number: data.nf_number,
+            amount: Number(data.amount),
+            volume: Number(data.volume),
             description: data.description,
             formPayment: data.formPayment,
             kindService: data.kindService,
             recipientId: data.recipient.id,
+            nf_value: Number(data.nf_value),
             adressOrigin: data.adressOrigin,
             adressDestiny: data.adressDestiny,
             typeMerchandise: data.typeMerchandise,
@@ -256,6 +256,7 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
             render={({ field: { value, onChange } }) => (
               <Input
                 label="Massa"
+                type="number"
                 value={value}
                 aria-label="Mass"
                 placeholder="Massa"
@@ -273,6 +274,7 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
           <Controller
             render={({ field: { value, onChange } }) => (
               <Input
+                type="number"
                 value={value}
                 label="Volume"
                 aria-label="Volume"
@@ -292,6 +294,7 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
             render={({ field: { value, onChange } }) => (
               <Input
                 value={value}
+                type="number"
                 placeholder="Valor"
                 onChange={onChange}
                 aria-label="nf_value"
@@ -363,11 +366,12 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
           <Controller
             render={({ field: { value, onChange } }) => (
               <Input
-                label="Valor"
+                type="number"
                 value={value}
                 aria-label="amount"
-                placeholder="Valor"
                 onChange={onChange}
+                label="Quantidadade"
+                placeholder="Quantidadade"
                 isInvalid={!!errors.amount?.message}
                 errorMessage={errors.amount?.message}
                 required
@@ -519,6 +523,7 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
                   aria-label="Postal Code"
                   isInvalid={!!errors.adressOrigin?.postalCod?.message}
                   errorMessage={errors.adressOrigin?.postalCod?.message}
+                  mask={[/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
                   required
                   isFullWidth
                 />
@@ -585,6 +590,7 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
               render={({ field: { value, onChange } }) => (
                 <Input
                   value={value}
+                  type="number"
                   label="Numero"
                   aria-label="Number"
                   onChange={onChange}
@@ -656,6 +662,7 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
                   aria-label="Postal Code"
                   isInvalid={!!errors.adressDestiny?.postalCod?.message}
                   errorMessage={errors.adressDestiny?.postalCod?.message}
+                  mask={[/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
                   required
                   isFullWidth
                 />
@@ -722,6 +729,7 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
               render={({ field: { value, onChange } }) => (
                 <Input
                   value={value}
+                  type="number"
                   label="Numero"
                   aria-label="Number"
                   onChange={onChange}

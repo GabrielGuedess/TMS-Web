@@ -2,13 +2,13 @@ import { forwardRef, type ForwardRefRenderFunction } from 'react';
 
 import { GlowCapture } from '@codaworks/react-glow';
 
-import { SunIcon } from 'components/atoms/SunIcon';
-import { MoonIcon } from 'components/atoms/MoonIcon';
 import { MapOne } from 'components/molecules/MapOne';
-import { ClockIcon } from 'components/atoms/ClockIcon';
+import { PriceIcon } from 'components/atoms/PriceIcon';
+import { TruckIcon } from 'components/atoms/TruckIcon';
 import { ChartOne } from 'components/molecules/ChartOne';
 import { ChartThree } from 'components/molecules/ChartThree';
 import { CardDataStats } from 'components/molecules/CardDataStats';
+import { LinearWalletIcon } from 'components/atoms/LinearWalletIcon';
 import { CollaboratorsIcon } from 'components/atoms/CollaboratorsIcon';
 
 import { type OverviewProps } from './types';
@@ -24,35 +24,35 @@ const OverviewRef: ForwardRefRenderFunction<HTMLElement, OverviewProps> = (
   >
     <GlowCapture className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-[1.875rem]">
       <CardDataStats
+        total="27"
         rate="0.43%"
-        icon={SunIcon}
-        total="$3.456K"
-        title="Total views"
+        title="Pedidos"
+        icon={LinearWalletIcon}
         isPositive
       />
 
       <CardDataStats
+        total="16"
         rate="4.35%"
-        total="$45,2K"
-        icon={MoonIcon}
-        title="Total Profit"
+        icon={PriceIcon}
+        title="Cotações"
         isPositive
       />
 
       <CardDataStats
+        total="42"
         rate="2.59%"
-        total="2.450"
-        icon={ClockIcon}
-        title="Total Product"
+        icon={CollaboratorsIcon}
+        title="Total de Clientes"
         isPositive
       />
 
       <CardDataStats
-        rate="0.95%"
-        total="3.456"
-        isPositive={false}
-        title="Total Users"
-        icon={CollaboratorsIcon}
+        total="61"
+        rate="1.95%"
+        icon={TruckIcon}
+        title="Total de Veículos"
+        isPositive
       />
     </GlowCapture>
 

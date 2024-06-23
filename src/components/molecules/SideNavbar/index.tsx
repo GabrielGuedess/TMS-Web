@@ -7,6 +7,7 @@ import * as Accordion from '@radix-ui/react-accordion';
 
 import { CarIcon } from 'components/atoms/CarIcon';
 import { IcmsIcon } from 'components/atoms/IcmsIcon';
+import { FileIcon } from 'components/atoms/FileIcon';
 import { UsersIcon } from 'components/atoms/UsersIcon';
 import { TruckIcon } from 'components/atoms/TruckIcon';
 import { ToolsIcon } from 'components/atoms/ToolsIcon';
@@ -97,6 +98,20 @@ const SideNavbarRef: ForwardRefRenderFunction<HTMLElement, SideNavbarProps> = (
           title="Incidente"
           icon={WarningIcon}
           href="/dashboard/incidents"
+        />
+
+        <SideButton
+          isOpen={isOpen}
+          icon={FileIcon}
+          title="Contrato"
+          href="/dashboard/legal-contracts"
+        />
+
+        <SideButton
+          isOpen={isOpen}
+          title="Processamento"
+          icon={ShippingCompanyIcon}
+          href="/dashboard/order-processing"
         />
 
         <DropdownSide

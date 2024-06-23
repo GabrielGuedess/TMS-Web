@@ -9,7 +9,6 @@ export type LegalClientQuoteTableProps = {
   mass: number;
   amount: number;
   volume: number;
-  icms_id: string;
   codQuote: string;
   nf_value: number;
   senderId: string;
@@ -22,6 +21,7 @@ export type LegalClientQuoteTableProps = {
   formPayment: string;
   kindService: string;
   recipientId: string;
+  icms_id?: null | string;
   typeMerchandise: string;
   digital_signature: string;
   __typename?: 'LegalClientQuoteTableModel';

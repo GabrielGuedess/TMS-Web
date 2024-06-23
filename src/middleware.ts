@@ -4,4 +4,4 @@ export default withAuth({
   secret: process.env.NEXTAUTH_SECRET,
 });
 
-export const config = { matcher: ['/dashboard', '/dashboard/collaborators'] };
+export const config = { matcher: ['/((?!sign-up|sign-in|$).*)'] };

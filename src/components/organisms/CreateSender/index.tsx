@@ -948,7 +948,7 @@ const CreateSenderRef: ForwardRefRenderFunction<
               aria-label="Add"
             >
               {watch('reference') === 'auto' ? (
-                <PlusIcon />
+                <PlusIcon size={18} />
               ) : (
                 <CloseIcon size={18} />
               )}

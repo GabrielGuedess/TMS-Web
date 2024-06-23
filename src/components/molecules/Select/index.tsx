@@ -98,7 +98,7 @@ const SelectRef: ForwardRefRenderFunction<
     <SelectRadix.Portal>
       <SelectRadix.Content
         className={clsx(
-          'z-30 min-w-[var(--radix-select-trigger-width)] animate-slideDownAndFade overflow-auto rounded-md bg-white-lilac-50 shadow-md dark:bg-shark-950',
+          'z-50 min-w-[var(--radix-select-trigger-width)] animate-slideDownAndFade overflow-auto rounded-md bg-white-lilac-50 shadow-md dark:bg-shark-950',
           {
             'h-auto': !hasHeight,
             'max-h-48': hasHeight,

@@ -1046,7 +1046,6 @@ export type LegalClientQuoteTableModel = {
   amount: Scalars['Int']['output'];
   mass: Scalars['Float']['output'];
   volume: Scalars['Float']['output'];
-  icms_id: Scalars['String']['output'];
   nf_value: Scalars['Float']['output'];
   codQuote: Scalars['String']['output'];
   nf_serie: Scalars['String']['output'];
@@ -1060,6 +1059,7 @@ export type LegalClientQuoteTableModel = {
   kindService: Scalars['String']['output'];
   recipientId: Scalars['String']['output'];
   __typename?: 'LegalClientQuoteTableModel';
+  icms_id?: Maybe<Scalars['String']['output']>;
   typeMerchandise: Scalars['String']['output'];
   digital_signature: Scalars['String']['output'];
   updated_at: Scalars['Timestamp']['output'];
@@ -5813,6 +5813,32 @@ export type UpdateManyIncidentMutation = {
   }>;
 };
 
+export type CreateLegalClientCteMutationVariables = Exact<{
+  data: LegalClientCteInput;
+}>;
+
+export type CreateLegalClientCteMutation = {
+  __typename?: 'Mutation';
+  createLegalClientCte: {
+    id: string;
+    cteType: string;
+    orderId: string;
+    acessKey: string;
+    cteNumber: string;
+    observations?: null | string;
+    __typename?: 'LegalClientCteModel';
+  };
+};
+
+export type GenerateLegalClientCteQueryVariables = Exact<{
+  request: CtePdfLegalClientInput;
+}>;
+
+export type GenerateLegalClientCteQuery = {
+  __typename?: 'Query';
+  generateLegalClientCte: { cteUrl: string; __typename?: 'CtePDfModel' };
+};
+
 export type CreateLegalClientOrderMutationVariables = Exact<{
   legalClientOrderInput: LegalClientOrderInput;
 }>;
@@ -5972,7 +5998,6 @@ export type CreateLegalClientQuoteTableMutation = {
     mass: number;
     amount: number;
     volume: number;
-    icms_id: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
@@ -5985,6 +6010,7 @@ export type CreateLegalClientQuoteTableMutation = {
     formPayment: string;
     kindService: string;
     recipientId: string;
+    icms_id?: null | string;
     typeMerchandise: string;
     digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
@@ -6004,7 +6030,6 @@ export type DeleteLegalClientQuoteTableMutation = {
     mass: number;
     amount: number;
     volume: number;
-    icms_id: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
@@ -6017,6 +6042,7 @@ export type DeleteLegalClientQuoteTableMutation = {
     formPayment: string;
     kindService: string;
     recipientId: string;
+    icms_id?: null | string;
     typeMerchandise: string;
     digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
@@ -6036,7 +6062,6 @@ export type DeleteManyLegalClientQuoteTableMutation = {
     mass: number;
     amount: number;
     volume: number;
-    icms_id: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
@@ -6049,6 +6074,7 @@ export type DeleteManyLegalClientQuoteTableMutation = {
     formPayment: string;
     kindService: string;
     recipientId: string;
+    icms_id?: null | string;
     typeMerchandise: string;
     digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
@@ -6069,7 +6095,6 @@ export type UpdateLegalClientQuoteTableMutation = {
     mass: number;
     amount: number;
     volume: number;
-    icms_id: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
@@ -6082,6 +6107,7 @@ export type UpdateLegalClientQuoteTableMutation = {
     formPayment: string;
     kindService: string;
     recipientId: string;
+    icms_id?: null | string;
     typeMerchandise: string;
     digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
@@ -6103,7 +6129,6 @@ export type UpdateManyLegalClientQuoteTableMutation = {
     mass: number;
     amount: number;
     volume: number;
-    icms_id: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
@@ -6116,6 +6141,7 @@ export type UpdateManyLegalClientQuoteTableMutation = {
     formPayment: string;
     kindService: string;
     recipientId: string;
+    icms_id?: null | string;
     typeMerchandise: string;
     digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
@@ -6214,6 +6240,117 @@ export type UpdateManyLegalClientsMutation = {
     updated_by: string;
     legal_person_id: string;
     __typename?: 'LegalClientModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
+export type CreateLegalContractMutationVariables = Exact<{
+  legalContractInput: LegalContractInput;
+}>;
+
+export type CreateLegalContractMutation = {
+  __typename?: 'Mutation';
+  createLegalContract: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    effective_date: any;
+    observations: string;
+    contract_number: string;
+    legal_client_id: string;
+    carrier_company_id: string;
+    delivery_conditions: string;
+    __typename?: 'LegalContractModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type DeleteLegalContractMutationVariables = Exact<{
+  deleteLegalContractId: Scalars['String']['input'];
+}>;
+
+export type DeleteLegalContractMutation = {
+  __typename?: 'Mutation';
+  deleteLegalContract: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    effective_date: any;
+    observations: string;
+    contract_number: string;
+    legal_client_id: string;
+    carrier_company_id: string;
+    delivery_conditions: string;
+    __typename?: 'LegalContractModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type DeleteManyLegalContractMutationVariables = Exact<{
+  ids: Scalars['String']['input'] | Array<Scalars['String']['input']>;
+}>;
+
+export type DeleteManyLegalContractMutation = {
+  __typename?: 'Mutation';
+  deleteManyLegalContract: Array<{
+    id: string;
+    created_by: string;
+    updated_by: string;
+    effective_date: any;
+    observations: string;
+    contract_number: string;
+    legal_client_id: string;
+    carrier_company_id: string;
+    delivery_conditions: string;
+    __typename?: 'LegalContractModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
+export type UpdatelegalContractMutationVariables = Exact<{
+  legalContractInput: LegalContractUpdateInput;
+  updatelegalContractId: Scalars['String']['input'];
+}>;
+
+export type UpdatelegalContractMutation = {
+  __typename?: 'Mutation';
+  updatelegalContract: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    effective_date: any;
+    observations: string;
+    contract_number: string;
+    legal_client_id: string;
+    carrier_company_id: string;
+    delivery_conditions: string;
+    __typename?: 'LegalContractModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type UpdateManyLegalContractMutationVariables = Exact<{
+  data: LegalContractUpdateManyInput | Array<LegalContractUpdateManyInput>;
+}>;
+
+export type UpdateManyLegalContractMutation = {
+  __typename?: 'Mutation';
+  updateManyLegalContract: Array<{
+    id: string;
+    created_by: string;
+    updated_by: string;
+    effective_date: any;
+    observations: string;
+    contract_number: string;
+    legal_client_id: string;
+    carrier_company_id: string;
+    delivery_conditions: string;
+    __typename?: 'LegalContractModel';
     updated_at: any;
     created_at: any;
   }>;
@@ -6413,6 +6550,137 @@ export type UpdateManyMaintenanceMutation = {
   }>;
 };
 
+export type CreateOrderProcessingMutationVariables = Exact<{
+  data: OrderProcessingInput;
+}>;
+
+export type CreateOrderProcessingMutation = {
+  __typename?: 'Mutation';
+  createOrderProcessing: {
+    id: string;
+    end_at: any;
+    start_at: any;
+    driver_id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    status: StatusOrder;
+    total_distance: number;
+    order_processing: string;
+    total_spend_liters: number;
+    total_spending_money: number;
+    order_processing_number: string;
+    __typename?: 'OrderProcessingModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type DeleteOrderProcessingMutationVariables = Exact<{
+  deleteOrderProcessingId: Scalars['String']['input'];
+}>;
+
+export type DeleteOrderProcessingMutation = {
+  __typename?: 'Mutation';
+  deleteOrderProcessing: {
+    id: string;
+    end_at: any;
+    start_at: any;
+    driver_id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    status: StatusOrder;
+    total_distance: number;
+    order_processing: string;
+    total_spend_liters: number;
+    total_spending_money: number;
+    order_processing_number: string;
+    __typename?: 'OrderProcessingModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type DeleteManyOrderProcessingMutationVariables = Exact<{
+  ids: Scalars['String']['input'] | Array<Scalars['String']['input']>;
+}>;
+
+export type DeleteManyOrderProcessingMutation = {
+  __typename?: 'Mutation';
+  deleteManyOrderProcessing: Array<{
+    id: string;
+    end_at: any;
+    start_at: any;
+    driver_id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    status: StatusOrder;
+    total_distance: number;
+    order_processing: string;
+    total_spend_liters: number;
+    total_spending_money: number;
+    order_processing_number: string;
+    __typename?: 'OrderProcessingModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
+export type UpdateOrderProcessingMutationVariables = Exact<{
+  data: OrderProcessingUpdateInput;
+  updateOrderProcessingId: Scalars['String']['input'];
+}>;
+
+export type UpdateOrderProcessingMutation = {
+  __typename?: 'Mutation';
+  updateOrderProcessing: {
+    id: string;
+    end_at: any;
+    start_at: any;
+    driver_id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    status: StatusOrder;
+    total_distance: number;
+    order_processing: string;
+    total_spend_liters: number;
+    total_spending_money: number;
+    order_processing_number: string;
+    __typename?: 'OrderProcessingModel';
+    updated_at: any;
+    created_at: any;
+  };
+};
+
+export type UpdateManyOrderProcessingMutationVariables = Exact<{
+  data: OrderProcessingUpdateManyInput | Array<OrderProcessingUpdateManyInput>;
+}>;
+
+export type UpdateManyOrderProcessingMutation = {
+  __typename?: 'Mutation';
+  updateManyOrderProcessing: Array<{
+    id: string;
+    end_at: any;
+    start_at: any;
+    driver_id: string;
+    created_by: string;
+    updated_by: string;
+    vehicle_id: string;
+    status: StatusOrder;
+    total_distance: number;
+    order_processing: string;
+    total_spend_liters: number;
+    total_spending_money: number;
+    order_processing_number: string;
+    __typename?: 'OrderProcessingModel';
+    updated_at: any;
+    created_at: any;
+  }>;
+};
+
 export type CreateOwnDriverMutationVariables = Exact<{
   ownDriver: OwnDriverInput;
 }>;
@@ -6526,6 +6794,32 @@ export type UpdateManyOwnDriversMutation = {
     updated_at: any;
     created_at: any;
   }>;
+};
+
+export type CreatePhysicalCustomerCteMutationVariables = Exact<{
+  data: PhysicalCustomerCteInput;
+}>;
+
+export type CreatePhysicalCustomerCteMutation = {
+  __typename?: 'Mutation';
+  createPhysicalCustomerCte: {
+    id: string;
+    cteType: string;
+    orderId: string;
+    acessKey: string;
+    cteNumber: string;
+    observations?: null | string;
+    __typename?: 'PhysicalCustomerCteModel';
+  };
+};
+
+export type GeneratePhysicalCustomerCteQueryVariables = Exact<{
+  request: CtePdfPhysicalCustomerInput;
+}>;
+
+export type GeneratePhysicalCustomerCteQuery = {
+  __typename?: 'Query';
+  generatePhysicalCustomerCte: { cteUrl: string; __typename?: 'CtePDfModel' };
 };
 
 export type CreatePhysicalCustomerOrderMutationVariables = Exact<{
@@ -7965,7 +8259,6 @@ export type GetAllLegalClientQuoteTableQuery = {
     mass: number;
     amount: number;
     volume: number;
-    icms_id: string;
     codQuote: string;
     nf_value: number;
     senderId: string;
@@ -7978,6 +8271,7 @@ export type GetAllLegalClientQuoteTableQuery = {
     formPayment: string;
     kindService: string;
     recipientId: string;
+    icms_id?: null | string;
     typeMerchandise: string;
     digital_signature: string;
     __typename?: 'LegalClientQuoteTableModel';
@@ -10728,6 +11022,154 @@ export type UpdateManyIncidentMutationOptions = Apollo.BaseMutationOptions<
   UpdateManyIncidentMutationVariables
 >;
 
+export const CreateLegalClientCteDocument = gql`
+  mutation CreateLegalClientCte($data: LegalClientCteInput!) {
+    createLegalClientCte(data: $data) {
+      acessKey
+      cteNumber
+      cteType
+      id
+      observations
+      orderId
+    }
+  }
+`;
+
+export type CreateLegalClientCteMutationFn = Apollo.MutationFunction<
+  CreateLegalClientCteMutation,
+  CreateLegalClientCteMutationVariables
+>;
+
+/**
+ * __useCreateLegalClientCteMutation__
+ *
+ * To run a mutation, you first call `useCreateLegalClientCteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateLegalClientCteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createLegalClientCteMutation, { data, loading, error }] = useCreateLegalClientCteMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateLegalClientCteMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateLegalClientCteMutation,
+    CreateLegalClientCteMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    CreateLegalClientCteMutation,
+    CreateLegalClientCteMutationVariables
+  >(CreateLegalClientCteDocument, options);
+}
+
+export type CreateLegalClientCteMutationHookResult = ReturnType<
+  typeof useCreateLegalClientCteMutation
+>;
+
+export type CreateLegalClientCteMutationResult =
+  Apollo.MutationResult<CreateLegalClientCteMutation>;
+
+export type CreateLegalClientCteMutationOptions = Apollo.BaseMutationOptions<
+  CreateLegalClientCteMutation,
+  CreateLegalClientCteMutationVariables
+>;
+
+export const GenerateLegalClientCteDocument = gql`
+  query GenerateLegalClientCte($request: CtePdfLegalClientInput!) {
+    generateLegalClientCte(request: $request) {
+      cteUrl
+    }
+  }
+`;
+
+/**
+ * __useGenerateLegalClientCteQuery__
+ *
+ * To run a query within a React component, call `useGenerateLegalClientCteQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGenerateLegalClientCteQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGenerateLegalClientCteQuery({
+ *   variables: {
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useGenerateLegalClientCteQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GenerateLegalClientCteQuery,
+    GenerateLegalClientCteQueryVariables
+  > &
+    (
+      | { skip: boolean }
+      | { skip?: boolean; variables: GenerateLegalClientCteQueryVariables }
+    ),
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GenerateLegalClientCteQuery,
+    GenerateLegalClientCteQueryVariables
+  >(GenerateLegalClientCteDocument, options);
+}
+
+export function useGenerateLegalClientCteLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GenerateLegalClientCteQuery,
+    GenerateLegalClientCteQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GenerateLegalClientCteQuery,
+    GenerateLegalClientCteQueryVariables
+  >(GenerateLegalClientCteDocument, options);
+}
+
+export function useGenerateLegalClientCteSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GenerateLegalClientCteQuery,
+    GenerateLegalClientCteQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GenerateLegalClientCteQuery,
+    GenerateLegalClientCteQueryVariables
+  >(GenerateLegalClientCteDocument, options);
+}
+
+export type GenerateLegalClientCteQueryHookResult = ReturnType<
+  typeof useGenerateLegalClientCteQuery
+>;
+
+export type GenerateLegalClientCteLazyQueryHookResult = ReturnType<
+  typeof useGenerateLegalClientCteLazyQuery
+>;
+
+export type GenerateLegalClientCteSuspenseQueryHookResult = ReturnType<
+  typeof useGenerateLegalClientCteSuspenseQuery
+>;
+
+export type GenerateLegalClientCteQueryResult = Apollo.QueryResult<
+  GenerateLegalClientCteQuery,
+  GenerateLegalClientCteQueryVariables
+>;
+
 export const CreateLegalClientOrderDocument = gql`
   mutation CreateLegalClientOrder(
     $legalClientOrderInput: LegalClientOrderInput!
@@ -11825,6 +12267,343 @@ export type UpdateManyLegalClientsMutationOptions = Apollo.BaseMutationOptions<
   UpdateManyLegalClientsMutationVariables
 >;
 
+export const CreateLegalContractDocument = gql`
+  mutation CreateLegalContract($legalContractInput: LegalContractInput!) {
+    createLegalContract(legalContractInput: $legalContractInput) {
+      carrier_company_id
+      contract_number
+      created_at
+      created_by
+      delivery_conditions
+      effective_date
+      id
+      legal_client_id
+      observations
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+export type CreateLegalContractMutationFn = Apollo.MutationFunction<
+  CreateLegalContractMutation,
+  CreateLegalContractMutationVariables
+>;
+
+/**
+ * __useCreateLegalContractMutation__
+ *
+ * To run a mutation, you first call `useCreateLegalContractMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateLegalContractMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createLegalContractMutation, { data, loading, error }] = useCreateLegalContractMutation({
+ *   variables: {
+ *      legalContractInput: // value for 'legalContractInput'
+ *   },
+ * });
+ */
+export function useCreateLegalContractMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateLegalContractMutation,
+    CreateLegalContractMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    CreateLegalContractMutation,
+    CreateLegalContractMutationVariables
+  >(CreateLegalContractDocument, options);
+}
+
+export type CreateLegalContractMutationHookResult = ReturnType<
+  typeof useCreateLegalContractMutation
+>;
+
+export type CreateLegalContractMutationResult =
+  Apollo.MutationResult<CreateLegalContractMutation>;
+
+export type CreateLegalContractMutationOptions = Apollo.BaseMutationOptions<
+  CreateLegalContractMutation,
+  CreateLegalContractMutationVariables
+>;
+
+export const DeleteLegalContractDocument = gql`
+  mutation DeleteLegalContract($deleteLegalContractId: String!) {
+    deleteLegalContract(id: $deleteLegalContractId) {
+      carrier_company_id
+      contract_number
+      created_at
+      created_by
+      delivery_conditions
+      effective_date
+      id
+      legal_client_id
+      observations
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+export type DeleteLegalContractMutationFn = Apollo.MutationFunction<
+  DeleteLegalContractMutation,
+  DeleteLegalContractMutationVariables
+>;
+
+/**
+ * __useDeleteLegalContractMutation__
+ *
+ * To run a mutation, you first call `useDeleteLegalContractMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteLegalContractMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteLegalContractMutation, { data, loading, error }] = useDeleteLegalContractMutation({
+ *   variables: {
+ *      deleteLegalContractId: // value for 'deleteLegalContractId'
+ *   },
+ * });
+ */
+export function useDeleteLegalContractMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteLegalContractMutation,
+    DeleteLegalContractMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    DeleteLegalContractMutation,
+    DeleteLegalContractMutationVariables
+  >(DeleteLegalContractDocument, options);
+}
+
+export type DeleteLegalContractMutationHookResult = ReturnType<
+  typeof useDeleteLegalContractMutation
+>;
+
+export type DeleteLegalContractMutationResult =
+  Apollo.MutationResult<DeleteLegalContractMutation>;
+
+export type DeleteLegalContractMutationOptions = Apollo.BaseMutationOptions<
+  DeleteLegalContractMutation,
+  DeleteLegalContractMutationVariables
+>;
+
+export const DeleteManyLegalContractDocument = gql`
+  mutation DeleteManyLegalContract($ids: [String!]!) {
+    deleteManyLegalContract(ids: $ids) {
+      carrier_company_id
+      contract_number
+      created_at
+      created_by
+      delivery_conditions
+      effective_date
+      id
+      legal_client_id
+      observations
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+export type DeleteManyLegalContractMutationFn = Apollo.MutationFunction<
+  DeleteManyLegalContractMutation,
+  DeleteManyLegalContractMutationVariables
+>;
+
+/**
+ * __useDeleteManyLegalContractMutation__
+ *
+ * To run a mutation, you first call `useDeleteManyLegalContractMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteManyLegalContractMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteManyLegalContractMutation, { data, loading, error }] = useDeleteManyLegalContractMutation({
+ *   variables: {
+ *      ids: // value for 'ids'
+ *   },
+ * });
+ */
+export function useDeleteManyLegalContractMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteManyLegalContractMutation,
+    DeleteManyLegalContractMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    DeleteManyLegalContractMutation,
+    DeleteManyLegalContractMutationVariables
+  >(DeleteManyLegalContractDocument, options);
+}
+
+export type DeleteManyLegalContractMutationHookResult = ReturnType<
+  typeof useDeleteManyLegalContractMutation
+>;
+
+export type DeleteManyLegalContractMutationResult =
+  Apollo.MutationResult<DeleteManyLegalContractMutation>;
+
+export type DeleteManyLegalContractMutationOptions = Apollo.BaseMutationOptions<
+  DeleteManyLegalContractMutation,
+  DeleteManyLegalContractMutationVariables
+>;
+
+export const UpdatelegalContractDocument = gql`
+  mutation UpdatelegalContract(
+    $updatelegalContractId: String!
+    $legalContractInput: LegalContractUpdateInput!
+  ) {
+    updatelegalContract(
+      id: $updatelegalContractId
+      legalContractInput: $legalContractInput
+    ) {
+      carrier_company_id
+      contract_number
+      created_at
+      created_by
+      delivery_conditions
+      effective_date
+      id
+      legal_client_id
+      observations
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+export type UpdatelegalContractMutationFn = Apollo.MutationFunction<
+  UpdatelegalContractMutation,
+  UpdatelegalContractMutationVariables
+>;
+
+/**
+ * __useUpdatelegalContractMutation__
+ *
+ * To run a mutation, you first call `useUpdatelegalContractMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatelegalContractMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatelegalContractMutation, { data, loading, error }] = useUpdatelegalContractMutation({
+ *   variables: {
+ *      updatelegalContractId: // value for 'updatelegalContractId'
+ *      legalContractInput: // value for 'legalContractInput'
+ *   },
+ * });
+ */
+export function useUpdatelegalContractMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdatelegalContractMutation,
+    UpdatelegalContractMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    UpdatelegalContractMutation,
+    UpdatelegalContractMutationVariables
+  >(UpdatelegalContractDocument, options);
+}
+
+export type UpdatelegalContractMutationHookResult = ReturnType<
+  typeof useUpdatelegalContractMutation
+>;
+
+export type UpdatelegalContractMutationResult =
+  Apollo.MutationResult<UpdatelegalContractMutation>;
+
+export type UpdatelegalContractMutationOptions = Apollo.BaseMutationOptions<
+  UpdatelegalContractMutation,
+  UpdatelegalContractMutationVariables
+>;
+
+export const UpdateManyLegalContractDocument = gql`
+  mutation UpdateManyLegalContract($data: [LegalContractUpdateManyInput!]!) {
+    updateManyLegalContract(data: $data) {
+      carrier_company_id
+      contract_number
+      created_at
+      created_by
+      delivery_conditions
+      effective_date
+      id
+      legal_client_id
+      observations
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+export type UpdateManyLegalContractMutationFn = Apollo.MutationFunction<
+  UpdateManyLegalContractMutation,
+  UpdateManyLegalContractMutationVariables
+>;
+
+/**
+ * __useUpdateManyLegalContractMutation__
+ *
+ * To run a mutation, you first call `useUpdateManyLegalContractMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateManyLegalContractMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateManyLegalContractMutation, { data, loading, error }] = useUpdateManyLegalContractMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateManyLegalContractMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateManyLegalContractMutation,
+    UpdateManyLegalContractMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    UpdateManyLegalContractMutation,
+    UpdateManyLegalContractMutationVariables
+  >(UpdateManyLegalContractDocument, options);
+}
+
+export type UpdateManyLegalContractMutationHookResult = ReturnType<
+  typeof useUpdateManyLegalContractMutation
+>;
+
+export type UpdateManyLegalContractMutationResult =
+  Apollo.MutationResult<UpdateManyLegalContractMutation>;
+
+export type UpdateManyLegalContractMutationOptions = Apollo.BaseMutationOptions<
+  UpdateManyLegalContractMutation,
+  UpdateManyLegalContractMutationVariables
+>;
+
 export const CreateMaintenanceCompanyDocument = gql`
   mutation CreateMaintenanceCompany(
     $maintenancecompanyInput: MaintenanceCompanyInput!
@@ -12477,6 +13256,364 @@ export type UpdateManyMaintenanceMutationOptions = Apollo.BaseMutationOptions<
   UpdateManyMaintenanceMutationVariables
 >;
 
+export const CreateOrderProcessingDocument = gql`
+  mutation CreateOrderProcessing($data: OrderProcessingInput!) {
+    createOrderProcessing(data: $data) {
+      created_at
+      created_by
+      driver_id
+      end_at
+      id
+      order_processing
+      order_processing_number
+      start_at
+      status
+      total_distance
+      total_spend_liters
+      total_spending_money
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+export type CreateOrderProcessingMutationFn = Apollo.MutationFunction<
+  CreateOrderProcessingMutation,
+  CreateOrderProcessingMutationVariables
+>;
+
+/**
+ * __useCreateOrderProcessingMutation__
+ *
+ * To run a mutation, you first call `useCreateOrderProcessingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOrderProcessingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOrderProcessingMutation, { data, loading, error }] = useCreateOrderProcessingMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateOrderProcessingMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateOrderProcessingMutation,
+    CreateOrderProcessingMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    CreateOrderProcessingMutation,
+    CreateOrderProcessingMutationVariables
+  >(CreateOrderProcessingDocument, options);
+}
+
+export type CreateOrderProcessingMutationHookResult = ReturnType<
+  typeof useCreateOrderProcessingMutation
+>;
+
+export type CreateOrderProcessingMutationResult =
+  Apollo.MutationResult<CreateOrderProcessingMutation>;
+
+export type CreateOrderProcessingMutationOptions = Apollo.BaseMutationOptions<
+  CreateOrderProcessingMutation,
+  CreateOrderProcessingMutationVariables
+>;
+
+export const DeleteOrderProcessingDocument = gql`
+  mutation DeleteOrderProcessing($deleteOrderProcessingId: String!) {
+    deleteOrderProcessing(id: $deleteOrderProcessingId) {
+      created_at
+      created_by
+      driver_id
+      end_at
+      id
+      order_processing
+      order_processing_number
+      start_at
+      status
+      total_distance
+      total_spend_liters
+      total_spending_money
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+export type DeleteOrderProcessingMutationFn = Apollo.MutationFunction<
+  DeleteOrderProcessingMutation,
+  DeleteOrderProcessingMutationVariables
+>;
+
+/**
+ * __useDeleteOrderProcessingMutation__
+ *
+ * To run a mutation, you first call `useDeleteOrderProcessingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteOrderProcessingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteOrderProcessingMutation, { data, loading, error }] = useDeleteOrderProcessingMutation({
+ *   variables: {
+ *      deleteOrderProcessingId: // value for 'deleteOrderProcessingId'
+ *   },
+ * });
+ */
+export function useDeleteOrderProcessingMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteOrderProcessingMutation,
+    DeleteOrderProcessingMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    DeleteOrderProcessingMutation,
+    DeleteOrderProcessingMutationVariables
+  >(DeleteOrderProcessingDocument, options);
+}
+
+export type DeleteOrderProcessingMutationHookResult = ReturnType<
+  typeof useDeleteOrderProcessingMutation
+>;
+
+export type DeleteOrderProcessingMutationResult =
+  Apollo.MutationResult<DeleteOrderProcessingMutation>;
+
+export type DeleteOrderProcessingMutationOptions = Apollo.BaseMutationOptions<
+  DeleteOrderProcessingMutation,
+  DeleteOrderProcessingMutationVariables
+>;
+
+export const DeleteManyOrderProcessingDocument = gql`
+  mutation DeleteManyOrderProcessing($ids: [String!]!) {
+    deleteManyOrderProcessing(ids: $ids) {
+      created_at
+      created_by
+      driver_id
+      end_at
+      id
+      order_processing
+      order_processing_number
+      start_at
+      status
+      total_distance
+      total_spend_liters
+      total_spending_money
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+export type DeleteManyOrderProcessingMutationFn = Apollo.MutationFunction<
+  DeleteManyOrderProcessingMutation,
+  DeleteManyOrderProcessingMutationVariables
+>;
+
+/**
+ * __useDeleteManyOrderProcessingMutation__
+ *
+ * To run a mutation, you first call `useDeleteManyOrderProcessingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteManyOrderProcessingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteManyOrderProcessingMutation, { data, loading, error }] = useDeleteManyOrderProcessingMutation({
+ *   variables: {
+ *      ids: // value for 'ids'
+ *   },
+ * });
+ */
+export function useDeleteManyOrderProcessingMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteManyOrderProcessingMutation,
+    DeleteManyOrderProcessingMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    DeleteManyOrderProcessingMutation,
+    DeleteManyOrderProcessingMutationVariables
+  >(DeleteManyOrderProcessingDocument, options);
+}
+
+export type DeleteManyOrderProcessingMutationHookResult = ReturnType<
+  typeof useDeleteManyOrderProcessingMutation
+>;
+
+export type DeleteManyOrderProcessingMutationResult =
+  Apollo.MutationResult<DeleteManyOrderProcessingMutation>;
+
+export type DeleteManyOrderProcessingMutationOptions =
+  Apollo.BaseMutationOptions<
+    DeleteManyOrderProcessingMutation,
+    DeleteManyOrderProcessingMutationVariables
+  >;
+
+export const UpdateOrderProcessingDocument = gql`
+  mutation UpdateOrderProcessing(
+    $data: OrderProcessingUpdateInput!
+    $updateOrderProcessingId: String!
+  ) {
+    updateOrderProcessing(data: $data, id: $updateOrderProcessingId) {
+      created_at
+      created_by
+      driver_id
+      end_at
+      id
+      order_processing
+      order_processing_number
+      start_at
+      status
+      total_distance
+      total_spend_liters
+      total_spending_money
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+export type UpdateOrderProcessingMutationFn = Apollo.MutationFunction<
+  UpdateOrderProcessingMutation,
+  UpdateOrderProcessingMutationVariables
+>;
+
+/**
+ * __useUpdateOrderProcessingMutation__
+ *
+ * To run a mutation, you first call `useUpdateOrderProcessingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateOrderProcessingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateOrderProcessingMutation, { data, loading, error }] = useUpdateOrderProcessingMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      updateOrderProcessingId: // value for 'updateOrderProcessingId'
+ *   },
+ * });
+ */
+export function useUpdateOrderProcessingMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateOrderProcessingMutation,
+    UpdateOrderProcessingMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    UpdateOrderProcessingMutation,
+    UpdateOrderProcessingMutationVariables
+  >(UpdateOrderProcessingDocument, options);
+}
+
+export type UpdateOrderProcessingMutationHookResult = ReturnType<
+  typeof useUpdateOrderProcessingMutation
+>;
+
+export type UpdateOrderProcessingMutationResult =
+  Apollo.MutationResult<UpdateOrderProcessingMutation>;
+
+export type UpdateOrderProcessingMutationOptions = Apollo.BaseMutationOptions<
+  UpdateOrderProcessingMutation,
+  UpdateOrderProcessingMutationVariables
+>;
+
+export const UpdateManyOrderProcessingDocument = gql`
+  mutation UpdateManyOrderProcessing(
+    $data: [OrderProcessingUpdateManyInput!]!
+  ) {
+    updateManyOrderProcessing(data: $data) {
+      created_at
+      created_by
+      driver_id
+      end_at
+      id
+      order_processing
+      order_processing_number
+      start_at
+      status
+      total_distance
+      total_spend_liters
+      total_spending_money
+      updated_at
+      updated_by
+      vehicle_id
+    }
+  }
+`;
+
+export type UpdateManyOrderProcessingMutationFn = Apollo.MutationFunction<
+  UpdateManyOrderProcessingMutation,
+  UpdateManyOrderProcessingMutationVariables
+>;
+
+/**
+ * __useUpdateManyOrderProcessingMutation__
+ *
+ * To run a mutation, you first call `useUpdateManyOrderProcessingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateManyOrderProcessingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateManyOrderProcessingMutation, { data, loading, error }] = useUpdateManyOrderProcessingMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateManyOrderProcessingMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateManyOrderProcessingMutation,
+    UpdateManyOrderProcessingMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    UpdateManyOrderProcessingMutation,
+    UpdateManyOrderProcessingMutationVariables
+  >(UpdateManyOrderProcessingDocument, options);
+}
+
+export type UpdateManyOrderProcessingMutationHookResult = ReturnType<
+  typeof useUpdateManyOrderProcessingMutation
+>;
+
+export type UpdateManyOrderProcessingMutationResult =
+  Apollo.MutationResult<UpdateManyOrderProcessingMutation>;
+
+export type UpdateManyOrderProcessingMutationOptions =
+  Apollo.BaseMutationOptions<
+    UpdateManyOrderProcessingMutation,
+    UpdateManyOrderProcessingMutationVariables
+  >;
+
 export const CreateOwnDriverDocument = gql`
   mutation CreateOwnDriver($ownDriver: OwnDriverInput!) {
     createOwnDriver(ownDriverInput: $ownDriver) {
@@ -12811,6 +13948,155 @@ export type UpdateManyOwnDriversMutationResult =
 export type UpdateManyOwnDriversMutationOptions = Apollo.BaseMutationOptions<
   UpdateManyOwnDriversMutation,
   UpdateManyOwnDriversMutationVariables
+>;
+
+export const CreatePhysicalCustomerCteDocument = gql`
+  mutation CreatePhysicalCustomerCte($data: PhysicalCustomerCteInput!) {
+    createPhysicalCustomerCte(data: $data) {
+      acessKey
+      cteNumber
+      cteType
+      id
+      observations
+      orderId
+    }
+  }
+`;
+
+export type CreatePhysicalCustomerCteMutationFn = Apollo.MutationFunction<
+  CreatePhysicalCustomerCteMutation,
+  CreatePhysicalCustomerCteMutationVariables
+>;
+
+/**
+ * __useCreatePhysicalCustomerCteMutation__
+ *
+ * To run a mutation, you first call `useCreatePhysicalCustomerCteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePhysicalCustomerCteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createPhysicalCustomerCteMutation, { data, loading, error }] = useCreatePhysicalCustomerCteMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreatePhysicalCustomerCteMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreatePhysicalCustomerCteMutation,
+    CreatePhysicalCustomerCteMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    CreatePhysicalCustomerCteMutation,
+    CreatePhysicalCustomerCteMutationVariables
+  >(CreatePhysicalCustomerCteDocument, options);
+}
+
+export type CreatePhysicalCustomerCteMutationHookResult = ReturnType<
+  typeof useCreatePhysicalCustomerCteMutation
+>;
+
+export type CreatePhysicalCustomerCteMutationResult =
+  Apollo.MutationResult<CreatePhysicalCustomerCteMutation>;
+
+export type CreatePhysicalCustomerCteMutationOptions =
+  Apollo.BaseMutationOptions<
+    CreatePhysicalCustomerCteMutation,
+    CreatePhysicalCustomerCteMutationVariables
+  >;
+
+export const GeneratePhysicalCustomerCteDocument = gql`
+  query GeneratePhysicalCustomerCte($request: CtePdfPhysicalCustomerInput!) {
+    generatePhysicalCustomerCte(request: $request) {
+      cteUrl
+    }
+  }
+`;
+
+/**
+ * __useGeneratePhysicalCustomerCteQuery__
+ *
+ * To run a query within a React component, call `useGeneratePhysicalCustomerCteQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGeneratePhysicalCustomerCteQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGeneratePhysicalCustomerCteQuery({
+ *   variables: {
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useGeneratePhysicalCustomerCteQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GeneratePhysicalCustomerCteQuery,
+    GeneratePhysicalCustomerCteQueryVariables
+  > &
+    (
+      | { skip: boolean }
+      | { skip?: boolean; variables: GeneratePhysicalCustomerCteQueryVariables }
+    ),
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GeneratePhysicalCustomerCteQuery,
+    GeneratePhysicalCustomerCteQueryVariables
+  >(GeneratePhysicalCustomerCteDocument, options);
+}
+
+export function useGeneratePhysicalCustomerCteLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GeneratePhysicalCustomerCteQuery,
+    GeneratePhysicalCustomerCteQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GeneratePhysicalCustomerCteQuery,
+    GeneratePhysicalCustomerCteQueryVariables
+  >(GeneratePhysicalCustomerCteDocument, options);
+}
+
+export function useGeneratePhysicalCustomerCteSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GeneratePhysicalCustomerCteQuery,
+    GeneratePhysicalCustomerCteQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GeneratePhysicalCustomerCteQuery,
+    GeneratePhysicalCustomerCteQueryVariables
+  >(GeneratePhysicalCustomerCteDocument, options);
+}
+
+export type GeneratePhysicalCustomerCteQueryHookResult = ReturnType<
+  typeof useGeneratePhysicalCustomerCteQuery
+>;
+
+export type GeneratePhysicalCustomerCteLazyQueryHookResult = ReturnType<
+  typeof useGeneratePhysicalCustomerCteLazyQuery
+>;
+
+export type GeneratePhysicalCustomerCteSuspenseQueryHookResult = ReturnType<
+  typeof useGeneratePhysicalCustomerCteSuspenseQuery
+>;
+
+export type GeneratePhysicalCustomerCteQueryResult = Apollo.QueryResult<
+  GeneratePhysicalCustomerCteQuery,
+  GeneratePhysicalCustomerCteQueryVariables
 >;
 
 export const CreatePhysicalCustomerOrderDocument = gql`

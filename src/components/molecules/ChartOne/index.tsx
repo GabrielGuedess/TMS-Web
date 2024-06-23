@@ -28,9 +28,9 @@ const ChartOneRef: ForwardRefRenderFunction<HTMLDivElement, ChartOneProps> = (
           </div>
 
           <div className="w-full">
-            <p className="font-semibold text-cobalt-900">Total Revenue</p>
+            <p className="font-semibold text-cobalt-900">Total de Pedidos</p>
             <p className="text-sm font-medium text-comet-500 dark:text-dark-300">
-              12.04.2022 - 12.05.2022
+              12.04.2022 - 12.05.2024
             </p>
           </div>
         </div>
@@ -41,9 +41,9 @@ const ChartOneRef: ForwardRefRenderFunction<HTMLDivElement, ChartOneProps> = (
           </div>
 
           <div className="w-full">
-            <p className="font-semibold text-primary-400">Total Sales</p>
+            <p className="font-semibold text-primary-400">Total de Pedidos</p>
             <p className="text-sm font-medium text-comet-500 dark:text-dark-300">
-              12.04.2022 - 12.05.2022
+              12.04.2022 - 12.05.2023
             </p>
           </div>
         </div>

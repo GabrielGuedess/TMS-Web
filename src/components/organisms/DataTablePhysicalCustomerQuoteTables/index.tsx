@@ -992,7 +992,7 @@ export const DataTablePhysicalCustomerQuoteTables = ({
           </div>
 
           <div className="relative flex flex-1 gap-3 md:flex-initial">
-            <Link href="/dashboard/legal-client-quote-tables/new">
+            <Link href="/dashboard/physical-customer-quote-tables/new">
               <Button variant="label">Adicionar Cotação</Button>
             </Link>
 
@@ -1099,7 +1099,7 @@ export const DataTablePhysicalCustomerQuoteTables = ({
                   >
                     {selectedRows.length === 1 && (
                       <Link
-                        href={`/dashboard/legal-client-quote-tables/${selectedRows[0].id}/general`}
+                        href={`/dashboard/physical-customer-quote-tables/${selectedRows[0].id}/general`}
                         className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
                       >
                         <SendAngleIcon size={20} />
