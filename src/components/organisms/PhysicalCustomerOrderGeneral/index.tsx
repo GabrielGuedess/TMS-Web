@@ -82,16 +82,17 @@ const PhysicalCustomerOrderGeneralRef: ForwardRefRenderFunction<
         id: data?.getPhysicalCustomerOrderModel?.quote_table_id,
         description: data?.getPhysicalCustomerOrderModel?.Quote?.codQuote,
       },
-      expenses:
-        data?.getPhysicalCustomerOrderModel?.expenses.map(item => ({
-          value: String(item.value),
-          expenseName: item.expenseName,
-        })) ?? [],
       carrier: {
         id: data?.getPhysicalCustomerOrderModel?.carrier_id,
         description:
           data?.getPhysicalCustomerOrderModel?.CarrierCompany?.rntrc ?? '',
       },
+      expenses:
+        data?.getPhysicalCustomerOrderModel?.expenses.map(item => ({
+          id: String(item.id),
+          value: String(item.value),
+          expenseName: item.expenseName,
+        })) ?? [],
       physicalCustomer: {
         id: data?.getPhysicalCustomerOrderModel?.physicalCustomerId,
         description:
@@ -225,6 +226,7 @@ const PhysicalCustomerOrderGeneralRef: ForwardRefRenderFunction<
             physicalCustomerId: newData.physicalCustomer.id,
             expenses:
               newData.expenses?.map(item => ({
+                id: String(item.id),
                 value: Number(item.value),
                 expenseName: item.expenseName,
               })) ?? [],
@@ -411,7 +413,7 @@ const PhysicalCustomerOrderGeneralRef: ForwardRefRenderFunction<
             <button
               type="button"
               aria-label="Add Expense"
-              onClick={() => append({ value: '', expenseName: '' })}
+              onClick={() => append({ id: '', value: '', expenseName: '' })}
               className="max-w-min cursor-pointer rounded-full border-2 border-gray-300 p-5 text-gray-300 transition-all hover:bg-primary-500/10 hover:text-blue-500 dark:border-shark-950 dark:text-shark-950 hover:dark:text-blue-500"
             >
               <PlusIcon />
