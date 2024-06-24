@@ -94,6 +94,18 @@ const OrderProcessingGeneralRef: ForwardRefRenderFunction<
         id: data.getOrderProcessing.OwnDriver.id,
         description: data.getOrderProcessing.OwnDriver.cnh,
       },
+      physicalCustomerOrder:
+        data.getOrderProcessing?.PhysicalCustomerOrders?.map(item => ({
+          id: item.id,
+          description: item.order,
+        })) ?? [],
+      legalCustomerOrder: data.getOrderProcessing?.LegalClientOrders?.map(
+        item =>
+          ({
+            id: item.id,
+            description: item.order,
+          }) ?? [],
+      ),
       vehicle: {
         id: data.getOrderProcessing.vehicle_id,
         description: `${data.getOrderProcessing?.Vehicle?.VehicleModel?.name ?? ''} - ${data.getOrderProcessing?.Vehicle?.plate}`,
@@ -214,6 +226,16 @@ const OrderProcessingGeneralRef: ForwardRefRenderFunction<
   const handleUpdate = async (newData: OrderProcessingGeneralOutputProps) => {
     setIsLoading(true);
 
+    const removedPhysicals =
+      data.getOrderProcessing.PhysicalCustomerOrders.filter(
+        item =>
+          !newData.physicalCustomerOrder.some(value => value.id === item.id),
+      )?.map(item => item.id);
+
+    const removedLegals = data.getOrderProcessing.LegalClientOrders.filter(
+      item => !newData.legalCustomerOrder.some(value => value.id === item.id),
+    )?.map(item => item.id);
+
     try {
       await updateOrderProcessing({
         variables: {
@@ -226,12 +248,18 @@ const OrderProcessingGeneralRef: ForwardRefRenderFunction<
             total_distance: Number(newData.total_distance),
             total_spend_liters: Number(newData.total_spend_liters),
             total_spending_money: Number(newData.total_spending_money),
-            legal_customer_order_ids: newData.legalCustomerOrder.map(
-              item => item.id,
-            ),
-            physical_customer_order_ids: newData.physicalCustomerOrder.map(
-              item => item.id,
-            ),
+            legal_customer_order_ids: newData.legalCustomerOrder
+              .filter(item => !!item?.id)
+              .map(item => item.id),
+            physical_customer_order_ids: newData.physicalCustomerOrder
+              .filter(item => !!item?.id)
+              .map(item => item.id),
+            ...(removePhysical.length > 0 && {
+              disconnect_physical_customer_order: removedPhysicals,
+            }),
+            ...(removedLegals.length > 0 && {
+              disconnect_legal_client_order: removedLegals,
+            }),
           },
         },
       });

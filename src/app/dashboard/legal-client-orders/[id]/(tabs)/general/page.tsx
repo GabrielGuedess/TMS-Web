@@ -1,6 +1,6 @@
 import { apollo } from 'apollo/client';
 
-import { QUERY_PHYSICAL_CUSTOMER_ORDER } from 'graphql/queries/physical-customer-order/physicalCustomerOrder';
+import { QUERY_LEGAL_CLIENT_ORDER } from 'graphql/queries/legal-client-order/legalClientOrder';
 import {
   type GetLegalClientOrderModelQuery,
   type GetLegalClientOrderModelQueryVariables,
@@ -13,7 +13,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
     GetLegalClientOrderModelQuery,
     GetLegalClientOrderModelQueryVariables
   >({
-    query: QUERY_PHYSICAL_CUSTOMER_ORDER,
+    query: QUERY_LEGAL_CLIENT_ORDER,
     variables: { getLegalClientOrderModelId: params.id },
   });
 

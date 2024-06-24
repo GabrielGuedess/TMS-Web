@@ -7,7 +7,7 @@ import { Breadcrumb } from 'components/atoms/Breadcrumb';
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <section className="flex flex-col gap-4 md:grid-cols-2 md:gap-6">
-    <Breadcrumb pageName="Remetente" />
+    <Breadcrumb pageName="Contrato" />
 
     <Tabs tabs={[{ title: 'Geral', href: 'general' as Route }]} />
 

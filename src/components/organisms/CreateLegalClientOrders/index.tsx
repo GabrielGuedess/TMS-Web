@@ -199,10 +199,13 @@ const CreateLegalClientOrderRef: ForwardRefRenderFunction<
       const legalClientOrder = await createLegalClientOrder({
         variables: {
           legalClientOrderInput: {
-            expenses: data.expenses,
             carrier_id: data.carrier.id,
             quote_table_id: data.quoteTable.id,
             legal_contract_id: data.legalContract.id,
+            expenses: data.expenses.map(item => ({
+              value: Number(item.value),
+              expenseName: item.expenseName,
+            })),
           },
         },
       });
@@ -390,7 +393,7 @@ const CreateLegalClientOrderRef: ForwardRefRenderFunction<
             <button
               type="button"
               aria-label="Add Expense"
-              onClick={() => append({ value: 0, expenseName: '' })}
+              onClick={() => append({ value: '', expenseName: '' })}
               className="max-w-min cursor-pointer rounded-full border-2 border-gray-300 p-5 text-gray-300 transition-all hover:bg-primary-500/10 hover:text-blue-500 dark:border-shark-950 dark:text-shark-950 hover:dark:text-blue-500"
             >
               <PlusIcon />

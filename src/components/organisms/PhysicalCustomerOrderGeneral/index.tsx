@@ -78,11 +78,15 @@ const PhysicalCustomerOrderGeneralRef: ForwardRefRenderFunction<
   } = useForm<PhysicalCustomerOrderGeneralInputProps>({
     resolver: zodResolver(physicalCustomerOrderGeneralSchema),
     defaultValues: {
-      expenses: data?.getPhysicalCustomerOrderModel?.expenses ?? [],
       quoteTable: {
         id: data?.getPhysicalCustomerOrderModel?.quote_table_id,
         description: data?.getPhysicalCustomerOrderModel?.Quote?.codQuote,
       },
+      expenses:
+        data?.getPhysicalCustomerOrderModel?.expenses.map(item => ({
+          value: String(item.value),
+          expenseName: item.expenseName,
+        })) ?? [],
       carrier: {
         id: data?.getPhysicalCustomerOrderModel?.carrier_id,
         description:
@@ -216,10 +220,14 @@ const PhysicalCustomerOrderGeneralRef: ForwardRefRenderFunction<
           updatePhysicalCustomerOrderId:
             data?.getPhysicalCustomerOrderModel?.id ?? '',
           physicalCustomerOrderInput: {
-            expenses: newData.expenses,
             carrier_id: newData.carrier.id,
             quote_table_id: newData.quoteTable.id,
             physicalCustomerId: newData.physicalCustomer.id,
+            expenses:
+              newData.expenses?.map(item => ({
+                value: Number(item.value),
+                expenseName: item.expenseName,
+              })) ?? [],
           },
         },
       });
@@ -403,7 +411,7 @@ const PhysicalCustomerOrderGeneralRef: ForwardRefRenderFunction<
             <button
               type="button"
               aria-label="Add Expense"
-              onClick={() => append({ value: 0, expenseName: '' })}
+              onClick={() => append({ value: '', expenseName: '' })}
               className="max-w-min cursor-pointer rounded-full border-2 border-gray-300 p-5 text-gray-300 transition-all hover:bg-primary-500/10 hover:text-blue-500 dark:border-shark-950 dark:text-shark-950 hover:dark:text-blue-500"
             >
               <PlusIcon />

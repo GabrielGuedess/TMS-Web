@@ -2684,10 +2684,12 @@ export type OrderProcessingUpdateInput = {
   total_distance?: InputMaybe<Scalars['Float']['input']>;
   total_spend_liters?: InputMaybe<Scalars['Float']['input']>;
   total_spending_money?: InputMaybe<Scalars['Float']['input']>;
-  disconnect_legal_client_order?: InputMaybe<Scalars['String']['input']>;
   legal_customer_order_ids?: InputMaybe<Array<Scalars['String']['input']>>;
-  disconnect_physical_customer_order?: InputMaybe<Scalars['String']['input']>;
   physical_customer_order_ids?: InputMaybe<Array<Scalars['String']['input']>>;
+  disconnect_legal_client_order?: InputMaybe<Array<Scalars['String']['input']>>;
+  disconnect_physical_customer_order?: InputMaybe<
+    Array<Scalars['String']['input']>
+  >;
 };
 
 export type OrderProcessingUpdateManyInput = {
@@ -2700,10 +2702,12 @@ export type OrderProcessingUpdateManyInput = {
   total_distance?: InputMaybe<Scalars['Float']['input']>;
   total_spend_liters?: InputMaybe<Scalars['Float']['input']>;
   total_spending_money?: InputMaybe<Scalars['Float']['input']>;
-  disconnect_legal_client_order?: InputMaybe<Scalars['String']['input']>;
   legal_customer_order_ids?: InputMaybe<Array<Scalars['String']['input']>>;
-  disconnect_physical_customer_order?: InputMaybe<Scalars['String']['input']>;
   physical_customer_order_ids?: InputMaybe<Array<Scalars['String']['input']>>;
+  disconnect_legal_client_order?: InputMaybe<Array<Scalars['String']['input']>>;
+  disconnect_physical_customer_order?: InputMaybe<
+    Array<Scalars['String']['input']>
+  >;
 };
 
 export type OrderProcessingWhereInput = {
@@ -8357,6 +8361,38 @@ export type GetAllLegalContractComboQuery = {
     contract_number: string;
     __typename?: 'LegalContractModel';
   }>;
+};
+
+export type GetLegalContractModelQueryVariables = Exact<{
+  getLegalContractModelId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetLegalContractModelQuery = {
+  __typename?: 'Query';
+  getLegalContractModel: {
+    id: string;
+    created_by: string;
+    updated_by: string;
+    effective_date: any;
+    observations: string;
+    contract_number: string;
+    legal_client_id: string;
+    carrier_company_id: string;
+    delivery_conditions: string;
+    __typename?: 'LegalContractModel';
+    CarrierCompany: {
+      id: string;
+      rntrc: string;
+      __typename?: 'CarrierCompanyModel';
+    };
+    LegalClient: {
+      id: string;
+      __typename?: 'LegalClientModel';
+      LegalPerson: { cnpj: string; __typename?: 'LegalPersonModel' };
+    };
+    updated_at: any;
+    created_at: any;
+  };
 };
 
 export type GetAllLegalContractQueryVariables = Exact<{
@@ -19400,6 +19436,109 @@ export type GetAllLegalContractComboSuspenseQueryHookResult = ReturnType<
 export type GetAllLegalContractComboQueryResult = Apollo.QueryResult<
   GetAllLegalContractComboQuery,
   GetAllLegalContractComboQueryVariables
+>;
+
+export const GetLegalContractModelDocument = gql`
+  query GetLegalContractModel($getLegalContractModelId: String) {
+    getLegalContractModel(id: $getLegalContractModelId) {
+      CarrierCompany {
+        id
+        rntrc
+      }
+      LegalClient {
+        id
+        LegalPerson {
+          cnpj
+        }
+      }
+      carrier_company_id
+      contract_number
+      created_at
+      created_by
+      delivery_conditions
+      effective_date
+      id
+      legal_client_id
+      observations
+      updated_at
+      updated_by
+    }
+  }
+`;
+
+/**
+ * __useGetLegalContractModelQuery__
+ *
+ * To run a query within a React component, call `useGetLegalContractModelQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLegalContractModelQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLegalContractModelQuery({
+ *   variables: {
+ *      getLegalContractModelId: // value for 'getLegalContractModelId'
+ *   },
+ * });
+ */
+export function useGetLegalContractModelQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetLegalContractModelQuery,
+    GetLegalContractModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetLegalContractModelQuery,
+    GetLegalContractModelQueryVariables
+  >(GetLegalContractModelDocument, options);
+}
+
+export function useGetLegalContractModelLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetLegalContractModelQuery,
+    GetLegalContractModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetLegalContractModelQuery,
+    GetLegalContractModelQueryVariables
+  >(GetLegalContractModelDocument, options);
+}
+
+export function useGetLegalContractModelSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetLegalContractModelQuery,
+    GetLegalContractModelQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetLegalContractModelQuery,
+    GetLegalContractModelQueryVariables
+  >(GetLegalContractModelDocument, options);
+}
+
+export type GetLegalContractModelQueryHookResult = ReturnType<
+  typeof useGetLegalContractModelQuery
+>;
+
+export type GetLegalContractModelLazyQueryHookResult = ReturnType<
+  typeof useGetLegalContractModelLazyQuery
+>;
+
+export type GetLegalContractModelSuspenseQueryHookResult = ReturnType<
+  typeof useGetLegalContractModelSuspenseQuery
+>;
+
+export type GetLegalContractModelQueryResult = Apollo.QueryResult<
+  GetLegalContractModelQuery,
+  GetLegalContractModelQueryVariables
 >;
 
 export const GetAllLegalContractDocument = gql`

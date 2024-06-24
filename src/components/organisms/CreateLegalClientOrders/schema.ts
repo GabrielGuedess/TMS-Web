@@ -23,7 +23,7 @@ const quoteTable = z
 
 const expense = z
   .object({
-    value: z.number().min(1, 'Despesa é obrigatório!'),
+    value: z.string().min(1, 'Despesa é obrigatório!'),
     expenseName: z.string().min(1, 'Despesa é obrigatório!'),
   })
   .strict();

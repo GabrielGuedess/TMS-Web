@@ -75,11 +75,15 @@ const LegalClientOrderGeneralRef: ForwardRefRenderFunction<
   } = useForm<LegalClientOrderGeneralInputProps>({
     resolver: zodResolver(legalClientOrderGeneralSchema),
     defaultValues: {
-      expenses: data?.getLegalClientOrderModel?.expenses ?? [],
       quoteTable: {
         id: data?.getLegalClientOrderModel?.quote_table_id,
         description: data?.getLegalClientOrderModel?.Quote?.codQuote ?? '',
       },
+      expenses:
+        data?.getLegalClientOrderModel?.expenses?.map(item => ({
+          value: String(item.value),
+          expenseName: item.expenseName,
+        })) ?? [],
       carrier: {
         id: data?.getLegalClientOrderModel?.carrier_id,
         description:
@@ -208,10 +212,13 @@ const LegalClientOrderGeneralRef: ForwardRefRenderFunction<
         variables: {
           updatelegalClientOrderId: data.getLegalClientOrderModel?.id ?? '',
           legalClientOrderInput: {
-            expenses: newData.expenses,
             carrier_id: newData.carrier.id,
             quote_table_id: newData.quoteTable.id,
             legal_contract_id: newData.legalContract.id,
+            expenses: newData.expenses.map(item => ({
+              value: Number(item.value),
+              expenseName: item.expenseName,
+            })),
           },
         },
       });
@@ -393,7 +400,7 @@ const LegalClientOrderGeneralRef: ForwardRefRenderFunction<
             <button
               type="button"
               aria-label="Add Expense"
-              onClick={() => append({ value: 0, expenseName: '' })}
+              onClick={() => append({ value: '', expenseName: '' })}
               className="max-w-min cursor-pointer rounded-full border-2 border-gray-300 p-5 text-gray-300 transition-all hover:bg-primary-500/10 hover:text-blue-500 dark:border-shark-950 dark:text-shark-950 hover:dark:text-blue-500"
             >
               <PlusIcon />
