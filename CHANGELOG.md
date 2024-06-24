@@ -1,3 +1,11 @@
+## [1.9.1](https://github.com/GabrielGuedess/TMS-Web/compare/v1.9.0...v1.9.1) (2024-06-24)
+
+
+### Bug Fixes
+
+* add id in expense legal ([d8bedfe](https://github.com/GabrielGuedess/TMS-Web/commit/d8bedfed7c23a87ab1fe0f9a582b890fcb849d6c))
+* add id to expense ([7691213](https://github.com/GabrielGuedess/TMS-Web/commit/76912139ca81308cf62c8ba5245f3952328ad863))
+
 # [1.9.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.8.0...v1.9.0) (2024-06-24)
 
 
