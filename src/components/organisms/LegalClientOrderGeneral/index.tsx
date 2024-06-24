@@ -79,11 +79,6 @@ const LegalClientOrderGeneralRef: ForwardRefRenderFunction<
         id: data?.getLegalClientOrderModel?.quote_table_id,
         description: data?.getLegalClientOrderModel?.Quote?.codQuote ?? '',
       },
-      expenses:
-        data?.getLegalClientOrderModel?.expenses?.map(item => ({
-          value: String(item.value),
-          expenseName: item.expenseName,
-        })) ?? [],
       carrier: {
         id: data?.getLegalClientOrderModel?.carrier_id,
         description:
@@ -95,6 +90,12 @@ const LegalClientOrderGeneralRef: ForwardRefRenderFunction<
         description:
           data?.getLegalClientOrderModel?.LegalContract?.contract_number ?? '',
       },
+      expenses:
+        data?.getLegalClientOrderModel?.expenses?.map(item => ({
+          id: String(item.id),
+          value: String(item.value),
+          expenseName: item.expenseName,
+        })) ?? [],
     },
   });
 
@@ -216,6 +217,7 @@ const LegalClientOrderGeneralRef: ForwardRefRenderFunction<
             quote_table_id: newData.quoteTable.id,
             legal_contract_id: newData.legalContract.id,
             expenses: newData.expenses.map(item => ({
+              id: String(item.id),
               value: Number(item.value),
               expenseName: item.expenseName,
             })),
@@ -400,7 +402,7 @@ const LegalClientOrderGeneralRef: ForwardRefRenderFunction<
             <button
               type="button"
               aria-label="Add Expense"
-              onClick={() => append({ value: '', expenseName: '' })}
+              onClick={() => append({ id: '', value: '', expenseName: '' })}
               className="max-w-min cursor-pointer rounded-full border-2 border-gray-300 p-5 text-gray-300 transition-all hover:bg-primary-500/10 hover:text-blue-500 dark:border-shark-950 dark:text-shark-950 hover:dark:text-blue-500"
             >
               <PlusIcon />
