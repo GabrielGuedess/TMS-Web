@@ -4144,6 +4144,7 @@ export type QueryGetAllVehiclesArgs = {
 };
 
 export type QueryGetCarrierCompanyModelArgs = {
+  id?: InputMaybe<Scalars['String']['input']>;
   cnpj?: InputMaybe<Scalars['String']['input']>;
   fantasyName?: InputMaybe<Scalars['String']['input']>;
   corporateName?: InputMaybe<Scalars['String']['input']>;
@@ -4187,6 +4188,7 @@ export type QueryGetLegalClientCteArgs = {
 };
 
 export type QueryGetLegalClientModelArgs = {
+  id?: InputMaybe<Scalars['String']['input']>;
   cnpj?: InputMaybe<Scalars['String']['input']>;
   fantasyName?: InputMaybe<Scalars['String']['input']>;
   corporateName?: InputMaybe<Scalars['String']['input']>;
@@ -8390,7 +8392,7 @@ export type GetAllLegalClientQuoteTableQuery = {
 };
 
 export type GetLegalClientModelQueryVariables = Exact<{
-  cnpj?: InputMaybe<Scalars['String']['input']>;
+  getLegalClientModelId?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 export type GetLegalClientModelQuery = {
@@ -19481,8 +19483,8 @@ export type GetAllLegalClientQuoteTableQueryResult = Apollo.QueryResult<
 >;
 
 export const GetLegalClientModelDocument = gql`
-  query GetLegalClientModel($cnpj: String) {
-    getLegalClientModel(cnpj: $cnpj) {
+  query GetLegalClientModel($getLegalClientModelId: String) {
+    getLegalClientModel(id: $getLegalClientModelId) {
       LegalPerson {
         id
         fantasy_name
@@ -19511,7 +19513,7 @@ export const GetLegalClientModelDocument = gql`
  * @example
  * const { data, loading, error } = useGetLegalClientModelQuery({
  *   variables: {
- *      cnpj: // value for 'cnpj'
+ *      getLegalClientModelId: // value for 'getLegalClientModelId'
  *   },
  * });
  */

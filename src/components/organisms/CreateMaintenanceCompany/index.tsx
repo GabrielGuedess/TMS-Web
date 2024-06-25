@@ -215,7 +215,7 @@ const CreateMaintenanceCompanyRef: ForwardRefRenderFunction<
           <Separator className="h-[1px] bg-gray-300 transition-all dark:bg-shark-950" />
 
           <span className="text-sm font-medium text-gray-700 transition-all dark:text-dark-300">
-            Não possui nenhuma Pessoa Física? Crie abaixo
+            Não possui nenhuma Pessoa Jurídica? Crie abaixo
           </span>
 
           {watch('reference') === 'manual' && (

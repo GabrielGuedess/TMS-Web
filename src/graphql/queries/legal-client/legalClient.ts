@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_LEGAL_CLIENT = gql`
-  query GetLegalClientModel($cnpj: String) {
-    getLegalClientModel(cnpj: $cnpj) {
+  query GetLegalClientModel($getLegalClientModelId: String) {
+    getLegalClientModel(id: $getLegalClientModelId) {
       LegalPerson {
         id
         fantasy_name

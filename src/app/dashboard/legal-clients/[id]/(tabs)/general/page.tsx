@@ -14,7 +14,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
     GetLegalClientModelQueryVariables
   >({
     query: QUERY_LEGAL_CLIENT,
-    variables: { cnpj: params.id },
+    variables: { getLegalClientModelId: params.id },
   });
 
   if (error?.message) {
