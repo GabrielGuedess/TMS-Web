@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.9.1...v1.10.0) (2024-06-25)
+
+
+### Features
+
+* add missing pages ([b79c32b](https://github.com/GabrielGuedess/TMS-Web/commit/b79c32bf2490cf9f5f25838c4e6bf7a03c1bf8a4))
+
 ## [1.9.1](https://github.com/GabrielGuedess/TMS-Web/compare/v1.9.0...v1.9.1) (2024-06-24)
 
 
