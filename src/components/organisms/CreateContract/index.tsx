@@ -149,7 +149,7 @@ const CreateContractRef: ForwardRefRenderFunction<
       router.refresh();
 
       router.push(
-        `/dashboard/physical-customers/${Contract.data?.createLegalContract.id}/general`,
+        `/dashboard/legal-contracts/${Contract.data?.createLegalContract.id}/general`,
       );
     } catch (error) {
       if (error instanceof ApolloError) {

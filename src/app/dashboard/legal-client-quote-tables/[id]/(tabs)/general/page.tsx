@@ -1,27 +1,27 @@
 import { apollo } from 'apollo/client';
 
-import { QUERY_PHYSICAL_CUSTOMER_QUOTE_TABLE } from 'graphql/queries/physical-customer-quote-table/physicalCustomerQuoteTable';
+import { QUERY_LEGAL_CLIENT_QUOTE_TABLE } from 'graphql/queries/legal-client-quote-table/legalClientQuoteTable';
 import {
-  type GetPhysicalCustomerQuoteTableQuery,
-  type GetPhysicalCustomerQuoteTableQueryVariables,
+  type GetLegalClientQuoteTableQuery,
+  type GetLegalClientQuoteTableQueryVariables,
 } from 'graphql/generated';
 
-import { PhysicalCustomerQuoteTableGeneral } from 'components/organisms/PhysicalCustomerQuoteTableGeneral';
+import { OverviewLegalClientQuoteTable } from 'components/organisms/LegalClientQuoteTableGeneral';
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const { data, error } = await apollo().query<
-    GetPhysicalCustomerQuoteTableQuery,
-    GetPhysicalCustomerQuoteTableQueryVariables
+    GetLegalClientQuoteTableQuery,
+    GetLegalClientQuoteTableQueryVariables
   >({
-    query: QUERY_PHYSICAL_CUSTOMER_QUOTE_TABLE,
-    variables: { getPhysicalCustomerQuoteTableId: params.id },
+    query: QUERY_LEGAL_CLIENT_QUOTE_TABLE,
+    variables: { getLegalClientQuoteTableId: params.id },
   });
 
   if (error?.message) {
     return <span>Not Found!</span>;
   }
 
-  return <PhysicalCustomerQuoteTableGeneral data={data} />;
+  return <OverviewLegalClientQuoteTable data={data} />;
 };
 
 export default Page;

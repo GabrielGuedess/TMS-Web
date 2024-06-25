@@ -10,6 +10,8 @@ import { useForm } from 'react-hook-form';
 import { useMemo, useState, useEffect } from 'react';
 
 import {
+  StatusOrder,
+  useCompletedOrderMutation,
   useGetAllOrderProcessingQuery,
   type OrderProcessingWhereInput,
   type OrderProcessingUpdateManyInput,
@@ -42,6 +44,7 @@ import { Select } from 'components/molecules/Select';
 import { PreLoader } from 'components/atoms/PreLoader';
 import { CloseIcon } from 'components/atoms/CloseIcon';
 import { TrashIcon } from 'components/atoms/TrashIcon';
+import { CheckIcon } from 'components/atoms/CheckIcon';
 import { CustomError } from 'components/molecules/CustomError';
 import { SendAngleIcon } from 'components/atoms/SendAngleIcon';
 import { PageIndicator } from 'components/molecules/PageIndicator';
@@ -86,6 +89,7 @@ export const DataTableOrderProcessing = ({
     oldData: [],
   } as EditRowProps);
 
+  const [complete] = useCompletedOrderMutation();
   const [update] = useUpdateManyOrderProcessingMutation();
   const [deleteOrderProcessing] = useDeleteManyOrderProcessingMutation();
 
@@ -100,6 +104,20 @@ export const DataTableOrderProcessing = ({
     mode: 'onSubmit',
     defaultValues: { search: '' },
   });
+
+  const handleFinishOrder = async (id: string) => {
+    try {
+      await complete({
+        variables: {
+          completedOrderId: id,
+        },
+      });
+
+      toast.success(`Processamento completado com sucesso!`);
+    } catch {
+      toast.error(`Erro ao completar processamento!`);
+    }
+  };
 
   const filterParametersText: ITextFilterParams = {
     filterPlaceholder: 'Filtro',
@@ -263,7 +281,7 @@ export const DataTableOrderProcessing = ({
       },
       {
         filter: true,
-        editable: true,
+        editable: false,
         field: 'status',
         headerName: 'Status',
         filterParams: filterParametersText,
@@ -1015,14 +1033,29 @@ export const DataTableOrderProcessing = ({
                     align="center"
                     className="flex gap-2 rounded-lg border bg-white-lilac-50 px-4 py-2 shadow-default data-[state='open']:animate-slideDownAndFade dark:border-shark-950 dark:bg-shark-950"
                   >
-                    {selectedRows.length === 1 && (
-                      <Link
-                        href={`/dashboard/order-processing/${selectedRows[0].id}/general`}
-                        className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
-                      >
-                        <SendAngleIcon size={20} />
-                      </Link>
-                    )}
+                    {selectedRows.length === 1 &&
+                      selectedRows.some(
+                        item => item.status !== StatusOrder.Complete,
+                      ) && (
+                        <>
+                          <Link
+                            href={`/dashboard/order-processing/${selectedRows[0].id}/general`}
+                            className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
+                          >
+                            <SendAngleIcon size={20} />
+                          </Link>
+                          <button
+                            onClick={() =>
+                              handleFinishOrder(selectedRows[0].id)
+                            }
+                            type="button"
+                            aria-label="finish order"
+                            className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
+                          >
+                            <CheckIcon size={20} />
+                          </button>
+                        </>
+                      )}
                     <AlertDialog.Root
                       onOpenChange={setIsOpenDelete}
                       open={isOpenDelete && selectedRows.length > 0}

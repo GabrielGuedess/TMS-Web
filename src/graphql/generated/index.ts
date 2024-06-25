@@ -6570,6 +6570,18 @@ export type UpdateManyMaintenanceMutation = {
   }>;
 };
 
+export type CompletedOrderMutationVariables = Exact<{
+  completedOrderId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type CompletedOrderMutation = {
+  __typename?: 'Mutation';
+  completedOrder: {
+    order_processing_number: string;
+    __typename?: 'OrderProcessingModel';
+  };
+};
+
 export type CreateOrderProcessingMutationVariables = Exact<{
   data: OrderProcessingInput;
 }>;
@@ -8259,6 +8271,86 @@ export type GetAllLegalClientQuoteTableComboQuery = {
   }>;
 };
 
+export type GetLegalClientQuoteTableQueryVariables = Exact<{
+  getLegalClientQuoteTableId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetLegalClientQuoteTableQuery = {
+  __typename?: 'Query';
+  getLegalClientQuoteTable?: null | {
+    id: string;
+    mass: number;
+    amount: number;
+    volume: number;
+    codQuote: string;
+    nf_serie: string;
+    nf_value: number;
+    senderId: string;
+    who_pays: string;
+    nf_number: string;
+    created_by: string;
+    updated_by: string;
+    description: string;
+    formPayment: string;
+    kindService: string;
+    recipientId: string;
+    icms_id?: null | string;
+    typeMerchandise: string;
+    digital_signature: string;
+    __typename?: 'LegalClientQuoteTableModel';
+    adressOrigin: {
+      uf: string;
+      city: string;
+      street: string;
+      postalCod: string;
+      neighborhood: string;
+      address_number: string;
+      __typename?: 'AdressModel';
+      complement?: null | string;
+    };
+    adressDestiny: {
+      uf: string;
+      city: string;
+      street: string;
+      postalCod: string;
+      neighborhood: string;
+      address_number: string;
+      __typename?: 'AdressModel';
+      complement?: null | string;
+    };
+    Sender: {
+      id: string;
+      __typename?: 'SenderModel';
+      NaturalPerson?: null | {
+        cpf: string;
+        name: string;
+        __typename?: 'NaturalPersonModel';
+      };
+      LegalPerson?: null | {
+        cnpj: string;
+        fantasy_name: string;
+        __typename?: 'LegalPersonModel';
+      };
+    };
+    Recipient: {
+      id: string;
+      __typename?: 'RecipientModel';
+      NaturalPerson?: null | {
+        cpf: string;
+        name: string;
+        __typename?: 'NaturalPersonModel';
+      };
+      LegalPerson?: null | {
+        cnpj: string;
+        fantasy_name: string;
+        __typename?: 'LegalPersonModel';
+      };
+    };
+    updated_at: any;
+    created_at: any;
+  };
+};
+
 export type GetAllLegalClientQuoteTableQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -8865,6 +8957,54 @@ export type GetPhysicalCustomerQuoteTableQuery = {
     typeMerchandise: string;
     digital_signature: string;
     __typename?: 'PhysicalCustomerQuoteTableModel';
+    adressOrigin: {
+      uf: string;
+      city: string;
+      street: string;
+      postalCod: string;
+      neighborhood: string;
+      address_number: string;
+      __typename?: 'AdressModel';
+      complement?: null | string;
+    };
+    adressDestiny: {
+      uf: string;
+      city: string;
+      street: string;
+      postalCod: string;
+      neighborhood: string;
+      address_number: string;
+      __typename?: 'AdressModel';
+      complement?: null | string;
+    };
+    Sender: {
+      id: string;
+      __typename?: 'SenderModel';
+      NaturalPerson?: null | {
+        cpf: string;
+        name: string;
+        __typename?: 'NaturalPersonModel';
+      };
+      LegalPerson?: null | {
+        cnpj: string;
+        fantasy_name: string;
+        __typename?: 'LegalPersonModel';
+      };
+    };
+    Recipient: {
+      id: string;
+      __typename?: 'RecipientModel';
+      NaturalPerson?: null | {
+        cpf: string;
+        name: string;
+        __typename?: 'NaturalPersonModel';
+      };
+      LegalPerson?: null | {
+        cnpj: string;
+        fantasy_name: string;
+        __typename?: 'LegalPersonModel';
+      };
+    };
     updated_at: any;
     created_at: any;
   };
@@ -13348,6 +13488,62 @@ export type UpdateManyMaintenanceMutationResult =
 export type UpdateManyMaintenanceMutationOptions = Apollo.BaseMutationOptions<
   UpdateManyMaintenanceMutation,
   UpdateManyMaintenanceMutationVariables
+>;
+
+export const CompletedOrderDocument = gql`
+  mutation CompletedOrder($completedOrderId: String) {
+    completedOrder(id: $completedOrderId) {
+      order_processing_number
+    }
+  }
+`;
+
+export type CompletedOrderMutationFn = Apollo.MutationFunction<
+  CompletedOrderMutation,
+  CompletedOrderMutationVariables
+>;
+
+/**
+ * __useCompletedOrderMutation__
+ *
+ * To run a mutation, you first call `useCompletedOrderMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCompletedOrderMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [completedOrderMutation, { data, loading, error }] = useCompletedOrderMutation({
+ *   variables: {
+ *      completedOrderId: // value for 'completedOrderId'
+ *   },
+ * });
+ */
+export function useCompletedOrderMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CompletedOrderMutation,
+    CompletedOrderMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useMutation<
+    CompletedOrderMutation,
+    CompletedOrderMutationVariables
+  >(CompletedOrderDocument, options);
+}
+
+export type CompletedOrderMutationHookResult = ReturnType<
+  typeof useCompletedOrderMutation
+>;
+
+export type CompletedOrderMutationResult =
+  Apollo.MutationResult<CompletedOrderMutation>;
+
+export type CompletedOrderMutationOptions = Apollo.BaseMutationOptions<
+  CompletedOrderMutation,
+  CompletedOrderMutationVariables
 >;
 
 export const CreateOrderProcessingDocument = gql`
@@ -19022,6 +19218,149 @@ export type GetAllLegalClientQuoteTableComboQueryResult = Apollo.QueryResult<
   GetAllLegalClientQuoteTableComboQueryVariables
 >;
 
+export const GetLegalClientQuoteTableDocument = gql`
+  query GetLegalClientQuoteTable($getLegalClientQuoteTableId: String) {
+    getLegalClientQuoteTable(id: $getLegalClientQuoteTableId) {
+      Recipient {
+        id
+        LegalPerson {
+          fantasy_name
+          cnpj
+        }
+        NaturalPerson {
+          name
+          cpf
+        }
+      }
+      Sender {
+        id
+        LegalPerson {
+          fantasy_name
+          cnpj
+        }
+        NaturalPerson {
+          name
+          cpf
+        }
+      }
+      adressDestiny {
+        city
+        street
+        postalCod
+        uf
+        complement
+        neighborhood
+        address_number
+      }
+      adressOrigin {
+        city
+        street
+        postalCod
+        uf
+        complement
+        neighborhood
+        address_number
+      }
+      amount
+      codQuote
+      created_at
+      created_by
+      description
+      digital_signature
+      formPayment
+      icms_id
+      id
+      kindService
+      mass
+      nf_number
+      nf_serie
+      nf_value
+      recipientId
+      senderId
+      typeMerchandise
+      updated_at
+      updated_by
+      volume
+      who_pays
+    }
+  }
+`;
+
+/**
+ * __useGetLegalClientQuoteTableQuery__
+ *
+ * To run a query within a React component, call `useGetLegalClientQuoteTableQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLegalClientQuoteTableQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLegalClientQuoteTableQuery({
+ *   variables: {
+ *      getLegalClientQuoteTableId: // value for 'getLegalClientQuoteTableId'
+ *   },
+ * });
+ */
+export function useGetLegalClientQuoteTableQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetLegalClientQuoteTableQuery,
+    GetLegalClientQuoteTableQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useQuery<
+    GetLegalClientQuoteTableQuery,
+    GetLegalClientQuoteTableQueryVariables
+  >(GetLegalClientQuoteTableDocument, options);
+}
+
+export function useGetLegalClientQuoteTableLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetLegalClientQuoteTableQuery,
+    GetLegalClientQuoteTableQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useLazyQuery<
+    GetLegalClientQuoteTableQuery,
+    GetLegalClientQuoteTableQueryVariables
+  >(GetLegalClientQuoteTableDocument, options);
+}
+
+export function useGetLegalClientQuoteTableSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    GetLegalClientQuoteTableQuery,
+    GetLegalClientQuoteTableQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+
+  return Apollo.useSuspenseQuery<
+    GetLegalClientQuoteTableQuery,
+    GetLegalClientQuoteTableQueryVariables
+  >(GetLegalClientQuoteTableDocument, options);
+}
+
+export type GetLegalClientQuoteTableQueryHookResult = ReturnType<
+  typeof useGetLegalClientQuoteTableQuery
+>;
+
+export type GetLegalClientQuoteTableLazyQueryHookResult = ReturnType<
+  typeof useGetLegalClientQuoteTableLazyQuery
+>;
+
+export type GetLegalClientQuoteTableSuspenseQueryHookResult = ReturnType<
+  typeof useGetLegalClientQuoteTableSuspenseQuery
+>;
+
+export type GetLegalClientQuoteTableQueryResult = Apollo.QueryResult<
+  GetLegalClientQuoteTableQuery,
+  GetLegalClientQuoteTableQueryVariables
+>;
+
 export const GetAllLegalClientQuoteTableDocument = gql`
   query GetAllLegalClientQuoteTable(
     $limit: Int
@@ -21312,6 +21651,28 @@ export const GetPhysicalCustomerQuoteTableDocument = gql`
     $getPhysicalCustomerQuoteTableId: String
   ) {
     getPhysicalCustomerQuoteTable(id: $getPhysicalCustomerQuoteTableId) {
+      Recipient {
+        id
+        LegalPerson {
+          fantasy_name
+          cnpj
+        }
+        NaturalPerson {
+          name
+          cpf
+        }
+      }
+      Sender {
+        id
+        LegalPerson {
+          fantasy_name
+          cnpj
+        }
+        NaturalPerson {
+          name
+          cpf
+        }
+      }
       amount
       codQuote
       created_at
@@ -21333,6 +21694,24 @@ export const GetPhysicalCustomerQuoteTableDocument = gql`
       updated_by
       volume
       who_pays
+      adressDestiny {
+        city
+        street
+        postalCod
+        uf
+        complement
+        neighborhood
+        address_number
+      }
+      adressOrigin {
+        city
+        street
+        postalCod
+        uf
+        complement
+        neighborhood
+        address_number
+      }
     }
   }
 `;

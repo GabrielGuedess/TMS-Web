@@ -66,9 +66,6 @@ const PhysicalCustomerQuoteTableGeneralRef: ForwardRefRenderFunction<
   } = useForm<PhysicalCustomerQuoteTableGeneralInputProps>({
     resolver: zodResolver(physicalCustomerQuoteTableGeneralSchema),
     defaultValues: {
-      sender: { id: '', description: '' },
-      formPayment: FormPayment.PaymentByPix,
-      recipient: { id: '', description: '' },
       typeMerchandise: TypeMerchandise.ConsumerGoods,
       kindService: KindOfServicerOrder.HazardousCargo,
       mass: String(data?.getPhysicalCustomerQuoteTable?.mass),
@@ -79,23 +76,39 @@ const PhysicalCustomerQuoteTableGeneralRef: ForwardRefRenderFunction<
       description: data?.getPhysicalCustomerQuoteTable?.description,
       nf_value: String(data?.getPhysicalCustomerQuoteTable?.nf_value),
       who_pays: data?.getPhysicalCustomerQuoteTable?.who_pays as WhoIsPay,
+      formPayment: data?.getPhysicalCustomerQuoteTable
+        ?.formPayment as FormPayment,
+      sender: {
+        id: data?.getPhysicalCustomerQuoteTable?.Sender?.id,
+        description: `${data?.getPhysicalCustomerQuoteTable?.Sender?.LegalPerson?.cnpj ?? data?.getPhysicalCustomerQuoteTable?.Sender?.NaturalPerson?.cpf} - ${data?.getPhysicalCustomerQuoteTable?.Sender?.LegalPerson?.fantasy_name ?? data?.getPhysicalCustomerQuoteTable?.Sender?.NaturalPerson?.name}`,
+      },
+      recipient: {
+        id: data?.getPhysicalCustomerQuoteTable?.Recipient?.id,
+        description: `${data?.getPhysicalCustomerQuoteTable?.Recipient?.LegalPerson?.cnpj ?? data?.getPhysicalCustomerQuoteTable?.Recipient?.NaturalPerson?.cpf} - ${data?.getPhysicalCustomerQuoteTable?.Recipient?.LegalPerson?.fantasy_name ?? data?.getPhysicalCustomerQuoteTable?.Recipient?.NaturalPerson?.name}`,
+      },
       adressOrigin: {
-        city: '',
-        street: '',
-        postalCod: '',
-        uf: UfEnum.Sp,
-        complement: '',
-        neighborhood: '',
-        address_number: '',
+        city: data?.getPhysicalCustomerQuoteTable?.adressOrigin.city,
+        street: data?.getPhysicalCustomerQuoteTable?.adressOrigin.street,
+        uf: data?.getPhysicalCustomerQuoteTable?.adressOrigin.uf as UfEnum,
+        postalCod: data?.getPhysicalCustomerQuoteTable?.adressOrigin.postalCod,
+        neighborhood:
+          data?.getPhysicalCustomerQuoteTable?.adressOrigin.neighborhood,
+        complement:
+          data?.getPhysicalCustomerQuoteTable?.adressOrigin?.complement ?? '',
+        address_number:
+          data?.getPhysicalCustomerQuoteTable?.adressOrigin.address_number,
       },
       adressDestiny: {
-        city: '',
-        street: '',
-        postalCod: '',
-        uf: UfEnum.Sp,
-        complement: '',
-        neighborhood: '',
-        address_number: '',
+        city: data?.getPhysicalCustomerQuoteTable?.adressDestiny.city,
+        street: data?.getPhysicalCustomerQuoteTable?.adressDestiny.street,
+        uf: data?.getPhysicalCustomerQuoteTable?.adressDestiny.uf as UfEnum,
+        postalCod: data?.getPhysicalCustomerQuoteTable?.adressDestiny.postalCod,
+        neighborhood:
+          data?.getPhysicalCustomerQuoteTable?.adressDestiny.neighborhood,
+        complement:
+          data?.getPhysicalCustomerQuoteTable?.adressOrigin?.complement ?? '',
+        address_number:
+          data?.getPhysicalCustomerQuoteTable?.adressDestiny.address_number,
       },
     },
   });

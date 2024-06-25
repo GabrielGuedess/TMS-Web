@@ -1,10 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_PHYSICAL_CUSTOMER_QUOTE_TABLE = gql`
-  query GetPhysicalCustomerQuoteTable(
-    $getPhysicalCustomerQuoteTableId: String
-  ) {
-    getPhysicalCustomerQuoteTable(id: $getPhysicalCustomerQuoteTableId) {
+export const QUERY_LEGAL_CLIENT_QUOTE_TABLE = gql`
+  query GetLegalClientQuoteTable($getLegalClientQuoteTableId: String) {
+    getLegalClientQuoteTable(id: $getLegalClientQuoteTableId) {
       Recipient {
         id
         LegalPerson {
@@ -27,6 +25,24 @@ export const QUERY_PHYSICAL_CUSTOMER_QUOTE_TABLE = gql`
           cpf
         }
       }
+      adressDestiny {
+        city
+        street
+        postalCod
+        uf
+        complement
+        neighborhood
+        address_number
+      }
+      adressOrigin {
+        city
+        street
+        postalCod
+        uf
+        complement
+        neighborhood
+        address_number
+      }
       amount
       codQuote
       created_at
@@ -48,24 +64,6 @@ export const QUERY_PHYSICAL_CUSTOMER_QUOTE_TABLE = gql`
       updated_by
       volume
       who_pays
-      adressDestiny {
-        city
-        street
-        postalCod
-        uf
-        complement
-        neighborhood
-        address_number
-      }
-      adressOrigin {
-        city
-        street
-        postalCod
-        uf
-        complement
-        neighborhood
-        address_number
-      }
     }
   }
 `;

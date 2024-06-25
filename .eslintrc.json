@@ -489,6 +489,7 @@
           "DataTablePhysicalCustomerQuoteTables",
           "deleteManyPhysicalCustomerQuoteTable",
           "UpdateManyPhysicalCustomerQuoteTable",
+          "Organisms/OverviewLegalClientQuoteTable",
           "Organisms/PhysicalCustomerQuoteTableGeneral"
         ]
       }

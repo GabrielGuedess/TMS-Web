@@ -1,7 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { useForm, Controller } from 'react-hook-form';
 import {
   useState,
@@ -20,7 +18,7 @@ import {
   KindOfServicerOrder,
   useGetAllSenderComboQuery,
   useGetAllRecipientComboQuery,
-  useCreatePhysicalCustomerQuoteTableMutation,
+  useUpdateLegalClientQuoteTableMutation,
 } from 'graphql/generated';
 
 import { toast } from 'sonner';
@@ -34,17 +32,17 @@ import { Button } from 'components/atoms/Button';
 import { Select } from 'components/molecules/Select';
 import { ComboBox } from 'components/molecules/Combobox';
 
-import { createPhysicalCustomerQuoteTableSchema } from './schema';
+import { overviewLegalClientQuoteTableSchema } from './schema';
 import {
-  type CreatePhysicalCustomerQuoteTableProps,
-  type CreatePhysicalCustomerQuoteTableInputProps,
-  type CreatePhysicalCustomerQuoteTableOutputProps,
+  type OverviewLegalClientQuoteTableProps,
+  type OverviewLegalClientQuoteTableInputProps,
+  type OverviewLegalClientQuoteTableOutputProps,
 } from './types';
 
-const CreatePhysicalCustomerQuoteTableRef: ForwardRefRenderFunction<
+const OverviewLegalClientQuoteTableRef: ForwardRefRenderFunction<
   ElementRef<'div'>,
-  CreatePhysicalCustomerQuoteTableProps
-> = ({ className, ...props }, ref) => {
+  OverviewLegalClientQuoteTableProps
+> = ({ data, className, ...props }, ref) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingSearchSender, setIsLoadingSearchSender] = useState(false);
   const [isLoadingSearchRecipient, setIsLoadingSearchRecipient] =
@@ -53,10 +51,8 @@ const CreatePhysicalCustomerQuoteTableRef: ForwardRefRenderFunction<
   const [searchSender, setSearchSender] = useState('');
   const [searchRecipient, setSearchRecipient] = useState('');
 
-  const router = useRouter();
-
-  const [createPhysicalCustomerQuoteTable] =
-    useCreatePhysicalCustomerQuoteTableMutation();
+  const [updateLegalClientQuoteTable] =
+    useUpdateLegalClientQuoteTableMutation();
 
   const { data: dataSenders, refetch: refetchSenders } =
     useGetAllSenderComboQuery();
@@ -67,39 +63,50 @@ const CreatePhysicalCustomerQuoteTableRef: ForwardRefRenderFunction<
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreatePhysicalCustomerQuoteTableInputProps>({
-    resolver: zodResolver(createPhysicalCustomerQuoteTableSchema),
+  } = useForm<OverviewLegalClientQuoteTableInputProps>({
+    resolver: zodResolver(overviewLegalClientQuoteTableSchema),
     defaultValues: {
-      mass: '',
-      amount: '',
-      volume: '',
-      nf_value: '',
-      nf_serie: '',
-      nf_number: '',
-      description: '',
-      who_pays: WhoIsPay.Sender,
-      sender: { id: '', description: '' },
-      formPayment: FormPayment.PaymentByPix,
-      recipient: { id: '', description: '' },
       typeMerchandise: TypeMerchandise.ConsumerGoods,
       kindService: KindOfServicerOrder.HazardousCargo,
+      mass: String(data?.getLegalClientQuoteTable?.mass ?? ''),
+      nf_value: String(data?.getLegalClientQuoteTable?.nf_value),
+      nf_serie: String(data?.getLegalClientQuoteTable?.nf_serie),
+      amount: String(data?.getLegalClientQuoteTable?.amount ?? ''),
+      volume: String(data?.getLegalClientQuoteTable?.volume ?? ''),
+      nf_number: String(data?.getLegalClientQuoteTable?.nf_number),
+      who_pays: data?.getLegalClientQuoteTable?.who_pays as WhoIsPay,
+      description: data?.getLegalClientQuoteTable?.description ?? '',
+      formPayment: data?.getLegalClientQuoteTable?.formPayment as FormPayment,
+      sender: {
+        id: data?.getLegalClientQuoteTable?.Sender?.id,
+        description: `${data?.getLegalClientQuoteTable?.Sender?.LegalPerson?.cnpj ?? data?.getLegalClientQuoteTable?.Sender?.NaturalPerson?.cpf} - ${data?.getLegalClientQuoteTable?.Sender?.LegalPerson?.fantasy_name ?? data?.getLegalClientQuoteTable?.Sender?.NaturalPerson?.name}`,
+      },
+      recipient: {
+        id: data?.getLegalClientQuoteTable?.Recipient?.id,
+        description: `${data?.getLegalClientQuoteTable?.Recipient?.LegalPerson?.cnpj ?? data?.getLegalClientQuoteTable?.Recipient?.NaturalPerson?.cpf} - ${data?.getLegalClientQuoteTable?.Recipient?.LegalPerson?.fantasy_name ?? data?.getLegalClientQuoteTable?.Recipient?.NaturalPerson?.name}`,
+      },
       adressOrigin: {
-        city: '',
-        street: '',
-        postalCod: '',
-        uf: UfEnum.Sp,
-        complement: '',
-        neighborhood: '',
-        address_number: '',
+        city: data?.getLegalClientQuoteTable?.adressOrigin.city,
+        street: data?.getLegalClientQuoteTable?.adressOrigin.street,
+        uf: data?.getLegalClientQuoteTable?.adressOrigin.uf as UfEnum,
+        postalCod: data?.getLegalClientQuoteTable?.adressOrigin.postalCod,
+        neighborhood: data?.getLegalClientQuoteTable?.adressOrigin.neighborhood,
+        complement:
+          data?.getLegalClientQuoteTable?.adressOrigin?.complement ?? '',
+        address_number:
+          data?.getLegalClientQuoteTable?.adressOrigin.address_number,
       },
       adressDestiny: {
-        city: '',
-        street: '',
-        postalCod: '',
-        uf: UfEnum.Sp,
-        complement: '',
-        neighborhood: '',
-        address_number: '',
+        city: data?.getLegalClientQuoteTable?.adressDestiny.city,
+        street: data?.getLegalClientQuoteTable?.adressDestiny.street,
+        uf: data?.getLegalClientQuoteTable?.adressDestiny.uf as UfEnum,
+        postalCod: data?.getLegalClientQuoteTable?.adressDestiny.postalCod,
+        neighborhood:
+          data?.getLegalClientQuoteTable?.adressDestiny.neighborhood,
+        complement:
+          data?.getLegalClientQuoteTable?.adressOrigin?.complement ?? '',
+        address_number:
+          data?.getLegalClientQuoteTable?.adressDestiny.address_number,
       },
     },
   });
@@ -190,53 +197,47 @@ const CreatePhysicalCustomerQuoteTableRef: ForwardRefRenderFunction<
     return () => clearTimeout(delayDebounce);
   }, [searchRecipient]);
 
-  const handleCreate = async (
-    data: CreatePhysicalCustomerQuoteTableOutputProps,
+  const handleUpdate = async (
+    newData: OverviewLegalClientQuoteTableOutputProps,
   ) => {
     setIsLoading(true);
 
     try {
-      const PhysicalCustomerQuoteTable = await createPhysicalCustomerQuoteTable(
-        {
-          variables: {
-            physicalCustomerQuoteTableInput: {
-              nf_serie: data.nf_serie,
-              who_pays: data.who_pays,
-              mass: Number(data.mass),
-              senderId: data.sender.id,
-              nf_number: data.nf_number,
-              amount: Number(data.amount),
-              volume: Number(data.volume),
-              description: data.description,
-              formPayment: data.formPayment,
-              kindService: data.kindService,
-              recipientId: data.recipient.id,
-              nf_value: Number(data.nf_value),
-              adressOrigin: data.adressOrigin,
-              adressDestiny: data.adressDestiny,
-              typeMerchandise: data.typeMerchandise,
-            },
+      await updateLegalClientQuoteTable({
+        variables: {
+          updateLegalClientQuoteTableId:
+            data?.getLegalClientQuoteTable?.id ?? '',
+          legalClientQuoteTableUpdate: {
+            nf_serie: newData.nf_serie,
+            who_pays: newData.who_pays,
+            mass: Number(newData.mass),
+            senderId: newData.sender.id,
+            nf_number: newData.nf_number,
+            amount: Number(newData.amount),
+            volume: Number(newData.volume),
+            description: newData.description,
+            formPayment: newData.formPayment,
+            kindService: newData.kindService,
+            recipientId: newData.recipient.id,
+            nf_value: Number(newData.nf_value),
+            adressOrigin: newData.adressOrigin,
+            adressDestiny: newData.adressDestiny,
+            typeMerchandise: newData.typeMerchandise,
           },
         },
-      );
+      });
 
-      toast.success('Cotação criado com sucesso!');
-
-      router.refresh();
-
-      router.push(
-        `/dashboard/physical-customer-quote-tables/${PhysicalCustomerQuoteTable.data?.createPhysicalCustomerQuoteTable.id}/general`,
-      );
+      toast.success('Cotação atualizado com sucesso!');
     } catch (error) {
       if (error instanceof ApolloError) {
-        toast.error('Erro ao criar Cotação!', {
+        toast.error('Erro ao atualizar Cotação!', {
           description: error.message,
         });
 
         return;
       }
 
-      toast.error('Erro ao criar Cotação!');
+      toast.error('Erro ao atualizar Cotação!');
     } finally {
       setIsLoading(false);
     }
@@ -790,20 +791,19 @@ const CreatePhysicalCustomerQuoteTableRef: ForwardRefRenderFunction<
         <div className="flex w-full justify-center sm:justify-end">
           <Button
             onClick={handleSubmit((values: unknown) => {
-              const data =
-                values as CreatePhysicalCustomerQuoteTableOutputProps;
+              const update = values as OverviewLegalClientQuoteTableOutputProps;
 
-              handleCreate(data);
+              handleUpdate(update);
             })}
             type="button"
             color="success"
             variant="label"
-            aria-label="Update"
             isLoading={isLoading}
             isDisabled={isLoading}
             className="min-w-[12.404rem]"
+            aria-label="Update LegalClientQuoteTable"
           >
-            Criar Cotação
+            Atualizar Cotação
           </Button>
         </div>
       </form>
@@ -811,6 +811,6 @@ const CreatePhysicalCustomerQuoteTableRef: ForwardRefRenderFunction<
   );
 };
 
-export const CreatePhysicalCustomerQuoteTable = forwardRef(
-  CreatePhysicalCustomerQuoteTableRef,
+export const OverviewLegalClientQuoteTable = forwardRef(
+  OverviewLegalClientQuoteTableRef,
 );
