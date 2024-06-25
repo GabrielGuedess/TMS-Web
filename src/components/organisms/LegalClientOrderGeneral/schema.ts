@@ -23,9 +23,9 @@ const quoteTable = z
 
 const expense = z
   .object({
-    id: z.string().min(1, 'Despesa é obrigatório!'),
-    value: z.string().min(1, 'Despesa é obrigatório!'),
-    expenseName: z.string().min(1, 'Despesa é obrigatório!'),
+    id: z.string(),
+    value: z.string(),
+    expenseName: z.string(),
   })
   .strict();
 

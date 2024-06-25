@@ -208,12 +208,18 @@ const LegalClientOrderGeneralRef: ForwardRefRenderFunction<
   const handleUpdate = async (newData: LegalClientOrderGeneralOutputProps) => {
     setIsLoading(true);
 
+    const removedExpenses =
+      data?.getLegalClientOrderModel?.expenses
+        ?.filter(item => !newData.expenses.some(value => value.id === item.id))
+        .map(item => String(item.id)) ?? [];
+
     try {
       await updatelegalClientOrder({
         variables: {
           updatelegalClientOrderId: data.getLegalClientOrderModel?.id ?? '',
           legalClientOrderInput: {
             carrier_id: newData.carrier.id,
+            deleted_expenses: removedExpenses,
             quote_table_id: newData.quoteTable.id,
             legal_contract_id: newData.legalContract.id,
             expenses: newData.expenses.map(item => ({

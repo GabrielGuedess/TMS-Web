@@ -215,6 +215,11 @@ const PhysicalCustomerOrderGeneralRef: ForwardRefRenderFunction<
   ) => {
     setIsLoading(true);
 
+    const removedExpenses =
+      data?.getPhysicalCustomerOrderModel?.expenses
+        .filter(item => !newData.expenses.some(value => value.id === item.id))
+        .map(item => String(item.id)) ?? [];
+
     try {
       await updatePhysicalCustomerOrder({
         variables: {
@@ -222,11 +227,12 @@ const PhysicalCustomerOrderGeneralRef: ForwardRefRenderFunction<
             data?.getPhysicalCustomerOrderModel?.id ?? '',
           physicalCustomerOrderInput: {
             carrier_id: newData.carrier.id,
+            deleted_expenses: removedExpenses,
             quote_table_id: newData.quoteTable.id,
             physicalCustomerId: newData.physicalCustomer.id,
             expenses:
               newData.expenses?.map(item => ({
-                id: String(item.id),
+                ...(item?.id && { id: String(item.id) }),
                 value: Number(item.value),
                 expenseName: item.expenseName,
               })) ?? [],

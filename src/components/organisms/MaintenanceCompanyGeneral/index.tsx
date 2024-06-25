@@ -54,8 +54,12 @@ const MaintenanceCompanyGeneralRef: ForwardRefRenderFunction<
   } = useForm<MaintenanceCompanyGeneralInputProps>({
     resolver: zodResolver(maintenanceCompanyGeneralSchema),
     defaultValues: {
-      specialty_maintenance: '',
-      legalPerson: { id: '', description: '' },
+      specialty_maintenance:
+        data?.getMaintenanceCompanyModel?.specialty_maintenance ?? '',
+      legalPerson: {
+        id: data?.getMaintenanceCompanyModel?.legal_person_id,
+        description: `${data?.getMaintenanceCompanyModel?.LegalPerson.cnpj} - ${data?.getMaintenanceCompanyModel?.LegalPerson?.fantasy_name}`,
+      },
     },
   });
 

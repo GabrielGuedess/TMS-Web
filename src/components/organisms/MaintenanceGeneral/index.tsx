@@ -72,7 +72,7 @@ const MaintenanceGeneralRef: ForwardRefRenderFunction<
         description: data.getMaintenance?.TypeOfMaintenance.typeMaintenance,
       },
       maintenanceCompany: {
-        id: data.getMaintenance?.type_of_maintenance_id,
+        id: data.getMaintenance?.maintenance_company_id,
         description: data.getMaintenance?.MaintenanceCompany.LegalPerson.cnpj,
       },
     },

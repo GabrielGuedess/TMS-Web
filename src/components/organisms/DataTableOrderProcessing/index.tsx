@@ -292,8 +292,13 @@ export const DataTableOrderProcessing = ({
         headerName: 'Começou em',
         filter: 'agDateColumnFilter',
         filterParams: filterParametersDate,
-        valueFormatter: parameters =>
-          dayjs(parameters.value as Date).format('LLL'),
+        valueFormatter: parameters => {
+          if (parameters.value) {
+            dayjs(parameters.value as Date).format('LLL');
+          }
+
+          return 'Sem data de começo';
+        },
       },
       {
         field: 'end_at',
@@ -301,8 +306,13 @@ export const DataTableOrderProcessing = ({
         headerName: 'Termina em',
         filter: 'agDateColumnFilter',
         filterParams: filterParametersDate,
-        valueFormatter: parameters =>
-          dayjs(parameters.value as Date).format('LLL'),
+        valueFormatter: parameters => {
+          if (parameters.value) {
+            dayjs(parameters.value as Date).format('LLL');
+          }
+
+          return 'Sem data de termino';
+        },
       },
       {
         filter: true,
@@ -1054,87 +1064,88 @@ export const DataTableOrderProcessing = ({
                           >
                             <CheckIcon size={20} />
                           </button>
+
+                          <AlertDialog.Root
+                            onOpenChange={setIsOpenDelete}
+                            open={isOpenDelete && selectedRows.length > 0}
+                          >
+                            <AlertDialog.Trigger
+                              type="button"
+                              aria-label="Remove Selected"
+                              className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
+                            >
+                              <TrashIcon size={20} />
+                            </AlertDialog.Trigger>
+
+                            <AlertDialog.Portal>
+                              <AlertDialog.Overlay className="fixed inset-0 z-30 animate-overlayShow bg-black/80 backdrop-blur-sm" />
+
+                              <AlertDialog.Content className="fixed left-1/2 top-1/2 z-40 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 animate-contentShow rounded-md bg-white-lilac-50 p-9 transition-all dark:bg-smoke-950">
+                                <AlertDialog.Title className="text-lg font-semibold text-shark-950 transition-all dark:text-white-lilac-50">
+                                  Deletar Selecionados?
+                                </AlertDialog.Title>
+
+                                <AlertDialog.Description className="mb-6 mt-3">
+                                  Ao clicar em Deletar, todos os selecionados
+                                  abaixo serão deletados. Deseja prosseguir?
+                                </AlertDialog.Description>
+
+                                <div className="flex max-h-32 flex-col gap-1 overflow-y-auto">
+                                  {selectedRows?.map(row => (
+                                    <div
+                                      key={row.id}
+                                      className="flex items-center gap-2"
+                                    >
+                                      <button
+                                        onClick={() =>
+                                          setSelectedRows(previousState =>
+                                            previousState.filter(
+                                              item => item.id !== row.id,
+                                            ),
+                                          )
+                                        }
+                                        type="button"
+                                        aria-label="Remove Edit"
+                                        className="cursor-pointer p-1 text-danger-500 outline-danger-500 transition-all hover:rotate-180 focus:rotate-180"
+                                      >
+                                        <MinusCircleIcon size={17} />
+                                      </button>
+
+                                      <span className="flex text-sm">
+                                        ID: {row.id}
+                                      </span>
+                                    </div>
+                                  ))}
+                                </div>
+
+                                <div className="mt-6 flex justify-end gap-3">
+                                  <AlertDialog.Cancel asChild>
+                                    <Button color="secondary">Cancelar</Button>
+                                  </AlertDialog.Cancel>
+
+                                  <Button
+                                    type="button"
+                                    color="danger"
+                                    variant="label"
+                                    className="min-w-[5.806rem]"
+                                    onClick={handleDeleteOrderProcessing}
+                                    isLoading={isFetchingDeleteOrderProcessing}
+                                    isDisabled={isFetchingDeleteOrderProcessing}
+                                  >
+                                    Deletar
+                                  </Button>
+                                </div>
+                                <AlertDialog.Cancel
+                                  aria-label="Close"
+                                  className="absolute right-3 top-3 inline-flex items-center justify-center rounded-full p-2 text-primary-400 outline-primary-400"
+                                >
+                                  <CloseIcon size={14} />
+                                </AlertDialog.Cancel>
+                              </AlertDialog.Content>
+                            </AlertDialog.Portal>
+                          </AlertDialog.Root>
                         </>
                       )}
-                    <AlertDialog.Root
-                      onOpenChange={setIsOpenDelete}
-                      open={isOpenDelete && selectedRows.length > 0}
-                    >
-                      <AlertDialog.Trigger
-                        type="button"
-                        aria-label="Remove Selected"
-                        className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
-                      >
-                        <TrashIcon size={20} />
-                      </AlertDialog.Trigger>
-
-                      <AlertDialog.Portal>
-                        <AlertDialog.Overlay className="fixed inset-0 z-30 animate-overlayShow bg-black/80 backdrop-blur-sm" />
-
-                        <AlertDialog.Content className="fixed left-1/2 top-1/2 z-40 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 animate-contentShow rounded-md bg-white-lilac-50 p-9 transition-all dark:bg-smoke-950">
-                          <AlertDialog.Title className="text-lg font-semibold text-shark-950 transition-all dark:text-white-lilac-50">
-                            Deletar Selecionados?
-                          </AlertDialog.Title>
-
-                          <AlertDialog.Description className="mb-6 mt-3">
-                            Ao clicar em Deletar, todos os selecionados abaixo
-                            serão deletados. Deseja prosseguir?
-                          </AlertDialog.Description>
-
-                          <div className="flex max-h-32 flex-col gap-1 overflow-y-auto">
-                            {selectedRows?.map(row => (
-                              <div
-                                key={row.id}
-                                className="flex items-center gap-2"
-                              >
-                                <button
-                                  onClick={() =>
-                                    setSelectedRows(previousState =>
-                                      previousState.filter(
-                                        item => item.id !== row.id,
-                                      ),
-                                    )
-                                  }
-                                  type="button"
-                                  aria-label="Remove Edit"
-                                  className="cursor-pointer p-1 text-danger-500 outline-danger-500 transition-all hover:rotate-180 focus:rotate-180"
-                                >
-                                  <MinusCircleIcon size={17} />
-                                </button>
-
-                                <span className="flex text-sm">
-                                  ID: {row.id}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-
-                          <div className="mt-6 flex justify-end gap-3">
-                            <AlertDialog.Cancel asChild>
-                              <Button color="secondary">Cancelar</Button>
-                            </AlertDialog.Cancel>
-
-                            <Button
-                              type="button"
-                              color="danger"
-                              variant="label"
-                              className="min-w-[5.806rem]"
-                              onClick={handleDeleteOrderProcessing}
-                              isLoading={isFetchingDeleteOrderProcessing}
-                              isDisabled={isFetchingDeleteOrderProcessing}
-                            >
-                              Deletar
-                            </Button>
-                          </div>
-                          <AlertDialog.Cancel
-                            aria-label="Close"
-                            className="absolute right-3 top-3 inline-flex items-center justify-center rounded-full p-2 text-primary-400 outline-primary-400"
-                          >
-                            <CloseIcon size={14} />
-                          </AlertDialog.Cancel>
-                        </AlertDialog.Content>
-                      </AlertDialog.Portal>
-                    </AlertDialog.Root>
 
                     <Popover.Arrow className="fill-white-lilac-50 transition-all dark:fill-shark-950" />
                   </Popover.Content>

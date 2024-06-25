@@ -968,6 +968,7 @@ export type LegalClientOrderUpdateInput = {
   legal_contract_id?: InputMaybe<Scalars['String']['input']>;
   total_shipping_cost?: InputMaybe<Scalars['Float']['input']>;
   expenses?: InputMaybe<Array<FreightExpenseUpdateOrderInput>>;
+  deleted_expenses?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type LegalClientOrderUpdateManyInput = {
@@ -3472,6 +3473,7 @@ export type PhysicalCustomerOrderUpdateInput = {
   quote_table_id?: InputMaybe<Scalars['String']['input']>;
   physicalCustomerId?: InputMaybe<Scalars['String']['input']>;
   expenses?: InputMaybe<Array<FreightExpenseUpdateOrderInput>>;
+  deleted_expenses?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type PhysicalCustomerOrderUpdateManyInput = {
