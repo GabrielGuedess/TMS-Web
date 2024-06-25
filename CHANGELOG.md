@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.10.0...v1.11.0) (2024-06-25)
+
+
+### Features
+
+* add filter pages ([13d0ba5](https://github.com/GabrielGuedess/TMS-Web/commit/13d0ba56adfab3e55e163b3e53fb069c100cda7a))
+
 # [1.10.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.9.1...v1.10.0) (2024-06-25)
 
 
