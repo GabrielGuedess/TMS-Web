@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.12.0...v1.13.0) (2024-06-26)
+
+
+### Features
+
+* add cte legal ([86e8b92](https://github.com/GabrielGuedess/TMS-Web/commit/86e8b923d1a7a4f8867b6e652870b63579837688))
+
 # [1.12.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.11.0...v1.12.0) (2024-06-25)
 
 
