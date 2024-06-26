@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/GabrielGuedess/TMS-Web/compare/v1.13.0...v1.13.1) (2024-06-26)
+
+
+### Bug Fixes
+
+* change vehicle ([abfdadd](https://github.com/GabrielGuedess/TMS-Web/commit/abfdadd0993228ca1de130c456d3db64fce43639))
+
 # [1.13.0](https://github.com/GabrielGuedess/TMS-Web/compare/v1.12.0...v1.13.0) (2024-06-26)
 
 
