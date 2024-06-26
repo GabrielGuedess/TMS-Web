@@ -36,7 +36,9 @@ const vehicleManual = z
       .default('Não')
       .transform(value => value === 'Sim'),
   })
-  .strict();
+  .strict()
+  .nullable()
+  .optional();
 
 export const createCompanyVehicleSchema = z
   .object({

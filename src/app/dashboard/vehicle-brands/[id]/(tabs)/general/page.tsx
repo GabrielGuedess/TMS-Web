@@ -2,8 +2,8 @@ import { apollo } from 'apollo/client';
 
 import { QUERY_VEHICLE_BRAND } from 'graphql/queries/vehicle-brand/vehicleBrand';
 import {
-  type UserQueryVariables,
   type GetVehicleBrandQuery,
+  type GetVehicleBrandQueryVariables,
 } from 'graphql/generated';
 
 import { VehicleBrandGeneral } from 'components/organisms/VehicleBrandGeneral';
@@ -11,10 +11,10 @@ import { VehicleBrandGeneral } from 'components/organisms/VehicleBrandGeneral';
 const Page = async ({ params }: { params: { id: string } }) => {
   const { data, error } = await apollo().query<
     GetVehicleBrandQuery,
-    UserQueryVariables
+    GetVehicleBrandQueryVariables
   >({
     query: QUERY_VEHICLE_BRAND,
-    variables: { userId: params.id },
+    variables: { getVehicleBrandId: params.id },
   });
 
   if (error?.message) {

@@ -70,7 +70,7 @@ const CreateVehicleBodyworkRef: ForwardRefRenderFunction<
       router.refresh();
 
       router.push(
-        `/dashboard/vehicle-types/${VehicleBodywork.data?.createVehicleBodywork.id}/general`,
+        `/dashboard/vehicle-bodyworks/${VehicleBodywork.data?.createVehicleBodywork.id}/general`,
       );
     } catch (error) {
       if (error instanceof ApolloError) {

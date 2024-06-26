@@ -10,6 +10,9 @@ export const QUERY_COMPANY_VEHICLE = gql`
       Vehicle {
         id
         plate
+        VehicleModel {
+          name
+        }
       }
       carrier_company_id
       created_at

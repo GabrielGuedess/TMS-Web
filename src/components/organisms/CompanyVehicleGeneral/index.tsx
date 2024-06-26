@@ -57,8 +57,14 @@ const CompanyVehicleGeneralRef: ForwardRefRenderFunction<
   } = useForm<CompanyVehicleGeneralInputProps>({
     resolver: zodResolver(companyVehicleGeneralSchema),
     defaultValues: {
-      vehicle: { id: '', description: '' },
-      carrierCompany: { id: '', description: '' },
+      carrierCompany: {
+        id: data.getCompanyVehicle.carrier_company_id,
+        description: data?.getCompanyVehicle?.CarrierCompany?.rntrc ?? '',
+      },
+      vehicle: {
+        id: data.getCompanyVehicle.vehicle_id,
+        description: `${data.getCompanyVehicle?.Vehicle?.VehicleModel?.name ?? ''} - ${data?.getCompanyVehicle?.Vehicle?.plate ?? ''}`,
+      },
     },
   });
 

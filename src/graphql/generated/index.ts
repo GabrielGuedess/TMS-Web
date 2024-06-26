@@ -7991,11 +7991,19 @@ export type GetCompanyVehicleQuery = {
     vehicle_id: string;
     carrier_company_id: string;
     __typename?: 'CompanyVehicleIModel';
-    Vehicle: { id: string; plate: string; __typename?: 'VehicleCarModel' };
     CarrierCompany: {
       id: string;
       rntrc: string;
       __typename?: 'CarrierCompanyModel';
+    };
+    Vehicle: {
+      id: string;
+      plate: string;
+      __typename?: 'VehicleCarModel';
+      VehicleModel?: null | {
+        name: string;
+        __typename?: 'VehicleModelReferences';
+      };
     };
     updated_at: any;
     created_at: any;
@@ -18028,6 +18036,9 @@ export const GetCompanyVehicleDocument = gql`
       Vehicle {
         id
         plate
+        VehicleModel {
+          name
+        }
       }
       carrier_company_id
       created_at
