@@ -1,8 +1,11 @@
 import { type LegalClientOrderUpdateManyInput } from 'graphql/generated';
 
+import { type z } from 'zod';
 import { type AgGridReactProps } from 'ag-grid-react';
 
 import { type OptionalWithIdProps } from 'helpers/OptionalWithIdProps';
+
+import { type cteSchema } from './schema';
 
 export type LegalClientOrderProps = {
   id: string;
@@ -51,5 +54,7 @@ export type FilterProps = Record<
   }
 > &
   Record<keyof LegalClientOrderProps, ConditionProps>;
+
+export type CTESchemaProps = z.infer<typeof cteSchema>;
 
 export type DataTableLegalClientOrdersProps = AgGridReactProps;

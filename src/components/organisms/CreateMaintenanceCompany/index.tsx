@@ -130,7 +130,7 @@ const CreateMaintenanceCompanyRef: ForwardRefRenderFunction<
         },
       });
 
-      toast.success('Marca de Veiculo criado com sucesso!');
+      toast.success('Empresa criado com sucesso!');
 
       router.refresh();
 
@@ -139,14 +139,14 @@ const CreateMaintenanceCompanyRef: ForwardRefRenderFunction<
       );
     } catch (error) {
       if (error instanceof ApolloError) {
-        toast.error('Erro ao criar Marca de Veiculo!', {
+        toast.error('Erro ao criar Empresa!', {
           description: error.message,
         });
 
         return;
       }
 
-      toast.error('Erro ao criar Marca de Veiculo!');
+      toast.error('Erro ao criar Empresa!');
     } finally {
       setIsLoading(false);
     }
@@ -554,7 +554,7 @@ const CreateMaintenanceCompanyRef: ForwardRefRenderFunction<
             className="min-w-[12.404rem]"
             aria-label="Update MaintenanceCompany"
           >
-            Criar Marca de Veiculo
+            Criar Empresa
           </Button>
         </div>
       </form>

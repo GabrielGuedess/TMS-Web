@@ -14,7 +14,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
     GetCarrierCompanyModelQueryVariables
   >({
     query: QUERY_CARRIER,
-    variables: { cnpj: params.id },
+    variables: { getCarrierCompanyModelId: params.id },
   });
 
   if (error?.message) {

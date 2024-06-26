@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_CARRIER = gql`
-  query GetCarrierCompanyModel($cnpj: String) {
-    getCarrierCompanyModel(cnpj: $cnpj) {
+  query GetCarrierCompanyModel($getCarrierCompanyModelId: String) {
+    getCarrierCompanyModel(id: $getCarrierCompanyModelId) {
       created_at
       created_by
       id

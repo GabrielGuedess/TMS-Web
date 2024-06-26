@@ -6,12 +6,14 @@ import 'ag-grid-community/styles/ag-theme-quartz.css';
 
 import Link from 'next/link';
 
-import { useForm } from 'react-hook-form';
 import { useMemo, useState, useEffect } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 
 import {
+  TypesCteEnum,
   useGetAllLegalClientOrderQuery,
   type LegalClientOrderWhereInput,
+  useCreateLegalClientCteMutation,
   type LegalClientOrderUpdateManyInput,
   useUpdateManyLegalClientOrderMutation,
   useDeleteManyLegalClientOrderMutation,
@@ -24,8 +26,10 @@ import { AgGridReact } from 'ag-grid-react';
 import { ApolloError } from '@apollo/client';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Popover from '@radix-ui/react-popover';
+import { zodResolver } from '@hookform/resolvers/zod';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
+import { generateLegalCTE } from 'actions/cte/generateLegal';
 import {
   type ColDef,
   type RowClassRules,
@@ -37,8 +41,10 @@ import {
   type SelectionChangedEvent,
 } from 'ag-grid-community';
 
+import { Input } from 'components/atoms/Input';
 import { Button } from 'components/atoms/Button';
 import { Select } from 'components/molecules/Select';
+import { FileIcon } from 'components/atoms/FileIcon';
 import { PreLoader } from 'components/atoms/PreLoader';
 import { CloseIcon } from 'components/atoms/CloseIcon';
 import { TrashIcon } from 'components/atoms/TrashIcon';
@@ -50,9 +56,11 @@ import { MinusCircleIcon } from 'components/atoms/MinusCircleIcon';
 
 import { type OptionalWithIdProps } from 'helpers/OptionalWithIdProps';
 
+import { cteSchema } from './schema';
 import {
   type FilterProps,
   type EditRowProps,
+  type CTESchemaProps,
   type LegalClientOrderProps,
   type LegalClientOrderKeyProps,
   type DataTableLegalClientOrdersProps,
@@ -80,8 +88,10 @@ export const DataTableLegalClientOrders = ({
 
   const [rowData, setRowData] = useState<LegalClientOrderProps[]>([]);
 
+  const [isOpenCTE, setIsOpenCTE] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
   const [isOpenUpdate, setIsOpenUpdate] = useState(false);
+  const [isGeneratingCTE, setIsGeneratingCTE] = useState(false);
   const [isOpenDiscardChanges, setIsOpenDiscardChanges] = useState(false);
 
   const [selectedRows, setSelectedRows] = useState<LegalClientOrderProps[]>([]);
@@ -92,6 +102,20 @@ export const DataTableLegalClientOrders = ({
 
   const [update] = useUpdateManyLegalClientOrderMutation();
   const [deleteLegalClientOrders] = useDeleteManyLegalClientOrderMutation();
+
+  const [createCTE] = useCreateLegalClientCteMutation();
+
+  const {
+    control,
+    formState: { errors },
+    handleSubmit: handleSubmitCTE,
+  } = useForm<CTESchemaProps>({
+    resolver: zodResolver(cteSchema),
+    defaultValues: {
+      observations: '',
+      type: TypesCteEnum.NormalCte,
+    },
+  });
 
   const {
     refetch,
@@ -104,6 +128,40 @@ export const DataTableLegalClientOrders = ({
     mode: 'onSubmit',
     defaultValues: { search: '' },
   });
+
+  const handleCreateCTE = async (cte: CTESchemaProps) => {
+    setIsGeneratingCTE(true);
+
+    try {
+      const { data: resultCTE } = await createCTE({
+        variables: {
+          data: {
+            cteType: cte.type,
+            observations: cte.observations,
+            orderId: selectedRows?.[0]?.id ?? '',
+          },
+        },
+      });
+
+      if (resultCTE?.createLegalClientCte?.id) {
+        const { data: generateCte } = await generateLegalCTE({
+          request: {
+            cteLegalPersonId: resultCTE?.createLegalClientCte?.id,
+          },
+        });
+
+        window.open(
+          generateCte.generateLegalClientCte.cteUrl,
+          '_blank',
+          'noopener,noreferrer',
+        );
+      }
+    } catch (error) {
+      toast.error(String(error));
+    } finally {
+      setIsGeneratingCTE(false);
+    }
+  };
 
   const filterParametersText: ITextFilterParams = {
     filterPlaceholder: 'Filtro',
@@ -1025,13 +1083,119 @@ export const DataTableLegalClientOrders = ({
                     className="flex gap-2 rounded-lg border bg-white-lilac-50 px-4 py-2 shadow-default data-[state='open']:animate-slideDownAndFade dark:border-shark-950 dark:bg-shark-950"
                   >
                     {selectedRows.length === 1 && (
-                      <Link
-                        href={`/dashboard/legal-client-orders/${selectedRows[0].id}/general`}
-                        className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
-                      >
-                        <SendAngleIcon size={20} />
-                      </Link>
+                      <>
+                        <Link
+                          href={`/dashboard/physical-customer-orders/${selectedRows[0].id}/general`}
+                          className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
+                        >
+                          <SendAngleIcon size={20} />
+                        </Link>
+
+                        <button
+                          type="button"
+                          aria-label="cte"
+                          onClick={() => setIsOpenCTE(true)}
+                          className="p-1 text-comet-500 outline-primary-400 transition-all hover:text-primary-400 dark:text-dark-300 hover:dark:text-primary-400"
+                        >
+                          <FileIcon size={20} />
+                        </button>
+                      </>
                     )}
+
+                    <AlertDialog.Root
+                      onOpenChange={setIsOpenCTE}
+                      open={isOpenCTE && selectedRows.length > 0}
+                    >
+                      <AlertDialog.Portal>
+                        <AlertDialog.Overlay className="fixed inset-0 z-30 animate-overlayShow bg-black/80 backdrop-blur-sm" />
+
+                        <AlertDialog.Content className="fixed left-1/2 top-1/2 z-40 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 animate-contentShow rounded-md bg-white-lilac-50 p-9 transition-all dark:bg-smoke-950">
+                          <AlertDialog.Title className="text-lg font-semibold text-shark-950 transition-all dark:text-white-lilac-50">
+                            Gerar CTE?
+                          </AlertDialog.Title>
+
+                          <AlertDialog.Description className="mb-6 mt-3">
+                            Ao clicar em Gerar, Você vai gerar o CTE
+                            (Conhecimento de Transporte Eletrônico). Deseja
+                            prosseguir?
+                          </AlertDialog.Description>
+
+                          <div className="flex max-h-32 flex-col gap-1 overflow-y-auto">
+                            <div className="flex flex-col justify-center gap-5">
+                              <span className="flex text-sm">
+                                ID: {selectedRows?.[0]?.id}
+                              </span>
+
+                              <div className="flex gap-2">
+                                <Controller
+                                  render={({ field: { value, onChange } }) => (
+                                    <Select
+                                      label="Tipo"
+                                      value={value}
+                                      aria-label="Tipo"
+                                      placeholder="Tipo"
+                                      onValueChange={onChange}
+                                      className="p-3 dark:bg-smoke-950"
+                                      isInvalid={!!errors.type?.message}
+                                      errorMessage={errors.type?.message}
+                                      values={Object.values(TypesCteEnum)}
+                                      hasHeight
+                                    />
+                                  )}
+                                  name="type"
+                                  control={control}
+                                />
+
+                                <Controller
+                                  render={({ field: { value, onChange } }) => (
+                                    <Input
+                                      errorMessage={
+                                        errors.observations?.message
+                                      }
+                                      value={value}
+                                      label="Observação"
+                                      onChange={onChange}
+                                      aria-label="Observação"
+                                      placeholder="Observação"
+                                      isInvalid={!!errors.observations?.message}
+                                      required
+                                      isFullWidth
+                                    />
+                                  )}
+                                  control={control}
+                                  name="observations"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="mt-6 flex justify-end gap-3">
+                            <AlertDialog.Cancel asChild>
+                              <Button color="secondary">Cancelar</Button>
+                            </AlertDialog.Cancel>
+
+                            <Button
+                              type="button"
+                              color="primary"
+                              variant="label"
+                              isLoading={isGeneratingCTE}
+                              className="min-w-[5.806rem]"
+                              isDisabled={isGeneratingCTE}
+                              onClick={handleSubmitCTE(handleCreateCTE)}
+                            >
+                              Gerar
+                            </Button>
+                          </div>
+                          <AlertDialog.Cancel
+                            aria-label="Close"
+                            className="absolute right-3 top-3 inline-flex items-center justify-center rounded-full p-2 text-primary-400 outline-primary-400"
+                          >
+                            <CloseIcon size={14} />
+                          </AlertDialog.Cancel>
+                        </AlertDialog.Content>
+                      </AlertDialog.Portal>
+                    </AlertDialog.Root>
+
                     <AlertDialog.Root
                       onOpenChange={setIsOpenDelete}
                       open={isOpenDelete && selectedRows.length > 0}

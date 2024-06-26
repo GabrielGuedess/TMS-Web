@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { useForm } from 'react-hook-form';
 import {
@@ -12,12 +13,14 @@ import {
   type ForwardRefRenderFunction,
 } from 'react';
 
-import { useUpdateUserMutation } from 'graphql/generated';
+import {
+  useDeleteUserMutation,
+  useUpdateUserMutation,
+} from 'graphql/generated';
 
 import dayjs from 'dayjs';
 import { toast } from 'sonner';
 import { twMerge } from 'tailwind-merge';
-import { deleteUser } from 'actions/user/delete';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
@@ -41,6 +44,9 @@ const UserGeneralRef: ForwardRefRenderFunction<
   const fileInput = useRef<ElementRef<'input'>>(null);
 
   const [updateUser] = useUpdateUserMutation();
+  const [deleteUser] = useDeleteUserMutation();
+
+  const router = useRouter();
 
   const {
     register,
@@ -93,9 +99,11 @@ const UserGeneralRef: ForwardRefRenderFunction<
     setIsLoadingDelete(true);
 
     try {
-      await deleteUser({ deleteUserId: data.user.id });
+      await deleteUser({ variables: { deleteUserId: data.user.id } });
 
       toast.success(`Usuário deletado com sucesso!`);
+
+      router.push('/dashboard/users');
     } catch {
       toast.error('Erro ao deletar o usuário!');
     } finally {

@@ -221,7 +221,7 @@ const CreateLegalClientQuoteTableRef: ForwardRefRenderFunction<
       router.refresh();
 
       router.push(
-        `/dashboard/own-drivers/${LegalClientQuoteTable.data?.createLegalClientQuoteTable.id}/general`,
+        `/dashboard/legal-client-quote-tables/${LegalClientQuoteTable.data?.createLegalClientQuoteTable.id}/general`,
       );
     } catch (error) {
       if (error instanceof ApolloError) {

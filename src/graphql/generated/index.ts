@@ -7913,7 +7913,7 @@ export type UpdateManyVehicleTypesMutation = {
 };
 
 export type GetCarrierCompanyModelQueryVariables = Exact<{
-  cnpj?: InputMaybe<Scalars['String']['input']>;
+  getCarrierCompanyModelId?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 export type GetCarrierCompanyModelQuery = {
@@ -17722,8 +17722,8 @@ export type UpdateManyVehicleTypesMutationOptions = Apollo.BaseMutationOptions<
 >;
 
 export const GetCarrierCompanyModelDocument = gql`
-  query GetCarrierCompanyModel($cnpj: String) {
-    getCarrierCompanyModel(cnpj: $cnpj) {
+  query GetCarrierCompanyModel($getCarrierCompanyModelId: String) {
+    getCarrierCompanyModel(id: $getCarrierCompanyModelId) {
       created_at
       created_by
       id
@@ -17751,7 +17751,7 @@ export const GetCarrierCompanyModelDocument = gql`
  * @example
  * const { data, loading, error } = useGetCarrierCompanyModelQuery({
  *   variables: {
- *      cnpj: // value for 'cnpj'
+ *      getCarrierCompanyModelId: // value for 'getCarrierCompanyModelId'
  *   },
  * });
  */
